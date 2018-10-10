@@ -206,7 +206,7 @@ Container@MENU_BACKGROUND:
 							Text: Load Map
 							Font: Bold
 						Button@BACK_BUTTON:
-							X: 300
+							X: 750
 							Y: 0
 							Width: 140
 							Height: 35
