@@ -1,0 +1,7 @@
+Player:
+	HackyAI@Hunter:
+		Name: Hunter
+		Type: hunter
+		UnitsCommonNames:
+		BuildingCommonNames:
+		SquadSize: 1

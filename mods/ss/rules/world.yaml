@@ -1,0 +1,370 @@
+^BaseWorld:
+	AlwaysVisible:
+	Inherits: ^Palettes
+	ScreenMap:
+	ActorMap:
+	MusicPlaylist:
+		VictoryMusic: win1
+		DefeatMusic: nod_map1
+	DebugVisualizations:
+	TerrainGeometryOverlay:
+	ShroudRenderer:
+		ShroudVariants: typea, typeb, typec, typed
+		FogVariants: typea, typeb, typec, typed
+		OverrideFullShroud: full
+		OverrideFullFog: full
+	Locomotor@FOOT:
+		Name: foot
+		Crushes: crate
+		SharesCell: true
+		TerrainSpeeds:
+			Clear: 90
+			Rough: 80
+			Road: 100
+			Bridge: 100
+			Tiberium: 70
+				PathingCost: 300
+			BlueTiberium: 70
+				PathingCost: 300
+			Beach: 80
+	Locomotor@CHEM:
+		Name: chem
+		Crushes: crate
+		SharesCell: true
+		TerrainSpeeds:
+			Clear: 90
+			Rough: 80
+			Road: 100
+			Bridge: 100
+			Tiberium: 90
+			BlueTiberium: 90
+			Beach: 80
+	Locomotor@WHEELED:
+		Name: wheeled
+		Crushes: crate
+		TerrainSpeeds:
+			Clear: 80
+			Rough: 50
+			Road: 100
+			Bridge: 100
+			Tiberium: 50
+			BlueTiberium: 50
+			Beach: 50
+	Locomotor@BIKE:
+		Name: bike
+		Crushes: crate
+		TerrainSpeeds:
+			Clear: 70
+			Rough: 35
+			Road: 100
+			Bridge: 100
+			Tiberium: 35
+			BlueTiberium: 35
+			Beach: 35
+	Locomotor@HEAVYWHEELED:
+		Name: heavywheeled
+		Crushes: crate, infantry
+		TerrainSpeeds:
+			Clear: 80
+			Rough: 50
+			Road: 100
+			Bridge: 100
+			Tiberium: 50
+			BlueTiberium: 50
+			Beach: 50
+	Locomotor@TRACKED:
+		Name: tracked
+		Crushes: wall, crate, infantry
+		TerrainSpeeds:
+			Clear: 80
+			Rough: 70
+			Road: 100
+			Bridge: 100
+			Tiberium: 70
+			BlueTiberium: 70
+			Beach: 70
+	Locomotor@HEAVYTRACKED:
+		Name: heavytracked
+		Crushes: wall, heavywall, crate, infantry
+		TerrainSpeeds:
+			Clear: 80
+			Rough: 70
+			Road: 100
+			Bridge: 100
+			Tiberium: 70
+			BlueTiberium: 70
+			Beach: 70
+	Locomotor@NAVAL:
+		Name: naval
+		Crushes: crate
+		TerrainSpeeds:
+			Water: 100
+	Locomotor@LANDINGCRAFT:
+		Name: lcraft
+		Crushes: crate
+		TerrainSpeeds:
+			Clear: 100
+			Rough: 100
+			Road: 100
+			Water: 100
+			Tiberium: 100
+			BlueTiberium: 100
+			Beach: 100
+			River: 100
+	Locomotor@CRITTER:
+		Name: critter
+		Crushes: crate
+		TerrainSpeeds:
+			Clear: 90
+			Rough: 80
+			Road: 100
+			Bridge: 100
+			Tiberium: 70
+			BlueTiberium: 70
+			Beach: 80
+	Faction@Random:
+		Name: Random
+		InternalName: Random
+		RandomFactionMembers: e1, e2, e3, e4, e5, rmbo, jeep, bggy, apc, bike, ltnk, mtnk, arty, msam, mlrs, htnk, stnk
+		Description: Random Class\nA random unit will be chosen when the game starts.
+	Faction@e1:
+		Name: Minigunner
+		InternalName: e1
+		Description:
+	Faction@e2:
+		Name: Grenadier
+		InternalName: e2
+		Description:
+	Faction@e3:
+		Name: Rocket Soldier
+		InternalName: e3
+		Description:
+	Faction@e4:
+		Name: Flamethrower
+		InternalName: e4
+		Description:
+	Faction@e5:
+		Name: Chemical Warrior
+		InternalName: e5
+		Description:
+	Faction@rmbo:
+		Name: Commando
+		InternalName: rmbo
+		Description:
+	Faction@jeep:
+		Name: Hum-Vee
+		InternalName: jeep
+		Description:
+	Faction@bggy:
+		Name: Nod Buggy
+		InternalName: bggy
+		Description:
+	Faction@apc:
+		Name: APC
+		InternalName: apc
+		Description:
+	Faction@bike:
+		Name: Recon Bike
+		InternalName: bike
+		Description:
+	Faction@ltnk:
+		Name: Light Tank
+		InternalName: ltnk
+		Description:
+	Faction@mtnk:
+		Name: Medium Tank
+		InternalName: mtnk
+		Description:
+	Faction@arty:
+		Name: Artillery
+		InternalName: arty
+		Description:
+	Faction@msam:
+		Name: Rocket Launcher
+		InternalName: msam
+		Description:
+	Faction@mlrs:
+		Name: Mobile SSM
+		InternalName: mlrs
+		Description:
+	Faction@htnk:
+		Name: Mammoth Tank
+		InternalName: htnk
+		Description:
+	Faction@stnk:
+		Name: Stealth Tank
+		InternalName: stnk
+		Description:
+	ResourceType@green-tib:
+		Type: Tiberium
+		Name: Tiberium
+		PipColor: Green
+		ResourceType: 1
+		Palette: staticterrain
+		TerrainType: Tiberium
+		Sequences: ti1,ti2,ti3,ti4,ti5,ti6,ti7,ti8,ti9,ti10,ti11,ti12
+		MaxDensity: 12
+		ValuePerUnit: 35
+		AllowedTerrainTypes: Clear,Road
+		AllowUnderActors: true
+	ResourceType@blue-tib:
+		Type: BlueTiberium
+		Name: Tiberium
+		PipColor: Blue
+		ResourceType: 2
+		Palette: bluetiberium
+		TerrainType: BlueTiberium
+		Sequences: bti1,bti2,bti3,bti4,bti5,bti6,bti7,bti8,bti9,bti10,bti11,bti12
+		MaxDensity: 12
+		ValuePerUnit: 60
+		AllowedTerrainTypes: Clear,Road
+		AllowUnderActors: true
+
+World:
+	Inherits: ^BaseWorld
+	ChatCommands:
+	DevCommands:
+	DebugVisualizationCommands:
+	PlayerCommands:
+	HelpCommand:
+	ScreenShaker:
+	BuildingInfluence:
+	LegacyBridgeLayer:
+		Bridges: bridge1, bridge2, bridge3, bridge4
+	ProductionQueueFromSelection:
+		ProductionTabsWidget: PRODUCTION_TABS
+	DomainIndex:
+	SmudgeLayer@SCORCH:
+		Type: Scorch
+		Sequence: scorches
+		SmokePercentage: 50
+	SmudgeLayer@CRATER:
+		Type: Crater
+		Sequence: craters
+	ResourceLayer:
+	ResourceClaimLayer:
+	WarheadDebugOverlay:
+	CustomTerrainDebugOverlay:
+	MapCreeps:
+		CheckboxVisible: False
+	SpawnMapActors:
+	MapOptions:
+		ShortGameCheckboxEnabled: false
+		ShortGameCheckboxVisible: false
+		TechLevelDropdownVisible: false
+		GameSpeedDropdownDisplayOrder: 0
+	MPStartLocations:
+		SeparateTeamSpawnsCheckboxDisplayOrder: 3
+	CreateMPPlayers:
+	MPStartUnits@e1:
+		Class: none
+		ClassName: Normal
+		Factions: e1
+		BaseActor: e1
+	MPStartUnits@e2:
+		Class: none
+		ClassName: Normal
+		Factions: e2
+		BaseActor: e2
+	MPStartUnits@e3:
+		Class: none
+		ClassName: Normal
+		Factions: e3
+		BaseActor: e3
+	MPStartUnits@e4:
+		Class: none
+		ClassName: Normal
+		Factions: e4
+		BaseActor: e4
+	MPStartUnits@e5:
+		Class: none
+		ClassName: Normal
+		Factions: e5
+		BaseActor: e5
+	MPStartUnits@rmbo:
+		Class: none
+		ClassName: Normal
+		Factions: rmbo
+		BaseActor: rmbo
+	MPStartUnits@jeep:
+		Class: none
+		ClassName: Normal
+		Factions: jeep
+		BaseActor: jeep
+	MPStartUnits@bggy:
+		Class: none
+		ClassName: Normal
+		Factions: bggy
+		BaseActor: bggy
+	MPStartUnits@apc:
+		Class: none
+		ClassName: Normal
+		Factions: apc
+		BaseActor: apc
+	MPStartUnits@bike:
+		Class: none
+		ClassName: Normal
+		Factions: bike
+		BaseActor: bike
+	MPStartUnits@ltnk:
+		Class: none
+		ClassName: Normal
+		Factions: ltnk
+		BaseActor: ltnk
+	MPStartUnits@mtnk:
+		Class: none
+		ClassName: Normal
+		Factions: mtnk
+		BaseActor: mtnk
+	MPStartUnits@arty:
+		Class: none
+		ClassName: Normal
+		Factions: arty
+		BaseActor: arty
+	MPStartUnits@msam:
+		Class: none
+		ClassName: Normal
+		Factions: msam
+		BaseActor: msam
+	MPStartUnits@mlrs:
+		Class: none
+		ClassName: Normal
+		Factions: mlrs
+		BaseActor: mlrs
+	MPStartUnits@htnk:
+		Class: none
+		ClassName: Normal
+		Factions: htnk
+		BaseActor: htnk
+	MPStartUnits@stnk:
+		Class: none
+		ClassName: Normal
+		Factions: stnk
+		BaseActor: stnk
+	SpawnMPUnits:
+		StartingUnitsClass: none
+		DropdownVisible: false
+	CrateSpawner:
+		Minimum: 75
+		Maximum: 75
+		SpawnInterval: 125
+		WaterChance: 0
+		InitialSpawnDelay: 0
+		CheckboxEnabled: true
+		CheckboxLocked: true
+		CheckboxVisible: false
+	PathFinder:
+	ValidateOrder:
+	DebugPauseState:
+	ObjectivesPanel:
+		PanelName: SKIRMISH_STATS
+	RadarPings:
+	LoadWidgetAtGameStart:
+		ShellmapRoot: MENU_BACKGROUND
+
+EditorWorld:
+	Inherits: ^BaseWorld
+	EditorActorLayer:
+	EditorResourceLayer:
+	EditorSelectionLayer:
+	LoadWidgetAtGameStart:

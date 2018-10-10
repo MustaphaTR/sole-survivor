@@ -1,0 +1,203 @@
+CRATE.plain:
+	Inherits: ^Crate
+	ScriptTriggers:
+
+CRATE:
+	Inherits: ^Crate
+	Crate:
+		Lifetime: 240
+	RevealMapCrateAction:
+		SelectionShares: 1
+		Effect: reveal-map
+	HideMapCrateAction:
+		SelectionShares: 1
+		Effect: hide-map
+	HealUnitsCrateAction:
+		SelectionShares: 5
+		Effect: heal
+	SupportPowerCrateAction@radar:
+		Proxy: proxy.radar
+		Prerequisites: !proxy.radar
+		SelectionShares: 2
+		Effect: reveal-map
+	GiveUnitCrateAction@cloak-detector:
+		Units: proxy.cloak-detector
+		SelectionShares: 5
+		Effect: hide-map
+	GiveUnitCrateAction@cloak-remover:
+		Units: proxy.cloak-remover
+		SelectionShares: 2
+		Effect: hide-map
+	GrantExternalConditionCrateAction@cloak:
+		SelectionShares: 5
+		Effect: cloak
+		Duration: 625
+		Condition: cloak-crate-collected
+	GrantExternalConditionCrateAction@armor:
+		SelectionShares: 15
+		Effect: armorup
+		Condition: crate-armor
+		Notification: armorup.aud
+	GrantExternalConditionCrateAction@firepower:
+		SelectionShares: 15
+		Effect: firepowerup
+		Condition: crate-firepower
+		Notification: firepowerup.aud
+	GrantExternalConditionCrateAction@speed:
+		SelectionShares: 15
+		Effect: speedup
+		Condition: crate-speed
+		Notification: speedup.aud
+	GrantExternalConditionCrateAction@range:
+		SelectionShares: 15
+		Effect: nuke
+		Condition: crate-range
+		Notification: rangeup.aud
+	GrantExternalConditionCrateAction@rof:
+		SelectionShares: 15
+		Effect: rateoffireup
+		Condition: crate-rof
+		Notification: rateoffireup.aud
+	LevelUpCrateAction:
+		Levels: 1
+		SelectionShares: 5
+
+WCRATE:
+	Inherits: ^Crate
+	Tooltip:
+		Name: Wooden Crate
+
+SCRATE:
+	Inherits: ^Crate
+	Tooltip:
+		Name: Steel Crate
+
+mpspawn:
+	Interactable:
+	EditorOnlyTooltip:
+		Name: (multiplayer player starting point)
+	AlwaysVisible:
+	Immobile:
+		OccupiesSpace: false
+	WithSpriteBody:
+	RenderSpritesEditorOnly:
+	BodyOrientation:
+		QuantizedFacings: 1
+	EditorTilesetFilter:
+		Categories: System
+
+waypoint:
+	Interactable:
+	EditorOnlyTooltip:
+		Name: (waypoint for scripted behavior)
+	AlwaysVisible:
+	Immobile:
+		OccupiesSpace: false
+	WithSpriteBody:
+	RenderSpritesEditorOnly:
+	BodyOrientation:
+		QuantizedFacings: 1
+	EditorTilesetFilter:
+		Categories: System
+
+fact.colorpicker:
+	Inherits: FACT
+	-Buildable:
+	-EditorTilesetFilter:
+	RenderSprites:
+		Image: fact
+		Palette: colorpicker
+
+proxy.radar:
+	AlwaysVisible:
+	ProvidesPrerequisite@proxyname:
+	ProvidesRadar:
+
+proxy.cloak-detector:
+	Inherits: CAMERA
+	-Immobile:
+	Mobile:
+		Locomotor: foot
+	RejectsOrders:
+	DetectCloaked:
+		Range: 1024c0
+	KillsSelf:
+		Delay: 625
+		RemoveInstead: true
+	RenderSpritesEditorOnly:
+		Image: CAMERA
+
+proxy.cloak-remover:
+	Inherits: CAMERA
+	-Immobile:
+	Mobile:
+		Locomotor: foot
+	RejectsOrders:
+	ProximityExternalCondition:
+		Condition: cloak-global-disable
+		Range: 1024c0
+	KillsSelf:
+		Delay: 625
+		RemoveInstead: true
+	RenderSpritesEditorOnly:
+		Image: CAMERA
+
+CAMERA:
+	Interactable:
+	EditorOnlyTooltip:
+		Name: (reveals area to owner)
+	AlwaysVisible:
+	WithSpriteBody:
+	RenderSpritesEditorOnly:
+	BodyOrientation:
+		QuantizedFacings: 1
+	Immobile:
+		OccupiesSpace: false
+	RevealsShroud:
+		Range: 10c0
+		Type: CenterPosition
+	EditorTilesetFilter:
+		Categories: System
+
+CAMERA.small:
+	Interactable:
+	EditorOnlyTooltip:
+		Name: (reveals small area to owner)
+	AlwaysVisible:
+	WithSpriteBody:
+	RenderSpritesEditorOnly:
+		Image: camera
+	BodyOrientation:
+		QuantizedFacings: 1
+	Immobile:
+		OccupiesSpace: false
+	Health:
+		HP: 100000
+	HitShape:
+	RevealsShroud:
+		Range: 6c0
+		Type: CenterPosition
+	EditorTilesetFilter:
+		Categories: System
+
+FLARE:
+	Immobile:
+		OccupiesSpace: false
+	RevealsShroud:
+		Range: 3c0
+		Type: CenterPosition
+	RenderSprites:
+		Image: smokland
+		Palette: terrain
+	WithSpriteBody:
+		StartSequence: open
+	HiddenUnderFog:
+		Type: CenterPosition
+	Tooltip:
+		Name: Flare
+		ShowOwnerRow: false
+	BodyOrientation:
+		QuantizedFacings: 1
+	EditorTilesetFilter:
+		Categories: System
+	Interactable:

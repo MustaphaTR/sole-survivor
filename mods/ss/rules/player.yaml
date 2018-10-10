@@ -1,0 +1,30 @@
+^BasePlayer:
+	AlwaysVisible:
+	Shroud:
+
+EditorPlayer:
+	Inherits: ^BasePlayer
+
+Player:
+	Inherits: ^BasePlayer
+	PlaceBuilding:
+	TechTree:
+	SupportPowerManager:
+	ScriptTriggers:
+	MissionObjectives:
+	ConquestVictoryConditions:
+	PlayerResources:
+		SelectableCash: 0
+		DefaultCash: 0
+		DefaultCashDropdownVisible: false
+	DeveloperMode:
+		CheckboxDisplayOrder: 2
+	BaseAttackNotifier:
+	Shroud:
+		FogCheckboxEnabled: false
+		FogCheckboxDisplayOrder: 1
+	PlayerStatistics:
+	FrozenActorLayer:
+	PlaceBeacon:
+	GrantConditionOnPrerequisiteManager:
+	PlayerExperience:
