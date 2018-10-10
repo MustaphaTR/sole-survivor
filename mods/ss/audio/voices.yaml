@@ -12,6 +12,7 @@ GenericVoice:
 		bike: .v01,.v03
 		ltnk: .v01,.v03
 		mtnk: .v01,.v03
+		ftnk: .v01,.v03
 		arty: .v01,.v03
 		msam: .v01,.v03
 		mlrs: .v01,.v03
@@ -40,6 +41,7 @@ VehicleVoice:
 		bike: .v00,.v02
 		ltnk: .v00,.v02
 		mtnk: .v00,.v02
+		ftnk: .v00,.v02
 		arty: .v00,.v02
 		msam: .v00,.v02
 		mlrs: .v00,.v02
