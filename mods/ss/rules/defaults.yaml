@@ -3,7 +3,9 @@
 	UpdatesPlayerStatistics:
 	CombatDebugOverlay:
 	GivesExperience:
-		PlayerExperienceModifier: 1
+		Experience: 20
+		ActorExperienceModifier: 100
+		PlayerExperienceModifier: 100
 	ScriptTriggers:
 	ConditionManager:
 	RenderDebugState:
@@ -44,10 +46,10 @@
 ^GainsExperience:
 	GainsExperience:
 		Conditions:
-			200: rank-veteran
-			400: rank-veteran
-			800: rank-veteran
-			1600: rank-veteran
+			60: rank-veteran
+			140: rank-veteran
+			240: rank-veteran
+			360: rank-veteran
 	GrantCondition@RANK-ELITE:
 		RequiresCondition: rank-veteran >= 4
 		Condition: rank-elite
