@@ -6,7 +6,7 @@ MCV:
 		Name: Mobile Construction Vehicle
 	Buildable:
 		BuildPaletteOrder: 100
-		Prerequisites: anyhq, ~techlevel.medium, fix
+		Prerequisites: anyhq, fix
 		Queue: Vehicle.GDI, Vehicle.Nod
 		BuildDuration: 3750
 		BuildDurationModifier: 40
@@ -153,7 +153,7 @@ ARTY:
 		Name: Artillery
 	Buildable:
 		BuildPaletteOrder: 60
-		Prerequisites: anyhq, ~techlevel.medium
+		Prerequisites: anyhq
 		Queue: Vehicle.Nod
 		Description: Long-range artillery.\n  Strong vs Infantry, Vehicles and Buildings
 	Mobile:
@@ -195,7 +195,7 @@ FTNK:
 		Name: Flame Tank
 	Buildable:
 		BuildPaletteOrder: 50
-		Prerequisites: anyhq, ~techlevel.medium
+		Prerequisites: anyhq
 		Queue: Vehicle.Nod
 		Description: Heavily armored flame-throwing vehicle.\n  Strong vs Infantry, Buildings and Vehicles\n  Weak vs Tanks
 	Mobile:
@@ -350,7 +350,7 @@ LTNK:
 		Name: Light Tank
 	Buildable:
 		BuildPaletteOrder: 40
-		Prerequisites: anyhq, ~techlevel.medium
+		Prerequisites: anyhq
 		Queue: Vehicle.Nod
 		BuildDuration: 1020
 		BuildDurationModifier: 40
@@ -393,7 +393,7 @@ MTNK:
 		Name: Medium Tank
 	Buildable:
 		BuildPaletteOrder: 40
-		Prerequisites: anyhq, ~techlevel.medium
+		Prerequisites: anyhq
 		Queue: Vehicle.GDI
 		Description: General-Purpose GDI Tank.\n  Strong vs Tanks, Vehicles\n  Weak vs Infantry
 	Mobile:
@@ -436,7 +436,7 @@ HTNK:
 		Name: Mammoth Tank
 	Buildable:
 		BuildPaletteOrder: 60
-		Prerequisites: eye, ~techlevel.high
+		Prerequisites: eye
 		Queue: Vehicle.GDI
 		Description: Heavily armored GDI Tank.\nCan attack Aircraft.\n  Strong vs Everything
 	Mobile:
@@ -493,7 +493,7 @@ MSAM:
 		Name: Rocket Launcher
 	Buildable:
 		BuildPaletteOrder: 50
-		Prerequisites: anyhq, ~techlevel.medium
+		Prerequisites: anyhq
 		Queue: Vehicle.GDI
 		Description: Long range rocket artillery.\n  Strong vs all Ground units.
 	Mobile:
@@ -593,7 +593,7 @@ STNK:
 		Name: Stealth Tank
 	Buildable:
 		BuildPaletteOrder: 90
-		Prerequisites: tmpl, ~techlevel.high
+		Prerequisites: tmpl
 		Queue: Vehicle.Nod
 		Description: Long-range missile tank that can cloak.\nCan attack Aircraft.\nHas weak armor. Can be spotted by infantry and defense structures.\n  Strong vs Vehicles, Tanks\n  Weak vs Infantry.
 	Mobile:

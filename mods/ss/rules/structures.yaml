@@ -145,7 +145,7 @@ NUK2:
 		Prerequisite: anypower
 	Buildable:
 		BuildPaletteOrder: 80
-		Prerequisites: anyhq, ~techlevel.medium
+		Prerequisites: anyhq
 		Queue: Building.GDI, Building.Nod
 		Description: Provides more power, cheaper than the\nstandard Power Plant
 	Building:
@@ -506,7 +506,7 @@ HQ:
 		Prerequisite: anyhq
 	Buildable:
 		BuildPaletteOrder: 70
-		Prerequisites: proc, ~techlevel.medium
+		Prerequisites: proc
 		Queue: Building.GDI, Building.Nod
 		Description: Provides radar and Air Strike support power.\nUnlocks higher-tech units and buildings.\nRequires power to operate.
 	Building:
@@ -532,7 +532,6 @@ HQ:
 		RequiresCondition: !lowpower
 	AirstrikePower:
 		PauseOnCondition: lowpower
-		Prerequisites: ~techlevel.superweapons
 		Icon: airstrike
 		ChargeInterval: 6000
 		SquadSize: 3
@@ -607,7 +606,7 @@ EYE:
 		Prerequisite: anyhq
 	Buildable:
 		BuildPaletteOrder: 100
-		Prerequisites: anyhq, ~techlevel.high
+		Prerequisites: anyhq
 		Queue: Building.GDI
 		Description: Provides radar and Orbital Ion Cannon support power.\nUnlocks Mammoth Tank and Commando.\nRequires power to operate.
 	Building:
@@ -633,7 +632,6 @@ EYE:
 		RequiresCondition: !lowpower
 	IonCannonPower:
 		PauseOnCondition: lowpower
-		Prerequisites: ~techlevel.superweapons
 		Icon: ioncannon
 		Cursor: ioncannon
 		ChargeInterval: 6750
@@ -664,7 +662,7 @@ TMPL:
 		Prerequisite: anyhq
 	Buildable:
 		BuildPaletteOrder: 100
-		Prerequisites: anyhq, ~techlevel.high
+		Prerequisites: anyhq
 		Queue: Building.Nod
 		Description: Provides Nuclear Strike support power.\nUnlocks Stealth Tank, Chem. Warrior and Obelisk of Light.\nRequires power to operate.
 	Building:
@@ -686,7 +684,6 @@ TMPL:
 		RequiresCondition: !lowpower
 	NukePower:
 		PauseOnCondition: lowpower
-		Prerequisites: ~techlevel.superweapons
 		Icon: abomb
 		Cursor: nuke
 		ChargeInterval: 9000
@@ -813,7 +810,7 @@ OBLI:
 		Name: Obelisk of Light
 	Buildable:
 		BuildPaletteOrder: 60
-		Prerequisites: tmpl, ~techlevel.high
+		Prerequisites: tmpl
 		Queue: Defence.Nod
 		BuildDuration: 3120
 		BuildDurationModifier: 40
@@ -893,7 +890,7 @@ ATWR:
 		Name: Advanced Guard Tower
 	Buildable:
 		BuildPaletteOrder: 60
-		Prerequisites: anyhq, ~techlevel.medium
+		Prerequisites: anyhq
 		Queue: Defence.GDI
 		BuildDuration: 2880
 		BuildDurationModifier: 40

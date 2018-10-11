@@ -36,7 +36,7 @@ E2:
 		Name: Grenadier
 	Buildable:
 		BuildPaletteOrder: 40
-		Prerequisites: anyhq, ~techlevel.medium
+		Prerequisites: anyhq
 		Queue: Infantry.GDI
 		Description: Fast infantry armed with grenades. \n  Strong vs Buildings, slow-moving targets
 	Mobile:
@@ -100,7 +100,7 @@ E4:
 		Name: Flamethrower
 	Buildable:
 		BuildPaletteOrder: 40
-		Prerequisites: anyhq, ~techlevel.medium
+		Prerequisites: anyhq
 		Queue: Infantry.Nod
 		Description: Advanced Anti-infantry unit.\n  Strong vs Infantry, Buildings\n  Weak vs Tanks
 	Mobile:
@@ -132,7 +132,7 @@ E5:
 		Name: Chemical Warrior
 	Buildable:
 		BuildPaletteOrder: 50
-		Prerequisites: tmpl, ~techlevel.high
+		Prerequisites: tmpl
 		Queue: Infantry.Nod
 		Description: Advanced general-purpose infantry.\n  Strong vs all Ground units
 	Mobile:
@@ -191,7 +191,7 @@ RMBO:
 		Name: Commando
 	Buildable:
 		BuildPaletteOrder: 50
-		Prerequisites: eye, ~techlevel.high
+		Prerequisites: eye
 		Queue: Infantry.GDI
 		BuildDuration: 2000
 		BuildDurationModifier: 40
