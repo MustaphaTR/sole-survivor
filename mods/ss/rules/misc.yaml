@@ -17,7 +17,7 @@ CRATE:
 		Effect: heal
 	SupportPowerCrateAction@radar:
 		Proxy: proxy.radar
-		Prerequisites: !proxy.radar
+		Prerequisites: !proxy.radar, !global-radar
 		SelectionShares: 2
 		Effect: reveal-map
 	GiveUnitCrateAction@cloak-detector:
@@ -61,6 +61,7 @@ CRATE:
 	LevelUpCrateAction:
 		Levels: 1
 		SelectionShares: 5
+		Prerequisites: global-veterancy
 
 WCRATE:
 	Inherits: ^Crate

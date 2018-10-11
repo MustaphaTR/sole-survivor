@@ -2,10 +2,12 @@
 	AppearsOnRadar:
 	UpdatesPlayerStatistics:
 	CombatDebugOverlay:
-	GivesExperience:
+	GivesExperience@Player:
 		Experience: 20
-		ActorExperienceModifier: 100
+		ActorExperienceModifier: 0
 		PlayerExperienceModifier: 100
+	GivesExperience@Actor:
+		PlayerExperienceModifier: 0
 	ScriptTriggers:
 	ConditionManager:
 	RenderDebugState:
@@ -46,10 +48,16 @@
 ^GainsExperience:
 	GainsExperience:
 		Conditions:
-			60: rank-veteran
-			140: rank-veteran
-			240: rank-veteran
-			360: rank-veteran
+			200: rank-veteran
+			400: rank-veteran
+			800: rank-veteran
+			1600: rank-veteran
+	GrantConditionOnPrerequisite@RADAR:
+		Condition: veterancy
+		Prerequisites: global-veterancy
+	GainsExperienceMultiplier:
+		Modifier: 0
+		RequiresCondition: veterancy
 	GrantCondition@RANK-ELITE:
 		RequiresCondition: rank-veteran >= 4
 		Condition: rank-elite

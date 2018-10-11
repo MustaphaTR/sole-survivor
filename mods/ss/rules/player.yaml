@@ -9,6 +9,7 @@ Player:
 	Inherits: ^BasePlayer
 	PlaceBuilding:
 	TechTree:
+	ConditionManager:
 	SupportPowerManager:
 	ScriptTriggers:
 	MissionObjectives:
@@ -28,3 +29,22 @@ Player:
 	PlaceBeacon:
 	GrantConditionOnPrerequisiteManager:
 	PlayerExperience:
+	LobbyPrerequisiteCheckbox@GLOBALVETERANCY:
+		ID: veterancy
+		Label: Veterancy
+		Description: Units get veterancy by killing others
+		Enabled: True
+		DisplayOrder: 4
+		Prerequisites: global-veterancy
+	LobbyPrerequisiteCheckbox@GLOBALRADAR:
+		ID: radar
+		Label: Free Radar
+		Description: Players start with radar active
+		Enabled: False
+		DisplayOrder: 5
+		Prerequisites: global-radar
+	GrantConditionOnPrerequisite@RADAR:
+		Condition: radar
+		Prerequisites: global-radar
+	ProvidesRadar:
+		RequiresCondition: radar
