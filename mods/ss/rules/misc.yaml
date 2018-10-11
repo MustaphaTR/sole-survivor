@@ -116,6 +116,7 @@ proxy.radar:
 proxy.cloak-detector:
 	Inherits: CAMERA
 	-Immobile:
+	-RevealsShroud:
 	Mobile:
 		Locomotor: foot
 	RejectsOrders:
@@ -130,6 +131,7 @@ proxy.cloak-detector:
 proxy.cloak-remover:
 	Inherits: CAMERA
 	-Immobile:
+	-RevealsShroud:
 	Mobile:
 		Locomotor: foot
 	RejectsOrders:
