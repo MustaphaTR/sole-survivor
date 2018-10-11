@@ -574,7 +574,6 @@ MLRS:
 		Sequence: turret0
 	AutoTarget:
 		InitialStanceAI: Defend
-	RenderRangeCircle:
 	SpawnActorOnDeath:
 		Actor: MLRS.Husk
 		OwnerType: InternalName
