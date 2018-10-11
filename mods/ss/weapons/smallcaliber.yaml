@@ -7,11 +7,11 @@ Sniper:
 		Speed: 5c682
 	Warhead@1Dam: SpreadDamage
 		Spread: 42
-		Damage: 2000
-		Verus: 
-			None: 500
-			Light: 1
-			Heavy: 1
+		Damage: 10000
+		Versus: 
+			None: 100
+			Light: 5
+			Heavy: 5
 		InvalidTargets: Structure, Wall, Trees
 		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
 
