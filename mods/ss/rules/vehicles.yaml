@@ -617,6 +617,8 @@ STNK:
 	GrantConditionOnDamageState@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
+	ExternalCondition@CLOAK-GLOBAL-DISABLE:
+		Condition: cloak-global-disable
 	Armament:
 		Weapon: 227mm.stnk
 		LocalOffset: 213,43,128, 213,-43,128
