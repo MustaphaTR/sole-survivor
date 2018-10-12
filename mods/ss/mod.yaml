@@ -85,6 +85,7 @@ Chrome:
 	ss|chrome.yaml
 
 Assemblies:
+	ss|OpenRA.Mods.SS.dll
 	common|OpenRA.Mods.Common.dll
 	common|OpenRA.Mods.Cnc.dll
 

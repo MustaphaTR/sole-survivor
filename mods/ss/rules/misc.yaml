@@ -62,6 +62,12 @@ CRATE:
 		Levels: 1
 		SelectionShares: 5
 		Prerequisites: global-veterancy
+	TeleportCrateAction:
+		MinDistance: 5
+		SetCameraPosition: true
+		Effect: teleport
+		SelectionShares: 3
+		Notification: teleport.aud
 
 WCRATE:
 	Inherits: ^Crate

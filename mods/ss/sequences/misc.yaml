@@ -291,6 +291,7 @@ crate-effects:
 	armorup: armorcrate
 	speedup: speedcrate
 	rateoffireup: rateoffirecrate
+	teleport: teleportcrate
 
 atomic:
 	Defaults:

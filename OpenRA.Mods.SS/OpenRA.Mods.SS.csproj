@@ -39,6 +39,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Traits\Crates\TeleportCrateAction.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
