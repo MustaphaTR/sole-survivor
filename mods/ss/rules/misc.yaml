@@ -7,66 +7,69 @@ CRATE:
 	Crate:
 		Lifetime: 240
 	RevealMapCrateAction:
-		SelectionShares: 1
+		SelectionShares: 2
 		Effect: reveal-map
-	HideMapCrateAction:
+	HideMapToAllCrateAction:
 		SelectionShares: 1
 		Effect: hide-map
+	HideMapCrateAction:
+		SelectionShares: 2
+		Effect: hide-map
 	HealUnitsCrateAction:
-		SelectionShares: 5
+		SelectionShares: 10
 		Effect: heal
 	SupportPowerCrateAction@radar:
 		Proxy: proxy.radar
 		Prerequisites: !proxy.radar, !global-radar
-		SelectionShares: 2
+		SelectionShares: 4
 		Effect: reveal-map
 	GiveUnitCrateAction@cloak-detector:
 		Units: proxy.cloak-detector
-		SelectionShares: 5
+		SelectionShares: 10
 		Effect: hide-map
 	GiveUnitCrateAction@cloak-remover:
 		Units: proxy.cloak-remover
-		SelectionShares: 2
+		SelectionShares: 4
 		Effect: hide-map
 	GrantExternalConditionCrateAction@cloak:
-		SelectionShares: 5
+		SelectionShares: 10
 		Effect: cloak
 		Duration: 625
 		Condition: cloak-crate-collected
 	GrantExternalConditionCrateAction@armor:
-		SelectionShares: 15
+		SelectionShares: 30
 		Effect: armorup
 		Condition: crate-armor
 		Notification: armorup.aud
 	GrantExternalConditionCrateAction@firepower:
-		SelectionShares: 15
+		SelectionShares: 30
 		Effect: firepowerup
 		Condition: crate-firepower
 		Notification: firepowerup.aud
 	GrantExternalConditionCrateAction@speed:
-		SelectionShares: 15
+		SelectionShares: 30
 		Effect: speedup
 		Condition: crate-speed
 		Notification: speedup.aud
 	GrantExternalConditionCrateAction@range:
-		SelectionShares: 15
-		Effect: nuke
+		SelectionShares: 30
+		Effect: airstrike
 		Condition: crate-range
 		Notification: rangeup.aud
 	GrantExternalConditionCrateAction@rof:
-		SelectionShares: 15
+		SelectionShares: 30
 		Effect: rateoffireup
 		Condition: crate-rof
 		Notification: rateoffireup.aud
 	LevelUpCrateAction:
 		Levels: 1
-		SelectionShares: 5
+		SelectionShares: 10
 		Prerequisites: global-veterancy
 	TeleportCrateAction:
 		MinDistance: 5
 		SetCameraPosition: true
 		Effect: teleport
-		SelectionShares: 3
+		SelectionShares: 6
 		Notification: teleport.aud
 
 WCRATE:
