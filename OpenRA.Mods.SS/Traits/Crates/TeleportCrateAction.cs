@@ -102,6 +102,8 @@ namespace OpenRA.Mods.SS.Traits
                     var locations = recipient.World.Map.FindTilesInAnnulus(recipient.Location, info.MinDistance, info.MaxDistance).Where(c => mobile.CanExistInCell(c));
                     if (mobile != null && locations.Any())
                     {
+                        recipient.CancelActivity();
+
                         var loc = locations.Random(random);
                         mobile.SetPosition(recipient, recipient.World.Map.CenterOfCell(loc));
 
