@@ -2,12 +2,6 @@
 	AppearsOnRadar:
 	UpdatesPlayerStatistics:
 	CombatDebugOverlay:
-	GivesExperience@Player:
-		Experience: 20
-		ActorExperienceModifier: 0
-		PlayerExperienceModifier: 100
-	GivesExperience@Actor:
-		PlayerExperienceModifier: 0
 	ScriptTriggers:
 	ConditionManager:
 	RenderDebugState:
@@ -44,6 +38,14 @@
 		Type: Rectangle
 			TopLeft: -1536, -1024
 			BottomRight: 1536, 1024
+
+^GivesExperience:
+	GivesExperience@Player:
+		Experience: 20
+		ActorExperienceModifier: 0
+		PlayerExperienceModifier: 100
+	GivesExperience@Actor:
+		PlayerExperienceModifier: 0
 
 ^GainsExperience:
 	GainsExperience:
@@ -422,12 +424,14 @@
 	Inherits@1: ^ExistsInWorld
 	Inherits@3: ^SpriteActor
 	Inherits@4: ^AcceptsCratePowerups
+	Inherits@5: ^GivesExperience
 	Huntable:
 	OwnerLostAction:
 		Action: Kill
 	Mobile:
 		Locomotor: wheeled
 		TurnSpeed: 5
+		PreviewFacing: 192
 	SelectionDecorations:
 	WithSpriteControlGroupDecoration:
 	Selectable:
@@ -538,6 +542,7 @@
 		Range: 5c0
 	Mobile:
 		Locomotor: foot
+		PreviewFacing: 192
 	SelectionDecorations:
 	WithSpriteControlGroupDecoration:
 	Selectable:
@@ -634,6 +639,7 @@
 
 ^Soldier:
 	Inherits: ^Infantry
+	Inherits@2: ^GivesExperience
 	MustBeDestroyed:
 	Tooltip:
 		GenericName: Soldier
