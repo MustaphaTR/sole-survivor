@@ -263,7 +263,7 @@
 	DamageMultiplier@ARMOR-3:
 		RequiresCondition: crate-armor == 3
 		Modifier: 85
-	DamageMultiplier@ARMOR-3:
+	DamageMultiplier@ARMOR-4:
 		RequiresCondition: crate-armor == 4
 		Modifier: 80
 	DamageMultiplier@ARMOR-5:
@@ -293,7 +293,7 @@
 	FirepowerMultiplier@FIREPOWER-3:
 		RequiresCondition: crate-firepower == 3
 		Modifier: 130
-	FirepowerMultiplier@FIREPOWER-3:
+	FirepowerMultiplier@FIREPOWER-4:
 		RequiresCondition: crate-firepower == 4
 		Modifier: 140
 	FirepowerMultiplier@FIREPOWER-5:
@@ -323,7 +323,7 @@
 	SpeedMultiplier@SPEED-3:
 		RequiresCondition: crate-speed == 3
 		Modifier: 130
-	SpeedMultiplier@SPEED-3:
+	SpeedMultiplier@SPEED-4:
 		RequiresCondition: crate-speed == 4
 		Modifier: 140
 	SpeedMultiplier@SPEED-5:
@@ -353,7 +353,7 @@
 	RangeMultiplier@RANGE-3:
 		RequiresCondition: crate-range == 3
 		Modifier: 130
-	RangeMultiplier@RANGE-3:
+	RangeMultiplier@RANGE-4:
 		RequiresCondition: crate-range == 4
 		Modifier: 140
 	RangeMultiplier@RANGE-5:
@@ -374,7 +374,7 @@
 	RangeMultiplier@RANGE-10:
 		RequiresCondition: crate-range >= 10
 		Modifier: 200
-	DamageMultiplier@ROF-1:
+	ReloadDelayMultiplier@ROF-1:
 		RequiresCondition: crate-rof == 1
 		Modifier: 95
 	ReloadDelayMultiplier@ROF-2:
@@ -383,7 +383,7 @@
 	ReloadDelayMultiplier@ROF-3:
 		RequiresCondition: crate-rof == 3
 		Modifier: 85
-	ReloadDelayMultiplier@ROF-3:
+	ReloadDelayMultiplier@ROF-4:
 		RequiresCondition: crate-rof == 4
 		Modifier: 80
 	ReloadDelayMultiplier@ROF-5:
