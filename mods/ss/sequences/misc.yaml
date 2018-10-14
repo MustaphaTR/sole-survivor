@@ -249,7 +249,23 @@ allyrepair:
 		Tick: 160
 		ZOffset: 2047
 
-crate:
+crate-brown:
+	idle:
+		ZOffset: -511
+
+crate-red:
+	idle:
+		ZOffset: -511
+
+crate-orange:
+	idle:
+		ZOffset: -511
+
+crate-blue:
+	idle:
+		ZOffset: -511
+
+crate-green:
 	idle:
 		ZOffset: -511
 

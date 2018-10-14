@@ -1,7 +1,3 @@
-CRATE.plain:
-	Inherits: ^Crate
-	ScriptTriggers:
-
 CRATE:
 	Inherits: ^Crate
 	Crate:
@@ -37,6 +33,48 @@ CRATE:
 		Duration: 625
 		Condition: cloak-crate-collected
 	GrantExternalConditionCrateAction@armor:
+		SelectionShares: 15
+		Effect: armorup
+		Condition: crate-armor
+		Notification: armorup.aud
+	GrantExternalConditionCrateAction@firepower:
+		SelectionShares: 15
+		Effect: firepowerup
+		Condition: crate-firepower
+		Notification: firepowerup.aud
+	GrantExternalConditionCrateAction@speed:
+		SelectionShares: 15
+		Effect: speedup
+		Condition: crate-speed
+		Notification: speedup.aud
+	GrantExternalConditionCrateAction@range:
+		SelectionShares: 15
+		Effect: airstrike
+		Condition: crate-range
+		Notification: rangeup.aud
+	GrantExternalConditionCrateAction@rof:
+		SelectionShares: 15
+		Effect: rateoffireup
+		Condition: crate-rof
+		Notification: rateoffireup.aud
+	LevelUpCrateAction:
+		Levels: 1
+		SelectionShares: 8
+		Prerequisites: global-veterancy
+	TeleportCrateAction:
+		MinDistance: 5
+		SetCameraPosition: true
+		Effect: teleport
+		SelectionShares: 6
+		Notification: teleport.aud
+	RenderSprites:
+		Image: crate-brown
+
+UPGRADECRATE:
+	Inherits: ^Crate
+	Crate:
+		Lifetime: 240
+	GrantExternalConditionCrateAction@armor:
 		SelectionShares: 30
 		Effect: armorup
 		Condition: crate-armor
@@ -61,26 +99,19 @@ CRATE:
 		Effect: rateoffireup
 		Condition: crate-rof
 		Notification: rateoffireup.aud
-	LevelUpCrateAction:
-		Levels: 1
-		SelectionShares: 10
-		Prerequisites: global-veterancy
-	TeleportCrateAction:
-		MinDistance: 5
-		SetCameraPosition: true
-		Effect: teleport
-		SelectionShares: 6
-		Notification: teleport.aud
+	RenderSprites:
+		Image: crate-blue
 
-WCRATE:
+HEALCRATE:
 	Inherits: ^Crate
-	Tooltip:
-		Name: Wooden Crate
-
-SCRATE:
-	Inherits: ^Crate
-	Tooltip:
-		Name: Steel Crate
+	Crate:
+		Lifetime: 240
+	SSHealCrateAction:
+		Weapon: Atomic
+		Effect: heal
+		SelectionShares: 30
+	RenderSprites:
+		Image: crate-green
 
 mpspawn:
 	Interactable:

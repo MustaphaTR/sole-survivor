@@ -354,9 +354,11 @@ World:
 		StartingUnitsClass: none
 		DropdownVisible: false
 	CrateSpawner:
-		Minimum: 75
-		Maximum: 75
-		SpawnInterval: 125
+		CrateActors: crate, upgradecrate, healcrate
+		CrateActorShares: 70, 10, 20
+		Minimum: 100
+		Maximum: 100
+		SpawnInterval: 250
 		WaterChance: 0
 		InitialSpawnDelay: 0
 		CheckboxEnabled: true
