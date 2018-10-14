@@ -46,7 +46,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                     }
                 }
 
-                return "";
+                return health.Text + ":";
             };
 
             damage.GetText = () =>
@@ -56,14 +56,18 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                 if (units.Any())
                 {
                     var unit = units.First();
-                    var damageVaue = unit.Info.TraitInfo<StatDamageValueInfo>().Damage;
-                    foreach (var dm in unit.TraitsImplementing<IFirepowerModifier>().Select(fm => fm.GetFirepowerModifier()))
-                        damageVaue = damageVaue * dm / 100;
+                    var damageTrait = unit.Info.TraitInfoOrDefault<StatDamageValueInfo>();
+                    if (damageTrait != null)
+                    {
+                        var damageValue = damageTrait.Damage;
+                        foreach (var dm in unit.TraitsImplementing<IFirepowerModifier>().Select(fm => fm.GetFirepowerModifier()))
+                            damageValue = damageValue * dm / 100;
 
-                    return damage.Text + ": " + damageVaue.ToString();
+                        return damage.Text + ": " + damageValue.ToString();
+                    }
                 }
 
-                return "";
+                return damage.Text + ":";
             };
 
             rof.GetText = () =>
@@ -73,14 +77,18 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                 if (units.Any())
                 {
                     var unit = units.First();
-                    var rofVaue = unit.TraitsImplementing<Armament>().Max(ar => ar.Weapon.ReloadDelay);
-                    foreach (var rm in unit.TraitsImplementing<IReloadModifier>().Select(sm => sm.GetReloadModifier()))
-                        rofVaue = rofVaue * rm / 100;
+                    var armamanets = unit.TraitsImplementing<Armament>();
+                    if (armamanets.Any())
+                    {
+                        var rofValue = armamanets.Max(ar => ar.Weapon.ReloadDelay);
+                        foreach (var rm in unit.TraitsImplementing<IReloadModifier>().Select(sm => sm.GetReloadModifier()))
+                            rofValue = rofValue * rm / 100;
 
-                    return rof.Text + ": " + rofVaue.ToString();
+                        return rof.Text + ": " + rofValue.ToString();
+                    }
                 }
 
-                return "";
+                return rof.Text + ":";
             };
 
             range.GetText = () =>
@@ -90,10 +98,15 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                 if (units.Any())
                 {
                     var unit = units.First();
-                    return range.Text + ": " + (unit.IsDead ? "" : unit.TraitOrDefault<AttackBase>().GetMaximumRange().ToString());
+                    var attackBase = unit.TraitOrDefault<AttackBase>();
+                    if (attackBase != null)
+                    {
+                        var rangeValue = attackBase.GetMaximumRange();
+                        return range.Text + ": " + rangeValue.ToString();
+                    }
                 }
 
-                return "";
+                return range.Text + ":";
             };
 
             speed.GetText = () =>
@@ -103,14 +116,18 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                 if (units.Any())
                 {
                     var unit = units.First();
-                    var speedValue = unit.Trait<Mobile>().Info.Speed;
-                    foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
-                        speedValue = speedValue * sm / 100;
+                    var mobile = unit.Info.TraitInfoOrDefault<MobileInfo>();
+                    if (mobile != null)
+                    {
+                        var speedValue = mobile.Speed;
+                        foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
+                            speedValue = speedValue * sm / 100;
 
-                    return speed.Text + ": " + speedValue.ToString();
+                        return speed.Text + ": " + speedValue.ToString();
+                    }
                 }
 
-                return "";
+                return speed.Text + ":";
             };
         }
     }
