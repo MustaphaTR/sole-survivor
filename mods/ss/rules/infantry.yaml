@@ -24,6 +24,8 @@ E1:
 	WithInfantryBody:
 		IdleSequences: idle1,idle2,idle3,idle4
 		DefaultAttackSequence: shoot
+	StatDamageValue:
+		Damage: 1000
 
 E2:
 	Inherits: ^Soldier
@@ -58,6 +60,8 @@ E2:
 		Weapon: GrenadierExplode
 		EmptyWeapon: GrenadierExplode
 		Chance: 50
+	StatDamageValue:
+		Damage: 5000
 
 E3:
 	Inherits: ^Soldier
@@ -88,6 +92,8 @@ E3:
 	AttackFrontal:
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
+	StatDamageValue:
+		Damage: 2500
 
 E4:
 	Inherits: ^Soldier
@@ -120,6 +126,8 @@ E4:
 	WithMuzzleOverlay:
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
+	StatDamageValue:
+		Damage: 4000
 
 E5:
 	Inherits: ^Soldier
@@ -154,6 +162,8 @@ E5:
 	-DamagedByTerrain:
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
+	StatDamageValue:
+		Damage: 8000
 
 E6:
 	Inherits: ^Soldier
@@ -226,6 +236,8 @@ RMBO:
 	AnnounceOnKill:
 	Voiced:
 		VoiceSet: CommandoVoice
+	StatDamageValue:
+		Damage: 10000
 
 PVICE:
 	Inherits: ^Viceroid

@@ -11,8 +11,7 @@
  
 using System.Linq;
 using OpenRA.Mods.Common.Traits;
-using OpenRA.Traits;
-using OpenRA.Primitives;
+using OpenRA.Mods.SS.Traits;
 using OpenRA.Widgets;
 
 namespace OpenRA.Mods.Common.Widgets.Logic
@@ -24,7 +23,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
         public IngameUnitStatsLogic(Widget widget, World world)
         {
             var health = widget.Get<LabelWidget>("STAT_HEALTH");
-            // var damage = widget.Get<LabelWidget>("STAT_DAMAGE");
+            var damage = widget.Get<LabelWidget>("STAT_DAMAGE");
             var range = widget.Get<LabelWidget>("STAT_RANGE");
             var rof = widget.Get<LabelWidget>("STAT_ROF");
             var speed = widget.Get<LabelWidget>("STAT_SPEED");
@@ -36,11 +35,32 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                 if (units.Any())
                 {
                     var unit = units.First();
-                    var healthVaue = unit.Trait<Health>().MaxHP;
-                    foreach (var dm in unit.TraitsImplementing<DamageMultiplier>().Where(dm => !dm.IsTraitDisabled).Select(dm => dm.Info.Modifier))
-                        healthVaue = healthVaue / dm * 100;
+                    var healthTrait = unit.TraitOrDefault<Health>();
+                    if (healthTrait != null)
+                    {
+                        var healthVaue = healthTrait.MaxHP;
+                        foreach (var dm in unit.TraitsImplementing<DamageMultiplier>().Where(dm => !dm.IsTraitDisabled).Select(dm => dm.Info.Modifier))
+                            healthVaue = healthVaue / dm * 100;
 
-                    return health.Text + ": " + healthVaue.ToString();
+                        return health.Text + ": " + healthVaue.ToString();
+                    }
+                }
+
+                return "";
+            };
+
+            damage.GetText = () =>
+            {
+                var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<Mobile>() != null);
+
+                if (units.Any())
+                {
+                    var unit = units.First();
+                    var damageVaue = unit.Info.TraitInfo<StatDamageValueInfo>().Damage;
+                    foreach (var dm in unit.TraitsImplementing<IFirepowerModifier>().Select(fm => fm.GetFirepowerModifier()))
+                        damageVaue = damageVaue * dm / 100;
+
+                    return damage.Text + ": " + damageVaue.ToString();
                 }
 
                 return "";
