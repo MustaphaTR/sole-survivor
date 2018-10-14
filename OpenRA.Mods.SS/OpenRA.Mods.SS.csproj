@@ -42,6 +42,7 @@
     <Compile Include="Traits\Crates\SSHealCrateAction.cs" />
     <Compile Include="Traits\Crates\HideMapToAllCrateAction.cs" />
     <Compile Include="Traits\Crates\TeleportCrateAction.cs" />
+    <Compile Include="Widgets\Logic\Ingame\IngameUnitStatsLogic.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
