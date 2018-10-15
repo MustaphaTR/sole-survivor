@@ -21,13 +21,8 @@ namespace OpenRA.Mods.Common.Traits
 
 	class HideMapToAllCrateAction : CrateAction
 	{
-		readonly HideMapToAllCrateActionInfo info;
-
 		public HideMapToAllCrateAction(Actor self, HideMapToAllCrateActionInfo info)
-			: base(self, info)
-		{
-			this.info = info;
-		}
+			: base(self, info) { }
 
 		public override int GetSelectionShares(Actor collector)
 		{
