@@ -550,7 +550,7 @@ MLRS:
 	Inherits: ^Tank
 	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@CLOAK: ^AcceptsCloakCrate
-	Inherits@AUTOTARGET: ^AutoTargetAir
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Valued:
 		Cost: 600
 	Tooltip:
