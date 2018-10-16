@@ -364,6 +364,8 @@ World:
 		CheckboxEnabled: true
 		CheckboxLocked: true
 		CheckboxVisible: false
+	LuaScript:
+		Scripts: ai-scripts.lua
 	PathFinder:
 	ValidateOrder:
 	DebugPauseState:

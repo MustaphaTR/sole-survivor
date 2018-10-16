@@ -1,7 +1,4 @@
 Player:
-	HackyAI@Hunter:
+	DummyAI@Hunter:
 		Name: Hunter
 		Type: hunter
-		UnitsCommonNames:
-		BuildingCommonNames:
-		SquadSize: 1

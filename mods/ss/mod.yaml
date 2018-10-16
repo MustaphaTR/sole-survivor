@@ -28,6 +28,7 @@ Packages:
 	ss|bits/jungle
 	ss|bits/desert
 	ss|bits/ss
+	ss|scripts
 	ss|uibits
 
 MapFolders:
