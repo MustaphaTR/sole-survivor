@@ -431,7 +431,6 @@
 	Mobile:
 		Locomotor: wheeled
 		TurnSpeed: 5
-		PreviewFacing: 192
 	SelectionDecorations:
 	WithSpriteControlGroupDecoration:
 	Selectable:
@@ -542,7 +541,6 @@
 		Range: 5c0
 	Mobile:
 		Locomotor: foot
-		PreviewFacing: 192
 	SelectionDecorations:
 	WithSpriteControlGroupDecoration:
 	Selectable:
