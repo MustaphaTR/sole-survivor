@@ -508,6 +508,11 @@ flags: flags.png
 	mlrs: 0,224,32,16
 	htnk: 0,128,32,16
 	stnk: 0,144,32,16
+	steg: 96,32,32,16
+	trex: 96,48,32,16
+	tric: 64,32,32,16
+	rapt: 64,48,32,16
+	pvice: 32,32,32,16
 	Random: 0,32,32,16
 
 strategic: strategic.png

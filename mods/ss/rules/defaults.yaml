@@ -695,12 +695,14 @@
 ^DINO:
 	Inherits@1: ^ExistsInWorld
 	Inherits@2: ^SpriteActor
+	Inherits@3: ^GivesExperience
+	Inherits@4: ^AcceptsCratePowerups
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Huntable:
 	OwnerLostAction:
 		Action: Kill
 	Health:
-		HP: 100000
+		HP: 40000
 	Armor:
 		Type: Wood
 	Buildable:
@@ -711,6 +713,7 @@
 		Cost: 1000
 	Tooltip:
 		Name: Dinosaur
+	RenderNameTag:
 	RevealsShroud:
 		Range: 6c0
 	Mobile:
@@ -745,12 +748,15 @@
 	HitShape:
 		Type: Circle
 			Radius: 128
+	MustBeDestroyed:
 	EditorTilesetFilter:
 		Categories: Critter
 
 ^Viceroid:
 	Inherits@1: ^ExistsInWorld
 	Inherits@2: ^SpriteActor
+	Inherits@3: ^GivesExperience
+	Inherits@4: ^AcceptsCratePowerups
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Huntable:
 	Health:
@@ -779,6 +785,7 @@
 		Cost: 1000
 	Tooltip:
 		Name: Visceroid
+	RenderNameTag:
 	Armament:
 		Weapon: Chemspray
 		LocalOffset: 384,0,0
@@ -802,6 +809,7 @@
 	HitShape:
 		Type: Circle
 			Radius: 427
+	MustBeDestroyed:
 	EditorTilesetFilter:
 		Categories: Critter
 
@@ -1055,7 +1063,6 @@
 	RenderSprites:
 		Palette: staticterrain
 	WithWallSpriteBody:
-	GivesExperience:
 	Sellable:
 		SellSounds: cashturn.aud
 	Guardable:

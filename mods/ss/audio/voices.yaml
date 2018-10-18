@@ -18,6 +18,11 @@ GenericVoice:
 		mlrs: .v01,.v03
 		htnk: .v01,.v03
 		stnk: .v01,.v03
+		steg: .v01,.v03
+		trex: .v01,.v03
+		tric: .v01,.v03
+		rapt: .v01,.v03
+		pvice: .v01,.v03
 	Voices:
 		Select: await1,ready,report1,yessir1
 		Action: ackno,affirm1,noprob,ritaway,roger,ugotit
@@ -47,6 +52,11 @@ VehicleVoice:
 		mlrs: .v00,.v02
 		htnk: .v00,.v02
 		stnk: .v00,.v02
+		steg: .v00,.v02
+		trex: .v00,.v02
+		tric: .v00,.v02
+		rapt: .v00,.v02
+		pvice: .v00,.v02
 	Voices:
 		Select: vehic1,yessir1,report1,await1,unit1
 		Action: ackno,affirm1,movout1

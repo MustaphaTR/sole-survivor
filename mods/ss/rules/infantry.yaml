@@ -247,6 +247,8 @@ PVICE:
 		Description: Mutated abomination that spits liquid Tiberium.\n  Strong vs Infantry, Buildings\n  Weak vs Aircraft
 	Tooltip:
 	ActorLostNotification:
+	StatDamageValue:
+		Damage: 8000
 
 STEG:
 	Inherits: ^DINO
@@ -259,11 +261,15 @@ STEG:
 		DeathPaletteIsPlayerPalette: false
 	Buildable:
 		Description: A large, heavily built, herbivorous quadruped
+	StatDamageValue:
+		Damage: 18000
 
 TREX:
 	Inherits: ^DINO
 	Tooltip:
 		Name: Tyrannosaurus rex
+	Health:
+		HP: 50000
 	Armament:
 		Weapon: teeth
 	Selectable:
@@ -272,6 +278,8 @@ TREX:
 	SelectionDecorations:
 	Buildable:
 		Description: Bipedal carnivore with a massive skull
+	StatDamageValue:
+		Damage: 18000
 
 TRIC:
 	Inherits: ^DINO
@@ -284,12 +292,18 @@ TRIC:
 		Description: Quadruped with large bony frill and three horns
 	Selectable:
 		DecorationBounds: 34,24,0,2
+	StatDamageValue:
+		Damage: 12000
 
 RAPT:
 	Inherits: ^DINO
 	Tooltip:
 		Name: Velociraptor
+	Health:
+		HP: 30000
 	Armament:
 		Weapon: claw
 	Buildable:
 		Description: Bipedal with enlarged sickle-shaped claw on each hindfoot
+	StatDamageValue:
+		Damage: 6000

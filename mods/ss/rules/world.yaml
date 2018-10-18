@@ -125,7 +125,7 @@
 	Faction@Random:
 		Name: Random
 		InternalName: Random
-		RandomFactionMembers: e1, e2, e3, e4, e5, rmbo, jeep, bggy, apc, bike, ltnk, mtnk, ftnk, arty, msam, mlrs, htnk, stnk
+		RandomFactionMembers: e1, e2, e3, e4, e5, rmbo, jeep, bggy, apc, bike, ltnk, mtnk, ftnk, arty, msam, mlrs, htnk, stnk, steg, trex, tric, rapt, pvice
 		Description: Random Class\nA random unit will be chosen when the game starts.
 	Faction@e1:
 		Name: Minigunner
@@ -198,6 +198,26 @@
 	Faction@stnk:
 		Name: Stealth Tank
 		InternalName: stnk
+		Description:
+	Faction@steg:
+		Name: Stegosaurus
+		InternalName: steg
+		Description:
+	Faction@trex:
+		Name: Tyrannosaurus Rex
+		InternalName: trex
+		Description:
+	Faction@tric:
+		Name: Triceratops
+		InternalName: tric
+		Description:
+	Faction@rapt:
+		Name: Velociraptor
+		InternalName: rapt
+		Description:
+	Faction@pvice:
+		Name: Viceroid
+		InternalName: pvice
 		Description:
 	ResourceType@green-tib:
 		Type: Tiberium
@@ -350,6 +370,31 @@ World:
 		ClassName: Normal
 		Factions: stnk
 		BaseActor: stnk
+	MPStartUnits@steg:
+		Class: none
+		ClassName: Normal
+		Factions: steg
+		BaseActor: steg
+	MPStartUnits@trex:
+		Class: none
+		ClassName: Normal
+		Factions: trex
+		BaseActor: trex
+	MPStartUnits@tric:
+		Class: none
+		ClassName: Normal
+		Factions: tric
+		BaseActor: tric
+	MPStartUnits@rapt:
+		Class: none
+		ClassName: Normal
+		Factions: rapt
+		BaseActor: rapt
+	MPStartUnits@pvice:
+		Class: none
+		ClassName: Normal
+		Factions: pvice
+		BaseActor: pvice
 	SpawnMPUnits:
 		StartingUnitsClass: none
 		DropdownVisible: false
