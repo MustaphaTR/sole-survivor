@@ -14,7 +14,6 @@ using System.Drawing;
 using System.Linq;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits;
-using OpenRA.Support;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.SS.Traits
@@ -97,14 +96,13 @@ namespace OpenRA.Mods.SS.Traits
 				var recipient = actor;	// loop variable in closure hazard
 				recipient.World.AddFrameEndTask(w =>
 				{
-					var mobile = recipient.TraitOrDefault<Mobile>();
-                    var random = new MersenneTwister();
+                    var mobile = recipient.TraitOrDefault<Mobile>();
                     var locations = recipient.World.Map.FindTilesInAnnulus(recipient.Location, info.MinDistance, info.MaxDistance).Where(c => mobile.CanExistInCell(c));
                     if (mobile != null && locations.Any())
                     {
                         recipient.CancelActivity();
 
-                        var loc = locations.Random(random);
+                        var loc = locations.Random(recipient.World.SharedRandom);
                         mobile.SetPosition(recipient, recipient.World.Map.CenterOfCell(loc));
 
                         if (info.SetCameraPosition && recipient.Owner == recipient.World.RenderPlayer)
