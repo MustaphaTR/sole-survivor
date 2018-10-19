@@ -100,11 +100,7 @@ Background@PRODUCTION_TOOLTIP:
 			TextColor: FFFF00
 			Font: Bold
 		Label@REQUIRES:
-			X: 5
-			Y: 19
-			Height: 23
-			Font: TinyBold
-			Text: Requires {0}
+			Visible: false
 		Label@DESC:
 			X: 5
 			Y: 39
@@ -112,23 +108,17 @@ Background@PRODUCTION_TOOLTIP:
 			Font: TinyBold
 			VAlign: Top
 		Image@COST_ICON:
-			Y: 5
-			Width: 16
-			ImageCollection: sidebar-bits
-			ImageName: production-tooltip-cost
+			Visible: false
 		Label@COST:
-			Height: 23
-			Font: Bold
+			Visible: false
 		Image@TIME_ICON:
-			X: 3
-			Y: 24
-			Width: 16
-			ImageCollection: sidebar-bits
-			ImageName: production-tooltip-time
+			Visible: false
 		Label@TIME:
-			Y: 19
-			Height: 23
-			Font: Bold
+			Visible: false
+		Image@POWER_ICON:
+			Visible: false
+		Label@POWER:
+			Visible: false
 
 Background@SUPPORT_POWER_TOOLTIP:
 	Logic: SupportPowerTooltipLogic

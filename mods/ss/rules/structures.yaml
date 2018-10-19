@@ -714,19 +714,19 @@ TMPL:
 GUN:
 	Inherits: ^Defense
 	Inherits@AUTOTARGET: ^AutoTargetGround
+	Inherits@ENGINEER: ^EngineerBuilding
 	Selectable:
 		Bounds: 24,24
 	Valued:
-		Cost: 600
+		Cost: 0
 	Tooltip:
 		Name: Turret
 	Buildable:
-		BuildPaletteOrder: 45
-		Prerequisites: barracks
-		Queue: Defence.GDI, Defence.Nod
-		BuildDuration: 1440
-		BuildDurationModifier: 40
-		Description: Basic Anti-Tank base defense.\n  Strong vs Tanks, vehicles\n  Weak vs Infantry
+		BuildPaletteOrder: 10
+		Queue: Defence
+		BuildDurationModifier: 0
+		Description: Basic Anti-Tank defense.\n  Strong vs Tanks, Vehicles\n  Weak vs Infantry
+		BuildLimit: 1
 	Building:
 	Health:
 		HP: 41000
@@ -748,8 +748,6 @@ GUN:
 	AttackTurreted:
 	WithMuzzleOverlay:
 	-WithDeathAnimation:
-	DetectCloaked:
-		Range: 3c0
 	BodyOrientation:
 		UseClassicFacingFudge: True
 
@@ -796,7 +794,6 @@ SAM:
 	AttackPopupTurreted:
 		PauseOnCondition: lowpower
 	WithMuzzleOverlay:
-	-RenderDetectionCircle:
 	BodyOrientation:
 		UseClassicFacingFudge: True
 
@@ -847,19 +844,19 @@ OBLI:
 GTWR:
 	Inherits: ^Defense
 	Inherits@AUTOTARGET: ^AutoTargetGround
+	Inherits@ENGINEER: ^EngineerBuilding
 	Selectable:
 		Bounds: 24,24
 	Valued:
-		Cost: 600
+		Cost: 0
 	Tooltip:
 		Name: Guard Tower
 	Buildable:
-		BuildPaletteOrder: 40
-		Prerequisites: barracks
-		Queue: Defence.GDI, Defence.Nod
-		BuildDuration: 1440
-		BuildDurationModifier: 40
+		BuildPaletteOrder: 0
+		Queue: Defence
+		BuildDurationModifier: 0
 		Description: Basic defensive structure.\n  Strong vs Infantry\n  Weak vs Tanks
+		BuildLimit: 1
 	Building:
 	Health:
 		HP: 40000
@@ -874,8 +871,6 @@ GTWR:
 	AttackTurreted:
 	BodyOrientation:
 		QuantizedFacings: 8
-	DetectCloaked:
-		Range: 3c0
 	WithMuzzleOverlay:
 	Turreted:
 		TurnSpeed: 255

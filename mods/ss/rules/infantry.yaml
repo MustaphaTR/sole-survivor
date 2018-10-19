@@ -182,13 +182,18 @@ E6:
 		HP: 3000
 	Passenger:
 		PipType: Yellow
-	EngineerRepair:
-	RepairsBridges:
-	Captures:
-		CaptureTypes: building, husk
-		PlayerExperience: 50
-	Selectable:
-		Priority: 5
+	GivesBuildableArea:
+		AreaTypes: building
+	ProvidesPrerequisite:
+	Production:
+		Produces: Defence
+	ProductionQueue:
+		Type: Defence
+		Group: Defence
+	ProximityExternalCondition:
+		Range: 1c512
+		ValidStances: Ally
+		Condition: removeable
 
 RMBO:
 	Inherits: ^Soldier

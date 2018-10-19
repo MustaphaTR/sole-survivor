@@ -125,7 +125,7 @@
 	Faction@Random:
 		Name: Random
 		InternalName: Random
-		RandomFactionMembers: e1, e2, e3, e4, e5, rmbo, jeep, bggy, apc, bike, ltnk, mtnk, ftnk, arty, msam, mlrs, htnk, stnk, steg, trex, tric, rapt, pvice
+		RandomFactionMembers: e1, e2, e3, e4, e5, e6, rmbo, jeep, bggy, apc, bike, ltnk, mtnk, ftnk, arty, msam, mlrs, htnk, stnk, steg, trex, tric, rapt, pvice
 		Description: Random Class\nA random unit will be chosen when the game starts.
 	Faction@e1:
 		Name: Minigunner
@@ -146,6 +146,10 @@
 	Faction@e5:
 		Name: Chemical Warrior
 		InternalName: e5
+		Description:
+	Faction@e6:
+		Name: Engineer
+		InternalName: e6
 		Description:
 	Faction@rmbo:
 		Name: Commando
@@ -305,6 +309,11 @@ World:
 		ClassName: Normal
 		Factions: e5
 		BaseActor: e5
+	MPStartUnits@e6:
+		Class: none
+		ClassName: Normal
+		Factions: e6
+		BaseActor: e6
 	MPStartUnits@rmbo:
 		Class: none
 		ClassName: Normal

@@ -918,9 +918,7 @@
 		TerrainTypes: Clear,Road
 	RequiresBuildableArea:
 		AreaTypes: building
-		Adjacent: 4
-	MustBeDestroyed:
-		RequiredForShortGame: true
+		Adjacent: 1
 	RepairableBuilding:
 		RepairPercent: 40
 		RepairStep: 1400
@@ -1047,7 +1045,7 @@
 		TerrainTypes: Clear,Road
 	RequiresBuildableArea:
 		AreaTypes: building
-		Adjacent: 4
+		Adjacent: 1
 	Targetable:
 		TargetTypes: Ground, Wall
 	Crushable:
@@ -1279,16 +1277,27 @@
 ^Defense:
 	Inherits: ^BaseBuilding
 	RenderRangeCircle:
-	RenderDetectionCircle:
 	-GivesBuildableArea:
-	MustBeDestroyed:
-		RequiredForShortGame: false
 	Targetable:
 		TargetTypes: Ground, C4, Structure, Defense
 	EditorTilesetFilter:
 		Categories: Defense
 	-CommandBarBlacklist:
 	-AcceptsDeliveredCash:
+
+^EngineerBuilding:
+	GrantConditionOnDeploy:
+		DeployedCondition: deployed
+		SkipMakeAnimation: true
+		DeploySound: cashturn.aud
+		PauseOnCondition: deployed
+		RequiresCondition: removeable
+	KillsSelf:
+		Delay: 50
+		RemoveInstead: true
+		RequiresCondition: deployed
+	ExternalCondition@REMOVE:
+		Condition: removeable
 
 ^DisabledOverlay:
 	GrantConditionOnPowerState@LOWPOWER:

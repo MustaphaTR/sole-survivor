@@ -450,7 +450,7 @@ gun:
 		UseClassicFacingFudge: True
 	make: gunmake
 		Length: *
-		Tick: 80
+		Tick: 200
 	muzzle: gunfire2
 		Length: *
 	bib: mbGUN
@@ -519,7 +519,7 @@ gtwr:
 			gtwrmake:
 				Start: 19
 		Length: 18
-		Tick: 80
+		Tick: 200
 	muzzle: minigun
 		Length: 6
 		Facings: 8

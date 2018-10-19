@@ -596,6 +596,7 @@ Container@PLAYER_WIDGETS:
 							Width: PARENT_RIGHT - 2
 							Height: PARENT_BOTTOM - 2
 							Skippable: false
+				Container@PRODUCTION_TYPES:
 				Background@STATS:
 					Logic: IngameUnitStatsLogic
 					X: 13
@@ -617,7 +618,29 @@ Container@PLAYER_WIDGETS:
 						Label@STAT_SPEED:
 							Y: 80
 							Text: Speed
-                    
+		Container@PRODUCTION_BACKGROUND:
+			X: WINDOW_RIGHT - 204
+			Y: WINDOW_BOTTOM - 51
+			Children:
+				Background@ICON_TEMPLATE:
+					Width: 66
+					Height: 50
+					Background: panel-black
+		ProductionPalette@PRODUCTION_PALETTE:
+			X: WINDOW_RIGHT - 203
+			Y: WINDOW_BOTTOM - 50
+			TooltipContainer: TOOLTIP_CONTAINER
+			ReadyText: Ready
+			HoldText: On Hold
+			HotkeyPrefix: Production
+			HotkeyCount: 24
+		ProductionTabs@PRODUCTION_TABS:
+			Logic: ProductionTabsLogic
+			PaletteWidget: PRODUCTION_PALETTE
+			TypesContainer: PRODUCTION_TYPES
+			BackgroundContainer: PRODUCTION_BACKGROUND
+			X: WINDOW_RIGHT + 5
+			Y: WINDOW_BOTTOM + 5
 
 Background@FMVPLAYER:
 	Width: WINDOW_RIGHT
