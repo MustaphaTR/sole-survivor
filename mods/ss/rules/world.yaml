@@ -130,79 +130,79 @@
 	Faction@e1:
 		Name: Minigunner
 		InternalName: e1
-		Description:
+		Description: Infantry unit armed with a machine gun.
 	Faction@e2:
 		Name: Grenadier
 		InternalName: e2
-		Description:
+		Description: Infantry unit armed with grenades.
 	Faction@e3:
 		Name: Rocket Soldier
 		InternalName: e3
-		Description:
+		Description: Infantry unit armed with a rocket launcher.
 	Faction@e4:
 		Name: Flamethrower
 		InternalName: e4
-		Description:
+		Description: Infantry unit armed with a flamehrower.
 	Faction@e5:
 		Name: Chemical Warrior
 		InternalName: e5
-		Description:
+		Description: Infantry unit armed with a chemical thrower.
 	Faction@e6:
 		Name: Engineer
 		InternalName: e6
-		Description:
+		Description: Infantry unit capable of placing guard towers or turrets nearby.
 	Faction@rmbo:
 		Name: Commando
 		InternalName: rmbo
-		Description:
+		Description: Infantry unit armed with a sniper rifle and C4 charges.
 	Faction@jeep:
 		Name: Hum-Vee
 		InternalName: jeep
-		Description:
+		Description: Fast vehicle armed with a machine gun.
 	Faction@bggy:
 		Name: Nod Buggy
 		InternalName: bggy
-		Description:
+		Description: Fast vehicle armed with a machine gun.
 	Faction@apc:
 		Name: APC
 		InternalName: apc
-		Description:
+		Description: Armored vehicle armed with small cannon.\n\nCan carry ally infantry.
 	Faction@bike:
 		Name: Recon Bike
 		InternalName: bike
-		Description:
+		Description: Fast vehicle armed rocket launchers.
 	Faction@ltnk:
 		Name: Light Tank
 		InternalName: ltnk
-		Description:
+		Description: Light main battle tank.
 	Faction@mtnk:
 		Name: Medium Tank
 		InternalName: mtnk
-		Description:
+		Description: Medium main battle tank.
 	Faction@ftnk:
 		Name: Flame Tank
 		InternalName: ftnk
-		Description:
+		Description: Armored vehicle with flamehrowers.
 	Faction@arty:
 		Name: Artillery
 		InternalName: arty
-		Description:
+		Description: Artillery unit armed with a cannon.
 	Faction@msam:
 		Name: Rocket Launcher
 		InternalName: msam
-		Description:
+		Description: Artillery unit armed with multiple missiles.
 	Faction@mlrs:
 		Name: Mobile SSM
 		InternalName: mlrs
-		Description:
+		Description: Artillery unit armed with two Surface-to-Surface missiles.
 	Faction@htnk:
 		Name: Mammoth Tank
 		InternalName: htnk
-		Description:
+		Description: Heavy tank armed with rocket launchers in addition to cannon.
 	Faction@stnk:
 		Name: Stealth Tank
 		InternalName: stnk
-		Description:
+		Description: Light vehicle armed with rocket launchers.\n\nInvisible while not attacking.
 	Faction@steg:
 		Name: Stegosaurus
 		InternalName: steg
@@ -222,7 +222,7 @@
 	Faction@pvice:
 		Name: Viceroid
 		InternalName: pvice
-		Description:
+		Description: Mutated abomination that spits liquid Tiberium.
 	ResourceType@green-tib:
 		Type: Tiberium
 		Name: Tiberium
