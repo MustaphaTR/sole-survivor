@@ -37,7 +37,7 @@ Tick = function()
 	Trigger.AfterDelay(5, function()
 		for _,bot in pairs(bots) do
 			local unit = AIUnits[bot.InternalName]
-			
+
 			if unit ~= nil and not unit.IsDead then
 				if unit.IsIdle then
 					local crates = GetNearbyCrates(unit, 8)

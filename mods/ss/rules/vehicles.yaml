@@ -598,9 +598,50 @@ MLRS:
 		Actor: MLRS.Husk
 		OwnerType: InternalName
 		EffectiveOwnerFromOwner: true
-	ReloadAmmoPool:
+	ReloadAmmoPool@ROF-0:
 		Delay: 75
 		Count: 1
+		RequiresCondition: !crate-rof
+	ReloadAmmoPool@@ROF-1:
+		Delay: 71
+		Count: 1
+		RequiresCondition: crate-rof == 1
+	ReloadAmmoPool@@ROF-2:
+		Delay: 67
+		Count: 1
+		RequiresCondition: crate-rof == 2
+	ReloadAmmoPool@@ROF-3:
+		Delay: 63
+		Count: 1
+		RequiresCondition: crate-rof == 3
+	ReloadAmmoPool@@ROF-4:
+		Delay: 60
+		Count: 1
+		RequiresCondition: crate-rof == 4
+	ReloadAmmoPool@@ROF-5:
+		Delay: 56
+		Count: 1
+		RequiresCondition: crate-rof == 5
+	ReloadAmmoPool@@ROF-6:
+		Delay: 52
+		Count: 1
+		RequiresCondition: crate-rof == 6
+	ReloadAmmoPool@@ROF-7:
+		Delay: 48
+		Count: 1
+		RequiresCondition: crate-rof == 7
+	ReloadAmmoPool@@ROF-8:
+		Delay: 45
+		Count: 1
+		RequiresCondition: crate-rof == 8
+	ReloadAmmoPool@@ROF-9:
+		Delay: 41
+		Count: 1
+		RequiresCondition: crate-rof == 9
+	ReloadAmmoPool@@ROF-10:
+		Delay: 37
+		Count: 1
+		RequiresCondition: crate-rof >= 10
 	StatDamageValue:
 		Damage: 7500
 
