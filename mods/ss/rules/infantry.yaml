@@ -190,7 +190,10 @@ E6:
 	ProductionQueue:
 		Type: Defence
 		Group: Defence
-	ProximityExternalCondition:
+		QueuedAudio: Building
+		ReadyAudio: ConstructionComplete
+		LimitedAudio: BuildingInProgress
+	ProximityExternalCondition@REMOVE:
 		Range: 1c512
 		ValidStances: Ally
 		Condition: removeable
