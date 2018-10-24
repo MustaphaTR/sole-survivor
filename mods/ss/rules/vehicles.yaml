@@ -460,7 +460,7 @@ HTNK:
 		Speed: 56
 		TurnSpeed: 3
 	Health:
-		HP: 87000
+		HP: 85000
 	Repairable:
 		HpPerStep: 2637
 	Armor:
