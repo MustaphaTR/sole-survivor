@@ -18,7 +18,7 @@ Atomic:
 		ImpactSounds: nukexplo.aud
 		ImpactActors: false
 	Warhead@3Dam_areanukea: SpreadDamage
-		Spread: 2c512
+		Spread: 2c0
 		Damage: 11000
 		Falloff: 1000, 700, 500, 300, 150, 50, 0
 		Delay: 3
@@ -43,7 +43,7 @@ Atomic:
 		Delay: 3
 		ImpactActors: false
 	Warhead@7Dam_areanukeb: SpreadDamage
-		Spread: 3c768
+		Spread: 3c0
 		Damage: 5000
 		Falloff: 1000, 368, 135, 50, 18, 7, 0
 		Delay: 6
@@ -64,7 +64,7 @@ Atomic:
 		Size: 4
 		Delay: 6
 	Warhead@10Dam_areanukec: SpreadDamage
-		Spread: 5c0
+		Spread: 4c0
 		Damage: 2000
 		Falloff: 1000, 368, 135, 50, 18, 7, 0
 		Delay: 9
