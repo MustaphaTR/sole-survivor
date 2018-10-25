@@ -15,6 +15,37 @@ IdleHunt = function(actor)
 	end
 end
 
+BuildEngiStuff = function(engi)
+	local engiLoc = engi.Location
+	local locations =
+	{
+		engiLoc + CVec.New(-1,-1),
+		engiLoc + CVec.New(-1, 0),
+		engiLoc + CVec.New(-1, 1),
+		engiLoc + CVec.New( 0,-1),
+		engiLoc + CVec.New( 0, 0),
+		engiLoc + CVec.New( 0, 1),
+		engiLoc + CVec.New( 1,-1),
+		engiLoc + CVec.New( 1, 0),
+		engiLoc + CVec.New( 1, 1)
+	}
+
+	local buildableLocations = Utils.Where(locations, function(l) return Map.TerrainType(l) == "Clear" or Map.TerrainType(l) == "Road" end)
+
+	if #buildableLocations > 0 then
+		local towerLocation = Utils.Random(buildableLocations)
+		local turretLocation = Utils.Random(Utils.Where(buildableLocations, function(l) return l ~= towerLocation end))
+
+		if #engi.Owner.GetActorsByType("gtwr") == 0 then
+			Actor.Create("gtwr", true, { Owner = engi.Owner, Location = towerLocation })
+		end
+
+		if #engi.Owner.GetActorsByType("gun") == 0 then
+			Actor.Create("gun",  true, { Owner = engi.Owner, Location = turretLocation })
+		end
+	end
+end
+
 GetNearbyCrates = function(actor, distance)
 	return Utils.Where(Map.ActorsInCircle(actor.CenterPosition, WDist.FromCells(distance)), function(a) return a.Type == "crate" or a.Type == "upgradecrate" end)
 end
@@ -30,7 +61,7 @@ GetNearbyHealCrate = function(actor, distance)
 end
 
 SetupAIUnits = function(bot)
-	AIUnits[bot.InternalName] = bot.GetGroundAttackers()[1]
+	AIUnits[bot.InternalName] = Utils.Where(bot.GetActors(), function(a) return a.Type ~= "player" end)[1]
 end
 
 Tick = function()
@@ -45,7 +76,15 @@ Tick = function()
 						unit.Move(crate.Location)
 					end
 
-					IdleHunt(unit)
+					if unit.Type == "e6" then
+						Trigger.AfterDelay(5, function()
+							if unit.IsIdle then
+								BuildEngiStuff(unit)
+							end
+						end)
+					else
+						IdleHunt(unit)
+					end
 				end
 				if unit.Health <= unit.MaxHealth * 25 / 100 then
 					local healcrate = GetNearbyHealCrate(unit, 10)
