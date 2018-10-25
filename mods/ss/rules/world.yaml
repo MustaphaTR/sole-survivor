@@ -125,104 +125,108 @@
 	Faction@Random:
 		Name: Random
 		InternalName: Random
-		RandomFactionMembers: e1, e2, e3, e4, e5, e6, rmbo, jeep, bggy, apc, bike, ltnk, mtnk, ftnk, arty, msam, mlrs, htnk, stnk, steg, trex, tric, rapt, pvice
+		RandomFactionMembers: e1, e2, e3, e4, e5, e6, rmbo, harv, jeep, bggy, apc, bike, ltnk, mtnk, ftnk, arty, msam, mlrs, htnk, stnk, steg, trex, tric, rapt, pvice
 		Description: Random Class\nA random unit will be chosen when the game starts.
 	Faction@e1:
 		Name: Minigunner
 		InternalName: e1
-		Description: Infantry unit armed with a machine gun.
+		Description: Minigunner\nInfantry unit armed with a machine gun.
 	Faction@e2:
 		Name: Grenadier
 		InternalName: e2
-		Description: Infantry unit armed with grenades.
+		Description: Grenadier\nInfantry unit armed with grenades.
 	Faction@e3:
 		Name: Rocket Soldier
 		InternalName: e3
-		Description: Infantry unit armed with a rocket launcher.
+		Description: Rocket Soldier\nInfantry unit armed with a rocket launcher.
 	Faction@e4:
 		Name: Flamethrower
 		InternalName: e4
-		Description: Infantry unit armed with a flamehrower.
+		Description: Flamethrower\nInfantry unit armed with a flamehrower.
 	Faction@e5:
 		Name: Chemical Warrior
 		InternalName: e5
-		Description: Infantry unit armed with a chemical thrower.
+		Description: Chemical Warrior\nInfantry unit armed with a chemical thrower.
 	Faction@e6:
 		Name: Engineer
 		InternalName: e6
-		Description: Infantry unit capable of placing guard towers or turrets nearby.
+		Description: Engineer\nInfantry unit capable of placing guard towers or turrets nearby.
 	Faction@rmbo:
 		Name: Commando
 		InternalName: rmbo
-		Description: Infantry unit armed with a sniper rifle and C4 charges.
+		Description: Commando\nInfantry unit armed with a sniper rifle and C4 charges.
+	Faction@harv:
+		Name: Harvester
+		InternalName: harv
+		Description: Harvester\nVehicle normally designed to harvest Tiberum. But it can use its blades to damage the enemies.
 	Faction@jeep:
 		Name: Hum-Vee
 		InternalName: jeep
-		Description: Fast vehicle armed with a machine gun.
+		Description: Hum-Vee\nFast vehicle armed with a machine gun.
 	Faction@bggy:
 		Name: Nod Buggy
 		InternalName: bggy
-		Description: Fast vehicle armed with a machine gun.
+		Description: Nod Buggy\nFast vehicle armed with a machine gun.
 	Faction@apc:
 		Name: APC
 		InternalName: apc
-		Description: Armored vehicle armed with small cannon.\n\nCan carry ally infantry.
+		Description: Armored Personnel Carrier\nArmored vehicle armed with small cannon.\n\nCan carry ally infantry.
 	Faction@bike:
 		Name: Recon Bike
 		InternalName: bike
-		Description: Fast vehicle armed rocket launchers.
+		Description: Recon Bike\nFast vehicle armed rocket launchers.
 	Faction@ltnk:
 		Name: Light Tank
 		InternalName: ltnk
-		Description: Light main battle tank.
+		Description: Light Tank\nLight main battle tank.
 	Faction@mtnk:
 		Name: Medium Tank
 		InternalName: mtnk
-		Description: Medium main battle tank.
+		Description: Medium Tank\nMedium main battle tank.
 	Faction@ftnk:
 		Name: Flame Tank
 		InternalName: ftnk
-		Description: Armored vehicle with flamehrowers.
+		Description: Flame Tank\nArmored vehicle with flamehrowers.
 	Faction@arty:
 		Name: Artillery
 		InternalName: arty
-		Description: Artillery unit armed with a cannon.
+		Description: Artillery\nArtillery unit armed with a cannon.
 	Faction@msam:
 		Name: Rocket Launcher
 		InternalName: msam
-		Description: Artillery unit armed with multiple missiles.
+		Description: Rocket Launcher\nArtillery unit armed with multiple missiles.
 	Faction@mlrs:
 		Name: Mobile SSM
 		InternalName: mlrs
-		Description: Artillery unit armed with two Surface-to-Surface missiles.
+		Description: Mobile SSM\nArtillery unit armed with two Surface-to-Surface missiles.
 	Faction@htnk:
 		Name: Mammoth Tank
 		InternalName: htnk
-		Description: Heavy tank armed with rocket launchers in addition to cannon.
+		Description: Mammoth Tank\nHeavy tank armed with rocket launchers in addition to cannon.
 	Faction@stnk:
 		Name: Stealth Tank
 		InternalName: stnk
-		Description: Light vehicle armed with rocket launchers.\n\nInvisible while not attacking.
+		Description: Stealth Tank\nLight vehicle armed with rocket launchers.\n\nInvisible while not attacking.
 	Faction@steg:
 		Name: Stegosaurus
 		InternalName: steg
-		Description:
+		Description: Stegosaurus
 	Faction@trex:
 		Name: Tyrannosaurus Rex
 		InternalName: trex
-		Description:
+		Description: Tyrannosaurus Rex
 	Faction@tric:
 		Name: Triceratops
 		InternalName: tric
-		Description:
+		Description: Triceratops
 	Faction@rapt:
 		Name: Velociraptor
 		InternalName: rapt
-		Description:
+		Description: Velociraptor
 	Faction@pvice:
 		Name: Viceroid
 		InternalName: pvice
-		Description: Mutated abomination that spits liquid Tiberium.
+		Description: Viceroid\nMutated abomination that spits liquid Tiberium.
 	ResourceType@green-tib:
 		Type: Tiberium
 		Name: Tiberium
@@ -319,6 +323,11 @@ World:
 		ClassName: Normal
 		Factions: rmbo
 		BaseActor: rmbo
+	MPStartUnits@harv:
+		Class: none
+		ClassName: Normal
+		Factions: harv
+		BaseActor: harv
 	MPStartUnits@jeep:
 		Class: none
 		ClassName: Normal

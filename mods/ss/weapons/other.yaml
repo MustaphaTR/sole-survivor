@@ -104,6 +104,20 @@ Laser:
 		SmudgeType: Scorch
 		InvalidTargets: Vehicle, Structure, Wall, Husk, Trees, Creep
 
+HarvesterWeapon:
+	ReloadDelay: 50
+	Range: 1c0
+	Projectile: Bullet
+		Speed: 1c682
+	Warhead@1Dam: SpreadDamage
+		Spread: 213
+		Damage: 6250
+		Versus:
+			Wood: 50
+			Light: 80
+			Heavy: 50
+		DamageTypes: Prone50Percent, TriggerProne, RippedApartDeath
+
 ^DinoWeapon:
 	ReloadDelay: 30
 	Range: 1c0

@@ -7,6 +7,7 @@ GenericVoice:
 		e5: .v01,.v03
 		e6: .v01,.v03
 		rmbo: .v01,.v03
+		harv: .v01,.v03
 		jeep: .v01,.v03
 		bggy: .v01,.v03
 		apc: .v01,.v03
@@ -42,6 +43,7 @@ VehicleVoice:
 		e5: .v00,.v02
 		e6: .v00,.v02
 		rmbo: .v00,.v02
+		harv: .v00,.v02
 		jeep: .v00,.v02
 		bggy: .v00,.v02
 		apc: .v00,.v02

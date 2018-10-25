@@ -42,6 +42,7 @@ MCV:
 
 HARV:
 	Inherits: ^Tank
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Inherits@CLOAK: ^AcceptsCloakCrate
 	Valued:
 		Cost: 1000
@@ -58,16 +59,13 @@ HARV:
 	Selectable:
 		Priority: 7
 		DecorationBounds: 36,36
-	Harvester:
-		Resources: Tiberium, BlueTiberium
-		PipCount: 7
-		Capacity: 20
-		BaleLoadDelay: 12
-		BaleUnloadDelay: 6
-		SearchFromProcRadius: 25
-		SearchFromOrderRadius: 15
 	Mobile:
 		Speed: 85
+	Armament:
+		Weapon: HarvesterWeapon
+	AttackFrontal:
+	WithAttackAnimation:
+		Sequence: harvest
 	Health:
 		HP: 62500
 	Repairable:
@@ -80,11 +78,11 @@ HARV:
 		Actor: HARV.Husk
 		OwnerType: InternalName
 		EffectiveOwnerFromOwner: true
-	WithHarvestAnimation:
-	WithDockingAnimation:
 	Explodes:
 		Weapon: TiberiumExplosion
 	SelectionDecorations:
+	StatDamageValue:
+		Damage: 6250
 
 APC:
 	Inherits: ^Tank
