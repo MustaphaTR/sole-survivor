@@ -5,58 +5,71 @@ CRATE:
 	RevealMapCrateAction:
 		SelectionShares: 2
 		Effect: reveal-map
+		Notification: MapReveal
 	HideMapToAllCrateAction:
 		SelectionShares: 1
 		Effect: hide-map
+		Notification: GlobalDarkness
 	HideMapCrateAction:
 		SelectionShares: 2
 		Effect: hide-map
+		Notification: GlobalDarkness
 	HealUnitsCrateAction:
 		SelectionShares: 10
 		Effect: heal
+		Notification: HealthUpgraded
 	SupportPowerCrateAction@radar:
 		Proxy: proxy.radar
 		Prerequisites: !proxy.radar, !global-radar
 		SelectionShares: 4
 		Effect: reveal-map
+		Notification: RadarActivated
 	GiveUnitCrateAction@cloak-detector:
 		Units: proxy.cloak-detector
 		SelectionShares: 10
 		Effect: hide-map
+		Notification: GlobalStealthDeactivated
 	GiveUnitCrateAction@cloak-remover:
 		Units: proxy.cloak-remover
 		SelectionShares: 4
 		Effect: hide-map
+		Notification: GlobalStealthDeactivated
 	GrantExternalConditionCrateAction@cloak:
 		SelectionShares: 10
 		Effect: cloak
 		Duration: 625
 		Condition: cloak-crate-collected
+		Notification: StealthMode
 	GrantExternalConditionCrateAction@armor:
 		SelectionShares: 15
 		Effect: armorup
 		Condition: crate-armor
-		Notification: armorup.aud
+		Sound: armorup.aud
+		Notification: ArmorUpgraded
 	GrantExternalConditionCrateAction@firepower:
 		SelectionShares: 15
 		Effect: firepowerup
 		Condition: crate-firepower
-		Notification: firepowerup.aud
+		Sound: firepowerup.aud
+		Notification: WeaponUpgraded
 	GrantExternalConditionCrateAction@speed:
 		SelectionShares: 15
 		Effect: speedup
 		Condition: crate-speed
-		Notification: speedup.aud
+		Sound: speedup.aud
+		Notification: SpeedUpgraded
 	GrantExternalConditionCrateAction@range:
 		SelectionShares: 15
 		Effect: airstrike
 		Condition: crate-range
-		Notification: rangeup.aud
+		Sound: rangeup.aud
+		Notification: RangeUpgraded
 	GrantExternalConditionCrateAction@rof:
 		SelectionShares: 15
 		Effect: rateoffireup
 		Condition: crate-rof
-		Notification: rateoffireup.aud
+		Sound: rateoffireup.aud
+		Notification: RapidReload
 	LevelUpCrateAction:
 		Levels: 1
 		SelectionShares: 8
@@ -66,7 +79,8 @@ CRATE:
 		SetCameraPosition: true
 		Effect: teleport
 		SelectionShares: 6
-		Notification: teleport.aud
+		Sound: teleport.aud
+		Notification: TeleportActivated
 	RenderSprites:
 		Image: crate-brown
 
@@ -75,30 +89,35 @@ UPGRADECRATE:
 	Crate:
 		Lifetime: 240
 	GrantExternalConditionCrateAction@armor:
-		SelectionShares: 30
+		SelectionShares: 15
 		Effect: armorup
 		Condition: crate-armor
-		Notification: armorup.aud
+		Sound: armorup.aud
+		Notification: ArmorUpgraded
 	GrantExternalConditionCrateAction@firepower:
-		SelectionShares: 30
+		SelectionShares: 15
 		Effect: firepowerup
 		Condition: crate-firepower
-		Notification: firepowerup.aud
+		Sound: firepowerup.aud
+		Notification: WeaponUpgraded
 	GrantExternalConditionCrateAction@speed:
-		SelectionShares: 30
+		SelectionShares: 15
 		Effect: speedup
 		Condition: crate-speed
-		Notification: speedup.aud
+		Sound: speedup.aud
+		Notification: SpeedUpgraded
 	GrantExternalConditionCrateAction@range:
-		SelectionShares: 30
+		SelectionShares: 15
 		Effect: airstrike
 		Condition: crate-range
-		Notification: rangeup.aud
+		Sound: rangeup.aud
+		Notification: RangeUpgraded
 	GrantExternalConditionCrateAction@rof:
-		SelectionShares: 30
+		SelectionShares: 15
 		Effect: rateoffireup
 		Condition: crate-rof
-		Notification: rateoffireup.aud
+		Sound: rateoffireup.aud
+		Notification: RapidReload
 	RenderSprites:
 		Image: crate-blue
 
@@ -110,6 +129,8 @@ HEALCRATE:
 		Weapon: Atomic
 		Effect: heal
 		SelectionShares: 30
+		Notification: HealthUpgraded
+		WeaponNotification: NuclearBomb
 	RenderSprites:
 		Image: crate-green
 
@@ -124,7 +145,7 @@ mpspawn:
 	RenderSpritesEditorOnly:
 	BodyOrientation:
 		QuantizedFacings: 1
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: System
 
 waypoint:
@@ -138,13 +159,13 @@ waypoint:
 	RenderSpritesEditorOnly:
 	BodyOrientation:
 		QuantizedFacings: 1
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: System
 
 fact.colorpicker:
 	Inherits: FACT
 	-Buildable:
-	-EditorTilesetFilter:
+	-MapEditorData:
 	RenderSprites:
 		Image: fact
 		Palette: colorpicker
@@ -199,7 +220,7 @@ CAMERA:
 	RevealsShroud:
 		Range: 10c0
 		Type: CenterPosition
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: System
 
 CAMERA.small:
@@ -220,7 +241,7 @@ CAMERA.small:
 	RevealsShroud:
 		Range: 6c0
 		Type: CenterPosition
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: System
 
 FLARE:
@@ -241,6 +262,6 @@ FLARE:
 		ShowOwnerRow: false
 	BodyOrientation:
 		QuantizedFacings: 1
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: System
 	Interactable:

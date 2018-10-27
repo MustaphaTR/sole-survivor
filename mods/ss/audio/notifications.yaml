@@ -1,7 +1,30 @@
 Speech:
 	Prefixes:
-		gdi: gdi
-		nod: nod
+		e1: eva_
+		e2: eva_
+		e3: eva_
+		e4: eva_
+		e5: eva_
+		e6: eva_
+		rmbo: cmd_
+		harv: eva_
+		jeep: eva_
+		bggy: eva_
+		apc: eva_
+		bike: eva_
+		ltnk: eva_
+		mtnk: eva_
+		ftnk: eva_
+		arty: eva_
+		msam: eva_
+		mlrs: eva_
+		htnk: eva_
+		stnk: eva_
+		steg: eva_
+		trex: eva_
+		tric: eva_
+		rapt: eva_
+		pvice: eva_
 	Notifications:
 		AirstrikeReady: airredy1
 		BaseAttack: baseatk1
@@ -22,7 +45,6 @@ Speech:
 		IonCannonCharging: ionchrg1
 		IonCannonReady: ionredy1
 		Leave: batlcon1
-		Lose: fail1
 		LowPower: lopower1
 		MissionAccomplished: accom1
 		MissionFailed: fail1
@@ -45,7 +67,33 @@ Speech:
 		UnitLost: unitlost
 		UnitReady: unitredy
 		Win: accom1
-	DisablePrefixes: AbilityInsufficientPower, BaseAttack, Building, BuildingCannotPlaceAudio, BuildingInProgress, BuildingLost, Cancelled, CivilianBuildingCaptured, CivilianKilled, ConstructionComplete, EnemyUnitsApproaching, EnemyStructureDestroyed, EnemyPlanesApproaching, HarvesterAttack, InsufficientPower, IonCannonCharging, IonCannonReady, Leave, Lose, LowPower, MissionAccomplished, MissionFailed, NewOptions, NoBuild, NodStructureDestroyed, NotReady, NuclearWarheadApproaching, NuclearWeaponAvailable, NuclearWeaponLaunched, OnHold, PrimaryBuildingSelected, Reinforce, Repairing, SelectTarget, SilosNeeded, Training, UnitLost, UnitReady, Win
+
+		Armageddon: armageddon
+		ArmorUpgraded: armor_upgraded
+		Lose: fail
+		GlobalDarkness: global_darkness
+		GlobalStealthDeactivated: global_stealth_deactivated
+		HealthUpgraded: health_upgraded
+		IonCannon: ion_cannon
+		MapReveal: map_reveal
+		MegaArmor: mega_armor
+		MegaRange: mega_range
+		MegaReload: mega_rapid_reload
+		MegaSpeed: mega_rapid_speed
+		MegaWeapon: mega_rapid_weapon
+		NuclearBomb: nuclear_bomb
+		PleaseChoseYourUnit: please_chose_your_unit
+		RadarActivated: radar_activated
+		RangeUpgraded: range_upgraded
+		RapidReload: rapid_reload
+		SpeedUpgraded: speed_upgraded
+		StealthDeactivated: stealth_deactivated
+		StealthMode: stealth_mode
+		TeleportActivated: teleport_activated
+		TryAgain: try_again
+		WeaponUpgraded: weapon_upgraded
+		WelcomeToSS: welcome_to_ss
+	DisablePrefixes: AbilityInsufficientPower, BaseAttack, Building, BuildingCannotPlaceAudio, BuildingInProgress, BuildingLost, Cancelled, CivilianBuildingCaptured, CivilianKilled, ConstructionComplete, EnemyUnitsApproaching, EnemyStructureDestroyed, EnemyPlanesApproaching, HarvesterAttack, InsufficientPower, IonCannonCharging, IonCannonReady, Leave, LowPower, MissionAccomplished, MissionFailed, NewOptions, NoBuild, NodStructureDestroyed, NotReady, NuclearWarheadApproaching, NuclearWeaponAvailable, NuclearWeaponLaunched, OnHold, PrimaryBuildingSelected, Reinforce, Repairing, SelectTarget, SilosNeeded, Training, UnitLost, UnitReady, Win
 
 Sounds:
 	Notifications:

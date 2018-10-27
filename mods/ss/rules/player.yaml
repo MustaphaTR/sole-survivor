@@ -8,16 +8,23 @@ EditorPlayer:
 Player:
 	Inherits: ^BasePlayer
 	PlaceBuilding:
+		NewOptionsNotification: NewOptions
+		CannotPlaceNotification: BuildingCannotPlaceAudio
 	TechTree:
 	ConditionManager:
 	SupportPowerManager:
 	ScriptTriggers:
 	MissionObjectives:
+		WinNotification: Win
+		LoseNotification: Lose
+		LeaveNotification: Leave
 	ConquestVictoryConditions:
 	PlayerResources:
 		SelectableCash: 0
 		DefaultCash: 0
 		DefaultCashDropdownVisible: false
+		CashTickUpNotification: CashTickUp
+		CashTickDownNotification: CashTickDown
 	DeveloperMode:
 		CheckboxDisplayOrder: 2
 	BaseAttackNotifier:

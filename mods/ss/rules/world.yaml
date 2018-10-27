@@ -8,6 +8,7 @@
 		DefeatMusic: nod_map1
 	DebugVisualizations:
 	TerrainGeometryOverlay:
+	TerrainRenderer:
 	ShroudRenderer:
 		ShroudVariants: typea, typeb, typec, typed
 		FogVariants: typea, typeb, typec, typed

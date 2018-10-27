@@ -1,6 +1,6 @@
 Metadata:
 	Title: Sole Survivor
-	Version: release-20180923
+	Version: 98006d3
 	Website: https://www.openra.net
 	WebIcon32: https://www.openra.net/images/icons/cnc_32x32.png
 
@@ -28,12 +28,13 @@ Packages:
 	ss|bits/jungle
 	ss|bits/desert
 	ss|bits/ss
+	ss|bits/ss/eva
 	ss|scripts
 	ss|uibits
 
 MapFolders:
 	ss|maps: System
-	~^maps/cnc/release-20180923: User
+	~^maps/cnc/98006d3: User
 
 Rules:
 	ss|rules/misc.yaml

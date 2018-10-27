@@ -78,7 +78,7 @@ BIO:
 	ProductionQueue:
 		Type: Biolab
 		Group: Infantry
-		LowPowerSlowdown: 3
+		LowPowerModifier: 300
 		LimitedAudio: BuildingInProgress
 	ProductionBar:
 	RallyPoint:

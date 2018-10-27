@@ -8,7 +8,7 @@ Sniper:
 	Warhead@1Dam: SpreadDamage
 		Spread: 42
 		Damage: 10000
-		Versus: 
+		Versus:
 			None: 100
 			Light: 5
 			Heavy: 5

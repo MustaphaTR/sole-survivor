@@ -49,6 +49,7 @@
 
 ^GainsExperience:
 	GainsExperience:
+		LevelUpNotification: LevelUp
 		Conditions:
 			200: rank-veteran
 			400: rank-veteran
@@ -460,7 +461,7 @@
 	BodyOrientation:
 		UseClassicFacingFudge: True
 	HitShape:
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: Vehicle
 
 ^Tank:
@@ -521,7 +522,7 @@
 	BodyOrientation:
 		UseClassicFacingFudge: True
 	HitShape:
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: Aircraft
 	SpawnActorOnDeath:
 		RequiresCondition: airborne
@@ -632,7 +633,7 @@
 	HitShape:
 		Type: Circle
 			Radius: 128
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: Infantry
 
 ^Soldier:
@@ -680,7 +681,7 @@
 	Wanders:
 		MinMoveDelay: 150
 		MaxMoveDelay: 750
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: Civilian infantry
 
 ^ArmedCivilian:
@@ -747,7 +748,7 @@
 		Type: Circle
 			Radius: 128
 	MustBeDestroyed:
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: Critter
 
 ^Viceroid:
@@ -808,7 +809,7 @@
 		Type: Circle
 			Radius: 427
 	MustBeDestroyed:
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: Critter
 
 ^Plane:
@@ -832,7 +833,7 @@
 	RejectsOrders:
 	Aircraft:
 		CruiseAltitude: 2560
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: Aircraft
 
 ^Ship:
@@ -861,7 +862,7 @@
 	Voiced:
 		VoiceSet: VehicleVoice
 	HitShape:
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: Naval
 
 ^Building:
@@ -904,7 +905,7 @@
 		GenericName: Structure
 	FrozenUnderFog:
 	Demolishable:
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: Building
 	CommandBarBlacklist:
 	AcceptsDeliveredCash:
@@ -923,6 +924,7 @@
 		RepairPercent: 40
 		RepairStep: 1400
 		PlayerExperience: 15
+		RepairingNotification: Repairing
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
@@ -934,7 +936,7 @@
 	Sellable:
 		SellSounds: cashturn.aud
 	Capturable:
-		CaptureThreshold: 55
+		Types: building
 	WithMakeAnimation:
 	WithBuildingRepairDecoration:
 		Image: allyrepair
@@ -942,6 +944,7 @@
 		ReferencePoint: Center
 		Palette: player
 		IsPlayerPalette: True
+	CaptureManager:
 
 ^CivBuilding:
 	Inherits: ^Building
@@ -951,7 +954,7 @@
 		GenericStancePrefix: false
 		ShowOwnerRow: false
 	FrozenUnderFog:
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: Civilian building
 
 ^CivBuildingHusk:
@@ -968,7 +971,7 @@
 		ShowOwnerRow: false
 	FrozenUnderFog:
 	ScriptTriggers:
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: Husk
 
 ^TechBuilding:
@@ -976,18 +979,20 @@
 	OwnerLostAction:
 		Action: ChangeOwner
 	Capturable:
+		Types: building
 	CaptureNotification:
 		Notification: CivilianBuildingCaptured
 	RepairableBuilding:
 		RepairPercent: 40
 		RepairStep: 1400
 		PlayerExperience: 15
+		RepairingNotification: Repairing
 	EngineerRepairable:
 	RevealsShroud:
 		Range: 3c0
 	Tooltip:
 		ShowOwnerRow: True
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: Tech building
 	WithBuildingRepairDecoration:
 		Image: allyrepair
@@ -995,6 +1000,7 @@
 		ReferencePoint: Center
 		Palette: player
 		IsPlayerPalette: True
+	CaptureManager:
 
 ^CivField:
 	Inherits: ^CivBuilding
@@ -1026,7 +1032,7 @@
 	WithSpriteBody:
 	FrozenUnderFog:
 	ScriptTriggers:
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: Husk
 
 ^Wall:
@@ -1066,7 +1072,7 @@
 	ScriptTriggers:
 	Health:
 		HP: 10000
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: Wall
 
 ^Tree:
@@ -1108,7 +1114,7 @@
 	HiddenUnderShroud:
 	ScriptTriggers:
 	HitShape:
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: Tree
 
 ^TreeHusk:
@@ -1126,7 +1132,7 @@
 		ShowOwnerRow: false
 	FrozenUnderFog:
 	ScriptTriggers:
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: Tree
 
 ^TibTree:
@@ -1146,7 +1152,7 @@
 		Terrain: Tiberium
 	HiddenUnderShroud:
 	WithMakeAnimation:
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: Resource spawn
 
 ^Rock:
@@ -1166,7 +1172,7 @@
 		Terrain: Tree
 	HiddenUnderShroud:
 	ScriptTriggers:
-	EditorTilesetFilter:
+	MapEditorData:
 		RequireTilesets: DESERT
 		Categories: Decoration
 
@@ -1181,7 +1187,7 @@
 		Type: CenterPosition
 	WithFacingSpriteBody:
 	HitShape:
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: Husk
 
 ^Husk:
@@ -1196,7 +1202,6 @@
 		TargetTypes: Ground, Husk
 	Capturable:
 		Types: husk
-		CaptureThreshold: 100
 		ValidStances: Enemy, Neutral, Ally
 	TransformOnCapture:
 		ForceHealthPercentage: 25
@@ -1210,6 +1215,7 @@
 		EmptyWeapon: UnitExplodeSmall
 	BodyOrientation:
 		UseClassicFacingFudge: True
+	CaptureManager:
 
 ^LightHusk:
 	Inherits: ^Husk
@@ -1271,7 +1277,7 @@
 		Image: crate
 	WithCrateBody:
 		XmasImages: xcratea, xcrateb, xcratec, xcrated
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: System
 
 ^Defense:
@@ -1280,7 +1286,7 @@
 	-GivesBuildableArea:
 	Targetable:
 		TargetTypes: Ground, C4, Structure, Defense
-	EditorTilesetFilter:
+	MapEditorData:
 		Categories: Defense
 	-CommandBarBlacklist:
 	-AcceptsDeliveredCash:

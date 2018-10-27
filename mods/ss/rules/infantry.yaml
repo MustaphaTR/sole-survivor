@@ -193,6 +193,9 @@ E6:
 		QueuedAudio: Building
 		ReadyAudio: ConstructionComplete
 		LimitedAudio: BuildingInProgress
+		OnHoldAudio: OnHold
+		CancelledAudio: Cancelled
+		LowPowerModifier: 300
 	ProximityExternalCondition@REMOVE:
 		Range: 1c512
 		ValidStances: Ally
