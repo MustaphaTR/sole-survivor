@@ -16,14 +16,14 @@ Container@LOBBY_PLAYER_BIN:
 					Font: Bold
 				Label@COLOR:
 					X: 210
-					Width: 76
+					Width: 64
 					Height: 25
 					Text: Color
 					Align: Center
 					Font: Bold
 				Label@FACTION:
-					X: 291
-					Width: 120
+					X: 279
+					Width: 132
 					Height: 25
 					Text: Class
 					Align: Center
@@ -108,7 +108,7 @@ Container@LOBBY_PLAYER_BIN:
 							Visible: false
 						DropDownButton@COLOR:
 							X: 210
-							Width: 76
+							Width: 64
 							Height: 25
 							Font: Regular
 							IgnoreChildMouseOver: true
@@ -119,8 +119,8 @@ Container@LOBBY_PLAYER_BIN:
 									Width: PARENT_RIGHT - 35
 									Height: PARENT_BOTTOM - 12
 						DropDownButton@FACTION:
-							X: 291
-							Width: 120
+							X: 279
+							Width: 132
 							Height: 25
 							Font: Regular
 							IgnoreChildMouseOver: true
@@ -225,11 +225,11 @@ Container@LOBBY_PLAYER_BIN:
 						ColorBlock@COLORBLOCK:
 							X: 215
 							Y: 6
-							Width: 41
+							Width: 29
 							Height: 13
 						Container@FACTION:
-							X: 291
-							Width: 120
+							X: 279
+							Width: 132
 							Height: 25
 							Children:
 								Image@FACTIONFLAG:
