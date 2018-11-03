@@ -16,6 +16,10 @@ IdleHunt = function(actor)
 end
 
 BuildEngiStuff = function(engi)
+	if engi.IsDead then
+		return
+	end
+
 	local engiLoc = engi.Location
 	local locations =
 	{
