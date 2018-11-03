@@ -13,12 +13,24 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.SS.Traits
 {
-    public class StatDamageValueInfo : TraitInfo<StatDamageValue>
+    public class UnitStatValuesInfo : TraitInfo<UnitStatValues>
     {
         [FieldLoader.Require]
         [Desc("Use this value for base damage of the unit for stats.")]
         public readonly int Damage = 0;
+
+        [Desc("Overrides the health value from Health trait for the stats.")]
+        public readonly int Health = 0;
+
+        [Desc("Overrides the range value from the weapons for the stats.")]
+        public readonly WDist Range = WDist.Zero;
+
+        [Desc("Overrides the fire speed value from the weapons for the stats.")]
+        public readonly int FireSpeed = 0;
+
+        [Desc("Overrides the movement speed value from Mobile or Aircraft traits for the stats.")]
+        public readonly int Speed = 0;
     }
 
-    public class StatDamageValue { }
+    public class UnitStatValues { }
 }

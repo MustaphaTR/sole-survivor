@@ -23,6 +23,9 @@ tran:
 		Length: 4
 	unload:
 		Start: 35
+	muzzle: minigun
+		Length: 6
+		Facings: 8
 	icon: tranicnh.tem
 		AddExtension: False
 

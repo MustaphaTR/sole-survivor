@@ -20,6 +20,9 @@ Speech:
 		mlrs: eva_
 		htnk: eva_
 		stnk: eva_
+		tran: eva_
+		orca: eva_
+		heli: eva_
 		steg: eva_
 		trex: eva_
 		tric: eva_

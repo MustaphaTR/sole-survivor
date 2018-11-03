@@ -20,6 +20,9 @@ GenericVoice:
 		mlrs: .v01,.v03
 		htnk: .v01,.v03
 		stnk: .v01,.v03
+		tran: .v01,.v03
+		orca: .v01,.v03
+		heli: .v01,.v03
 		steg: .v01,.v03
 		trex: .v01,.v03
 		tric: .v01,.v03
@@ -56,6 +59,9 @@ VehicleVoice:
 		mlrs: .v00,.v02
 		htnk: .v00,.v02
 		stnk: .v00,.v02
+		tran: .v00,.v02
+		orca: .v00,.v02
+		heli: .v00,.v02
 		steg: .v00,.v02
 		trex: .v00,.v02
 		tric: .v00,.v02

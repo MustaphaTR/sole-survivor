@@ -30,11 +30,20 @@ namespace OpenRA.Mods.Common.Widgets.Logic
             
             health.GetText = () =>
             {
-                var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<Mobile>() != null);
+                var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<UnitStatValues>() != null);
 
                 if (units.Any())
                 {
                     var unit = units.First();
+                    var usv = unit.Info.TraitInfo<UnitStatValuesInfo>();
+                    if (usv.Health > 0)
+                    {
+                        var healthVaue = usv.Health;
+                        foreach (var dm in unit.TraitsImplementing<DamageMultiplier>().Where(dm => !dm.IsTraitDisabled).Select(dm => dm.Info.Modifier))
+                            healthVaue = healthVaue / dm * 100;
+
+                        return health.Text + ": " + healthVaue.ToString();
+                    }
                     var healthTrait = unit.TraitOrDefault<Health>();
                     if (healthTrait != null)
                     {
@@ -56,15 +65,12 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                 if (units.Any())
                 {
                     var unit = units.First();
-                    var damageTrait = unit.Info.TraitInfoOrDefault<StatDamageValueInfo>();
-                    if (damageTrait != null)
-                    {
-                        var damageValue = damageTrait.Damage;
-                        foreach (var dm in unit.TraitsImplementing<IFirepowerModifier>().Select(fm => fm.GetFirepowerModifier()))
-                            damageValue = damageValue * dm / 100;
+                    var usv = unit.Info.TraitInfo<UnitStatValuesInfo>();
+                    var damageValue = usv.Damage;
+                    foreach (var dm in unit.TraitsImplementing<IFirepowerModifier>().Select(fm => fm.GetFirepowerModifier()))
+                        damageValue = damageValue * dm / 100;
 
-                        return damage.Text + ": " + damageValue.ToString();
-                    }
+                    return damage.Text + ": " + damageValue.ToString();
                 }
 
                 return damage.Text + ":";
@@ -77,6 +83,15 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                 if (units.Any())
                 {
                     var unit = units.First();
+                    var usv = unit.Info.TraitInfo<UnitStatValuesInfo>();
+                    if (usv.FireSpeed > 0)
+                    {
+                        var rofValue = usv.FireSpeed;
+                        foreach (var rm in unit.TraitsImplementing<IReloadModifier>().Select(sm => sm.GetReloadModifier()))
+                            rofValue = rofValue * rm / 100;
+
+                        return rof.Text + ": " + rofValue.ToString();
+                    }
                     var armamanets = unit.TraitsImplementing<Armament>();
                     if (armamanets.Any())
                     {
@@ -98,6 +113,15 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                 if (units.Any())
                 {
                     var unit = units.First();
+                    var usv = unit.Info.TraitInfo<UnitStatValuesInfo>();
+                    if (usv.Range > WDist.Zero)
+                    {
+                        var rangeValue = usv.Range;
+                        foreach (var rm in unit.TraitsImplementing<IRangeModifier>().Select(rm => rm.GetRangeModifier()))
+                            rangeValue = rangeValue * rm / 100;
+
+                        return range.Text + ": " + rangeValue.ToString();
+                    }
                     var attackBase = unit.TraitOrDefault<AttackBase>();
                     if (attackBase != null)
                     {
@@ -116,10 +140,28 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                 if (units.Any())
                 {
                     var unit = units.First();
+                    var usv = unit.Info.TraitInfo<UnitStatValuesInfo>();
+                    if (usv.Speed > 0)
+                    {
+                        var speedValue = usv.Speed;
+                        foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
+                            speedValue = speedValue * sm / 100;
+
+                        return speed.Text + ": " + speedValue.ToString();
+                    }
                     var mobile = unit.Info.TraitInfoOrDefault<MobileInfo>();
                     if (mobile != null)
                     {
                         var speedValue = mobile.Speed;
+                        foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
+                            speedValue = speedValue * sm / 100;
+
+                        return speed.Text + ": " + speedValue.ToString();
+                    }
+                    var aircraft = unit.Info.TraitInfoOrDefault<AircraftInfo>();
+                    if (aircraft != null)
+                    {
+                        var speedValue = aircraft.Speed;
                         foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
                             speedValue = speedValue * sm / 100;
 

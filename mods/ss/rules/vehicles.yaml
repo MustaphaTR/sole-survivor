@@ -81,7 +81,7 @@ HARV:
 	Explodes:
 		Weapon: TiberiumExplosion
 	SelectionDecorations:
-	StatDamageValue:
+	UnitStatValues:
 		Damage: 6250
 
 APC:
@@ -139,7 +139,7 @@ APC:
 		Actor: APC.Husk
 		OwnerType: InternalName
 		EffectiveOwnerFromOwner: true
-	StatDamageValue:
+	UnitStatValues:
 		Damage: 2000
 
 ARTY:
@@ -183,7 +183,7 @@ ARTY:
 		Weapon: ArtilleryShell
 		EmptyWeapon: UnitExplode
 		LoadedChance: 75
-	StatDamageValue:
+	UnitStatValues:
 		Damage: 10000
 
 FTNK:
@@ -224,7 +224,7 @@ FTNK:
 		Actor: FTNK.Husk
 		OwnerType: InternalName
 		EffectiveOwnerFromOwner: true
-	StatDamageValue:
+	UnitStatValues:
 		Damage: 10000
 
 BGGY:
@@ -266,7 +266,7 @@ BGGY:
 		Actor: BGGY.Husk
 		OwnerType: InternalName
 		EffectiveOwnerFromOwner: true
-	StatDamageValue:
+	UnitStatValues:
 		Damage: 1000
 
 BIKE:
@@ -304,7 +304,7 @@ BIKE:
 		Actor: BIKE.Husk
 		OwnerType: InternalName
 		EffectiveOwnerFromOwner: true
-	StatDamageValue:
+	UnitStatValues:
 		Damage: 2500
 
 JEEP:
@@ -346,7 +346,7 @@ JEEP:
 		Actor: JEEP.Husk
 		OwnerType: InternalName
 		EffectiveOwnerFromOwner: true
-	StatDamageValue:
+	UnitStatValues:
 		Damage: 1000
 
 LTNK:
@@ -391,7 +391,7 @@ LTNK:
 		Actor: LTNK.Husk
 		OwnerType: InternalName
 		EffectiveOwnerFromOwner: true
-	StatDamageValue:
+	UnitStatValues:
 		Damage: 2500
 
 MTNK:
@@ -436,7 +436,7 @@ MTNK:
 	SelectionDecorations:
 	Selectable:
 		DecorationBounds: 28,28
-	StatDamageValue:
+	UnitStatValues:
 		Damage: 4000
 
 HTNK:
@@ -495,7 +495,7 @@ HTNK:
 	SelectionDecorations:
 	Selectable:
 		DecorationBounds: 34,34,0,-3
-	StatDamageValue:
+	UnitStatValues:
 		Damage: 4000
 
 MSAM:
@@ -541,7 +541,7 @@ MSAM:
 		EffectiveOwnerFromOwner: true
 	WithTurretAimAnimation:
 		Sequence: aim
-	StatDamageValue:
+	UnitStatValues:
 		Damage: 2500
 
 MLRS:
@@ -640,8 +640,9 @@ MLRS:
 		Delay: 37
 		Count: 1
 		RequiresCondition: crate-rof >= 10
-	StatDamageValue:
+	UnitStatValues:
 		Damage: 7500
+		Range: 9c0
 
 STNK:
 	Inherits: ^Vehicle
@@ -690,7 +691,7 @@ STNK:
 		Actor: STNK.Husk
 		OwnerType: InternalName
 		EffectiveOwnerFromOwner: true
-	StatDamageValue:
+	UnitStatValues:
 		Damage: 6000
 
 MHQ:

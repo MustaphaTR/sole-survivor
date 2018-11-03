@@ -522,6 +522,10 @@ flags: flags.png
 	rapt: 64,48,32,16
 	pvice: 32,32,32,16
 	Random: 0,32,32,16
+	Infantry: 0,32,32,16
+	Vehicle: 0,32,32,16
+	Aircraft: 0,32,32,16
+	Dinosour: 0,32,32,16
 
 strategic: strategic.png
 	unowned: 0,0,32,32

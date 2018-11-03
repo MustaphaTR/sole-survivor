@@ -39,7 +39,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Traits\StatDamageValue.cs" />
+    <Compile Include="Traits\UnitStatValues.cs" />
     <Compile Include="Traits\Crates\SSHealCrateAction.cs" />
     <Compile Include="Traits\Crates\HideMapToAllCrateAction.cs" />
     <Compile Include="Traits\Crates\TeleportCrateAction.cs" />

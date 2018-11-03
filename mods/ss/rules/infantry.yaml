@@ -24,7 +24,7 @@ E1:
 	WithInfantryBody:
 		IdleSequences: idle1,idle2,idle3,idle4
 		DefaultAttackSequence: shoot
-	StatDamageValue:
+	UnitStatValues:
 		Damage: 1000
 
 E2:
@@ -60,7 +60,7 @@ E2:
 		Weapon: GrenadierExplode
 		EmptyWeapon: GrenadierExplode
 		Chance: 50
-	StatDamageValue:
+	UnitStatValues:
 		Damage: 5000
 
 E3:
@@ -92,7 +92,7 @@ E3:
 	AttackFrontal:
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
-	StatDamageValue:
+	UnitStatValues:
 		Damage: 2500
 
 E4:
@@ -126,7 +126,7 @@ E4:
 	WithMuzzleOverlay:
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
-	StatDamageValue:
+	UnitStatValues:
 		Damage: 4000
 
 E5:
@@ -162,7 +162,7 @@ E5:
 	-DamagedByTerrain:
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
-	StatDamageValue:
+	UnitStatValues:
 		Damage: 8000
 
 E6:
@@ -247,7 +247,7 @@ RMBO:
 	AnnounceOnKill:
 	Voiced:
 		VoiceSet: CommandoVoice
-	StatDamageValue:
+	UnitStatValues:
 		Damage: 10000
 
 PVICE:
@@ -258,7 +258,7 @@ PVICE:
 		Description: Mutated abomination that spits liquid Tiberium.\n  Strong vs Infantry, Buildings\n  Weak vs Aircraft
 	Tooltip:
 	ActorLostNotification:
-	StatDamageValue:
+	UnitStatValues:
 		Damage: 8000
 
 STEG:
@@ -272,7 +272,7 @@ STEG:
 		DeathPaletteIsPlayerPalette: false
 	Buildable:
 		Description: A large, heavily built, herbivorous quadruped
-	StatDamageValue:
+	UnitStatValues:
 		Damage: 18000
 
 TREX:
@@ -289,7 +289,7 @@ TREX:
 	SelectionDecorations:
 	Buildable:
 		Description: Bipedal carnivore with a massive skull
-	StatDamageValue:
+	UnitStatValues:
 		Damage: 18000
 
 TRIC:
@@ -303,7 +303,7 @@ TRIC:
 		Description: Quadruped with large bony frill and three horns
 	Selectable:
 		DecorationBounds: 34,24,0,2
-	StatDamageValue:
+	UnitStatValues:
 		Damage: 12000
 
 RAPT:
@@ -316,5 +316,5 @@ RAPT:
 		Weapon: claw
 	Buildable:
 		Description: Bipedal with enlarged sickle-shaped claw on each hindfoot
-	StatDamageValue:
+	UnitStatValues:
 		Damage: 6000

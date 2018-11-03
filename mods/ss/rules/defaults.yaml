@@ -475,6 +475,7 @@
 ^Helicopter:
 	Inherits@1: ^ExistsInWorld
 	Inherits@3: ^SpriteActor
+	Inherits@4: ^GivesExperience
 	Huntable:
 	OwnerLostAction:
 		Action: Kill
