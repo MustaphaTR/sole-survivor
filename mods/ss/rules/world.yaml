@@ -296,7 +296,7 @@
 		Name: Viceroid
 		Side: Viceroid
 		InternalName: pvice
-		Description: Viceroid\nMutated abomination that spits liquid Tiberium.
+		Description: Viceroid\nMutated abomination that spits liquid Tiberium.\n\nHeals on tiberium.
 	ResourceType@green-tib:
 		Type: Tiberium
 		Name: Tiberium

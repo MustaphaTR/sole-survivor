@@ -19,14 +19,17 @@ namespace OpenRA.Mods.SS.Traits
         [Desc("Use this value for base damage of the unit for stats.")]
         public readonly int Damage = 0;
 
+        [Desc("Overrides the sight value from RevealsShroud trait for the stats.")]
+        public readonly int Sight = 0;
+
         [Desc("Overrides the health value from Health trait for the stats.")]
         public readonly int Health = 0;
 
         [Desc("Overrides the range value from the weapons for the stats.")]
         public readonly WDist Range = WDist.Zero;
 
-        [Desc("Overrides the fire speed value from the weapons for the stats.")]
-        public readonly int FireSpeed = 0;
+        [Desc("Overrides the reload delat value from the weapons for the stats.")]
+        public readonly int ReloadDelay = 0;
 
         [Desc("Overrides the movement speed value from Mobile or Aircraft traits for the stats.")]
         public readonly int Speed = 0;

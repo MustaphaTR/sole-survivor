@@ -70,6 +70,12 @@ CRATE:
 		Condition: crate-rof
 		Sound: rateoffireup.aud
 		Notification: RapidReload
+	GrantExternalConditionCrateAction@sight:
+		SelectionShares: 15
+		Effect: reveal-map
+		Condition: crate-sight
+		Sound: radarup.aud
+		Notification: RangeUpgraded
 	LevelUpCrateAction:
 		Levels: 1
 		SelectionShares: 8
@@ -118,6 +124,12 @@ UPGRADECRATE:
 		Condition: crate-rof
 		Sound: rateoffireup.aud
 		Notification: RapidReload
+	GrantExternalConditionCrateAction@sight:
+		SelectionShares: 15
+		Effect: reveal-map
+		Condition: crate-sight
+		Sound: radarup.aud
+		Notification: RangeUpgraded
 	RenderSprites:
 		Image: crate-blue
 

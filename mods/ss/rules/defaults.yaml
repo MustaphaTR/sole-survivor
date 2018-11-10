@@ -405,6 +405,36 @@
 	ReloadDelayMultiplier@ROF-10:
 		RequiresCondition: crate-rof >= 10
 		Modifier: 50
+	RevealsShroudMultiplier@SIGHT-1:
+		RequiresCondition: crate-sight == 1
+		Modifier: 110
+	RevealsShroudMultiplier@SIGHT-2:
+		RequiresCondition: crate-sight == 2
+		Modifier: 120
+	RevealsShroudMultiplier@SIGHT-3:
+		RequiresCondition: crate-sight == 3
+		Modifier: 130
+	RevealsShroudMultiplier@SIGHT-4:
+		RequiresCondition: crate-sight == 4
+		Modifier: 140
+	RevealsShroudMultiplier@SIGHT-5:
+		RequiresCondition: crate-sight == 5
+		Modifier: 150
+	RevealsShroudMultiplier@SIGHT-6:
+		RequiresCondition: crate-sight == 6
+		Modifier: 160
+	RevealsShroudMultiplier@SIGHT-7:
+		RequiresCondition: crate-sight == 7
+		Modifier: 170
+	RevealsShroudMultiplier@SIGHT-8:
+		RequiresCondition: crate-sight == 8
+		Modifier: 180
+	RevealsShroudMultiplier@SIGHT-9:
+		RequiresCondition: crate-sight == 9
+		Modifier: 190
+	RevealsShroudMultiplier@SIGHT-10:
+		RequiresCondition: crate-sight >= 10
+		Modifier: 200
 	ExternalCondition@ARMOR:
 		TotalCap: 10
 		Condition: crate-armor
@@ -420,6 +450,9 @@
 	ExternalCondition@ROF:
 		TotalCap: 10
 		Condition: crate-rof
+	ExternalCondition@SIGHT:
+		TotalCap: 10
+		Condition: crate-sight
 
 ^Vehicle:
 	Inherits@1: ^ExistsInWorld
@@ -455,6 +488,7 @@
 	Tooltip:
 		GenericName: Vehicle
 	RenderNameTag:
+	Demolishable:
 	MustBeDestroyed:
 	Voiced:
 		VoiceSet: VehicleVoice
@@ -727,6 +761,7 @@
 	Targetable:
 		TargetTypes: Ground, Creep
 	HiddenUnderFog:
+	Demolishable:
 	RenderSprites:
 		Palette: terrain
 	QuantizeFacingsFromSequence:
@@ -799,6 +834,7 @@
 	Guard:
 		Voice: Move
 	Guardable:
+	Demolishable:
 	DamagedByTerrain:
 		Damage: -100
 		DamageInterval: 4

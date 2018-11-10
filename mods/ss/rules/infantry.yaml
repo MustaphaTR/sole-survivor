@@ -200,6 +200,10 @@ E6:
 		Range: 1c512
 		ValidStances: Ally
 		Condition: removeable
+	UnitStatValues:
+		Damage: 3000
+		Range: 6c0
+		FireSpeed: 25
 
 RMBO:
 	Inherits: ^Soldier
@@ -233,6 +237,8 @@ RMBO:
 		ScanRadius: 8
 	Demolition:
 		DetonationDelay: 45
+		TargetStances: None
+		ForceTargetStances: Enemy, Neutral
 		Voice: Demolish
 	Armament:
 		Weapon: Sniper
@@ -243,8 +249,6 @@ RMBO:
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
 		IdleSequences: idle1,idle2,idle3
-	AnnounceOnBuild:
-	AnnounceOnKill:
 	Voiced:
 		VoiceSet: CommandoVoice
 	UnitStatValues:

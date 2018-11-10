@@ -23,6 +23,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
         public IngameUnitStatsLogic(Widget widget, World world)
         {
             var health = widget.Get<LabelWidget>("STAT_HEALTH");
+            var sight = widget.Get<LabelWidget>("STAT_SIGHT");
             var damage = widget.Get<LabelWidget>("STAT_DAMAGE");
             var range = widget.Get<LabelWidget>("STAT_RANGE");
             var rof = widget.Get<LabelWidget>("STAT_ROF");
@@ -58,6 +59,36 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                 return health.Text + ":";
             };
 
+            sight.GetText = () =>
+            {
+                var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<UnitStatValues>() != null);
+
+                if (units.Any())
+                {
+                    var unit = units.First();
+                    var usv = unit.Info.TraitInfo<UnitStatValuesInfo>();
+                    if (usv.Sight > 0)
+                    {
+                        var revealsShroudValue = usv.Sight;
+                        foreach (var rsm in unit.TraitsImplementing<IRevealsShroudModifier>().Select(rsm => rsm.GetRevealsShroudModifier()))
+                            revealsShroudValue = revealsShroudValue * rsm / 100;
+
+                        return sight.Text + ": " + revealsShroudValue.ToString();
+                    }
+                    var revealsShroudTrait = unit.TraitsImplementing<RevealsShroud>().MaxBy(rs => rs.Info.Range);
+                    if (revealsShroudTrait != null)
+                    {
+                        var revealsShroudValue = revealsShroudTrait.Info.Range;
+                        foreach (var rsm in unit.TraitsImplementing<IRevealsShroudModifier>().Select(rsm => rsm.GetRevealsShroudModifier()))
+                            revealsShroudValue = revealsShroudValue * rsm / 100;
+
+                        return sight.Text + ": " + revealsShroudValue.ToString();
+                    }
+                }
+
+                return sight.Text + ":";
+            };
+
             damage.GetText = () =>
             {
                 var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<Mobile>() != null);
@@ -84,9 +115,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                 {
                     var unit = units.First();
                     var usv = unit.Info.TraitInfo<UnitStatValuesInfo>();
-                    if (usv.FireSpeed > 0)
+                    if (usv.ReloadDelay > 0)
                     {
-                        var rofValue = usv.FireSpeed;
+                        var rofValue = usv.ReloadDelay;
                         foreach (var rm in unit.TraitsImplementing<IReloadModifier>().Select(sm => sm.GetReloadModifier()))
                             rofValue = rofValue * rm / 100;
 

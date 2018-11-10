@@ -540,7 +540,7 @@ Container@PLAYER_WIDGETS:
 			X: WINDOW_RIGHT - 204
 			Y: 30
 			Width: 194
-			Height: 294
+			Height: 314
 			Background: panel-black
 			Children:
 				MenuButton@OPTIONS_BUTTON:
@@ -604,21 +604,24 @@ Container@PLAYER_WIDGETS:
 					X: 13
 					Y: 194
 					Width: 168
-					Height: 80
+					Height: 100
 					Children:
 						Label@STAT_HEALTH:
 							Text: Health
 						Label@STAT_DAMAGE:
 							Y: 20
 							Text: Damage
-						Label@STAT_RANGE:
+						Label@STAT_SIGHT:
 							Y: 40
+							Text: Sight
+						Label@STAT_RANGE:
+							Y: 60
 							Text: Range
 						Label@STAT_ROF:
-							Y: 60
+							Y: 80
 							Text: Reload Delay
 						Label@STAT_SPEED:
-							Y: 80
+							Y: 100
 							Text: Speed
 		Container@PRODUCTION_BACKGROUND:
 			X: WINDOW_RIGHT - 204

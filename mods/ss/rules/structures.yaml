@@ -308,6 +308,7 @@ PYLE:
 		OnHoldAudio: OnHold
 		CancelledAudio: Cancelled
 	ProductionBar:
+		ProductionType: Infantry.GDI
 	ProvidesPrerequisite@buildingname:
 	Selectable:
 		Bounds: 48,42,0,-5
@@ -356,6 +357,7 @@ HAND:
 		OnHoldAudio: OnHold
 		CancelledAudio: Cancelled
 	ProductionBar:
+		ProductionType: Infantry.Nod
 	ProvidesPrerequisite@buildingname:
 	Selectable:
 		Bounds: 48,48
@@ -411,6 +413,7 @@ AFLD:
 		OnHoldAudio: OnHold
 		CancelledAudio: Cancelled
 	ProductionBar:
+		ProductionType: Vehicle.Nod
 	ProvidesPrerequisite@buildingname:
 
 WEAP:
@@ -466,6 +469,7 @@ WEAP:
 		OnHoldAudio: OnHold
 		CancelledAudio: Cancelled
 	ProductionBar:
+		ProductionType: Vehicle.GDI
 	ProvidesPrerequisite@buildingname:
 
 HPAD:

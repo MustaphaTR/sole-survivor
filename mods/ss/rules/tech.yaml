@@ -81,6 +81,7 @@ BIO:
 		LowPowerModifier: 300
 		LimitedAudio: BuildingInProgress
 	ProductionBar:
+		ProductionType: Biolab
 	RallyPoint:
 		Offset: -1,-1
 	SpawnActorOnDeath:
