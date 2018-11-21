@@ -526,7 +526,6 @@
 	Selectable:
 		Bounds: 24,24
 	Aircraft:
-		RepairBuildings: hpad
 		LandWhenIdle: false
 		AirborneCondition: airborne
 		CruisingCondition: cruising

@@ -203,7 +203,7 @@ E6:
 	UnitStatValues:
 		Damage: 3000
 		Range: 6c0
-		FireSpeed: 25
+		FireDelay: 25
 
 RMBO:
 	Inherits: ^Soldier
