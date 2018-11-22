@@ -40,21 +40,20 @@
 			BottomRight: 1536, 1024
 
 ^GivesExperience:
-	GivesExperience@Player:
+	GivesExperience:
 		Experience: 20
-		ActorExperienceModifier: 0
+		ActorExperienceModifier: 100
 		PlayerExperienceModifier: 100
-	GivesExperience@Actor:
-		PlayerExperienceModifier: 0
 
 ^GainsExperience:
 	GainsExperience:
+		ExperienceModifier: 1
 		LevelUpNotification: LevelUp
 		Conditions:
-			200: rank-veteran
-			400: rank-veteran
-			800: rank-veteran
-			1600: rank-veteran
+			40: rank-veteran
+			100: rank-veteran
+			180: rank-veteran
+			280: rank-veteran
 	GrantConditionOnPrerequisite@RADAR:
 		Condition: veterancy
 		Prerequisites: global-veterancy
