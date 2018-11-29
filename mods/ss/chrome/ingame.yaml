@@ -58,7 +58,6 @@ Container@INGAME_ROOT:
 					BookmarkKeyCount: 4
 				Container@GAME_TIMER_BLOCK:
 					Logic: GameTimerLogic
-					X: WINDOW_RIGHT / 2 - WIDTH
 					Width: 100
 					Height: 55
 					Children:

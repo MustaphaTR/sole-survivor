@@ -68,7 +68,7 @@ SetupAIUnits = function(bot)
 	AIUnits[bot.InternalName] = Utils.Where(bot.GetActors(), function(a) return a.Type ~= "player" end)[1]
 end
 
-Tick = function()
+AITick = function()
 	Trigger.AfterDelay(5, function()
 		for _,bot in pairs(bots) do
 			local unit = AIUnits[bot.InternalName]
@@ -103,7 +103,7 @@ Tick = function()
 	end)
 end
 
-WorldLoaded = function()
+AIWorldLoaded = function()
 	bots = Player.GetPlayers(function(p) return p.IsBot and not p.IsNonCombatant end)
 
 	for _,bot in pairs(bots) do

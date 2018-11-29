@@ -512,8 +512,20 @@ World:
 		CheckboxEnabled: true
 		CheckboxLocked: true
 		CheckboxVisible: false
+	ScriptLobbyDropdown@time-limit:
+		ID: time-limit
+		Label: Time Limit
+		Values:
+			unlimited: Unlimited
+			two: 2 Minutes
+			five: 5 Minutes
+			ten: 10 Minutes
+			fifteen: 15 Minutes
+			twenty: 20 Minutes
+			thrity: 30 Minutes
+		Default: fifteen
 	LuaScript:
-		Scripts: ai-scripts.lua
+		Scripts: ai-scripts.lua, time-limit.lua, world-tick.lua
 	PathFinder:
 	ValidateOrder:
 	DebugPauseState:
