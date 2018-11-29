@@ -87,6 +87,7 @@ Speech:
 		NuclearBomb: nuclear_bomb
 		PleaseChoseYourUnit: please_chose_your_unit
 		RadarActivated: radar_activated
+		RadarDeactivated: radar_deactivated
 		RangeUpgraded: range_upgraded
 		RapidReload: rapid_reload
 		SpeedUpgraded: speed_upgraded

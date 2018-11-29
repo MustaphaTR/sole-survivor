@@ -647,6 +647,7 @@ MLRS:
 STNK:
 	Inherits: ^Vehicle
 	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@CLOAK: ^AcceptsDecloakCrate
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Valued:
 		Cost: 900
@@ -669,17 +670,6 @@ STNK:
 		Type: Light
 	RevealsShroud:
 		Range: 7c0
-	Cloak:
-		InitialDelay: 90
-		CloakDelay: 90
-		CloakSound: trans1.aud
-		UncloakSound: trans1.aud
-		RequiresCondition: !cloak-global-disable && !cloak-force-disabled
-	GrantConditionOnDamageState@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
-	ExternalCondition@CLOAK-GLOBAL-DISABLE:
-		Condition: cloak-global-disable
 	Armament:
 		Weapon: 227mm.stnk
 		LocalOffset: 213,43,128, 213,-43,128

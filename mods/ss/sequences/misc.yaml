@@ -269,6 +269,10 @@ crate-green:
 	idle:
 		ZOffset: -511
 
+crate-dark:
+	idle:
+		ZOffset: -511
+
 xcratea:
 	idle: xcrate
 		ZOffset: -511
@@ -308,6 +312,7 @@ crate-effects:
 	speedup: speedcrate
 	rateoffireup: rateoffirecrate
 	teleport: teleportcrate
+	experience: expcrate
 
 atomic:
 	Defaults:

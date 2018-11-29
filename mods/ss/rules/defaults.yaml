@@ -245,7 +245,7 @@
 		CloakSound: trans1.aud
 		UncloakSound: trans1.aud
 		RequiresCondition: cloak-crate-collected && !cloak-global-disable && !cloak-force-disabled
-	ExternalCondition@CLOAK:
+	SwitchCondition@CLOAK:
 		Condition: cloak-crate-collected
 	ExternalCondition@CLOAK-GLOBAL-DISABLE:
 		Condition: cloak-global-disable
@@ -253,7 +253,21 @@
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 
+^AcceptsDecloakCrate:
+	Inherits: ^AcceptsCloakCrate
+	Cloak:
+		RequiresCondition: !decloak-crate-collected && !cloak-global-disable && !cloak-force-disabled
+	SwitchCondition@CLOAK:
+		Condition: decloak-crate-collected
+	ExternalCondition@CLOAK-GLOBAL-DISABLE:
+		Condition: cloak-global-disable
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+
 ^AcceptsCratePowerups:
+	ProvidesRadar:
+		RequiresCondition: crate-radar
 	DamageMultiplier@ARMOR-1:
 		RequiresCondition: crate-armor == 1
 		Modifier: 95
@@ -434,6 +448,8 @@
 	RevealsShroudMultiplier@SIGHT-10:
 		RequiresCondition: crate-sight >= 10
 		Modifier: 200
+	SwitchCondition@RADAR:
+		Condition: crate-radar
 	ExternalCondition@ARMOR:
 		TotalCap: 10
 		Condition: crate-armor
@@ -564,6 +580,7 @@
 	Inherits@1: ^ExistsInWorld
 	Inherits@3: ^SpriteActor
 	Inherits@4: ^AcceptsCratePowerups
+	Inherits@5: ^AcceptsCloakCrate
 	Huntable:
 	OwnerLostAction:
 		Action: Kill
@@ -729,6 +746,7 @@
 	Inherits@2: ^SpriteActor
 	Inherits@3: ^GivesExperience
 	Inherits@4: ^AcceptsCratePowerups
+	Inherits@5: ^AcceptsCloakCrate
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Huntable:
 	OwnerLostAction:
@@ -790,6 +808,7 @@
 	Inherits@2: ^SpriteActor
 	Inherits@3: ^GivesExperience
 	Inherits@4: ^AcceptsCratePowerups
+	Inherits@5: ^AcceptsCloakCrate
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Huntable:
 	Health:

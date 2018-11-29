@@ -51,7 +51,7 @@ BuildEngiStuff = function(engi)
 end
 
 GetNearbyCrates = function(actor, distance)
-	return Utils.Where(Map.ActorsInCircle(actor.CenterPosition, WDist.FromCells(distance)), function(a) return a.Type == "crate" or a.Type == "upgradecrate" end)
+	return Utils.Where(Map.ActorsInCircle(actor.CenterPosition, WDist.FromCells(distance)), function(a) return a.Type == "crate" or a.Type == "upgradecrate" or a.Type == "experiencecrate" end)
 end
 
 GetNearbyHealCrate = function(actor, distance)
