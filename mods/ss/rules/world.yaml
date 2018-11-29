@@ -522,7 +522,7 @@ World:
 			ten: 10 Minutes
 			fifteen: 15 Minutes
 			twenty: 20 Minutes
-			thrity: 30 Minutes
+			thirty: 30 Minutes
 		Default: fifteen
 	LuaScript:
 		Scripts: ai-scripts.lua, time-limit.lua, world-tick.lua
