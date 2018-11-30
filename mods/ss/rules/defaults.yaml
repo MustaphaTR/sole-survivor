@@ -269,184 +269,184 @@
 	ProvidesRadar:
 		RequiresCondition: crate-radar
 	DamageMultiplier@ARMOR-1:
-		RequiresCondition: crate-armor == 1
+		RequiresCondition: crate-armor == 1 && !crate-wacky
 		Modifier: 95
 	DamageMultiplier@ARMOR-2:
-		RequiresCondition: crate-armor == 2
+		RequiresCondition: crate-armor == 2 && !crate-wacky
 		Modifier: 90
 	DamageMultiplier@ARMOR-3:
-		RequiresCondition: crate-armor == 3
+		RequiresCondition: crate-armor == 3 && !crate-wacky
 		Modifier: 85
 	DamageMultiplier@ARMOR-4:
-		RequiresCondition: crate-armor == 4
+		RequiresCondition: crate-armor == 4 && !crate-wacky
 		Modifier: 80
 	DamageMultiplier@ARMOR-5:
-		RequiresCondition: crate-armor == 5
+		RequiresCondition: crate-armor == 5 && !crate-wacky
 		Modifier: 75
 	DamageMultiplier@ARMOR-6:
-		RequiresCondition: crate-armor == 6
+		RequiresCondition: crate-armor == 6 && !crate-wacky
 		Modifier: 70
 	DamageMultiplier@ARMOR-7:
-		RequiresCondition: crate-armor == 7
+		RequiresCondition: crate-armor == 7 && !crate-wacky
 		Modifier: 65
 	DamageMultiplier@ARMOR-8:
-		RequiresCondition: crate-armor == 8
+		RequiresCondition: crate-armor == 8 && !crate-wacky
 		Modifier: 60
 	DamageMultiplier@ARMOR-9:
-		RequiresCondition: crate-armor == 9
+		RequiresCondition: crate-armor == 9 && !crate-wacky
 		Modifier: 55
 	DamageMultiplier@ARMOR-10:
-		RequiresCondition: crate-armor >= 10
+		RequiresCondition: crate-armor >= 10 || crate-wacky
 		Modifier: 50
 	FirepowerMultiplier@FIREPOWER-1:
-		RequiresCondition: crate-firepower == 1
+		RequiresCondition: crate-firepower == 1 && !crate-wacky
 		Modifier: 110
 	FirepowerMultiplier@FIREPOWER-2:
-		RequiresCondition: crate-firepower == 2
+		RequiresCondition: crate-firepower == 2 && !crate-wacky
 		Modifier: 120
 	FirepowerMultiplier@FIREPOWER-3:
-		RequiresCondition: crate-firepower == 3
+		RequiresCondition: crate-firepower == 3 && !crate-wacky
 		Modifier: 130
 	FirepowerMultiplier@FIREPOWER-4:
-		RequiresCondition: crate-firepower == 4
+		RequiresCondition: crate-firepower == 4 && !crate-wacky
 		Modifier: 140
 	FirepowerMultiplier@FIREPOWER-5:
-		RequiresCondition: crate-firepower == 5
+		RequiresCondition: crate-firepower == 5 && !crate-wacky
 		Modifier: 150
 	FirepowerMultiplier@FIREPOWER-6:
-		RequiresCondition: crate-firepower == 6
+		RequiresCondition: crate-firepower == 6 && !crate-wacky
 		Modifier: 160
 	FirepowerMultiplier@FIREPOWER-7:
-		RequiresCondition: crate-firepower == 7
+		RequiresCondition: crate-firepower == 7 && !crate-wacky
 		Modifier: 170
 	FirepowerMultiplier@FIREPOWER-8:
-		RequiresCondition: crate-firepower == 8
+		RequiresCondition: crate-firepower == 8 && !crate-wacky
 		Modifier: 180
 	FirepowerMultiplier@FIREPOWER-9:
-		RequiresCondition: crate-firepower == 9
+		RequiresCondition: crate-firepower == 9 && !crate-wacky
 		Modifier: 190
 	FirepowerMultiplier@FIREPOWER-10:
-		RequiresCondition: crate-firepower >= 10
+		RequiresCondition: crate-firepower >= 10 || crate-wacky
 		Modifier: 200
 	SpeedMultiplier@SPEED-1:
-		RequiresCondition: crate-speed == 1
+		RequiresCondition: crate-speed == 1 && !crate-wacky
 		Modifier: 110
 	SpeedMultiplier@SPEED-2:
-		RequiresCondition: crate-speed == 2
+		RequiresCondition: crate-speed == 2 && !crate-wacky
 		Modifier: 120
 	SpeedMultiplier@SPEED-3:
-		RequiresCondition: crate-speed == 3
+		RequiresCondition: crate-speed == 3 && !crate-wacky
 		Modifier: 130
 	SpeedMultiplier@SPEED-4:
-		RequiresCondition: crate-speed == 4
+		RequiresCondition: crate-speed == 4 && !crate-wacky
 		Modifier: 140
 	SpeedMultiplier@SPEED-5:
-		RequiresCondition: crate-speed == 5
+		RequiresCondition: crate-speed == 5 && !crate-wacky
 		Modifier: 150
 	SpeedMultiplier@SPEED-6:
-		RequiresCondition: crate-speed == 6
+		RequiresCondition: crate-speed == 6 && !crate-wacky
 		Modifier: 160
 	SpeedMultiplier@SPEED-7:
-		RequiresCondition: crate-speed == 7
+		RequiresCondition: crate-speed == 7 && !crate-wacky
 		Modifier: 170
 	SpeedMultiplier@SPEED-8:
-		RequiresCondition: crate-speed == 8
+		RequiresCondition: crate-speed == 8 && !crate-wacky
 		Modifier: 180
 	SpeedMultiplier@SPEED-9:
-		RequiresCondition: crate-speed == 9
+		RequiresCondition: crate-speed == 9 && !crate-wacky
 		Modifier: 190
 	SpeedMultiplier@SPEED-10:
-		RequiresCondition: crate-speed >= 10
+		RequiresCondition: crate-speed >= 10 || crate-wacky
 		Modifier: 200
 	RangeMultiplier@RANGE-1:
-		RequiresCondition: crate-range == 1
+		RequiresCondition: crate-range == 1 && !crate-wacky
 		Modifier: 110
 	RangeMultiplier@RANGE-2:
-		RequiresCondition: crate-range == 2
+		RequiresCondition: crate-range == 2 && !crate-wacky
 		Modifier: 120
 	RangeMultiplier@RANGE-3:
-		RequiresCondition: crate-range == 3
+		RequiresCondition: crate-range == 3 && !crate-wacky
 		Modifier: 130
 	RangeMultiplier@RANGE-4:
-		RequiresCondition: crate-range == 4
+		RequiresCondition: crate-range == 4 && !crate-wacky
 		Modifier: 140
 	RangeMultiplier@RANGE-5:
-		RequiresCondition: crate-range == 5
+		RequiresCondition: crate-range == 5 && !crate-wacky
 		Modifier: 150
 	RangeMultiplier@RANGE-6:
-		RequiresCondition: crate-range == 6
+		RequiresCondition: crate-range == 6 && !crate-wacky
 		Modifier: 160
 	RangeMultiplier@RANGE-7:
-		RequiresCondition: crate-range == 7
+		RequiresCondition: crate-range == 7 && !crate-wacky
 		Modifier: 170
 	RangeMultiplier@RANGE-8:
-		RequiresCondition: crate-range == 8
+		RequiresCondition: crate-range == 8 && !crate-wacky
 		Modifier: 180
 	RangeMultiplier@RANGE-9:
-		RequiresCondition: crate-range == 9
+		RequiresCondition: crate-range == 9 && !crate-wacky
 		Modifier: 190
 	RangeMultiplier@RANGE-10:
-		RequiresCondition: crate-range >= 10
+		RequiresCondition: crate-range >= 10 || crate-wacky
 		Modifier: 200
 	ReloadDelayMultiplier@ROF-1:
-		RequiresCondition: crate-rof == 1
+		RequiresCondition: crate-rof == 1 && !crate-wacky
 		Modifier: 95
 	ReloadDelayMultiplier@ROF-2:
-		RequiresCondition: crate-rof == 2
+		RequiresCondition: crate-rof == 2 && !crate-wacky
 		Modifier: 90
 	ReloadDelayMultiplier@ROF-3:
-		RequiresCondition: crate-rof == 3
+		RequiresCondition: crate-rof == 3 && !crate-wacky
 		Modifier: 85
 	ReloadDelayMultiplier@ROF-4:
-		RequiresCondition: crate-rof == 4
+		RequiresCondition: crate-rof == 4 && !crate-wacky
 		Modifier: 80
 	ReloadDelayMultiplier@ROF-5:
-		RequiresCondition: crate-rof == 5
+		RequiresCondition: crate-rof == 5 && !crate-wacky
 		Modifier: 75
 	ReloadDelayMultiplier@ROF-6:
-		RequiresCondition: crate-rof == 6
+		RequiresCondition: crate-rof == 6 && !crate-wacky
 		Modifier: 70
 	ReloadDelayMultiplier@ROF-7:
-		RequiresCondition: crate-rof == 7
+		RequiresCondition: crate-rof == 7 && !crate-wacky
 		Modifier: 65
 	ReloadDelayMultiplier@ROF-8:
-		RequiresCondition: crate-rof == 8
+		RequiresCondition: crate-rof == 8 && !crate-wacky
 		Modifier: 60
 	ReloadDelayMultiplier@ROF-9:
-		RequiresCondition: crate-rof == 9
+		RequiresCondition: crate-rof == 9 && !crate-wacky
 		Modifier: 55
 	ReloadDelayMultiplier@ROF-10:
-		RequiresCondition: crate-rof >= 10
+		RequiresCondition: crate-rof >= 10 || crate-wacky
 		Modifier: 50
 	RevealsShroudMultiplier@SIGHT-1:
-		RequiresCondition: crate-sight == 1
+		RequiresCondition: crate-sight == 1 && !crate-wacky
 		Modifier: 110
 	RevealsShroudMultiplier@SIGHT-2:
-		RequiresCondition: crate-sight == 2
+		RequiresCondition: crate-sight == 2 && !crate-wacky
 		Modifier: 120
 	RevealsShroudMultiplier@SIGHT-3:
-		RequiresCondition: crate-sight == 3
+		RequiresCondition: crate-sight == 3 && !crate-wacky
 		Modifier: 130
 	RevealsShroudMultiplier@SIGHT-4:
-		RequiresCondition: crate-sight == 4
+		RequiresCondition: crate-sight == 4 && !crate-wacky
 		Modifier: 140
 	RevealsShroudMultiplier@SIGHT-5:
-		RequiresCondition: crate-sight == 5
+		RequiresCondition: crate-sight == 5 && !crate-wacky
 		Modifier: 150
 	RevealsShroudMultiplier@SIGHT-6:
-		RequiresCondition: crate-sight == 6
+		RequiresCondition: crate-sight == 6 && !crate-wacky
 		Modifier: 160
 	RevealsShroudMultiplier@SIGHT-7:
-		RequiresCondition: crate-sight == 7
+		RequiresCondition: crate-sight == 7 && !crate-wacky
 		Modifier: 170
 	RevealsShroudMultiplier@SIGHT-8:
-		RequiresCondition: crate-sight == 8
+		RequiresCondition: crate-sight == 8 && !crate-wacky
 		Modifier: 180
 	RevealsShroudMultiplier@SIGHT-9:
-		RequiresCondition: crate-sight == 9
+		RequiresCondition: crate-sight == 9 && !crate-wacky
 		Modifier: 190
 	RevealsShroudMultiplier@SIGHT-10:
-		RequiresCondition: crate-sight >= 10
+		RequiresCondition: crate-sight >= 10 || crate-wacky
 		Modifier: 200
 	SwitchCondition@RADAR:
 		Condition: crate-radar
@@ -468,6 +468,12 @@
 	ExternalCondition@SIGHT:
 		TotalCap: 10
 		Condition: crate-sight
+	TimedConditionBar@WACKY:
+		Condition: crate-wacky
+		Color: C46000FF
+	ExternalCondition@WACKY:
+		TotalCap: 1
+		Condition: crate-wacky
 
 ^Vehicle:
 	Inherits@1: ^ExistsInWorld

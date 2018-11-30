@@ -502,8 +502,8 @@ World:
 		StartingUnitsClass: none
 		DropdownVisible: false
 	CrateSpawner:
-		CrateActors: crate, upgradecrate, healcrate, experiencecrate
-		CrateActorShares: 70, 8, 20, 2
+		CrateActors: crate, upgradecrate, healcrate, experiencecrate, wackycrate
+		CrateActorShares: 840, 50, 90, 10, 10
 		Minimum: 100
 		Maximum: 100
 		SpawnInterval: 250

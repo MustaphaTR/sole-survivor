@@ -175,6 +175,18 @@ EXPERIENCECRATE:
 	RenderSprites:
 		Image: crate-dark
 
+WACKYCRATE:
+	Inherits: ^Crate
+	Crate:
+		Lifetime: 240
+	GrantExternalConditionCrateAction@WACKY:
+		SelectionShares: 1
+		Effect: wacky
+		Duration: 250
+		Condition: crate-wacky
+	RenderSprites:
+		Image: crate-orange
+
 mpspawn:
 	Interactable:
 	EditorOnlyTooltip:

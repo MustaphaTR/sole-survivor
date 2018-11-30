@@ -313,6 +313,7 @@ crate-effects:
 	rateoffireup: rateoffirecrate
 	teleport: teleportcrate
 	experience: expcrate
+	wacky: wackycrate
 
 atomic:
 	Defaults:
