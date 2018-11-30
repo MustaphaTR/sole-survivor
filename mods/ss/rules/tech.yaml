@@ -108,10 +108,6 @@ MISS:
 		Dimensions: 3,2
 	Tooltip:
 		Name: Tech Center
-	Buildable:
-		Queue: Building
-		BuildPaletteOrder: 1000
-		Prerequisites: ~disabled
 	Valued:
 		Cost: 2000
 	WithBuildingBib:

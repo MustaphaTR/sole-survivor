@@ -134,6 +134,17 @@ STNK.Husk:
 	RenderSprites:
 		Image: stnk.destroyed
 
+MHQ.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Mobile HQ (Destroyed)
+	ThrowsParticle@spinner:
+		Anim: spinner
+	TransformOnCapture:
+		IntoActor: mhq
+	RenderSprites:
+		Image: mhq.destroyed
+
 TRUCK.Husk:
 	Inherits: ^Husk
 	Tooltip:

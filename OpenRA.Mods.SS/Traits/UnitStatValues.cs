@@ -15,7 +15,6 @@ namespace OpenRA.Mods.SS.Traits
 {
     public class UnitStatValuesInfo : TraitInfo<UnitStatValues>
     {
-        [FieldLoader.Require]
         [Desc("Use this value for base damage of the unit for stats.")]
         public readonly int Damage = 0;
 

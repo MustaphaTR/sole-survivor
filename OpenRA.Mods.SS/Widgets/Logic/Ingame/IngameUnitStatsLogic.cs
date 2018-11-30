@@ -45,6 +45,10 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
                         return health.Text + ": " + healthVaue.ToString();
                     }
+                    else if (usv.Health < 0)
+                    {
+                        return health.Text + ": Infinite";
+                    }
                     var healthTrait = unit.TraitOrDefault<Health>();
                     if (healthTrait != null)
                     {
@@ -75,6 +79,10 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
                         return sight.Text + ": " + revealsShroudValue.ToString();
                     }
+                    else if (usv.Sight < 0)
+                    {
+                        return sight.Text + ": Infinite";
+                    }
                     var revealsShroudTrait = unit.TraitsImplementing<RevealsShroud>().MaxBy(rs => rs.Info.Range);
                     if (revealsShroudTrait != null)
                     {
@@ -97,6 +105,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                 {
                     var unit = units.First();
                     var usv = unit.Info.TraitInfo<UnitStatValuesInfo>();
+                    if (usv.Damage < 0)
+                        return damage.Text + ": Infinite";
+
                     var damageValue = usv.Damage;
                     foreach (var dm in unit.TraitsImplementing<IFirepowerModifier>().Select(fm => fm.GetFirepowerModifier()))
                         damageValue = damageValue * dm / 100;
@@ -122,6 +133,10 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                             rofValue = rofValue * rm / 100;
 
                         return rof.Text + ": " + rofValue.ToString();
+                    }
+                    else if (usv.ReloadDelay < 0)
+                    {
+                        return rof.Text + ": Infinite";
                     }
                     var armamanets = unit.TraitsImplementing<Armament>();
                     if (armamanets.Any())
@@ -153,6 +168,10 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
                         return range.Text + ": " + rangeValue.ToString();
                     }
+                    else if (usv.Range < WDist.Zero)
+                    {
+                        return range.Text + ": Infinite";
+                    }
                     var attackBase = unit.TraitOrDefault<AttackBase>();
                     if (attackBase != null)
                     {
@@ -179,6 +198,10 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                             speedValue = speedValue * sm / 100;
 
                         return speed.Text + ": " + speedValue.ToString();
+                    }
+                    else if (usv.Speed < 0)
+                    {
+                        return speed.Text + ": Infinite";
                     }
                     var mobile = unit.Info.TraitInfoOrDefault<MobileInfo>();
                     if (mobile != null)

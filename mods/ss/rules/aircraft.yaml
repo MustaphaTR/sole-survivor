@@ -252,6 +252,24 @@ A10:
 	Buildable:
 		Description: Used to deliver air strikes.
 
+U2:
+	Inherits: ^Plane
+	Tooltip:
+		Name: Spy Plane
+	Aircraft:
+		CruiseAltitude: 2560
+		TurnSpeed: 7
+		Speed: 373
+		Repulsable: False
+		MaximumPitch: 56
+	AttackBomber:
+	Contrail@1:
+		Offset: -725,683,0
+	Contrail@2:
+		Offset: -725,-683,0
+	RejectsOrders:
+	Interactable:
+
 TRAN.Husk:
 	Inherits: ^HelicopterHusk
 	Tooltip:

@@ -218,6 +218,17 @@ mhq:
 		Length: 32
 	icon: mhqicnh
 
+mhq.destroyed:
+	idle: mhq
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+	spinner: mhq
+		Start: 32
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+
 msam:
 	idle:
 		Facings: 32

@@ -127,7 +127,7 @@
 		Name: Random
 		Side: Random
 		InternalName: Random
-		RandomFactionMembers: e1, e2, e3, e4, e5, e6, rmbo, harv, jeep, bggy, apc, bike, ltnk, mtnk, ftnk, arty, msam, mlrs, htnk, stnk, steg, trex, tric, rapt, pvice
+		RandomFactionMembers: e1, e2, e3, e4, e5, e6, rmbo, harv, jeep, bggy, apc, bike, ltnk, mtnk, ftnk, mhq, arty, msam, mlrs, htnk, stnk, steg, trex, tric, rapt, pvice
 		Description: Random Class\nA random unit will be chosen when the game starts.
 	Faction@RandomInfantry:
 		Name: Infantry
@@ -139,7 +139,7 @@
 		Name: Vehicle
 		Side: Random
 		InternalName: Vehicle
-		RandomFactionMembers: harv, jeep, bggy, apc, bike, ltnk, mtnk, ftnk, arty, msam, mlrs, htnk, stnk
+		RandomFactionMembers: harv, jeep, bggy, apc, bike, ltnk, mtnk, ftnk, mhq, arty, msam, mlrs, htnk, stnk
 		Description: Random Vehicle\nA random vehicle will be chosen when the game starts.
 	Faction@RandomAircraft:
 		Name: Aircraft
@@ -229,6 +229,17 @@
 		Side: Vehicle
 		InternalName: ftnk
 		Description: Flame Tank\nArmored vehicle with flamehrowers.
+	Faction@mcv:
+		Name: MCV
+		Side: Vehicle
+		Selectable: false
+		InternalName: mcv
+		Description: Mobile Contruction Vehicle\nCan deploy into a Construction Yard that can be further specialised.
+	Faction@mhq:
+		Name: Mobile HQ
+		Side: Vehicle
+		InternalName: mhq
+		Description: Mobile Headquarters\nCan call for Spy Planes or Air Strikes.\n\nStarts with radar enabled.
 	Faction@arty:
 		Name: Artillery
 		Side: Vehicle
@@ -433,6 +444,16 @@ World:
 		ClassName: Normal
 		Factions: ftnk
 		BaseActor: ftnk
+	MPStartUnits@mcv:
+		Class: none
+		ClassName: Normal
+		Factions: mcv
+		BaseActor: mcv
+	MPStartUnits@mhq:
+		Class: none
+		ClassName: Normal
+		Factions: mhq
+		BaseActor: mhq
 	MPStartUnits@arty:
 		Class: none
 		ClassName: Normal

@@ -288,7 +288,7 @@ Container@PLAYER_WIDGETS:
 		Container@SUPPORT_POWERS:
 			Logic: SupportPowerBinLogic
 			X: 10
-			Y: 10
+			Y: 45
 			Children:
 				Container@PALETTE_BACKGROUND:
 					Children:

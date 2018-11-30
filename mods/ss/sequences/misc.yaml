@@ -235,6 +235,8 @@ beacon:
 		Offset: 0,-42
 	atomic: atomicon
 		Offset: 0,-42
+	spyplane: u2bcon
+		Offset: 0,-42
 	clock: beaconclock
 		Length: *
 		Offset: 0,-42
@@ -407,6 +409,7 @@ icon:
 	airstrike: bombicnh.tem
 	ioncannon: ionicnh.tem
 	abomb: atomicnh.tem
+	spyplane: u2icon.shp
 
 moveflsh:
 	idle:

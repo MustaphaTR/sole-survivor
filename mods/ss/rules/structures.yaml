@@ -19,53 +19,14 @@ FACT:
 		Range: 10c0
 	WithBuildingBib:
 	Production:
-		Produces: Building.GDI, Building.Nod, Defence.GDI, Defence.Nod
+		Produces: Building
 	Transforms:
 		IntoActor: mcv
 		Offset: 1,1
 		Facing: 108
-		RequiresCondition: factundeploy
-	GrantConditionOnPrerequisite@GLOBALFACTUNDEPLOY:
-		Condition: factundeploy
-		Prerequisites: global-factundeploy
-	ProductionQueue@GDIBuilding:
-		Type: Building.GDI
-		Factions: gdi
+	ProductionQueue@Building:
+		Type: Building
 		Group: Building
-		LowPowerModifier: 200
-		ReadyAudio: ConstructionComplete
-		BlockedAudio: NoBuild
-		LimitedAudio: BuildingInProgress
-		QueuedAudio: Building
-		OnHoldAudio: OnHold
-		CancelledAudio: Cancelled
-	ProductionQueue@NodBuilding:
-		Type: Building.Nod
-		Factions: nod
-		Group: Building
-		LowPowerModifier: 200
-		ReadyAudio: ConstructionComplete
-		BlockedAudio: NoBuild
-		LimitedAudio: BuildingInProgress
-		QueuedAudio: Building
-		OnHoldAudio: OnHold
-		CancelledAudio: Cancelled
-	ProductionQueue@GDIDefense:
-		Type: Defence.GDI
-		Factions: gdi
-		Group: Defence
-		LowPowerModifier: 300
-		ReadyAudio: ConstructionComplete
-		BlockedAudio: NoBuild
-		LimitedAudio: BuildingInProgress
-		QueuedAudio: Building
-		OnHoldAudio: OnHold
-		CancelledAudio: Cancelled
-	ProductionQueue@NodDefense:
-		Type: Defence.Nod
-		Factions: nod
-		Group: Defence
-		LowPowerModifier: 300
 		ReadyAudio: ConstructionComplete
 		BlockedAudio: NoBuild
 		LimitedAudio: BuildingInProgress
@@ -73,45 +34,14 @@ FACT:
 		OnHoldAudio: OnHold
 		CancelledAudio: Cancelled
 	BaseBuilding:
-	ProductionBar@BuildingGDI:
-		ProductionType: Building.GDI
-	ProductionBar@BuildingNod:
-		ProductionType: Building.Nod
-	ProductionBar@DefenceGDI:
-		ProductionType: Defence.GDI
-	ProductionBar@DefenceNod:
-		ProductionType: Defence.Nod
+	ProductionBar@Building:
+		ProductionType: Building
 	BaseProvider:
 		Cooldown: 75
 		Range: 14c0
 	WithBuildingPlacedAnimation:
 	ProvidesPrerequisite@buildingname:
-	Buildable:
-		Description: Builds structures
-
-FACT.GDI:
-	Inherits: FACT
-	RenderSprites:
-		Image: fact
-	Buildable:
-		Queue: Building.GDI, Building.Nod
-		BuildPaletteOrder: 1000
-		Prerequisites: ~disabled
-		ForceFaction: gdi
-	Tooltip:
-		Name: Construction Yard (GDI)
-
-FACT.NOD:
-	Inherits: FACT
-	RenderSprites:
-		Image: fact
-	Buildable:
-		Queue: Building.GDI, Building.Nod
-		BuildPaletteOrder: 1000
-		Prerequisites: ~disabled
-		ForceFaction: nod
-	Tooltip:
-		Name: Construction Yard (Nod)
+	MustBeDestroyed:
 
 NUKE:
 	Inherits: ^BaseBuilding
@@ -128,9 +58,9 @@ NUKE:
 		Prerequisite: anypower
 	Buildable:
 		BuildPaletteOrder: 10
-		Prerequisites: fact
 		Queue: Building.GDI, Building.Nod
 		BuildDuration: 330
+		Prerequisites: fact
 		Description: Generates power
 	Building:
 		Footprint: xX xx ==

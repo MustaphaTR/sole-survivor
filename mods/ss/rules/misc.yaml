@@ -26,6 +26,14 @@ CRATE:
 		RevokeEffect: hide-map
 		Notification: RadarActivated
 		RevokeNotification: RadarDeactivated
+	SwitchConditionCrateAction@noradar:
+		Condition: crate-no-radar
+		Prerequisites: !global-radar
+		SelectionShares: 4
+		Effect: hide-map
+		RevokeEffect: reveal-map
+		Notification: RadarDeactivated
+		RevokeNotification: RadarActivated
 	GiveUnitCrateAction@cloak-detector:
 		Units: proxy.cloak-detector
 		SelectionShares: 10
@@ -217,7 +225,6 @@ waypoint:
 
 fact.colorpicker:
 	Inherits: FACT
-	-Buildable:
 	-MapEditorData:
 	RenderSprites:
 		Image: fact

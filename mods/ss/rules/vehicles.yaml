@@ -39,6 +39,7 @@ MCV:
 		OwnerType: InternalName
 		EffectiveOwnerFromOwner: true
 	SelectionDecorations:
+	UnitStatValues:
 
 HARV:
 	Inherits: ^Tank
@@ -697,12 +698,78 @@ MHQ:
 	Mobile:
 		Speed: 85
 	RevealsShroud:
-		Range: 6c0
+		Range: 10c0
 	WithIdleOverlay@SPINNER:
 		Sequence: spinner
 		Offset: -256,0,256
-	Buildable:
-		Description: Mobile base of operations
+	AirstrikePower@SpyPlane:
+		OrderName: SpyPlane
+		Icon: spyplane
+		ChargeInterval: 500
+		Description: Spy Plane
+		LongDesc: Reveals an area of the map.
+		SelectTargetSpeechNotification: SelectTarget
+		EndChargeSpeechNotification: AirstrikeReady
+		CameraActor: CAMERA.small
+		CameraRemoveDelay: 150
+		UnitType: u2
+		QuantizedFacings: 8
+		DisplayBeacon: true
+		BeaconPoster: spyplane
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+	AirstrikePower@Airstrike:
+		Icon: airstrike
+		ChargeInterval: 500
+		QuantizedFacings: 8
+		Description: Air Strike
+		LongDesc: Deploy an aerial napalm strike.
+		EndChargeSpeechNotification: AirstrikeReady
+		SelectTargetSpeechNotification: SelectTarget
+		UnitType: a10
+		DisplayBeacon: True
+		BeaconPoster: airstrike
+		BeaconPosterPalette: beaconposter
+		DisplayRadarPing: True
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+	SupportPowerChargeBar:
+	ProvidesRadar:
+		RequiresCondition: !crate-no-radar
+	SwitchCondition@RADAR:
+		Condition: crate-no-radar
+	SpawnActorOnDeath:
+		Actor: MHQ.Husk
+		OwnerType: InternalName
+		EffectiveOwnerFromOwner: true
+	-RangeMultiplier@RANGE-1:
+	-RangeMultiplier@RANGE-2:
+	-RangeMultiplier@RANGE-3:
+	-RangeMultiplier@RANGE-4:
+	-RangeMultiplier@RANGE-5:
+	-RangeMultiplier@RANGE-6:
+	-RangeMultiplier@RANGE-7:
+	-RangeMultiplier@RANGE-8:
+	-RangeMultiplier@RANGE-9:
+	-RangeMultiplier@RANGE-10:
+	-ReloadDelayMultiplier@ROF-1:
+	-ReloadDelayMultiplier@ROF-2:
+	-ReloadDelayMultiplier@ROF-3:
+	-ReloadDelayMultiplier@ROF-4:
+	-ReloadDelayMultiplier@ROF-5:
+	-ReloadDelayMultiplier@ROF-6:
+	-ReloadDelayMultiplier@ROF-7:
+	-ReloadDelayMultiplier@ROF-8:
+	-ReloadDelayMultiplier@ROF-9:
+	-ReloadDelayMultiplier@ROF-10:
+	-ExternalCondition@RANGE:
+	-ExternalCondition@ROF:
+	UnitStatValues:
+		Damage: 3000
+		ReloadDelay: 500
+		Range: -1c0
 
 TRUCK:
 	Inherits: ^Vehicle
