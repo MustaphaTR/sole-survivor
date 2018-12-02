@@ -1,5 +1,7 @@
 CRATE:
 	Inherits: ^Crate
+	WithCrateBody:
+		XmasImages: xcrateb
 	Crate:
 		Lifetime: 240
 	RevealMapCrateAction:
@@ -114,6 +116,8 @@ CRATE:
 
 UPGRADECRATE:
 	Inherits: ^Crate
+	WithCrateBody:
+		XmasImages: xcrates
 	Crate:
 		Lifetime: 240
 	GrantExternalConditionCrateAction@armor:
@@ -157,6 +161,8 @@ UPGRADECRATE:
 
 HEALCRATE:
 	Inherits: ^Crate
+	WithCrateBody:
+		XmasImages: xcrateg
 	Crate:
 		Lifetime: 240
 	SSHealCrateAction:
@@ -170,6 +176,8 @@ HEALCRATE:
 
 EXPERIENCECRATE:
 	Inherits: ^Crate
+	WithCrateBody:
+		XmasImages: xcrated
 	Crate:
 		Lifetime: 240
 	LevelUpCrateAction:
@@ -185,6 +193,8 @@ EXPERIENCECRATE:
 
 WACKYCRATE:
 	Inherits: ^Crate
+	WithCrateBody:
+		XmasImages: xcrateo
 	Crate:
 		Lifetime: 240
 	GrantExternalConditionCrateAction@WACKY:

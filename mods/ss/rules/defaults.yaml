@@ -1336,7 +1336,6 @@
 		Palette: effect
 		Image: crate
 	WithCrateBody:
-		XmasImages: xcratea, xcrateb, xcratec, xcrated
 	MapEditorData:
 		Categories: System
 

@@ -275,23 +275,33 @@ crate-dark:
 	idle:
 		ZOffset: -511
 
-xcratea:
+xcrateb:
 	idle: xcrate
 		ZOffset: -511
 
-xcrateb:
+xcrates:
 	idle: xcrate
 		Start: 1
 		ZOffset: -511
 
-xcratec:
+xcrateg:
 	idle: xcrate
 		Start: 2
 		ZOffset: -511
 
-xcrated:
+xcrateo:
 	idle: xcrate
 		Start: 3
+		ZOffset: -511
+
+xcrater:
+	idle: xcrate
+		Start: 4
+		ZOffset: -511
+
+xcrated:
+	idle: xcrate
+		Start: 5
 		ZOffset: -511
 
 crate-effects:
