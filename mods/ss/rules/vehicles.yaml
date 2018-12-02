@@ -295,7 +295,7 @@ BIKE:
 	Armor:
 		Type: Light
 	RevealsShroud:
-		Range: 8c0
+		Range: 6c512
 	Armament:
 		Weapon: BikeRockets
 		LocalOffset: -128, -170, 170, -128, 170, 170
