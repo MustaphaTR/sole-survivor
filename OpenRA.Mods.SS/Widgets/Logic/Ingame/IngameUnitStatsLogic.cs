@@ -36,18 +36,21 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                 if (units.Any())
                 {
                     var unit = units.First();
-                    var usv = unit.Info.TraitInfo<UnitStatValuesInfo>();
-                    if (usv.Health > 0)
+                    var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
+                    if (usv != null)
                     {
-                        var healthVaue = usv.Health;
-                        foreach (var dm in unit.TraitsImplementing<DamageMultiplier>().Where(dm => !dm.IsTraitDisabled).Select(dm => dm.Info.Modifier))
-                            healthVaue = healthVaue / dm * 100;
+                        if (usv.Health > 0)
+                        {
+                            var healthVaue = usv.Health;
+                            foreach (var dm in unit.TraitsImplementing<DamageMultiplier>().Where(dm => !dm.IsTraitDisabled).Select(dm => dm.Info.Modifier))
+                                healthVaue = healthVaue / dm * 100;
 
-                        return health.Text + ": " + healthVaue.ToString();
-                    }
-                    else if (usv.Health < 0)
-                    {
-                        return health.Text + ": Infinite";
+                            return health.Text + ": " + healthVaue.ToString();
+                        }
+                        else if (usv.Health < 0)
+                        {
+                            return health.Text + ": Infinite";
+                        }
                     }
                     var healthTrait = unit.TraitOrDefault<Health>();
                     if (healthTrait != null)
@@ -70,18 +73,21 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                 if (units.Any())
                 {
                     var unit = units.First();
-                    var usv = unit.Info.TraitInfo<UnitStatValuesInfo>();
-                    if (usv.Sight > 0)
+                    var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
+                    if (usv != null)
                     {
-                        var revealsShroudValue = usv.Sight;
-                        foreach (var rsm in unit.TraitsImplementing<IRevealsShroudModifier>().Select(rsm => rsm.GetRevealsShroudModifier()))
-                            revealsShroudValue = revealsShroudValue * rsm / 100;
+                        if (usv.Sight > 0)
+                        {
+                            var revealsShroudValue = usv.Sight;
+                            foreach (var rsm in unit.TraitsImplementing<IRevealsShroudModifier>().Select(rsm => rsm.GetRevealsShroudModifier()))
+                                revealsShroudValue = revealsShroudValue * rsm / 100;
 
-                        return sight.Text + ": " + revealsShroudValue.ToString();
-                    }
-                    else if (usv.Sight < 0)
-                    {
-                        return sight.Text + ": Infinite";
+                            return sight.Text + ": " + revealsShroudValue.ToString();
+                        }
+                        else if (usv.Sight < 0)
+                        {
+                            return sight.Text + ": Infinite";
+                        }
                     }
                     var revealsShroudTrait = unit.TraitsImplementing<RevealsShroud>().MaxBy(rs => rs.Info.Range);
                     if (revealsShroudTrait != null)
@@ -104,15 +110,18 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                 if (units.Any())
                 {
                     var unit = units.First();
-                    var usv = unit.Info.TraitInfo<UnitStatValuesInfo>();
-                    if (usv.Damage < 0)
-                        return damage.Text + ": Infinite";
+                    var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
+                    if (usv != null)
+                    {
+                        if (usv.Damage < 0)
+                            return damage.Text + ": Infinite";
 
-                    var damageValue = usv.Damage;
-                    foreach (var dm in unit.TraitsImplementing<IFirepowerModifier>().Select(fm => fm.GetFirepowerModifier()))
-                        damageValue = damageValue * dm / 100;
+                        var damageValue = usv.Damage;
+                        foreach (var dm in unit.TraitsImplementing<IFirepowerModifier>().Select(fm => fm.GetFirepowerModifier()))
+                            damageValue = damageValue * dm / 100;
 
-                    return damage.Text + ": " + damageValue.ToString();
+                        return damage.Text + ": " + damageValue.ToString();
+                    }
                 }
 
                 return damage.Text + ":";
@@ -125,18 +134,21 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                 if (units.Any())
                 {
                     var unit = units.First();
-                    var usv = unit.Info.TraitInfo<UnitStatValuesInfo>();
-                    if (usv.ReloadDelay > 0)
+                    var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
+                    if (usv != null)
                     {
-                        var rofValue = usv.ReloadDelay;
-                        foreach (var rm in unit.TraitsImplementing<IReloadModifier>().Select(sm => sm.GetReloadModifier()))
-                            rofValue = rofValue * rm / 100;
+                        if (usv.ReloadDelay > 0)
+                        {
+                            var rofValue = usv.ReloadDelay;
+                            foreach (var rm in unit.TraitsImplementing<IReloadModifier>().Select(sm => sm.GetReloadModifier()))
+                                rofValue = rofValue * rm / 100;
 
-                        return rof.Text + ": " + rofValue.ToString();
-                    }
-                    else if (usv.ReloadDelay < 0)
-                    {
-                        return rof.Text + ": Infinite";
+                            return rof.Text + ": " + rofValue.ToString();
+                        }
+                        else if (usv.ReloadDelay < 0)
+                        {
+                            return rof.Text + ": Infinite";
+                        }
                     }
                     var armamanets = unit.TraitsImplementing<Armament>();
                     if (armamanets.Any())
@@ -159,18 +171,21 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                 if (units.Any())
                 {
                     var unit = units.First();
-                    var usv = unit.Info.TraitInfo<UnitStatValuesInfo>();
-                    if (usv.Range > WDist.Zero)
+                    var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
+                    if (usv != null)
                     {
-                        var rangeValue = usv.Range;
-                        foreach (var rm in unit.TraitsImplementing<IRangeModifier>().Select(rm => rm.GetRangeModifier()))
-                            rangeValue = rangeValue * rm / 100;
+                        if (usv.Range > WDist.Zero)
+                        {
+                            var rangeValue = usv.Range;
+                            foreach (var rm in unit.TraitsImplementing<IRangeModifier>().Select(rm => rm.GetRangeModifier()))
+                                rangeValue = rangeValue * rm / 100;
 
-                        return range.Text + ": " + rangeValue.ToString();
-                    }
-                    else if (usv.Range < WDist.Zero)
-                    {
-                        return range.Text + ": Infinite";
+                            return range.Text + ": " + rangeValue.ToString();
+                        }
+                        else if (usv.Range < WDist.Zero)
+                        {
+                            return range.Text + ": Infinite";
+                        }
                     }
                     var attackBase = unit.TraitOrDefault<AttackBase>();
                     if (attackBase != null)
@@ -190,18 +205,21 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                 if (units.Any())
                 {
                     var unit = units.First();
-                    var usv = unit.Info.TraitInfo<UnitStatValuesInfo>();
-                    if (usv.Speed > 0)
+                    var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
+                    if (usv != null)
                     {
-                        var speedValue = usv.Speed;
-                        foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
-                            speedValue = speedValue * sm / 100;
+                        if (usv.Speed > 0)
+                        {
+                            var speedValue = usv.Speed;
+                            foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
+                                speedValue = speedValue * sm / 100;
 
-                        return speed.Text + ": " + speedValue.ToString();
-                    }
-                    else if (usv.Speed < 0)
-                    {
-                        return speed.Text + ": Infinite";
+                            return speed.Text + ": " + speedValue.ToString();
+                        }
+                        else if (usv.Speed < 0)
+                        {
+                            return speed.Text + ": Infinite";
+                        }
                     }
                     var mobile = unit.Info.TraitInfoOrDefault<MobileInfo>();
                     if (mobile != null)
