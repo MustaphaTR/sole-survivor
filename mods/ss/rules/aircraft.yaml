@@ -230,7 +230,7 @@ A10:
 		Cost: 2000
 	Aircraft:
 		TurnSpeed: 4
-		Speed: 373
+		Speed: 400
 		Repulsable: False
 	AttackBomber:
 		Armaments: gun, bombs
@@ -259,7 +259,7 @@ U2:
 	Aircraft:
 		CruiseAltitude: 2560
 		TurnSpeed: 7
-		Speed: 373
+		Speed: 400
 		Repulsable: False
 		MaximumPitch: 56
 	AttackBomber:

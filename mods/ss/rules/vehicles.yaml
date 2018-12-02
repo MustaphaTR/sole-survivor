@@ -707,10 +707,10 @@ MHQ:
 		Icon: spyplane
 		ChargeInterval: 500
 		Description: Spy Plane
-		LongDesc: Reveals an area of the map.
+		LongDesc: Reveals an area of the map\nand cloaked enemy units.
 		SelectTargetSpeechNotification: SelectTarget
 		EndChargeSpeechNotification: AirstrikeReady
-		CameraActor: CAMERA.small
+		CameraActor: CAMERA.spyplane
 		CameraRemoveDelay: 150
 		UnitType: u2
 		QuantizedFacings: 8
@@ -736,6 +736,40 @@ MHQ:
 		ClockSequence: clock
 		CircleSequence: circles
 	SupportPowerChargeBar:
+	DetectCloaked@RANGE-0:
+		Range: 5c0
+		RequiresCondition: !crate-range
+	DetectCloaked@RANGE-1:
+		Range: 5c512
+		RequiresCondition: crate-range == 1
+	DetectCloaked@RANGE-2:
+		Range: 6c0
+		RequiresCondition: crate-range == 2
+	DetectCloaked@RANGE-3:
+		Range: 6c512
+		RequiresCondition: crate-range == 3
+	DetectCloaked@RANGE-4:
+		Range: 7c0
+		RequiresCondition: crate-range == 4
+	DetectCloaked@RANGE-5:
+		Range: 7c512
+		RequiresCondition: crate-range == 5
+	DetectCloaked@RANGE-6:
+		Range: 8c0
+		RequiresCondition: crate-range == 6
+	DetectCloaked@RANGE-7:
+		Range: 8c512
+		RequiresCondition: crate-range == 7
+	DetectCloaked@RANGE-8:
+		Range: 9c0
+		RequiresCondition: crate-range == 8
+	DetectCloaked@RANGE-9:
+		Range: 9c512
+		RequiresCondition: crate-range == 9
+	DetectCloaked@RANGE-10:
+		Range: 10c0
+		RequiresCondition: crate-range >= 10
+	RenderDetectionCircle:
 	ProvidesRadar:
 		RequiresCondition: !crate-no-radar
 	SwitchCondition@RADAR:
@@ -744,16 +778,6 @@ MHQ:
 		Actor: MHQ.Husk
 		OwnerType: InternalName
 		EffectiveOwnerFromOwner: true
-	-RangeMultiplier@RANGE-1:
-	-RangeMultiplier@RANGE-2:
-	-RangeMultiplier@RANGE-3:
-	-RangeMultiplier@RANGE-4:
-	-RangeMultiplier@RANGE-5:
-	-RangeMultiplier@RANGE-6:
-	-RangeMultiplier@RANGE-7:
-	-RangeMultiplier@RANGE-8:
-	-RangeMultiplier@RANGE-9:
-	-RangeMultiplier@RANGE-10:
 	-ReloadDelayMultiplier@ROF-1:
 	-ReloadDelayMultiplier@ROF-2:
 	-ReloadDelayMultiplier@ROF-3:
@@ -764,12 +788,11 @@ MHQ:
 	-ReloadDelayMultiplier@ROF-8:
 	-ReloadDelayMultiplier@ROF-9:
 	-ReloadDelayMultiplier@ROF-10:
-	-ExternalCondition@RANGE:
 	-ExternalCondition@ROF:
 	UnitStatValues:
 		Damage: 3000
 		ReloadDelay: 500
-		Range: -1c0
+		Range: 5c0
 
 TRUCK:
 	Inherits: ^Vehicle

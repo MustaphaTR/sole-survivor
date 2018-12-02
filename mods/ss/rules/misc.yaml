@@ -309,6 +309,13 @@ CAMERA.small:
 	MapEditorData:
 		Categories: System
 
+CAMERA.spyplane:
+	Inherits: CAMERA.small
+	RevealsShroud:
+		Range: 7c512
+	DetectCloaked:
+		Range: 7c512
+
 FLARE:
 	Immobile:
 		OccupiesSpace: false

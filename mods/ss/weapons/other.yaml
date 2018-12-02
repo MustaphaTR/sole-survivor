@@ -69,7 +69,7 @@ Chemspray:
 Napalm:
 	Inherits: ^FlameWeapon
 	ReloadDelay: 4
-	Range: 2c0
+	Range: 4c0
 	Burst: 2
 	BurstDelays: 2
 	-Projectile:
@@ -77,7 +77,7 @@ Napalm:
 		Image: BOMBLET
 		Shadow: true
 	Warhead@1Dam: SpreadDamage
-		Spread: 341
+		Spread: 426
 		Damage: 3000
 		Falloff: 1000, 368, 135, 50, 18, 7, 0
 		Versus:
