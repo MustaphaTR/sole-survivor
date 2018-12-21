@@ -7,7 +7,7 @@
    information, see COPYING.
 ]]
 
-AIUnits = { }
+Units = { }
 
 IdleHunt = function(actor)
 	if actor.HasProperty("Hunt") and not actor.IsDead then
@@ -64,14 +64,14 @@ GetNearbyHealCrate = function(actor, distance)
 	return Utils.Random(crates)
 end
 
-SetupAIUnits = function(bot)
-	AIUnits[bot.InternalName] = Utils.Where(bot.GetActors(), function(a) return a.Type ~= "player" end)[1]
+SetupPlayerUnits = function(player)
+	Units[player.InternalName] = Utils.Where(player.GetActors(), function(a) return a.Type ~= "player" end)[1]
 end
 
 AITick = function()
 	Trigger.AfterDelay(5, function()
 		for _,bot in pairs(bots) do
-			local unit = AIUnits[bot.InternalName]
+			local unit = Units[bot.InternalName]
 
 			if unit ~= nil and not unit.IsDead then
 				if unit.IsIdle then
@@ -104,9 +104,10 @@ AITick = function()
 end
 
 AIWorldLoaded = function()
-	bots = Player.GetPlayers(function(p) return p.IsBot and not p.IsNonCombatant end)
+	players = Player.GetPlayers(function(p) return not p.IsNonCombatant end)
+	bots = Utils.Where(players, function(p) return p.IsBot end)
 
-	for _,bot in pairs(bots) do
-		SetupAIUnits(bot)
+	for _,player in pairs(players) do
+		SetupPlayerUnits(player)
 	end
 end

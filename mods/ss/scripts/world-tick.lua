@@ -10,9 +10,11 @@
 Tick = function()
 	TimeLimitTick()
 	AITick()
+	CloakTick()
 end
 
 WorldLoaded = function()
 	TimeLimitWorldLoaded()
 	AIWorldLoaded()
+	CloakWorldLoaded()
 end

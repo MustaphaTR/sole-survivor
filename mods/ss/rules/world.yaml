@@ -545,8 +545,20 @@ World:
 			twenty: 20 Minutes
 			thirty: 30 Minutes
 		Default: fifteen
+	ScriptLobbyDropdown@starting-cloak:
+		ID: starting-cloak
+		Label: Starting Cloak
+		Values:
+			disabled: Disabled
+			ten: 10 Seconds
+			fifteen: 15 Seconds
+			twenty: 20 Seconds
+			thirty: 30 Seconds
+			fortyfive: 45 Seconds
+			sixty: 1 Minute
+		Default: thirty
 	LuaScript:
-		Scripts: ai-scripts.lua, time-limit.lua, world-tick.lua
+		Scripts: starting-cloak.lua, ai-scripts.lua, time-limit.lua, world-tick.lua
 	PathFinder:
 	ValidateOrder:
 	DebugPauseState:

@@ -265,6 +265,18 @@
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 
+^StartingCloak:
+	Cloak@Starting:
+		InitialDelay: 0
+		CloakDelay: 90
+		CloakSound: trans1.aud
+		UncloakSound: trans1.aud
+		RequiresCondition: !cloak-global-disable && starting-cloak
+	ExternalCondition@CLOAK-GLOBAL-DISABLE:
+		Condition: cloak-global-disable
+	ExternalCondition@STARTING-CLOAK:
+		Condition: starting-cloak
+
 ^AcceptsCratePowerups:
 	ProvidesRadar:
 		RequiresCondition: crate-radar
@@ -480,6 +492,7 @@
 	Inherits@3: ^SpriteActor
 	Inherits@4: ^AcceptsCratePowerups
 	Inherits@5: ^GivesExperience
+	Inherits@6: ^StartingCloak
 	Huntable:
 	OwnerLostAction:
 		Action: Kill
@@ -531,6 +544,7 @@
 	Inherits@1: ^ExistsInWorld
 	Inherits@3: ^SpriteActor
 	Inherits@4: ^GivesExperience
+	Inherits@5: ^StartingCloak
 	Huntable:
 	OwnerLostAction:
 		Action: Kill
@@ -695,6 +709,7 @@
 ^Soldier:
 	Inherits: ^Infantry
 	Inherits@2: ^GivesExperience
+	Inherits@3: ^StartingCloak
 	MustBeDestroyed:
 	Tooltip:
 		GenericName: Soldier
@@ -753,6 +768,7 @@
 	Inherits@3: ^GivesExperience
 	Inherits@4: ^AcceptsCratePowerups
 	Inherits@5: ^AcceptsCloakCrate
+	Inherits@6: ^StartingCloak
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Huntable:
 	OwnerLostAction:
@@ -815,6 +831,7 @@
 	Inherits@3: ^GivesExperience
 	Inherits@4: ^AcceptsCratePowerups
 	Inherits@5: ^AcceptsCloakCrate
+	Inherits@6: ^StartingCloak
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Huntable:
 	Health:
