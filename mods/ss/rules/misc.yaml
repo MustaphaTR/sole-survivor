@@ -311,6 +311,9 @@ CAMERA.small:
 
 CAMERA.spyplane:
 	Inherits: CAMERA.small
+	Inherits@CRATE: ^AcceptsCratePowerups
+	Inherits@EXTERNAL-SIGHT: ^RequiresExternalSightCratePowerup
+	ConditionManager:
 	RevealsShroud:
 		Range: 7c512
 	DetectCloaked:
