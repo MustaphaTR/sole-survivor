@@ -167,6 +167,11 @@ E5:
 
 E6:
 	Inherits: ^Soldier
+	Inherits@EXTERNAL-ARMOR: ^ProvidesExternalArmorCratePowerup
+	Inherits@EXTERNAL-FIREPOWER: ^ProvidesExternalFirepowerCratePowerup
+	Inherits@EXTERNAL-RANGE: ^ProvidesExternalRangeCratePowerup
+	Inherits@EXTERNAL-ROF: ^ProvidesExternalROFCratePowerup
+	Inherits@EXTERNAL-SIGHT: ^ProvidesExternalSightCratePowerup
 	Valued:
 		Cost: 500
 	Tooltip:

@@ -690,7 +690,13 @@ TMPL:
 GUN:
 	Inherits: ^Defense
 	Inherits@AUTOTARGET: ^AutoTargetGround
+	Inherits@CRATE: ^AcceptsCratePowerups
 	Inherits@ENGINEER: ^EngineerBuilding
+	Inherits@EXTERNAL-ARMOR: ^RequiresExternalArmorCratePowerup
+	Inherits@EXTERNAL-FIREPOWER: ^RequiresExternalFirepowerCratePowerup
+	Inherits@EXTERNAL-RANGE: ^RequiresExternalRangeCratePowerup
+	Inherits@EXTERNAL-ROF: ^RequiresExternalROFCratePowerup
+	Inherits@EXTERNAL-SIGHT: ^RequiresExternalSightCratePowerup
 	Selectable:
 		Bounds: 24,24
 	Valued:
@@ -821,7 +827,13 @@ OBLI:
 GTWR:
 	Inherits: ^Defense
 	Inherits@AUTOTARGET: ^AutoTargetGround
+	Inherits@CRATE: ^AcceptsCratePowerups
 	Inherits@ENGINEER: ^EngineerBuilding
+	Inherits@EXTERNAL-ARMOR: ^RequiresExternalArmorCratePowerup
+	Inherits@EXTERNAL-FIREPOWER: ^RequiresExternalFirepowerCratePowerup
+	Inherits@EXTERNAL-RANGE: ^RequiresExternalRangeCratePowerup
+	Inherits@EXTERNAL-ROF: ^RequiresExternalROFCratePowerup
+	Inherits@EXTERNAL-SIGHT: ^RequiresExternalSightCratePowerup
 	Selectable:
 		Bounds: 24,24
 	Valued:

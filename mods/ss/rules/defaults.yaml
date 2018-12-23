@@ -487,6 +487,390 @@
 		TotalCap: 1
 		Condition: crate-wacky
 
+^ProvidesExternalArmorCratePowerup:
+	ProvidesPrerequisite@ARMOR-1:
+		Prerequisite: armor-1
+		RequiresCondition: crate-armor >= 1
+	ProvidesPrerequisite@ARMOR-2:
+		Prerequisite: armor-2
+		RequiresCondition: crate-armor >= 2
+	ProvidesPrerequisite@ARMOR-3:
+		Prerequisite: armor-3
+		RequiresCondition: crate-armor >= 3
+	ProvidesPrerequisite@ARMOR-4:
+		Prerequisite: armor-4
+		RequiresCondition: crate-armor >= 4
+	ProvidesPrerequisite@ARMOR-5:
+		Prerequisite: armor-5
+		RequiresCondition: crate-armor >= 5
+	ProvidesPrerequisite@ARMOR-6:
+		Prerequisite: armor-6
+		RequiresCondition: crate-armor >= 6
+	ProvidesPrerequisite@ARMOR-7:
+		Prerequisite: armor-7
+		RequiresCondition: crate-armor >= 7
+	ProvidesPrerequisite@ARMOR-8:
+		Prerequisite: armor-8
+		RequiresCondition: crate-armor >= 8
+	ProvidesPrerequisite@ARMOR-9:
+		Prerequisite: armor-9
+		RequiresCondition: crate-armor >= 9
+	ProvidesPrerequisite@ARMOR-10:
+		Prerequisite: armor-10
+		RequiresCondition: crate-armor >= 10
+
+^ProvidesExternalFirepowerCratePowerup:
+	ProvidesPrerequisite@FIREPOWER-1:
+		Prerequisite: firepower-1
+		RequiresCondition: crate-firepower >= 1
+	ProvidesPrerequisite@FIREPOWER-2:
+		Prerequisite: firepower-2
+		RequiresCondition: crate-firepower >= 2
+	ProvidesPrerequisite@FIREPOWER-3:
+		Prerequisite: firepower-3
+		RequiresCondition: crate-firepower >= 3
+	ProvidesPrerequisite@FIREPOWER-4:
+		Prerequisite: firepower-4
+		RequiresCondition: crate-firepower >= 4
+	ProvidesPrerequisite@FIREPOWER-5:
+		Prerequisite: firepower-5
+		RequiresCondition: crate-firepower >= 5
+	ProvidesPrerequisite@FIREPOWER-6:
+		Prerequisite: firepower-6
+		RequiresCondition: crate-firepower >= 6
+	ProvidesPrerequisite@FIREPOWER-7:
+		Prerequisite: firepower-7
+		RequiresCondition: crate-firepower >= 7
+	ProvidesPrerequisite@FIREPOWER-8:
+		Prerequisite: firepower-8
+		RequiresCondition: crate-firepower >= 8
+	ProvidesPrerequisite@FIREPOWER-9:
+		Prerequisite: firepower-9
+		RequiresCondition: crate-firepower >= 9
+	ProvidesPrerequisite@FIREPOWER-10:
+		Prerequisite: firepower-10
+		RequiresCondition: crate-firepower >= 10
+
+^ProvidesExternalSpeedCratePowerup:
+	ProvidesPrerequisite@SPEED-1:
+		Prerequisite: speed-1
+		RequiresCondition: crate-speed >= 1
+	ProvidesPrerequisite@SPEED-2:
+		Prerequisite: speed-2
+		RequiresCondition: crate-speed >= 2
+	ProvidesPrerequisite@SPEED-3:
+		Prerequisite: speed-3
+		RequiresCondition: crate-speed >= 3
+	ProvidesPrerequisite@SPEED-4:
+		Prerequisite: speed-4
+		RequiresCondition: crate-speed >= 4
+	ProvidesPrerequisite@SPEED-5:
+		Prerequisite: speed-5
+		RequiresCondition: crate-speed >= 5
+	ProvidesPrerequisite@SPEED-6:
+		Prerequisite: speed-6
+		RequiresCondition: crate-speed >= 6
+	ProvidesPrerequisite@SPEED-7:
+		Prerequisite: speed-7
+		RequiresCondition: crate-speed >= 7
+	ProvidesPrerequisite@SPEED-8:
+		Prerequisite: speed-8
+		RequiresCondition: crate-speed >= 8
+	ProvidesPrerequisite@SPEED-9:
+		Prerequisite: speed-9
+		RequiresCondition: crate-speed >= 9
+	ProvidesPrerequisite@SPEED-10:
+		Prerequisite: speed-10
+		RequiresCondition: crate-speed >= 10
+
+^ProvidesExternalRangeCratePowerup:
+	ProvidesPrerequisite@RANGE-1:
+		Prerequisite: range-1
+		RequiresCondition: crate-range >= 1
+	ProvidesPrerequisite@RANGE-2:
+		Prerequisite: range-2
+		RequiresCondition: crate-range >= 2
+	ProvidesPrerequisite@RANGE-3:
+		Prerequisite: range-3
+		RequiresCondition: crate-range >= 3
+	ProvidesPrerequisite@RANGE-4:
+		Prerequisite: range-4
+		RequiresCondition: crate-range >= 4
+	ProvidesPrerequisite@RANGE-5:
+		Prerequisite: range-5
+		RequiresCondition: crate-range >= 5
+	ProvidesPrerequisite@RANGE-6:
+		Prerequisite: range-6
+		RequiresCondition: crate-range >= 6
+	ProvidesPrerequisite@RANGE-7:
+		Prerequisite: range-7
+		RequiresCondition: crate-range >= 7
+	ProvidesPrerequisite@RANGE-8:
+		Prerequisite: range-8
+		RequiresCondition: crate-range >= 8
+	ProvidesPrerequisite@RANGE-9:
+		Prerequisite: range-9
+		RequiresCondition: crate-range >= 9
+	ProvidesPrerequisite@RANGE-10:
+		Prerequisite: range-10
+		RequiresCondition: crate-range >= 10
+
+^ProvidesExternalROFCratePowerup:
+	ProvidesPrerequisite@ROF-1:
+		Prerequisite: rof-1
+		RequiresCondition: crate-rof >= 1
+	ProvidesPrerequisite@ROF-2:
+		Prerequisite: rof-2
+		RequiresCondition: crate-rof >= 2
+	ProvidesPrerequisite@ROF-3:
+		Prerequisite: rof-3
+		RequiresCondition: crate-rof >= 3
+	ProvidesPrerequisite@ROF-4:
+		Prerequisite: rof-4
+		RequiresCondition: crate-rof >= 4
+	ProvidesPrerequisite@ROF-5:
+		Prerequisite: rof-5
+		RequiresCondition: crate-rof >= 5
+	ProvidesPrerequisite@ROF-6:
+		Prerequisite: rof-6
+		RequiresCondition: crate-rof >= 6
+	ProvidesPrerequisite@ROF-7:
+		Prerequisite: rof-7
+		RequiresCondition: crate-rof >= 7
+	ProvidesPrerequisite@ROF-8:
+		Prerequisite: rof-8
+		RequiresCondition: crate-rof >= 8
+	ProvidesPrerequisite@ROF-9:
+		Prerequisite: rof-9
+		RequiresCondition: crate-rof >= 9
+	ProvidesPrerequisite@ROF-10:
+		Prerequisite: rof-10
+		RequiresCondition: crate-rof >= 10
+
+^ProvidesExternalSightCratePowerup:
+	ProvidesPrerequisite@SIGHT-1:
+		Prerequisite: sight-1
+		RequiresCondition: crate-sight >= 1
+	ProvidesPrerequisite@SIGHT-2:
+		Prerequisite: sight-2
+		RequiresCondition: crate-sight >= 2
+	ProvidesPrerequisite@SIGHT-3:
+		Prerequisite: sight-3
+		RequiresCondition: crate-sight >= 3
+	ProvidesPrerequisite@SIGHT-4:
+		Prerequisite: sight-4
+		RequiresCondition: crate-sight >= 4
+	ProvidesPrerequisite@SIGHT-5:
+		Prerequisite: sight-5
+		RequiresCondition: crate-sight >= 5
+	ProvidesPrerequisite@SIGHT-6:
+		Prerequisite: sight-6
+		RequiresCondition: crate-sight >= 6
+	ProvidesPrerequisite@SIGHT-7:
+		Prerequisite: sight-7
+		RequiresCondition: crate-sight >= 7
+	ProvidesPrerequisite@SIGHT-8:
+		Prerequisite: sight-8
+		RequiresCondition: crate-sight >= 8
+	ProvidesPrerequisite@SIGHT-9:
+		Prerequisite: sight-9
+		RequiresCondition: crate-sight >= 9
+	ProvidesPrerequisite@SIGHT-10:
+		Prerequisite: sight-10
+		RequiresCondition: crate-sight >= 10
+
+^RequiresExternalArmorCratePowerup:
+	GrantConditionOnPrerequisite@ARMOR-1:
+		Prerequisites: armor-1
+		Condition: crate-armor
+	GrantConditionOnPrerequisite@ARMOR-2:
+		Prerequisites: armor-2
+		Condition: crate-armor
+	GrantConditionOnPrerequisite@ARMOR-3:
+		Prerequisites: armor-3
+		Condition: crate-armor
+	GrantConditionOnPrerequisite@ARMOR-4:
+		Prerequisites: armor-4
+		Condition: crate-armor
+	GrantConditionOnPrerequisite@ARMOR-5:
+		Prerequisites: armor-5
+		Condition: crate-armor
+	GrantConditionOnPrerequisite@ARMOR-6:
+		Prerequisites: armor-6
+		Condition: crate-armor
+	GrantConditionOnPrerequisite@ARMOR-7:
+		Prerequisites: armor-7
+		Condition: crate-armor
+	GrantConditionOnPrerequisite@ARMOR-8:
+		Prerequisites: armor-8
+		Condition: crate-armor
+	GrantConditionOnPrerequisite@ARMOR-9:
+		Prerequisites: armor-9
+		Condition: crate-armor
+	GrantConditionOnPrerequisite@ARMOR-10:
+		Prerequisites: armor-10
+		Condition: crate-armor
+
+^RequiresExternalFirepowerCratePowerup:
+	GrantConditionOnPrerequisite@FIREPOWER-1:
+		Prerequisites: firepower-1
+		Condition: crate-firepower
+	GrantConditionOnPrerequisite@FIREPOWER-2:
+		Prerequisites: firepower-2
+		Condition: crate-firepower
+	GrantConditionOnPrerequisite@FIREPOWER-3:
+		Prerequisites: firepower-3
+		Condition: crate-firepower
+	GrantConditionOnPrerequisite@FIREPOWER-4:
+		Prerequisites: firepower-4
+		Condition: crate-firepower
+	GrantConditionOnPrerequisite@FIREPOWER-5:
+		Prerequisites: firepower-5
+		Condition: crate-firepower
+	GrantConditionOnPrerequisite@FIREPOWER-6:
+		Prerequisites: firepower-6
+		Condition: crate-firepower
+	GrantConditionOnPrerequisite@FIREPOWER-7:
+		Prerequisites: firepower-7
+		Condition: crate-firepower
+	GrantConditionOnPrerequisite@FIREPOWER-8:
+		Prerequisites: firepower-8
+		Condition: crate-firepower
+	GrantConditionOnPrerequisite@FIREPOWER-9:
+		Prerequisites: firepower-9
+		Condition: crate-firepower
+	GrantConditionOnPrerequisite@FIREPOWER-10:
+		Prerequisites: firepower-10
+		Condition: crate-firepower
+
+^RequiresExternalSpeedCratePowerup:
+	GrantConditionOnPrerequisite@SPEED-1:
+		Prerequisites: speed-1
+		Condition: crate-speed
+	GrantConditionOnPrerequisite@SPEED-2:
+		Prerequisites: speed-2
+		Condition: crate-speed
+	GrantConditionOnPrerequisite@SPEED-3:
+		Prerequisites: speed-3
+		Condition: crate-speed
+	GrantConditionOnPrerequisite@SPEED-4:
+		Prerequisites: speed-4
+		Condition: crate-speed
+	GrantConditionOnPrerequisite@SPEED-5:
+		Prerequisites: speed-5
+		Condition: crate-speed
+	GrantConditionOnPrerequisite@SPEED-6:
+		Prerequisites: speed-6
+		Condition: crate-speed
+	GrantConditionOnPrerequisite@SPEED-7:
+		Prerequisites: speed-7
+		Condition: crate-speed
+	GrantConditionOnPrerequisite@SPEED-8:
+		Prerequisites: speed-8
+		Condition: crate-speed
+	GrantConditionOnPrerequisite@SPEED-9:
+		Prerequisites: speed-9
+		Condition: crate-speed
+	GrantConditionOnPrerequisite@SPEED-10:
+		Prerequisites: speed-10
+		Condition: crate-speed
+
+^RequiresExternalRangeCratePowerup:
+	GrantConditionOnPrerequisite@RANGE-1:
+		Prerequisites: range-1
+		Condition: crate-range
+	GrantConditionOnPrerequisite@RANGE-2:
+		Prerequisites: range-2
+		Condition: crate-range
+	GrantConditionOnPrerequisite@RANGE-3:
+		Prerequisites: range-3
+		Condition: crate-range
+	GrantConditionOnPrerequisite@RANGE-4:
+		Prerequisites: range-4
+		Condition: crate-range
+	GrantConditionOnPrerequisite@RANGE-5:
+		Prerequisites: range-5
+		Condition: crate-range
+	GrantConditionOnPrerequisite@RANGE-6:
+		Prerequisites: range-6
+		Condition: crate-range
+	GrantConditionOnPrerequisite@RANGE-7:
+		Prerequisites: range-7
+		Condition: crate-range
+	GrantConditionOnPrerequisite@RANGE-8:
+		Prerequisites: range-8
+		Condition: crate-range
+	GrantConditionOnPrerequisite@RANGE-9:
+		Prerequisites: range-9
+		Condition: crate-range
+	GrantConditionOnPrerequisite@RANGE-10:
+		Prerequisites: range-10
+		Condition: crate-range
+
+^RequiresExternalROFCratePowerup:
+	GrantConditionOnPrerequisite@ROF-1:
+		Prerequisites: rof-1
+		Condition: crate-rof
+	GrantConditionOnPrerequisite@ROF-2:
+		Prerequisites: rof-2
+		Condition: crate-rof
+	GrantConditionOnPrerequisite@ROF-3:
+		Prerequisites: rof-3
+		Condition: crate-rof
+	GrantConditionOnPrerequisite@ROF-4:
+		Prerequisites: rof-4
+		Condition: crate-rof
+	GrantConditionOnPrerequisite@ROF-5:
+		Prerequisites: rof-5
+		Condition: crate-rof
+	GrantConditionOnPrerequisite@ROF-6:
+		Prerequisites: rof-6
+		Condition: crate-rof
+	GrantConditionOnPrerequisite@ROF-7:
+		Prerequisites: rof-7
+		Condition: crate-rof
+	GrantConditionOnPrerequisite@ROF-8:
+		Prerequisites: rof-8
+		Condition: crate-rof
+	GrantConditionOnPrerequisite@ROF-9:
+		Prerequisites: rof-9
+		Condition: crate-rof
+	GrantConditionOnPrerequisite@ROF-10:
+		Prerequisites: rof-10
+		Condition: crate-rof
+
+^RequiresExternalSightCratePowerup:
+	GrantConditionOnPrerequisite@SIGHT-1:
+		Prerequisites: sight-1
+		Condition: crate-sight
+	GrantConditionOnPrerequisite@SIGHT-2:
+		Prerequisites: sight-2
+		Condition: crate-sight
+	GrantConditionOnPrerequisite@SIGHT-3:
+		Prerequisites: sight-3
+		Condition: crate-sight
+	GrantConditionOnPrerequisite@SIGHT-4:
+		Prerequisites: sight-4
+		Condition: crate-sight
+	GrantConditionOnPrerequisite@SIGHT-5:
+		Prerequisites: sight-5
+		Condition: crate-sight
+	GrantConditionOnPrerequisite@SIGHT-6:
+		Prerequisites: sight-6
+		Condition: crate-sight
+	GrantConditionOnPrerequisite@SIGHT-7:
+		Prerequisites: sight-7
+		Condition: crate-sight
+	GrantConditionOnPrerequisite@SIGHT-8:
+		Prerequisites: sight-8
+		Condition: crate-sight
+	GrantConditionOnPrerequisite@SIGHT-9:
+		Prerequisites: sight-9
+		Condition: crate-sight
+	GrantConditionOnPrerequisite@SIGHT-10:
+		Prerequisites: sight-10
+		Condition: crate-sight
+
 ^Vehicle:
 	Inherits@1: ^ExistsInWorld
 	Inherits@3: ^SpriteActor
