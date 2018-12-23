@@ -705,7 +705,7 @@ GUN:
 		BuildLimit: 1
 	Building:
 	Health:
-		HP: 41000
+		HP: 40000
 	Armor:
 		Type: Heavy
 	RevealsShroud:
@@ -838,7 +838,7 @@ GTWR:
 	Health:
 		HP: 40000
 	RevealsShroud:
-		Range: 7c0
+		Range: 6c0
 	WithBuildingBib:
 		HasMinibib: Yes
 	Armament:
