@@ -708,8 +708,8 @@ GUN:
 		Queue: Defence
 		BuildDurationModifier: 0
 		Description: Basic Anti-Tank defense.\n  Strong vs Tanks, Vehicles\n  Weak vs Infantry
+		Prerequisites: !gun.husk
 		BuildLimit: 1
-	Building:
 	Health:
 		HP: 40000
 	Armor:
@@ -728,11 +728,36 @@ GUN:
 		LocalOffset: 512,0,112
 		MuzzleSequence: muzzle
 	AttackTurreted:
-		RequiresCondition: !build-incomplete
+		RequiresCondition: !build-incomplete && !deployed
 	WithMuzzleOverlay:
 	-WithDeathAnimation:
 	BodyOrientation:
 		UseClassicFacingFudge: True
+	SpawnActorOnDeath@HUSK:
+		Actor: GUN.husk
+		SpawnAfterDefeat: false
+
+GUN.husk:
+	Inherits: ^CivBuildingHusk
+	Inherits@ENGINEER: ^EngineerBuilding
+	ConditionManager:
+	OwnerLostAction:
+		Action: ChangeOwner
+	-Interactable:
+	Selectable:
+		Bounds: 24,24
+		Priority: 3
+	SelectionDecorations:
+	Turreted:
+	-WithSpriteBody:
+	WithEmbeddedTurretSpriteBody:
+	WithBuildingBib:
+		HasMinibib: Yes
+	Tooltip:
+		Name: Gun Turret (Destroyed)
+		GenericStancePrefix: true
+		ShowOwnerRow: true
+	ProvidesPrerequisite@buildingname:
 
 SAM:
 	Inherits: ^Defense
@@ -845,6 +870,7 @@ GTWR:
 		Queue: Defence
 		BuildDurationModifier: 0
 		Description: Basic defensive structure.\n  Strong vs Infantry\n  Weak vs Tanks
+		Prerequisites: !gtwr.husk
 		BuildLimit: 1
 	Building:
 	Health:
@@ -858,12 +884,35 @@ GTWR:
 		LocalOffset: 256,0,256
 		MuzzleSequence: muzzle
 	AttackTurreted:
-		RequiresCondition: !build-incomplete
+		RequiresCondition: !build-incomplete && !deployed
+	-WithDeathAnimation:
 	BodyOrientation:
 		QuantizedFacings: 8
 	WithMuzzleOverlay:
 	Turreted:
 		TurnSpeed: 255
+	SpawnActorOnDeath@HUSK:
+		Actor: GTWR.husk
+		SpawnAfterDefeat: false
+
+GTWR.husk:
+	Inherits: ^CivBuildingHusk
+	Inherits@ENGINEER: ^EngineerBuilding
+	ConditionManager:
+	OwnerLostAction:
+		Action: ChangeOwner
+	-Interactable:
+	Selectable:
+		Bounds: 24,24
+		Priority: 3
+	SelectionDecorations:
+	WithBuildingBib:
+		HasMinibib: Yes
+	Tooltip:
+		Name: Guard Tower (Destroyed)
+		GenericStancePrefix: true
+		ShowOwnerRow: true
+	ProvidesPrerequisite@buildingname:
 
 ATWR:
 	Inherits: ^Defense

@@ -1756,13 +1756,13 @@
 	-AcceptsDeliveredCash:
 
 ^EngineerBuilding:
-	GrantConditionOnDeploy:
+	GrantConditionOnDeploy@REMOVE:
 		DeployedCondition: deployed
 		SkipMakeAnimation: true
 		DeploySound: cashturn.aud
 		PauseOnCondition: deployed
 		RequiresCondition: removeable
-	KillsSelf:
+	KillsSelf@REMOVE:
 		Delay: 50
 		RemoveInstead: true
 		RequiresCondition: deployed

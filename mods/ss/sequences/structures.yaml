@@ -464,6 +464,20 @@ gun:
 	icon: gunicnh.tem
 		AddExtension: False
 
+gun.husk:
+	idle: gun
+		Start: 64
+		Facings: 32
+		UseClassicFacingFudge: True
+	bib: mbGUN
+		UseTilesetExtension: true
+		TilesetOverrides:
+			WINTER: TEMPERAT
+			JUNGLE: TEMPERAT
+			SNOW: TEMPERAT
+		Length: *
+		Offset: -1,-1
+
 sam:
 	closed-idle:
 		Start: 0
@@ -533,6 +547,18 @@ gtwr:
 		Offset: 0,-2
 	icon: gtwricnh.tem
 		AddExtension: False
+
+gtwr.husk:
+	idle: gtwr
+		Start: 2
+	bib: mbGTWR
+		UseTilesetExtension: true
+		TilesetOverrides:
+			WINTER: TEMPERAT
+			JUNGLE: TEMPERAT
+			SNOW: TEMPERAT
+		Length: *
+		Offset: 0,-2
 
 atwr:
 	Defaults:
