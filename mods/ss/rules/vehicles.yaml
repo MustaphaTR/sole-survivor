@@ -692,7 +692,7 @@ MHQ:
 	Tooltip:
 		Name: Mobile HQ
 	Health:
-		HP: 20000
+		HP: 25000
 	Armor:
 		Type: Light
 	Mobile:
