@@ -782,17 +782,6 @@ MHQ:
 		Actor: MHQ.Husk
 		OwnerType: InternalName
 		EffectiveOwnerFromOwner: true
-	-ReloadDelayMultiplier@ROF-1:
-	-ReloadDelayMultiplier@ROF-2:
-	-ReloadDelayMultiplier@ROF-3:
-	-ReloadDelayMultiplier@ROF-4:
-	-ReloadDelayMultiplier@ROF-5:
-	-ReloadDelayMultiplier@ROF-6:
-	-ReloadDelayMultiplier@ROF-7:
-	-ReloadDelayMultiplier@ROF-8:
-	-ReloadDelayMultiplier@ROF-9:
-	-ReloadDelayMultiplier@ROF-10:
-	-ExternalCondition@ROF:
 	UnitStatValues:
 		Damage: 3000
 		ReloadDelay: 500
