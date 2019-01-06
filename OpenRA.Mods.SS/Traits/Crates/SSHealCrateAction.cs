@@ -60,8 +60,8 @@ namespace OpenRA.Mods.Common.Traits
                         Info.Notification, collector.Owner.Faction.InternalName);
 
                 Game.Sound.Play(SoundType.World, info.Sound, self.CenterPosition);
-                if (info.Effect != null)
-                    collector.World.AddFrameEndTask(w => w.Add(new CrateEffect(collector, info.Effect, info.Palette)));
+                if (Info.Image != null && Info.Sequence != null)
+                    collector.World.AddFrameEndTask(w => w.Add(new SpriteEffect(collector, w, Info.Image, Info.Sequence, Info.Palette)));
             }
         }
 	}

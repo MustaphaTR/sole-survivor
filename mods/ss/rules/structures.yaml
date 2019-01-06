@@ -148,7 +148,7 @@ PROC:
 		Actor: HARV
 		SpawnOffset: 1,2
 		Facing: 64
-	WithResources:
+	WithResourceLevelOverlay:
 	ProvidesPrerequisite@buildingname:
 	SelectionDecorations:
 
@@ -174,14 +174,16 @@ SILO:
 		Range: 4c0
 	WithBuildingBib:
 		HasMinibib: Yes
-	RenderSprites:
-	WithSpriteBody:
-	WithSiloAnimation:
+	-WithSpriteBody:
+	WithResourceLevelSpriteBody:
+		Sequence: stages
 	StoresResources:
 		PipCount: 10
 		PipColor: Green
 		Capacity: 3000
 	-SpawnActorsOnSell:
+	Power:
+		Amount: -10
 	MustBeDestroyed:
 		RequiredForShortGame: false
 	SelectionDecorations:
@@ -815,7 +817,7 @@ OBLI:
 		Name: Obelisk of Light
 	Buildable:
 		BuildPaletteOrder: 60
-		Prerequisites: tmpl
+		Prerequisites: tmpl, ~techlevel.high
 		Queue: Defence.Nod
 		BuildDuration: 3120
 		BuildDurationModifier: 40
@@ -832,11 +834,14 @@ OBLI:
 		Range: 8c0
 	WithBuildingBib:
 		HasMinibib: Yes
-	WithChargeAnimation:
+	-WithSpriteBody:
+	WithChargeSpriteBody:
+		Sequence: active
 	Armament:
 		Weapon: Laser
 		LocalOffset: 0,-85,1280
 	AttackCharges:
+		RequiresCondition: !build-incomplete
 		PauseOnCondition: lowpower
 		ChargeLevel: 50
 		ChargingCondition: charging

@@ -29,7 +29,7 @@ namespace OpenRA.Mods.Common.Traits
         public readonly int MaxExtraCollectors = 4;
 
         [Desc("Effect to draw when the condition is revoked.")]
-        public readonly string RevokeEffect = null;
+        public readonly string RevokeSequence = null;
 
         [Desc("Notification to play when the condition is revoked.")]
         [NotificationReference("Speech")] public readonly string RevokeNotification = null;
@@ -96,8 +96,8 @@ namespace OpenRA.Mods.Common.Traits
                                     Info.Notification, collector.Owner.Faction.InternalName);
 
                             Game.Sound.Play(SoundType.World, info.Sound, self.CenterPosition);
-                            if (info.Effect != null)
-                                collector.World.AddFrameEndTask(world => world.Add(new CrateEffect(collector, info.Effect, info.Palette)));
+                            if (Info.Image != null && Info.Sequence != null)
+                                collector.World.AddFrameEndTask(world => world.Add(new SpriteEffect(collector, world, Info.Image, Info.Sequence, Info.Palette)));
                         }
                         else
                         {
@@ -108,8 +108,8 @@ namespace OpenRA.Mods.Common.Traits
                                     info.RevokeNotification, collector.Owner.Faction.InternalName);
 
                             Game.Sound.Play(SoundType.World, info.Sound, self.CenterPosition);
-                            if (info.RevokeEffect != null)
-                                collector.World.AddFrameEndTask(world => world.Add(new CrateEffect(collector, info.RevokeEffect, info.Palette)));
+                            if (Info.Image != null && info.RevokeSequence != null)
+                                collector.World.AddFrameEndTask(world => world.Add(new SpriteEffect(collector, world, Info.Image, info.RevokeSequence, info.Palette)));
                         }
                     }
                 }

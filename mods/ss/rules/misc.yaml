@@ -6,93 +6,93 @@ CRATE:
 		Lifetime: 240
 	RevealMapCrateAction:
 		SelectionShares: 2
-		Effect: reveal-map
+		Sequence: reveal-map
 		Notification: MapReveal
 	HideMapToAllCrateAction:
 		SelectionShares: 1
-		Effect: hide-map
+		Sequence: hide-map
 		Notification: GlobalDarkness
 	HideMapCrateAction:
 		SelectionShares: 2
-		Effect: hide-map
+		Sequence: hide-map
 		Notification: GlobalDarkness
 	HealUnitsCrateAction:
 		SelectionShares: 10
-		Effect: heal
+		Sequence: heal
 		Notification: HealthUpgraded
 	SwitchConditionCrateAction@radar:
 		Condition: crate-radar
 		Prerequisites: !global-radar
 		SelectionShares: 4
-		Effect: reveal-map
-		RevokeEffect: hide-map
+		Sequence: reveal-map
+		RevokeSequence: hide-map
 		Notification: RadarActivated
 		RevokeNotification: RadarDeactivated
 	SwitchConditionCrateAction@noradar:
 		Condition: crate-no-radar
 		Prerequisites: !global-radar
 		SelectionShares: 4
-		Effect: hide-map
-		RevokeEffect: reveal-map
+		Sequence: hide-map
+		RevokeSequence: reveal-map
 		Notification: RadarDeactivated
 		RevokeNotification: RadarActivated
 	GiveUnitCrateAction@cloak-detector:
 		Units: proxy.cloak-detector
 		SelectionShares: 10
-		Effect: hide-map
+		Sequence: hide-map
 		Notification: GlobalStealthDeactivated
 	GiveUnitCrateAction@cloak-remover:
 		Units: proxy.cloak-remover
 		SelectionShares: 4
-		Effect: hide-map
+		Sequence: hide-map
 		Notification: GlobalStealthDeactivated
 	SwitchConditionCrateAction@cloak:
 		SelectionShares: 10
-		Effect: cloak
-		RevokeEffect: hide-map
+		Sequence: cloak
+		RevokeSequence: hide-map
 		Condition: cloak-crate-collected
 		Notification: StealthMode
 		RevokeNotification: StealthDeactivated
 	SwitchConditionCrateAction@cloak-reverse:
 		SelectionShares: 10
-		Effect: hide-map
-		RevokeEffect: cloak
+		Sequence: hide-map
+		RevokeSequence: cloak
 		Condition: decloak-crate-collected
 		Notification: StealthDeactivated
 		RevokeNotification: StealthMode
 	GrantExternalConditionCrateAction@armor:
 		SelectionShares: 15
-		Effect: armorup
+		Sequence: armorup
 		Condition: crate-armor
 		Sound: armorup.aud
 		Notification: ArmorUpgraded
 	GrantExternalConditionCrateAction@firepower:
 		SelectionShares: 15
-		Effect: firepowerup
+		Sequence: firepowerup
 		Condition: crate-firepower
 		Sound: firepowerup.aud
 		Notification: WeaponUpgraded
 	GrantExternalConditionCrateAction@speed:
 		SelectionShares: 15
-		Effect: speedup
+		Sequence: speedup
 		Condition: crate-speed
 		Sound: speedup.aud
 		Notification: SpeedUpgraded
 	GrantExternalConditionCrateAction@range:
 		SelectionShares: 15
-		Effect: airstrike
+		Sequence: airstrike
 		Condition: crate-range
 		Sound: rangeup.aud
 		Notification: RangeUpgraded
 	GrantExternalConditionCrateAction@rof:
 		SelectionShares: 15
-		Effect: rateoffireup
+		Sequence: rateoffireup
 		Condition: crate-rof
 		Sound: rateoffireup.aud
 		Notification: RapidReload
 	GrantExternalConditionCrateAction@sight:
 		SelectionShares: 15
-		Effect: reveal-map
+		Sequence: reveal-map
 		Condition: crate-sight
 		Sound: radarup.aud
 		Notification: RangeUpgraded
@@ -103,11 +103,11 @@ CRATE:
 	PlayerExperienceCrateAction:
 		Experience: 5
 		SelectionShares: 2
-		Effect: experience
+		Sequence: experience
 	TeleportCrateAction:
 		MinDistance: 5
 		SetCameraPosition: true
-		Effect: teleport
+		Sequence: teleport
 		SelectionShares: 6
 		Sound: teleport.aud
 		Notification: TeleportActivated
@@ -122,37 +122,43 @@ UPGRADECRATE:
 		Lifetime: 240
 	GrantExternalConditionCrateAction@armor:
 		SelectionShares: 15
-		Effect: armorup
+		Amount: 5
+		Sequence: armorup
 		Condition: crate-armor
 		Sound: armorup.aud
 		Notification: ArmorUpgraded
 	GrantExternalConditionCrateAction@firepower:
 		SelectionShares: 15
-		Effect: firepowerup
+		Amount: 5
+		Sequence: firepowerup
 		Condition: crate-firepower
 		Sound: firepowerup.aud
 		Notification: WeaponUpgraded
 	GrantExternalConditionCrateAction@speed:
 		SelectionShares: 15
-		Effect: speedup
+		Amount: 5
+		Sequence: speedup
 		Condition: crate-speed
 		Sound: speedup.aud
 		Notification: SpeedUpgraded
 	GrantExternalConditionCrateAction@range:
 		SelectionShares: 15
-		Effect: airstrike
+		Amount: 5
+		Sequence: airstrike
 		Condition: crate-range
 		Sound: rangeup.aud
 		Notification: RangeUpgraded
 	GrantExternalConditionCrateAction@rof:
 		SelectionShares: 15
-		Effect: rateoffireup
+		Amount: 5
+		Sequence: rateoffireup
 		Condition: crate-rof
 		Sound: rateoffireup.aud
 		Notification: RapidReload
 	GrantExternalConditionCrateAction@sight:
 		SelectionShares: 15
-		Effect: reveal-map
+		Amount: 5
+		Sequence: reveal-map
 		Condition: crate-sight
 		Sound: radarup.aud
 		Notification: RangeUpgraded
@@ -167,7 +173,7 @@ HEALCRATE:
 		Lifetime: 240
 	SSHealCrateAction:
 		Weapon: Atomic
-		Effect: heal
+		Sequence: heal
 		SelectionShares: 30
 		Notification: HealthUpgraded
 		WeaponNotification: NuclearBomb
@@ -187,7 +193,7 @@ EXPERIENCECRATE:
 	PlayerExperienceCrateAction:
 		Experience: 20
 		SelectionShares: 19
-		Effect: experience
+		Sequence: experience
 	RenderSprites:
 		Image: crate-dark
 
@@ -199,7 +205,7 @@ WACKYCRATE:
 		Lifetime: 240
 	GrantExternalConditionCrateAction@WACKY:
 		SelectionShares: 1
-		Effect: wacky
+		Sequence: wacky
 		Duration: 250
 		Condition: crate-wacky
 	RenderSprites:

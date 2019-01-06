@@ -1,6 +1,6 @@
 Metadata:
 	Title: Sole Survivor
-	Version: 98006d3
+	Version: 6de92de
 	Website: https://www.openra.net
 	WebIcon32: https://www.openra.net/images/icons/cnc_32x32.png
 
@@ -34,7 +34,7 @@ Packages:
 
 MapFolders:
 	ss|maps: System
-	~^maps/cnc/98006d3: User
+	~^maps/cnc/6de92de: User
 
 Rules:
 	ss|rules/misc.yaml
