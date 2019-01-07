@@ -817,7 +817,7 @@ OBLI:
 		Name: Obelisk of Light
 	Buildable:
 		BuildPaletteOrder: 60
-		Prerequisites: tmpl, ~techlevel.high
+		Prerequisites: tmpl
 		Queue: Defence.Nod
 		BuildDuration: 3120
 		BuildDurationModifier: 40
