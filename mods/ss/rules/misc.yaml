@@ -122,42 +122,36 @@ UPGRADECRATE:
 		Lifetime: 240
 	GrantExternalConditionCrateAction@armor:
 		SelectionShares: 15
-		Amount: 5
 		Sequence: armorup
 		Condition: crate-armor
 		Sound: armorup.aud
 		Notification: ArmorUpgraded
 	GrantExternalConditionCrateAction@firepower:
 		SelectionShares: 15
-		Amount: 5
 		Sequence: firepowerup
 		Condition: crate-firepower
 		Sound: firepowerup.aud
 		Notification: WeaponUpgraded
 	GrantExternalConditionCrateAction@speed:
 		SelectionShares: 15
-		Amount: 5
 		Sequence: speedup
 		Condition: crate-speed
 		Sound: speedup.aud
 		Notification: SpeedUpgraded
 	GrantExternalConditionCrateAction@range:
 		SelectionShares: 15
-		Amount: 5
 		Sequence: airstrike
 		Condition: crate-range
 		Sound: rangeup.aud
 		Notification: RangeUpgraded
 	GrantExternalConditionCrateAction@rof:
 		SelectionShares: 15
-		Amount: 5
 		Sequence: rateoffireup
 		Condition: crate-rof
 		Sound: rateoffireup.aud
 		Notification: RapidReload
 	GrantExternalConditionCrateAction@sight:
 		SelectionShares: 15
-		Amount: 5
 		Sequence: reveal-map
 		Condition: crate-sight
 		Sound: radarup.aud
