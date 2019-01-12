@@ -684,7 +684,7 @@ Templates:
 		Size: 1,1
 		Categories: Debris
 		Tiles:
-			0: Wall
+			0: Rough
 	Template@70:
 		Id: 70
 		Images: p04.des
