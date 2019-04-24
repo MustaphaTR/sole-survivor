@@ -86,8 +86,8 @@ Speech:
 		MegaArmor: mega_armor
 		MegaRange: mega_range
 		MegaReload: mega_rapid_reload
-		MegaSpeed: mega_rapid_speed
-		MegaWeapon: mega_rapid_weapon
+		MegaSpeed: mega_speed
+		MegaWeapon: mega_weapon
 		NuclearBomb: nuclear_bomb
 		PleaseChoseYourUnit: please_chose_your_unit
 		RadarActivated: radar_activated

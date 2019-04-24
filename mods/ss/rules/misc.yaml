@@ -125,37 +125,43 @@ UPGRADECRATE:
 		Sequence: armorup
 		Condition: crate-armor
 		Sound: armorup.aud
-		Notification: ArmorUpgraded
+		Notification: MegaArmor
+		Amount: 2
 	GrantExternalConditionCrateAction@firepower:
 		SelectionShares: 15
 		Sequence: firepowerup
 		Condition: crate-firepower
 		Sound: firepowerup.aud
-		Notification: WeaponUpgraded
+		Notification: MegaWeapon
+		Amount: 2
 	GrantExternalConditionCrateAction@speed:
 		SelectionShares: 15
 		Sequence: speedup
 		Condition: crate-speed
 		Sound: speedup.aud
-		Notification: SpeedUpgraded
+		Notification: MegaSpeed
+		Amount: 2
 	GrantExternalConditionCrateAction@range:
 		SelectionShares: 15
 		Sequence: airstrike
 		Condition: crate-range
 		Sound: rangeup.aud
-		Notification: RangeUpgraded
+		Notification: MegaRange
+		Amount: 2
 	GrantExternalConditionCrateAction@rof:
 		SelectionShares: 15
 		Sequence: rateoffireup
 		Condition: crate-rof
 		Sound: rateoffireup.aud
-		Notification: RapidReload
+		Notification: MegaReload
+		Amount: 2
 	GrantExternalConditionCrateAction@sight:
 		SelectionShares: 15
 		Sequence: reveal-map
 		Condition: crate-sight
 		Sound: radarup.aud
-		Notification: RangeUpgraded
+		Notification: MegaRange
+		Amount: 2
 	RenderSprites:
 		Image: crate-blue
 
