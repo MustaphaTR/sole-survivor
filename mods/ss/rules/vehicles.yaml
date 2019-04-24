@@ -21,6 +21,7 @@ MCV:
 		HP: 120000
 	Repairable:
 		HpPerStep: 2182
+		RepairActors: fix
 	Armor:
 		Type: Heavy
 	RevealsShroud:
@@ -71,6 +72,7 @@ HARV:
 		HP: 62500
 	Repairable:
 		HpPerStep: 2537
+		RepairActors: fix
 	Armor:
 		Type: Heavy
 	RevealsShroud:
@@ -104,11 +106,12 @@ APC:
 	Mobile:
 		TurnSpeed: 5
 		Speed: 132
-		RequiresCondition: !notmobile
+		PauseOnCondition: !(!notmobile)
 	Health:
 		HP: 19000
 	Repairable:
 		HpPerStep: 1440
+		RepairActors: fix
 	Armor:
 		Type: Heavy
 	RevealsShroud:
@@ -164,6 +167,7 @@ ARTY:
 		HP: 7500
 	Repairable:
 		HpPerStep: 569
+		RepairActors: fix
 	Armor:
 		Type: Light
 	RevealsShroud:
@@ -208,6 +212,7 @@ FTNK:
 		HP: 27000
 	Repairable:
 		HpPerStep: 2046
+		RepairActors: fix
 	Armor:
 		Type: Heavy
 	RevealsShroud:
@@ -249,6 +254,7 @@ BGGY:
 		HP: 12000
 	Repairable:
 		HpPerStep: 1819
+		RepairActors: fix
 	Armor:
 		Type: Light
 	RevealsShroud:
@@ -292,6 +298,7 @@ BIKE:
 		HP: 11000
 	Repairable:
 		HpPerStep: 1000
+		RepairActors: fix
 	Armor:
 		Type: Light
 	RevealsShroud:
@@ -329,6 +336,7 @@ JEEP:
 		HP: 16000
 	Repairable:
 		HpPerStep: 1819
+		RepairActors: fix
 	Armor:
 		Type: Light
 	RevealsShroud:
@@ -373,6 +381,7 @@ LTNK:
 		HP: 34000
 	Repairable:
 		HpPerStep: 2273
+		RepairActors: fix
 	Armor:
 		Type: Heavy
 	RevealsShroud:
@@ -415,6 +424,7 @@ MTNK:
 		HP: 45000
 	Repairable:
 		HpPerStep: 2557
+		RepairActors: fix
 	Armor:
 		Type: Heavy
 	RevealsShroud:
@@ -462,6 +472,7 @@ HTNK:
 		HP: 85000
 	Repairable:
 		HpPerStep: 2637
+		RepairActors: fix
 	Armor:
 		Type: Heavy
 	RevealsShroud:
@@ -520,6 +531,7 @@ MSAM:
 		HP: 12000
 	Repairable:
 		HpPerStep: 546
+		RepairActors: fix
 	Armor:
 		Type: Light
 	RevealsShroud:
@@ -566,6 +578,7 @@ MLRS:
 		HP: 18000
 	Repairable:
 		HpPerStep: 1364
+		RepairActors: fix
 	Armor:
 		Type: Light
 	RevealsShroud:
@@ -667,6 +680,7 @@ STNK:
 		HP: 15000
 	Repairable:
 		HpPerStep: 758
+		RepairActors: fix
 	Armor:
 		Type: Light
 	RevealsShroud:

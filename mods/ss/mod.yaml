@@ -109,6 +109,8 @@ ChromeLayout:
 	ss|chrome/color-picker.yaml
 	ss|chrome/mapchooser.yaml
 	ss|chrome/replaybrowser.yaml
+	ss|chrome/gamesave-browser.yaml
+	ss|chrome/gamesave-loading.yaml
 	ss|chrome/ingame.yaml
 	ss|chrome/ingame-chat.yaml
 	ss|chrome/ingame-menu.yaml

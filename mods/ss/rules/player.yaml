@@ -55,3 +55,4 @@ Player:
 		Prerequisites: global-radar
 	ProvidesRadar:
 		RequiresCondition: radar
+	GameSaveViewportManager:

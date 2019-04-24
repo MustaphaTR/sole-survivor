@@ -890,6 +890,7 @@
 	Targetable:
 		TargetTypes: Ground, Vehicle
 	Repairable:
+		RepairActors: fix
 	Passenger:
 		CargoType: Vehicle
 	ActorLostNotification:
@@ -1759,7 +1760,7 @@
 	GrantConditionOnDeploy@REMOVE:
 		DeployedCondition: deployed
 		SkipMakeAnimation: true
-		DeploySound: cashturn.aud
+		DeploySounds: cashturn.aud
 		PauseOnCondition: deployed
 		RequiresCondition: removeable
 	KillsSelf@REMOVE:
