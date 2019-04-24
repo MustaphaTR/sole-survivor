@@ -928,8 +928,10 @@
 ^Helicopter:
 	Inherits@1: ^ExistsInWorld
 	Inherits@3: ^SpriteActor
-	Inherits@4: ^GivesExperience
-	Inherits@5: ^StartingCloak
+	Inherits@4: ^AcceptsCratePowerups
+	Inherits@5: ^AcceptsCloakCrate
+	Inherits@6: ^GivesExperience
+	Inherits@7: ^StartingCloak
 	Huntable:
 	OwnerLostAction:
 		Action: Kill
@@ -969,6 +971,7 @@
 		Offset: 43, 128, 0
 		ZOffset: -129
 	Hovers@CRUISING:
+		InitialHeight: 0
 		RequiresCondition: cruising
 	MustBeDestroyed:
 	Voiced:
@@ -985,7 +988,7 @@
 	Inherits@1: ^ExistsInWorld
 	Inherits@3: ^SpriteActor
 	Inherits@4: ^AcceptsCratePowerups
-	Inherits@5: ^AcceptsCloakCrate
+	Inherits@6: ^AcceptsCloakCrate
 	Huntable:
 	OwnerLostAction:
 		Action: Kill

@@ -37,6 +37,9 @@ Sniper:
 
 HighV:
 	Inherits: ^HeavyMG
+	ValidTargets: Ground, Air
+	Warhead@1Dam: SpreadDamage
+		ValidTargets: Ground, Air
 
 Vulcan:
 	Inherits: ^HeavyMG
@@ -115,12 +118,17 @@ Pistol:
 
 M16:
 	Inherits: ^LightMG
+	ValidTargets: Ground, Air
+	Warhead@1Dam: SpreadDamage
+		ValidTargets: Ground, Air
 
 MachineGun:
 	Inherits: ^LightMG
 	Burst: 5
 	Report: mgun11.aud
+	ValidTargets: Ground, Air
 	Warhead@1Dam: SpreadDamage
+		ValidTargets: Ground, Air
 		Versus:
 			Wood: 10
 			Light: 70

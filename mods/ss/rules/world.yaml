@@ -127,7 +127,7 @@
 		Name: Random
 		Side: Random
 		InternalName: Random
-		RandomFactionMembers: e1, e2, e3, e4, e5, e6, rmbo, harv, jeep, bggy, apc, bike, ltnk, mtnk, ftnk, mhq, arty, msam, mlrs, htnk, stnk, steg, trex, tric, rapt, pvice
+		RandomFactionMembers: e1, e2, e3, e4, e5, e6, rmbo, harv, jeep, bggy, apc, bike, ltnk, mtnk, ftnk, mhq, arty, msam, mlrs, htnk, stnk, tran, orca, heli, steg, trex, tric, rapt, pvice
 		Description: Random Class\nA random unit will be chosen when the game starts.
 	Faction@RandomInfantry:
 		Name: Infantry
@@ -144,7 +144,6 @@
 	Faction@RandomAircraft:
 		Name: Aircraft
 		Side: Random
-		Selectable: false
 		InternalName: Aircraft
 		RandomFactionMembers: tran, orca, heli
 		Description: Random Aircraft\nA random aircraft will be chosen when the game starts.
@@ -268,19 +267,16 @@
 	Faction@tran:
 		Name: Chinook
 		Side: Aircraft
-		Selectable: false
 		InternalName: tran
 		Description: Chinook\nLight transport helicopter which infantry can fire outside.\n\nArmed with a light machine gun.
 	Faction@orca:
 		Name: Orca
 		Side: Aircraft
-		Selectable: false
 		InternalName: orca
 		Description: Orca\nFast aircraft armed with rocket launchers.
 	Faction@heli:
 		Name: Apache
 		Side: Aircraft
-		Selectable: false
 		InternalName: heli
 		Description: Apache\nHeavy helicopter armed with a chaingun.
 	Faction@steg:
