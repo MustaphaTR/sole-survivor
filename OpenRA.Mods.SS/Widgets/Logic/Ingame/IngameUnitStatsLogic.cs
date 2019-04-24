@@ -105,7 +105,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
             damage.GetText = () =>
             {
-                var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<Mobile>() != null);
+                var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<UnitStatValues>() != null);
 
                 if (units.Any())
                 {
@@ -129,7 +129,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
             rof.GetText = () =>
             {
-                var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<Mobile>() != null);
+                var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<UnitStatValues>() != null);
 
                 if (units.Any())
                 {
@@ -166,7 +166,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
             range.GetText = () =>
             {
-                var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<Mobile>() != null);
+                var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<UnitStatValues>() != null);
 
                 if (units.Any())
                 {
@@ -187,10 +187,10 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                             return range.Text + ": Infinite";
                         }
                     }
-                    var attackBase = unit.TraitOrDefault<AttackBase>();
-                    if (attackBase != null)
+                    var attackBase = unit.TraitsImplementing<AttackBase>();
+                    if (attackBase.Any())
                     {
-                        var rangeValue = attackBase.GetMaximumRange();
+                        var rangeValue = attackBase.Max(ab => ab.GetMaximumRange());
                         return range.Text + ": " + rangeValue.ToString();
                     }
                 }
@@ -200,7 +200,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
             speed.GetText = () =>
             {
-                var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<Mobile>() != null);
+                var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<UnitStatValues>() != null);
 
                 if (units.Any())
                 {
