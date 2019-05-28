@@ -54,7 +54,7 @@
 			100: rank-veteran
 			180: rank-veteran
 			280: rank-veteran
-	GrantConditionOnPrerequisite@RADAR:
+	GrantConditionOnPrerequisite@VETERANCY:
 		Condition: veterancy
 		Prerequisites: global-veterancy
 	GainsExperienceMultiplier:

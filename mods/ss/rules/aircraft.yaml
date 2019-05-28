@@ -1,5 +1,6 @@
 TRAN:
 	Inherits: ^Helicopter
+	Inherits@EXPERIENCE: ^GainsExperience
 	Valued:
 		Cost: 750
 	Tooltip:
