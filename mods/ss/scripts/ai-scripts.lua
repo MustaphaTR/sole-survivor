@@ -86,6 +86,8 @@ AITick = function()
 								BuildEngiStuff(unit)
 							end
 						end)
+					elseif unit.Type == "tran" then
+						-- Do nothing!
 					else
 						IdleHunt(unit)
 					end
