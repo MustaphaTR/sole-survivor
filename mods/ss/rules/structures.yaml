@@ -737,7 +737,6 @@ GUN:
 		UseClassicFacingFudge: True
 	SpawnActorOnDeath@HUSK:
 		Actor: GUN.husk
-		SpawnAfterDefeat: false
 
 GUN.husk:
 	Inherits: ^CivBuildingHusk
@@ -898,7 +897,6 @@ GTWR:
 		TurnSpeed: 255
 	SpawnActorOnDeath@HUSK:
 		Actor: GTWR.husk
-		SpawnAfterDefeat: false
 
 GTWR.husk:
 	Inherits: ^CivBuildingHusk
