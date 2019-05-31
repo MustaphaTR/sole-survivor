@@ -18,7 +18,6 @@ Player:
 		WinNotification: Win
 		LoseNotification: Lose
 		LeaveNotification: Leave
-	ConquestVictoryConditions:
 	PlayerResources:
 		SelectableCash: 0
 		DefaultCash: 0

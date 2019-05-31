@@ -533,7 +533,7 @@ World:
 		ID: time-limit
 		Label: Time Limit
 		Values:
-			unlimited: Unlimited
+			disabled: Disabled
 			two: 2 Minutes
 			five: 5 Minutes
 			ten: 10 Minutes
@@ -553,8 +553,20 @@ World:
 			fortyfive: 45 Seconds
 			sixty: 1 Minute
 		Default: thirty
+	ScriptLobbyDropdown@respawn-delay:
+		ID: respawn-delay
+		Label: Respawn Delay
+		Values:
+			disabled: Disabled
+			zero: Instant
+			one: 1 Second
+			two: 2 Seconds
+			three: 3 Seconds
+			five: 5 Seconds
+			ten: 10 Seconds
+		Default: three
 	LuaScript:
-		Scripts: starting-cloak.lua, ai-scripts.lua, time-limit.lua, world-tick.lua
+		Scripts: starting-cloak.lua, ai-scripts.lua, time-limit.lua, respawn.lua, world-tick.lua
 	PathFinder:
 	ValidateOrder:
 	DebugPauseState:
