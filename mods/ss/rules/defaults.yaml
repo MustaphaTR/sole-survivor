@@ -966,6 +966,7 @@
 	Guardable:
 	Tooltip:
 		GenericName: Helicopter
+	RenderNameTag:
 	WithFacingSpriteBody:
 	WithShadow:
 		Offset: 43, 128, 0
