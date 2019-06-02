@@ -90,7 +90,7 @@ CRATE:
 		Condition: crate-rof
 		Sound: rateoffireup.aud
 		Notification: RapidReload
-	GrantExternalConditionCrateAction@sight:
+	GrantExternalConditionWhenShroudOrFogEnabledCrateAction@sight:
 		SelectionShares: 15
 		Sequence: reveal-map
 		Condition: crate-sight
@@ -155,7 +155,7 @@ UPGRADECRATE:
 		Sound: rateoffireup.aud
 		Notification: MegaReload
 		Levels: 2
-	GrantExternalConditionCrateAction@sight:
+	GrantExternalConditionWhenShroudOrFogEnabledCrateAction@sight:
 		SelectionShares: 15
 		Sequence: reveal-map
 		Condition: crate-sight

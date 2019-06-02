@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Traits\Conditions\SwitchCondition.cs" />
+    <Compile Include="Traits\Crates\GrantExternalConditionWhenShroudOrFogEnabledCrateAction.cs" />
     <Compile Include="Traits\Crates\SSCrate.cs" />
     <Compile Include="Traits\Crates\HideMapToAllCrateAction.cs" />
     <Compile Include="Traits\Crates\PlayerExperienceCrateAction.cs" />
