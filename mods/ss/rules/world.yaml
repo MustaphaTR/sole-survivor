@@ -361,7 +361,7 @@ World:
 		ShortGameCheckboxEnabled: false
 		ShortGameCheckboxVisible: false
 		TechLevelDropdownVisible: false
-		GameSpeedDropdownDisplayOrder: 0
+		GameSpeedDropdownDisplayOrder: 4
 	MPStartLocations:
 		SeparateTeamSpawnsCheckboxDisplayOrder: 3
 	CreateMPPlayers:
@@ -518,17 +518,13 @@ World:
 	SpawnMPUnits:
 		StartingUnitsClass: none
 		DropdownVisible: false
-	CrateSpawner:
+	SSCrateSpawner:
 		CrateActors: crate, upgradecrate, healcrate, experiencecrate, wackycrate
 		CrateActorShares: 840, 50, 90, 10, 10
-		Minimum: 100
-		Maximum: 100
 		SpawnInterval: 250
 		WaterChance: 0
 		InitialSpawnDelay: 0
-		CheckboxEnabled: true
-		CheckboxLocked: true
-		CheckboxVisible: false
+		DropdownDisplayOrder: 0
 	ScriptLobbyDropdown@time-limit:
 		ID: time-limit
 		Label: Time Limit

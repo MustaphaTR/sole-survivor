@@ -1740,7 +1740,7 @@
 		Name: Crate
 		GenericName: Crate
 		ShowOwnerRow: false
-	Crate:
+	SSCrate:
 		TerrainTypes: Clear, Rough, Road, Tiberium, BlueTiberium, Beach
 	RenderSprites:
 		Palette: effect
