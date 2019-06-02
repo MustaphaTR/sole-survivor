@@ -27,9 +27,9 @@ Actors:
 
 Rules:
 	World:
-		-SpawnMPUnits:
-		-MPStartLocations:
+		-SpawnSSUnit:
 		-CrateSpawner:
+		-LuaScript:
 		MusicPlaylist:
 			BackgroundMusic: map1
 			DisableWorldSounds: true

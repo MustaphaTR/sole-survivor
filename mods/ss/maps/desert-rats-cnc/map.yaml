@@ -26,7 +26,7 @@ Players:
 		Name: Creeps
 		NonCombatant: True
 		Faction: Random
-		Enemies: Multi0, Multi1
+		Enemies: Multi0, Multi1, Multi2, Multi3, Multi4, Multi5, Multi6, Multi7, Multi8, Multi9, Multi10, Multi11, Multi12, Multi13, Multi14, Multi15, Multi16, Multi17, Multi18, Multi19, Multi20, Multi21, Multi22, Multi23, Multi24, Multi25, Multi26, Multi27, Multi28, Multi29, Multi30, Multi31, Multi32, Multi33, Multi34, Multi35, Multi36, Multi37, Multi38, Multi39, Multi40, Multi41, Multi42, Multi43, Multi44, Multi45, Multi46, Multi47, Multi48, Multi49
 	PlayerReference@Multi0:
 		Name: Multi0
 		Playable: True
@@ -34,6 +34,246 @@ Players:
 		Enemies: Creeps
 	PlayerReference@Multi1:
 		Name: Multi1
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi2:
+		Name: Multi2
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi3:
+		Name: Multi3
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi4:
+		Name: Multi4
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi5:
+		Name: Multi5
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi6:
+		Name: Multi6
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi7:
+		Name: Multi7
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi8:
+		Name: Multi8
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi9:
+		Name: Multi9
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi10:
+		Name: Multi10
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi11:
+		Name: Multi11
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi12:
+		Name: Multi12
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi13:
+		Name: Multi13
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi14:
+		Name: Multi14
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi15:
+		Name: Multi15
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi16:
+		Name: Multi16
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi17:
+		Name: Multi17
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi18:
+		Name: Multi18
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi19:
+		Name: Multi19
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi20:
+		Name: Multi20
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi21:
+		Name: Multi21
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi22:
+		Name: Multi22
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi23:
+		Name: Multi23
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi24:
+		Name: Multi24
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi25:
+		Name: Multi25
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi26:
+		Name: Multi26
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi27:
+		Name: Multi27
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi28:
+		Name: Multi28
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi29:
+		Name: Multi29
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi30:
+		Name: Multi30
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi31:
+		Name: Multi31
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi32:
+		Name: Multi32
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi33:
+		Name: Multi33
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi34:
+		Name: Multi34
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi35:
+		Name: Multi35
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi36:
+		Name: Multi36
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi37:
+		Name: Multi37
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi38:
+		Name: Multi38
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi39:
+		Name: Multi39
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi40:
+		Name: Multi40
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi41:
+		Name: Multi41
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi42:
+		Name: Multi42
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi43:
+		Name: Multi43
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi44:
+		Name: Multi44
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi45:
+		Name: Multi45
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi46:
+		Name: Multi46
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi47:
+		Name: Multi47
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi48:
+		Name: Multi48
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi49:
+		Name: Multi49
 		Playable: True
 		Faction: Random
 		Enemies: Creeps

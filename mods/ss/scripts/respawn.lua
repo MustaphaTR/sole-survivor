@@ -38,12 +38,11 @@ RespawnTick = function()
 
 					if RespawnTimers[player.InternalName] < 0 then
 						local unitType = Units[player.InternalName].Type
-						local spawn = Utils.Random(spawnPoints)
 
-						Units[player.InternalName] = Actor.Create(unitType, true, { Owner = player, Location = spawn.Location })
+						Units[player.InternalName] = Actor.Create(unitType, true, { Owner = player, Location = player.SpawnCellPosition })
 						RespawnTimers[player.InternalName] = RespawnDelay[RespawnOption]
 						if player.IsLocalPlayer then
-							Camera.Position = spawn.CenterPosition
+							Camera.Position = player.SpawnWorldPosition
 						end
 					end
 				else
@@ -111,7 +110,6 @@ RespawnWorldLoaded = function()
 	players = Player.GetPlayers(function(p) return not p.IsNonCombatant end)
 	neutral = Player.GetPlayer("Neutral")
 
-	spawnPoints = neutral.GetActorsByType("mpspawn")
 	SetupRespawnTimers()
 	SetupObjectives()
 end

@@ -39,6 +39,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Scripting\Properties\SSSpawnProperties.cs" />
     <Compile Include="Traits\Conditions\SwitchCondition.cs" />
     <Compile Include="Traits\Crates\GrantExternalConditionWhenShroudOrFogEnabledCrateAction.cs" />
     <Compile Include="Traits\Crates\SSCrate.cs" />
@@ -48,6 +49,7 @@
     <Compile Include="Traits\Crates\SSHealCrateAction.cs" />
     <Compile Include="Traits\Crates\SwitchConditionCrateAction.cs" />
     <Compile Include="Traits\Crates\TeleportCrateAction.cs" />
+    <Compile Include="Traits\World\SpawnSSUnit.cs" />
     <Compile Include="Traits\World\SSCrateSpawner.cs" />
     <Compile Include="Widgets\Logic\Ingame\IngameUnitStatsLogic.cs" />
   </ItemGroup>
