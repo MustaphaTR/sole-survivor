@@ -613,47 +613,47 @@ MLRS:
 	ReloadAmmoPool@ROF-0:
 		Delay: 75
 		Count: 1
-		RequiresCondition: !crate-rof
+		RequiresCondition: !crate-rof && !crate-wacky
 	ReloadAmmoPool@@ROF-1:
 		Delay: 71
 		Count: 1
-		RequiresCondition: crate-rof == 1
+		RequiresCondition: crate-rof == 1 && !crate-wacky
 	ReloadAmmoPool@@ROF-2:
 		Delay: 67
 		Count: 1
-		RequiresCondition: crate-rof == 2
+		RequiresCondition: crate-rof == 2 && !crate-wacky
 	ReloadAmmoPool@@ROF-3:
 		Delay: 63
 		Count: 1
-		RequiresCondition: crate-rof == 3
+		RequiresCondition: crate-rof == 3 && !crate-wacky
 	ReloadAmmoPool@@ROF-4:
 		Delay: 60
 		Count: 1
-		RequiresCondition: crate-rof == 4
+		RequiresCondition: crate-rof == 4 && !crate-wacky
 	ReloadAmmoPool@@ROF-5:
 		Delay: 56
 		Count: 1
-		RequiresCondition: crate-rof == 5
+		RequiresCondition: crate-rof == 5 && !crate-wacky
 	ReloadAmmoPool@@ROF-6:
 		Delay: 52
 		Count: 1
-		RequiresCondition: crate-rof == 6
+		RequiresCondition: crate-rof == 6 && !crate-wacky
 	ReloadAmmoPool@@ROF-7:
 		Delay: 48
 		Count: 1
-		RequiresCondition: crate-rof == 7
+		RequiresCondition: crate-rof == 7 && !crate-wacky
 	ReloadAmmoPool@@ROF-8:
 		Delay: 45
 		Count: 1
-		RequiresCondition: crate-rof == 8
+		RequiresCondition: crate-rof == 8 && !crate-wacky
 	ReloadAmmoPool@@ROF-9:
 		Delay: 41
 		Count: 1
-		RequiresCondition: crate-rof == 9
+		RequiresCondition: crate-rof == 9 && !crate-wacky
 	ReloadAmmoPool@@ROF-10:
 		Delay: 37
 		Count: 1
-		RequiresCondition: crate-rof >= 10
+		RequiresCondition: crate-rof >= 10 || crate-wacky
 	UnitStatValues:
 		Damage: 7500
 		Range: 9c0
