@@ -48,6 +48,16 @@ RespawnTick = function()
 					end
 				else
 					player.MarkFailedObjective(0)
+					
+					local buildings = player.GetActorsByTypes( { "gtwr", "gun" } )
+					Utils.Do(buildings, function(building)
+						building.Kill()
+					end)
+
+					local husks = player.GetActorsByTypes( { "gtwr.husk", "gun.husk" } )
+					Utils.Do(husks, function(husk)
+						husk.Owner = neutral
+					end)
 				end
 			end
 		end
