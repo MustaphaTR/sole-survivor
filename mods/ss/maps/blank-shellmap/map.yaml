@@ -28,7 +28,7 @@ Actors:
 Rules:
 	World:
 		-SpawnSSUnit:
-		-CrateSpawner:
+		-SSCrateSpawner:
 		-LuaScript:
 		MusicPlaylist:
 			BackgroundMusic: map1
