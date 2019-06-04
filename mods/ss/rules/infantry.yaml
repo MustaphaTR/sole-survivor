@@ -204,7 +204,7 @@ E6:
 	ProximityExternalCondition@REMOVE:
 		Range: 1c512
 		ValidStances: Ally
-		Condition: removeable
+		Condition: removeablezzz
 	UnitStatValues:
 		Damage: 3000
 		Range: 6c0

@@ -11,9 +11,10 @@
 
 using System.Linq;
 using OpenRA.Mods.Common.Effects;
+using OpenRA.Mods.Common.Traits;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.Common.Traits
+namespace OpenRA.Mods.SS.Traits
 {
     [Desc("Grants a condition on the collector if it is not, revokes it if it is.")]
     class SwitchConditionCrateActionInfo : CrateActionInfo

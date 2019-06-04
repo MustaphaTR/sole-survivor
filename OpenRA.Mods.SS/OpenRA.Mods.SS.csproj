@@ -39,7 +39,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Scripting\Properties\FlagProperties.cs" />
     <Compile Include="Scripting\Properties\SSSpawnProperties.cs" />
+    <Compile Include="Traits\CarriesFlag.cs" />
+    <Compile Include="Traits\Flag.cs" />
     <Compile Include="Traits\Conditions\SwitchCondition.cs" />
     <Compile Include="Traits\Crates\GrantExternalConditionWhenShroudOrFogEnabledCrateAction.cs" />
     <Compile Include="Traits\Crates\SSCrate.cs" />

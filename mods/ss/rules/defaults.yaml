@@ -871,12 +871,16 @@
 		Prerequisites: sight-10
 		Condition: crate-sight
 
+^CarriesFlag:
+	CarriesFlag:
+
 ^Vehicle:
 	Inherits@1: ^ExistsInWorld
 	Inherits@3: ^SpriteActor
 	Inherits@4: ^AcceptsCratePowerups
 	Inherits@5: ^GivesExperience
 	Inherits@6: ^StartingCloak
+	Inherits@7: ^CarriesFlag
 	Huntable:
 	OwnerLostAction:
 		Action: Kill
@@ -932,6 +936,7 @@
 	Inherits@5: ^AcceptsCloakCrate
 	Inherits@6: ^GivesExperience
 	Inherits@7: ^StartingCloak
+	Inherits@8: ^CarriesFlag
 	Huntable:
 	OwnerLostAction:
 		Action: Kill
@@ -1099,6 +1104,7 @@
 	Inherits: ^Infantry
 	Inherits@2: ^GivesExperience
 	Inherits@3: ^StartingCloak
+	Inherits@4: ^CarriesFlag
 	MustBeDestroyed:
 	Tooltip:
 		GenericName: Soldier
@@ -1158,6 +1164,7 @@
 	Inherits@4: ^AcceptsCratePowerups
 	Inherits@5: ^AcceptsCloakCrate
 	Inherits@6: ^StartingCloak
+	Inherits@7: ^CarriesFlag
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Huntable:
 	OwnerLostAction:
@@ -1221,6 +1228,7 @@
 	Inherits@4: ^AcceptsCratePowerups
 	Inherits@5: ^AcceptsCloakCrate
 	Inherits@6: ^StartingCloak
+	Inherits@7: ^CarriesFlag
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Huntable:
 	Health:
@@ -1773,6 +1781,8 @@
 		RequiresCondition: deployed
 	ExternalCondition@REMOVE:
 		Condition: removeable
+	ExternalCondition@deployed:
+		Condition: deployed
 
 ^DisabledOverlay:
 	GrantConditionOnPowerState@LOWPOWER:

@@ -17,7 +17,7 @@ TRAN:
 		InitialFacing: 224
 		LandableTerrainTypes: Clear,Rough,Road,Ore,Beach,Tiberium,BlueTiberium
 		AltitudeVelocity: 0c100
-		Crushes: crate
+		Crushes: crate, flag
 	Health:
 		HP: 9000
 	Armor:
@@ -87,7 +87,7 @@ HELI:
 		TurnSpeed: 7
 		Speed: 180
 		LandableTerrainTypes: Clear,Rough,Road,Ore,Beach,Tiberium,BlueTiberium
-		Crushes: crate
+		Crushes: crate, flag
 	Health:
 		HP: 12500
 	Armor:
@@ -194,7 +194,7 @@ ORCA:
 		TurnSpeed: 7
 		Speed: 186
 		LandableTerrainTypes: Clear,Rough,Road,Ore,Beach,Tiberium,BlueTiberium
-		Crushes: crate
+		Crushes: crate, flag
 	Health:
 		HP: 9000
 	Armor:

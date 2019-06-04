@@ -12,6 +12,7 @@ Tick = function()
 	AITick()
 	CloakTick()
 	RespawnTick()
+	CtFTick()
 end
 
 WorldLoaded = function()
@@ -19,4 +20,5 @@ WorldLoaded = function()
 	AIWorldLoaded()
 	CloakWorldLoaded()
 	RespawnWorldLoaded()
+	CtFWorldLoaded()
 end

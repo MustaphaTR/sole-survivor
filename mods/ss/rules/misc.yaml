@@ -346,3 +346,31 @@ FLARE:
 	MapEditorData:
 		Categories: System
 	Interactable:
+
+FLAG:
+	Flag:
+		TerrainTypes: Clear, Rough, Road, Tiberium, BlueTiberium, Beach
+	RenderSprites:
+	WithSpriteBody:
+	RevealsShroud:
+		Range: 1c0
+		Type: CenterPosition
+	HiddenUnderFog:
+		Type: CenterPosition
+	BodyOrientation:
+		QuantizedFacings: 1
+	Interactable:
+
+FLAGCIRCLE:
+	Immobile:
+		OccupiesSpace: false
+	RenderSprites:
+	WithSpriteBody:
+	RevealsShroud:
+		Range: 1c0
+		Type: CenterPosition
+	HiddenUnderFog:
+		Type: CenterPosition
+	BodyOrientation:
+		QuantizedFacings: 1
+	Interactable:

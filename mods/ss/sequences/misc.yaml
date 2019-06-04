@@ -222,6 +222,17 @@ rallypoint:
 		Length: *
 		ZOffset: 2047
 
+flag:
+	idle: flagfly
+		Length: *
+		Offset: 8,-6
+		ZOffset: 2535
+
+flagcircle:
+	idle: fpls
+		Length: *
+		ZOffset: 2047
+
 beacon:
 	Defaults:
 		ZOffset: 2535

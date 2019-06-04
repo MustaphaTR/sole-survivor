@@ -9,12 +9,10 @@
  */
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using OpenRA.Mods.Common.Traits;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.Common.Traits
+namespace OpenRA.Mods.SS.Traits
 {
 	[Desc("Allows a condition to be granted from an external source (Lua, warheads, etc).")]
 	public class SwitchConditionInfo : ITraitInfo, Requires<ConditionManagerInfo>

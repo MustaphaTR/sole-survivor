@@ -16,7 +16,7 @@
 		OverrideFullFog: full
 	Locomotor@FOOT:
 		Name: foot
-		Crushes: crate
+		Crushes: crate, flag
 		SharesCell: true
 		TerrainSpeeds:
 			Clear: 90
@@ -30,7 +30,7 @@
 			Beach: 80
 	Locomotor@CHEM:
 		Name: chem
-		Crushes: crate
+		Crushes: crate, flag
 		SharesCell: true
 		TerrainSpeeds:
 			Clear: 90
@@ -42,7 +42,7 @@
 			Beach: 80
 	Locomotor@WHEELED:
 		Name: wheeled
-		Crushes: crate
+		Crushes: crate, flag
 		TerrainSpeeds:
 			Clear: 80
 			Rough: 50
@@ -53,7 +53,7 @@
 			Beach: 50
 	Locomotor@BIKE:
 		Name: bike
-		Crushes: crate
+		Crushes: crate, flag
 		TerrainSpeeds:
 			Clear: 70
 			Rough: 35
@@ -64,7 +64,7 @@
 			Beach: 35
 	Locomotor@HEAVYWHEELED:
 		Name: heavywheeled
-		Crushes: crate, infantry
+		Crushes: crate, flag, infantry
 		TerrainSpeeds:
 			Clear: 80
 			Rough: 50
@@ -75,7 +75,7 @@
 			Beach: 50
 	Locomotor@TRACKED:
 		Name: tracked
-		Crushes: wall, crate, infantry
+		Crushes: wall, crate, flag, infantry
 		TerrainSpeeds:
 			Clear: 80
 			Rough: 70
@@ -86,7 +86,7 @@
 			Beach: 70
 	Locomotor@HEAVYTRACKED:
 		Name: heavytracked
-		Crushes: wall, heavywall, crate, infantry
+		Crushes: wall, heavywall, crate, flag, infantry
 		TerrainSpeeds:
 			Clear: 80
 			Rough: 70
@@ -375,6 +375,7 @@ World:
 	ScriptLobbyDropdown@time-limit:
 		ID: time-limit
 		Label: Time Limit
+		Description: Time it takes for the game to end in a score victory condition
 		Values:
 			disabled: Disabled
 			two: 2 Minutes
@@ -387,6 +388,7 @@ World:
 	ScriptLobbyDropdown@starting-cloak:
 		ID: starting-cloak
 		Label: Starting Cloak
+		Description: How long does the initial cloak lasts
 		Values:
 			disabled: Disabled
 			ten: 10 Seconds
@@ -399,6 +401,7 @@ World:
 	ScriptLobbyDropdown@respawn-delay:
 		ID: respawn-delay
 		Label: Respawn Delay
+		Description: Time it takes to respawn when you die
 		Values:
 			disabled: Disabled
 			zero: Instant
@@ -408,8 +411,17 @@ World:
 			five: 5 Seconds
 			ten: 10 Seconds
 		Default: three
+	ScriptLobbyDropdown@ctf-mode:
+		ID: ctf-mode
+		Label: CtF Mode
+		Description: Type of Capture the Flag gameplay (WIP, doesn't work properly with teams, use it in FFA)
+		Values:
+			disabled: Disabled
+			score: Score
+			victory: Victory Condition
+		Default: disabled
 	LuaScript:
-		Scripts: starting-cloak.lua, ai-scripts.lua, time-limit.lua, respawn.lua, world-tick.lua
+		Scripts: starting-cloak.lua, ai-scripts.lua, time-limit.lua, respawn.lua, capture-the-flag.lua, world-tick.lua
 	PathFinder:
 	ValidateOrder:
 	DebugPauseState:
