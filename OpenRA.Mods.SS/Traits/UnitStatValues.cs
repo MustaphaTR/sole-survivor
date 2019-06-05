@@ -19,7 +19,7 @@ namespace OpenRA.Mods.SS.Traits
         public readonly int Damage = 0;
 
         [Desc("Overrides the sight value from RevealsShroud trait for the stats.")]
-        public readonly int Sight = 0;
+        public readonly WDist Sight = WDist.Zero;
 
         [Desc("Overrides the health value from Health trait for the stats.")]
         public readonly int Health = 0;

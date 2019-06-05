@@ -120,15 +120,15 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                     var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
                     if (usv != null)
                     {
-                        if (usv.Sight > 0)
+                        if (usv.Sight > WDist.Zero)
                         {
                             var revealsShroudValue = usv.Sight;
                             foreach (var rsm in unit.TraitsImplementing<IRevealsShroudModifier>().Select(rsm => rsm.GetRevealsShroudModifier()))
                                 revealsShroudValue = revealsShroudValue * rsm / 100;
 
-                            return sight.Text + ": " + revealsShroudValue.ToString();
+                            return sight.Text + ": " + ((float)(((revealsShroudValue.Length * 100)) / 1024) / 100).ToString();
                         }
-                        else if (usv.Sight < 0)
+                        else if (usv.Sight < WDist.Zero)
                         {
                             return sight.Text + ": Infinite";
                         }
@@ -140,7 +140,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                         foreach (var rsm in unit.TraitsImplementing<IRevealsShroudModifier>().Select(rsm => rsm.GetRevealsShroudModifier()))
                             revealsShroudValue = revealsShroudValue * rsm / 100;
 
-                        return sight.Text + ": " + revealsShroudValue.ToString();
+                        return sight.Text + ": " + ((float)(((revealsShroudValue.Length * 100)) / 1024) / 100).ToString();
                     }
                 }
 
@@ -156,15 +156,15 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                     var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
                     if (usv != null)
                     {
-                        if (usv.Sight > 0)
+                        if (usv.Sight > WDist.Zero)
                         {
                             var revealsShroudValue = usv.Sight;
                             foreach (var rsm in unit.TraitsImplementing<IRevealsShroudModifier>().Select(rsm => rsm.GetRevealsShroudModifier()))
                                 revealsShroudValue = revealsShroudValue * rsm / 100;
 
-                            return (int)(((float)(revealsShroudValue - usv.Sight) / (float)usv.Sight) * 100);
+                            return (int)(((float)(revealsShroudValue.Length - usv.Sight.Length) / (float)usv.Sight.Length) * 100);
                         }
-                        else if (usv.Sight < 0)
+                        else if (usv.Sight < WDist.Zero)
                         {
                             return 100;
                         }
@@ -319,7 +319,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                             foreach (var rm in unit.TraitsImplementing<IRangeModifier>().Select(rm => rm.GetRangeModifier()))
                                 rangeValue = rangeValue * rm / 100;
 
-                            return range.Text + ": " + rangeValue.ToString();
+                            return range.Text + ": " + ((float)(((rangeValue.Length * 100)) / 1024)/100).ToString();
                         }
                         else if (usv.Range < WDist.Zero)
                         {
@@ -330,7 +330,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                     if (attackBase.Any())
                     {
                         var rangeValue = attackBase.Max(ab => ab.GetMaximumRange());
-                        return range.Text + ": " + rangeValue.ToString();
+                        return range.Text + ": " + ((float)(((rangeValue.Length * 100)) / 1024) / 100).ToString();
                     }
                 }
 
@@ -363,7 +363,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                     if (armamanets.Any())
                     {
                         var rangeValue = armamanets.Max(ar => ar.Weapon.Range);
-                        foreach (var rm in unit.TraitsImplementing<IRangeModifier>().Select(sm => sm.GetRangeModifier()))
+                        foreach (var rm in unit.TraitsImplementing<IRangeModifier>().Select(rm => rm.GetRangeModifier()))
                             rangeValue = rangeValue * rm / 100;
 
                         return (int)(((float)(armamanets.Max(ar => ar.Weapon.Range.Length - rangeValue.Length)) / (float)armamanets.Max(ar => ar.Weapon.Range.Length)) * 200);
