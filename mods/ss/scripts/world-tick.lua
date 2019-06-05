@@ -10,7 +10,7 @@
 Tick = function()
 	TimeLimitTick()
 	AITick()
-	CloakTick()
+	CloakInvulnTick()
 	RespawnTick()
 	CtFTick()
 end
@@ -18,7 +18,7 @@ end
 WorldLoaded = function()
 	TimeLimitWorldLoaded()
 	AIWorldLoaded()
-	CloakWorldLoaded()
+	CloakInvulnWorldLoaded()
 	RespawnWorldLoaded()
 	CtFWorldLoaded()
 end

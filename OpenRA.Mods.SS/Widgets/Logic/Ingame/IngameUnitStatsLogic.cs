@@ -42,7 +42,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                         if (usv.Health > 0)
                         {
                             var healthVaue = usv.Health;
-                            foreach (var dm in unit.TraitsImplementing<DamageMultiplier>().Where(dm => !dm.IsTraitDisabled).Select(dm => dm.Info.Modifier))
+                            foreach (var dm in unit.TraitsImplementing<DamageMultiplier>().Where(dm => !dm.IsTraitDisabled && dm.Info.Modifier != 0).Select(dm => dm.Info.Modifier))
                                 healthVaue = healthVaue / dm * 100;
 
                             return health.Text + ": " + healthVaue.ToString();
@@ -56,7 +56,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                     if (healthTrait != null)
                     {
                         var healthVaue = healthTrait.MaxHP;
-                        foreach (var dm in unit.TraitsImplementing<DamageMultiplier>().Where(dm => !dm.IsTraitDisabled).Select(dm => dm.Info.Modifier))
+                        foreach (var dm in unit.TraitsImplementing<DamageMultiplier>().Where(dm => !dm.IsTraitDisabled && dm.Info.Modifier != 0).Select(dm => dm.Info.Modifier))
                             healthVaue = healthVaue / dm * 100;
 
                         return health.Text + ": " + healthVaue.ToString();

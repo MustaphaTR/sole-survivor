@@ -272,10 +272,24 @@
 		CloakSound: trans1.aud
 		UncloakSound: trans1.aud
 		RequiresCondition: !cloak-global-disable && starting-cloak
+	TimedConditionBar@STARTING-CLOAK:
+		Color: 888888
+		Condition: starting-cloak
 	ExternalCondition@CLOAK-GLOBAL-DISABLE:
 		Condition: cloak-global-disable
 	ExternalCondition@STARTING-CLOAK:
 		Condition: starting-cloak
+
+^StartingInvulnerability:
+	WithColoredOverlay@IRONCURTAIN:
+		RequiresCondition: invulnerability
+	DamageMultiplier@IRONCURTAIN:
+		Modifier: 0
+		RequiresCondition: invulnerability
+	TimedConditionBar@INVULNERABILITY:
+		Condition: invulnerability
+	ExternalCondition@INVULNERABILITY:
+		Condition: invulnerability
 
 ^AcceptsCratePowerups:
 	ProvidesRadar:
@@ -880,7 +894,8 @@
 	Inherits@4: ^AcceptsCratePowerups
 	Inherits@5: ^GivesExperience
 	Inherits@6: ^StartingCloak
-	Inherits@7: ^CarriesFlag
+	Inherits@7: ^StartingInvulnerability
+	Inherits@8: ^CarriesFlag
 	Huntable:
 	OwnerLostAction:
 		Action: Kill
@@ -936,7 +951,8 @@
 	Inherits@5: ^AcceptsCloakCrate
 	Inherits@6: ^GivesExperience
 	Inherits@7: ^StartingCloak
-	Inherits@8: ^CarriesFlag
+	Inherits@8: ^StartingInvulnerability
+	Inherits@9: ^CarriesFlag
 	Huntable:
 	OwnerLostAction:
 		Action: Kill
@@ -1104,7 +1120,8 @@
 	Inherits: ^Infantry
 	Inherits@2: ^GivesExperience
 	Inherits@3: ^StartingCloak
-	Inherits@4: ^CarriesFlag
+	Inherits@4: ^StartingInvulnerability
+	Inherits@5: ^CarriesFlag
 	MustBeDestroyed:
 	Tooltip:
 		GenericName: Soldier
@@ -1164,7 +1181,8 @@
 	Inherits@4: ^AcceptsCratePowerups
 	Inherits@5: ^AcceptsCloakCrate
 	Inherits@6: ^StartingCloak
-	Inherits@7: ^CarriesFlag
+	Inherits@7: ^StartingInvulnerability
+	Inherits@8: ^CarriesFlag
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Huntable:
 	OwnerLostAction:
@@ -1228,7 +1246,8 @@
 	Inherits@4: ^AcceptsCratePowerups
 	Inherits@5: ^AcceptsCloakCrate
 	Inherits@6: ^StartingCloak
-	Inherits@7: ^CarriesFlag
+	Inherits@7: ^StartingInvulnerability
+	Inherits@8: ^CarriesFlag
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Huntable:
 	Health:

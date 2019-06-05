@@ -8,7 +8,7 @@
 ]]
 
 StartingCloakOption = Map.LobbyOption("starting-cloak")
-CloakLimit =
+CloakDuration =
 {
 	disabled = 0,
 	ten = DateTime.Seconds(10),
@@ -19,25 +19,31 @@ CloakLimit =
 	sixty = DateTime.Minutes(1)
 }
 
-cloakticks = 0
-CloakTick = function()
-	if cloakticks < CloakLimit[StartingCloakOption] then
-		cloakticks = cloakticks + 1
-	end
+StartingInvulnOption = Map.LobbyOption("starting-invuln")
+InvulnDuration =
+{
+	disabled = 0,
+	ten = DateTime.Seconds(10),
+	fifteen = DateTime.Seconds(15),
+	twenty = DateTime.Seconds(20),
+	thirty = DateTime.Seconds(30),
+	fortyfive = DateTime.Seconds(45),
+	sixty = DateTime.Minutes(1)
+}
+
+CloakInvulnTick = function()
+
 end
 
-CloakWorldLoaded = function()
+CloakInvulnWorldLoaded = function()
 	players = Player.GetPlayers(function(p) return not p.IsNonCombatant end)
 
 	for _,player in pairs(players) do
 		if StartingCloakOption ~= "disabled" then
-			local condition = Units[player.InternalName].GrantCondition("starting-cloak")
-
-			Trigger.AfterDelay(CloakLimit[StartingCloakOption], function()
-				if not Units[player.InternalName].IsDead then
-					Units[player.InternalName].RevokeCondition(condition)
-				end
-			end)
+			Units[player.InternalName].GrantCondition("starting-cloak", CloakDuration[StartingCloakOption])
+		end
+		if StartingInvulnOption ~= "disabled" then
+			Units[player.InternalName].GrantCondition("invulnerability", InvulnDuration[StartingInvulnOption])
 		end
 	end
 end

@@ -86,7 +86,10 @@ namespace OpenRA.Mods.SS.Traits
         {
             self.World.Add(Flag);
             var positionable = Flag.Trait<IPositionable>();
-            positionable.SetPosition(Flag, self.Location);
+            if (positionable.CanEnterCell(self.Location))
+                positionable.SetPosition(Flag, self.Location);
+            else
+                positionable.SetPosition()
             Flag.Trait<Flag>().Collected = false;
 
             Flag = null;
