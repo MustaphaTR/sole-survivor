@@ -87,16 +87,32 @@ SetupObjectives = function()
 	for _,player in pairs(players) do
 		if RespawnOption ~= "disabled" then
 			if TimeLimitOption ~= "disabled" then
-				player.AddPrimaryObjective("Have the highest score when timer expires.")
-			elseif not warningShown then
-				Media.DisplayMessage("You are playing with Respawning enabled and Time Limit disabled. The game cannot end!")
-				warningShown = true
+				if CtFOption == "victory" then
+					player.AddPrimaryObjective("Have the highest score when timer expires\nor capture all enemy flags.")
+				else
+					player.AddPrimaryObjective("Have the highest score when timer expires.")
+				end
+			else
+				if CtFOption == "victory" then
+					player.AddPrimaryObjective("Capture all enemy flags.")
+				elseif not warningShown then
+					Media.DisplayMessage("You are playing without any victory conditions. The game cannot end!")
+					warningShown = true
+				end
 			end
 		else
 			if TimeLimitOption ~= "disabled" then
-				player.AddPrimaryObjective("Be the last survivor or have the highest score when timer expires.")
+				if CtFOption == "victory" then
+					player.AddPrimaryObjective("Be the last survivor, have the highest score when timer expires\nor capture all enemy flags.")
+				else
+					player.AddPrimaryObjective("Be the last survivor or have the highest score when timer expires.")
+				end
 			else
-				player.AddPrimaryObjective("Be the last survivor.")
+				if CtFOption == "victory" then
+					player.AddPrimaryObjective("Be the last survivor or capture all enemy flags.")
+				else
+					player.AddPrimaryObjective("Be the last survivor.")
+				end
 			end
 		end
 
