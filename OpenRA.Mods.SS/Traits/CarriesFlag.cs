@@ -89,7 +89,11 @@ namespace OpenRA.Mods.SS.Traits
             if (positionable.CanEnterCell(self.Location))
                 positionable.SetPosition(Flag, self.Location);
             else
-                positionable.SetPosition()
+            {
+                var spawner = self.World.WorldActor.Trait<SpawnSSUnit>();
+                var sp = spawner.PlayerSpawnPoints[spawner.TeamLeaders[Flag.Owner]];
+                positionable.SetPosition(Flag, sp);
+            }
             Flag.Trait<Flag>().Collected = false;
 
             Flag = null;
