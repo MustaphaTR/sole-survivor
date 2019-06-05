@@ -8,7 +8,8 @@
  * information, see COPYING.
  */
 #endregion
- 
+
+using System;
 using System.Linq;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.SS.Traits;
@@ -126,7 +127,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                             foreach (var rsm in unit.TraitsImplementing<IRevealsShroudModifier>().Select(rsm => rsm.GetRevealsShroudModifier()))
                                 revealsShroudValue = revealsShroudValue * rsm / 100;
 
-                            return sight.Text + ": " + ((float)(((revealsShroudValue.Length * 100)) / 1024) / 100).ToString();
+                            return sight.Text + ": " + Math.Round((float)revealsShroudValue.Length / 1024, 2).ToString();
                         }
                         else if (usv.Sight < WDist.Zero)
                         {
@@ -140,7 +141,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                         foreach (var rsm in unit.TraitsImplementing<IRevealsShroudModifier>().Select(rsm => rsm.GetRevealsShroudModifier()))
                             revealsShroudValue = revealsShroudValue * rsm / 100;
 
-                        return sight.Text + ": " + ((float)(((revealsShroudValue.Length * 100)) / 1024) / 100).ToString();
+                        return sight.Text + ": " + Math.Round((float)revealsShroudValue.Length / 1024, 2).ToString();
                     }
                 }
 
@@ -319,7 +320,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                             foreach (var rm in unit.TraitsImplementing<IRangeModifier>().Select(rm => rm.GetRangeModifier()))
                                 rangeValue = rangeValue * rm / 100;
 
-                            return range.Text + ": " + ((float)(((rangeValue.Length * 100)) / 1024)/100).ToString();
+                            return range.Text + ": " + Math.Round((float)rangeValue.Length / 1024, 2).ToString();
                         }
                         else if (usv.Range < WDist.Zero)
                         {
@@ -330,7 +331,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                     if (attackBase.Any())
                     {
                         var rangeValue = attackBase.Max(ab => ab.GetMaximumRange());
-                        return range.Text + ": " + ((float)(((rangeValue.Length * 100)) / 1024) / 100).ToString();
+                        return range.Text + ": " + Math.Round((float)rangeValue.Length / 1024, 2).ToString();
                     }
                 }
 
