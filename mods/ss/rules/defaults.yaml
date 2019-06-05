@@ -74,7 +74,7 @@
 		Modifier: 85
 	DamageMultiplier@RANK-ELITE:
 		RequiresCondition: rank-elite
-		Modifier: 75
+		Modifier: 80
 	FirepowerMultiplier@RANK-1:
 		RequiresCondition: rank-veteran == 1
 		Modifier: 105
@@ -83,10 +83,10 @@
 		Modifier: 110
 	FirepowerMultiplier@RANK-3:
 		RequiresCondition: rank-veteran == 3
-		Modifier: 120
+		Modifier: 115
 	FirepowerMultiplier@RANK-ELITE:
 		RequiresCondition: rank-elite
-		Modifier: 130
+		Modifier: 120
 	SpeedMultiplier@RANK-1:
 		RequiresCondition: rank-veteran == 1
 		Modifier: 105
@@ -95,10 +95,10 @@
 		Modifier: 110
 	SpeedMultiplier@RANK-3:
 		RequiresCondition: rank-veteran == 3
-		Modifier: 120
+		Modifier: 115
 	SpeedMultiplier@RANK-ELITE:
 		RequiresCondition: rank-elite
-		Modifier: 140
+		Modifier: 120
 	ReloadDelayMultiplier@RANK-1:
 		RequiresCondition: rank-veteran == 1
 		Modifier: 95
@@ -110,7 +110,7 @@
 		Modifier: 85
 	ReloadDelayMultiplier@RANK-ELITE:
 		RequiresCondition: rank-elite
-		Modifier: 75
+		Modifier: 80
 	InaccuracyMultiplier@RANK-1:
 		RequiresCondition: rank-veteran == 1
 		Modifier: 90
@@ -122,7 +122,7 @@
 		Modifier: 70
 	InaccuracyMultiplier@RANK-ELITE:
 		RequiresCondition: rank-elite
-		Modifier: 50
+		Modifier: 60
 	SelfHealing@ELITE:
 		Step: 200
 		Delay: 100

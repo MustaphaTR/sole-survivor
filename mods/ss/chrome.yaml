@@ -169,6 +169,16 @@ progressbar-thumb: chrome.png
 	corner-bl: 0,190,2,2
 	corner-br: 62,190,2,2
 
+progressbar-thumb-green: chrome.png
+	background: 130,66,60,60
+	border-r: 190,66,2,60
+	border-l: 128,66,2,60
+	border-b: 130,126,60,2
+	border-t: 130,64,60,2
+	corner-tl: 128,64,2,2
+	corner-tr: 190,64,2,2
+	corner-bl: 128,126,2,2
+	corner-br: 190,126,2,2
 
 # A copy of panel-gray
 scrollpanel-bg: chrome.png

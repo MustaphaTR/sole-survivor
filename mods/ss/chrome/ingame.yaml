@@ -539,7 +539,7 @@ Container@PLAYER_WIDGETS:
 			X: WINDOW_RIGHT - 204
 			Y: 30
 			Width: 194
-			Height: 314
+			Height: 344
 			Background: panel-black
 			Children:
 				MenuButton@OPTIONS_BUTTON:
@@ -603,25 +603,67 @@ Container@PLAYER_WIDGETS:
 					X: 13
 					Y: 194
 					Width: 168
-					Height: 100
+					Height: 130
 					Children:
 						Label@STAT_HEALTH:
 							Text: Health
+							Children:
+								ProgressBar@STAT_HEALTH_BAR:
+									X: 1
+									Y: 12
+									Width: 166
+									Height: 5
+									Bar: progressbar-thumb-green
 						Label@STAT_DAMAGE:
-							Y: 20
+							Y: 25
 							Text: Damage
+							Children:
+								ProgressBar@STAT_DAMAGE_BAR:
+									X: 1
+									Y: 12
+									Width: 166
+									Height: 5
+									Bar: progressbar-thumb-green
 						Label@STAT_SIGHT:
-							Y: 40
+							Y: 50
 							Text: Sight
+							Children:
+								ProgressBar@STAT_SIGHT_BAR:
+									X: 1
+									Y: 12
+									Width: 166
+									Height: 5
+									Bar: progressbar-thumb-green
 						Label@STAT_RANGE:
-							Y: 60
+							Y: 75
 							Text: Range
+							Children:
+								ProgressBar@STAT_RANGE_BAR:
+									X: 1
+									Y: 12
+									Width: 166
+									Height: 5
+									Bar: progressbar-thumb-green
 						Label@STAT_ROF:
-							Y: 80
-							Text: Reload Delay
-						Label@STAT_SPEED:
 							Y: 100
+							Text: Reload Delay
+							Children:
+								ProgressBar@STAT_ROF_BAR:
+									X: 1
+									Y: 12
+									Width: 166
+									Height: 5
+									Bar: progressbar-thumb-green
+						Label@STAT_SPEED:
+							Y: 125
 							Text: Speed
+							Children:
+								ProgressBar@STAT_SPEED_BAR:
+									X: 1
+									Y: 12
+									Width: 166
+									Height: 5
+									Bar: progressbar-thumb-green
 		Container@PRODUCTION_BACKGROUND:
 			X: WINDOW_RIGHT - 204
 			Y: WINDOW_BOTTOM - 51
