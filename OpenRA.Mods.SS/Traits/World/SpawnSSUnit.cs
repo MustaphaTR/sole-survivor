@@ -75,6 +75,7 @@ namespace OpenRA.Mods.SS.Traits
         bool teamSpawns;
 
         public Dictionary<Player, CPos> PlayerSpawnPoints = new Dictionary<Player, CPos>();
+        public Dictionary<Player, Player> TeamLeaders = new Dictionary<Player, Player>();
         Dictionary<CPos, bool> spawnPointOccupation = new Dictionary<CPos, bool>();
 
         public SpawnSSUnit(SpawnSSUnitInfo info)
@@ -104,8 +105,9 @@ namespace OpenRA.Mods.SS.Traits
                 foreach (var l in leaders)
                 {
                     var sp = GetSpawnPointForPlayer(world, l);
-
-                    SpawnUnitForPlayer(world, FindPlayerInSlot(world, l.Slot), sp);
+                    var leader = FindPlayerInSlot(world, l.Slot);
+                    TeamLeaders[leader] = leader;
+                    SpawnUnitForPlayer(world, leader, sp);
 
                     var teamMateSpawnCells = world.Map.FindTilesInAnnulus(sp, info.InnerTeammateRadius + 1, info.OuterTeammateRadius);
                     foreach (var p in players.Where(p => p != l && p.Team == l.Team))
@@ -115,19 +117,24 @@ namespace OpenRA.Mods.SS.Traits
                         var ip = actorRules.TraitInfo<IPositionableInfo>();
                         var validCell = teamMateSpawnCells.Shuffle(world.SharedRandom).FirstOrDefault(c => ip.CanEnterCell(world, null, c));
 
+                        TeamLeaders[player] = leader;
                         SpawnUnitForPlayer(world, player, validCell);
                     }
                 }
                 foreach (var p in players.Where(p => p.Team == 0))
                 {
-                    SpawnUnitForPlayer(world, FindPlayerInSlot(world, p.Slot), GetSpawnPointForPlayer(world, p));
+                    var player = FindPlayerInSlot(world, p.Slot);
+                    TeamLeaders[player] = player;
+                    SpawnUnitForPlayer(world, player, GetSpawnPointForPlayer(world, p));
                 }
             }
             else
             {
                 foreach (var p in players)
                 {
-                    SpawnUnitForPlayer(world, FindPlayerInSlot(world, p.Slot), GetSpawnPointForPlayer(world, p));
+                    var player = FindPlayerInSlot(world, p.Slot);
+                    TeamLeaders[player] = player;
+                    SpawnUnitForPlayer(world, player, GetSpawnPointForPlayer(world, p));
                 }
             }
         }

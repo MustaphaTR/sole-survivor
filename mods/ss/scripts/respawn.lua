@@ -62,16 +62,14 @@ RespawnTick = function()
 				end
 			end
 
-			if RespawnOption == "disabled" then
-				local win = true
-				for _,enemy in pairs(Utils.Where(players, function(p) return p ~= player and (p.Team == 0 or p.Team ~= player.Team) end)) do
-					if not enemy.IsObjectiveFailed(0) then
-						win = false
-					end
+			local win = true
+			for _,enemy in pairs(Utils.Where(players, function(p) return p ~= player and (p.Team == 0 or p.Team ~= player.Team) end)) do
+				if not enemy.IsObjectiveFailed(0) then
+					win = false
 				end
-				if win then
-					player.MarkCompletedObjective(0)
-				end
+			end
+			if win then
+				player.MarkCompletedObjective(0)
 			end
 		else
 			local units = Utils.Where(player.GetActors(), function(a) return a.HasProperty("Kill") end)

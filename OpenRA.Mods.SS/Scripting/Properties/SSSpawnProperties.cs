@@ -38,5 +38,11 @@ namespace OpenRA.Mods.SS.Scripting
         {
             get { return player.World.Map.CenterOfCell(spawnSSUnit.PlayerSpawnPoints[player]); }
         }
+
+        [Desc("Returns to the leader of the team player is in.")]
+        public Player TeamLeader
+        {
+            get { return spawnSSUnit.TeamLeaders[player]; }
+        }
     }
 }

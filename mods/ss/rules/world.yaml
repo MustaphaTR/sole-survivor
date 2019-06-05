@@ -415,7 +415,7 @@ World:
 	ScriptLobbyDropdown@ctf-mode:
 		ID: ctf-mode
 		Label: CtF Mode
-		Description: Type of Capture the Flag gameplay (WIP, doesn't work properly with teams, use it in FFA)
+		Description: Type of Capture the Flag gameplay
 		Values:
 			disabled: Disabled
 			score: Score
