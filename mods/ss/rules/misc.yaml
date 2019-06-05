@@ -211,6 +211,18 @@ WACKYCRATE:
 	RenderSprites:
 		Image: crate-orange
 
+ARMAGEDDONCRATE:
+	Inherits: ^Crate
+	WithCrateBody:
+		XmasImages: xcrater
+	SSCrate:
+		Lifetime: 480
+	ArmageddonCrateAction@ARMAGEDDON:
+		SelectionShares: 1
+		Sequence: redskull
+	RenderSprites:
+		Image: crate-red
+
 mpspawn:
 	Interactable:
 	EditorOnlyTooltip:

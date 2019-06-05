@@ -1,0 +1,49 @@
+#region Copyright & License Information
+/*
+ * Copyright 2007-2019 The OpenRA Developers (see AUTHORS)
+ * This file is part of OpenRA, which is free software. It is made
+ * available to you under the terms of the GNU General Public License
+ * as published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version. For more
+ * information, see COPYING.
+ */
+#endregion
+
+using System.Linq;
+using OpenRA.Mods.Common.Traits;
+using OpenRA.Primitives;
+using OpenRA.Traits;
+
+namespace OpenRA.Mods.SS.Traits
+{
+	[Desc("Kills all player owned units on the map.")]
+	class ArmageddonCrateActionInfo : CrateActionInfo
+    {
+        [Desc("The deathtypes used to kill the units.")]
+        public readonly BitSet<DamageType> DeathTypes = default(BitSet<DamageType>);
+
+        public override object Create(ActorInitializer init) { return new ArmageddonCrateAction(init.Self, this); }
+	}
+
+	class ArmageddonCrateAction : CrateAction
+    {
+        readonly Actor self;
+        readonly ArmageddonCrateActionInfo info;
+
+        public ArmageddonCrateAction(Actor self, ArmageddonCrateActionInfo info)
+			: base(self, info)
+        {
+            this.info = info;
+            this.self = self;
+        }
+
+        public override void Activate(Actor collector)
+		{
+            var actors = self.World.Actors.Where(a => a.Owner.Playable);
+            foreach (var actor in actors)
+                actor.Kill(self, info.DeathTypes);
+
+            base.Activate(collector);
+        }
+	}
+}

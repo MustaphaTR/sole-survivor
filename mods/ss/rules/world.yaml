@@ -366,8 +366,8 @@ World:
 		TechLevelDropdownVisible: false
 		GameSpeedDropdownDisplayOrder: 6
 	SSCrateSpawner:
-		CrateActors: crate, upgradecrate, healcrate, experiencecrate, wackycrate
-		CrateActorShares: 840, 50, 90, 10, 10
+		CrateActors: crate, upgradecrate, healcrate, experiencecrate, wackycrate, armageddoncrate
+		CrateActorShares: 840, 50, 90, 10, 10, 0
 		SpawnInterval: 250
 		WaterChance: 0
 		InitialSpawnDelay: 0
