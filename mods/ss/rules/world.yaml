@@ -372,6 +372,7 @@ World:
 		WaterChance: 0
 		InitialSpawnDelay: 0
 		DropdownDisplayOrder: 0
+		WackyModeCheckboxDisplayOrder: 6
 	ScriptLobbyDropdown@time-limit:
 		ID: time-limit
 		Label: Time Limit

@@ -20,7 +20,7 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.SS.Traits
 {
-	public class SSCrateSpawnerInfo : ITraitInfo, ILobbyOptions
+	public class SSCrateSpawnerInfo : ConditionalTraitInfo, ILobbyOptions
 	{
 		[Translate]
 		[Desc("Descriptive label for the crates checkbox in the lobby.")]
@@ -33,10 +33,10 @@ namespace OpenRA.Mods.SS.Traits
 		[Desc("Default value of the crate amount dropbox in the lobby.")]
 		public readonly int DefaultAmount = 100;
 
-        [Desc("Crate amount options that are available in the lobby options.")]
-        public readonly int[] SelectableAmount = { 50, 100, 150, 200, 250, 500, 1000 };
+		[Desc("Crate amount options that are available in the lobby options.")]
+		public readonly int[] SelectableAmount = { 50, 100, 150, 200, 250, 500, 1000 };
 
-        [Desc("Prevent the crates state from being changed in the lobby.")]
+		[Desc("Prevent the crates state from being changed in the lobby.")]
 		public readonly bool DropdownLocked = false;
 
 		[Desc("Whether to display the crates checkbox in the lobby.")]
@@ -67,6 +67,33 @@ namespace OpenRA.Mods.SS.Traits
 		[Desc("Chance of each crate actor spawning.")]
 		public readonly int[] CrateActorShares = { 10 };
 
+		[Translate]
+		[Desc("Descriptive label for the wacky mode checkbox in the lobby.")]
+		public readonly string WackyModeCheckboxLabel = "Wacky Mode";
+
+		[Translate]
+		[Desc("Tooltip description for the wacky mode checkbox in the lobby.")]
+		public readonly string WackyModeCheckboxDescription = "All the crates are replaced with Orange Wacky Crates";
+
+		[Desc("Default value of the wacky mode checkbox in the lobby.")]
+		public readonly bool WackyModeCheckboxEnabled = false;
+
+		[Desc("Prevent the wacky mode enabled state from being changed in the lobby.")]
+		public readonly bool WackyModeCheckboxLocked = false;
+
+		[Desc("Whether to display the wacky mode checkbox in the lobby.")]
+		public readonly bool WackyModeCheckboxVisible = true;
+
+		[Desc("Display order for the wacky mode checkbox in the lobby.")]
+		public readonly int WackyModeCheckboxDisplayOrder = 0;
+
+		[ActorReference]
+		[Desc("Crate actors to drop on wacky mode.")]
+		public readonly string[] WackyCrateActors = { "wackycrate" };
+
+		[Desc("Chance of each crate actor spawning on wacky mode.")]
+		public readonly int[] WackyCrateActorShares = { 10 };
+
 		[ActorReference]
 		[Desc("If a DeliveryAircraft: is specified, then this actor will deliver crates.")]
 		public readonly string DeliveryAircraft = null;
@@ -77,47 +104,59 @@ namespace OpenRA.Mods.SS.Traits
 		[Desc("Spawn and remove the plane this far outside the map.")]
 		public readonly WDist Cordon = new WDist(5120);
 
-        IEnumerable<LobbyOption> ILobbyOptions.LobbyOptions(Ruleset rules)
-        {
-            var crateAmount = SelectableAmount.ToDictionary(c => c.ToString(), c => c.ToString());
+		IEnumerable<LobbyOption> ILobbyOptions.LobbyOptions(Ruleset rules)
+		{
+			var crateAmount = SelectableAmount.ToDictionary(c => c.ToString(), c => c.ToString());
 
-            if (crateAmount.Any())
-                yield return new LobbyOption("crateamount", DropdownLabel, DropdownDescription, DropdownVisible, DropdownDisplayOrder,
-                    new ReadOnlyDictionary<string, string>(crateAmount), DefaultAmount.ToString(), DropdownLocked);
-        }
+			if (crateAmount.Any())
+				yield return new LobbyOption("crateamount", DropdownLabel, DropdownDescription, DropdownVisible, DropdownDisplayOrder,
+					new ReadOnlyDictionary<string, string>(crateAmount), DefaultAmount.ToString(), DropdownLocked);
 
-		public object Create(ActorInitializer init) { return new SSCrateSpawner(init.Self, this); }
+			yield return new LobbyBooleanOption("wackymode", WackyModeCheckboxLabel, WackyModeCheckboxDescription,
+				WackyModeCheckboxVisible, WackyModeCheckboxDisplayOrder, WackyModeCheckboxEnabled, WackyModeCheckboxLocked);
+		}
+
+		public override object Create(ActorInitializer init) { return new SSCrateSpawner(init.Self, this); }
 	}
 
-	public class SSCrateSpawner : ITick
+	public class SSCrateSpawner : ConditionalTrait<SSCrateSpawnerInfo>, ITick
 	{
 		readonly Actor self;
 		readonly SSCrateSpawnerInfo info;
-        int amount;
-        int crates;
+		int amount;
+		int crates;
 		int ticks;
 
+		public bool Wacky { get; private set; }
+
 		public SSCrateSpawner(Actor self, SSCrateSpawnerInfo info)
+			: base(info)
 		{
 			this.self = self;
 			this.info = info;
 
 			ticks = info.InitialSpawnDelay;
 
-            var crateAmount = self.World.LobbyInfo.GlobalSettings
-                .OptionOrDefault("crateamount", info.DefaultAmount.ToString());
+			var crateAmount = self.World.LobbyInfo.GlobalSettings
+				.OptionOrDefault("crateamount", info.DefaultAmount.ToString());
 
-            if (!int.TryParse(crateAmount, out amount))
-                amount = info.DefaultAmount;
-        }
+			if (!int.TryParse(crateAmount, out amount))
+				amount = info.DefaultAmount;
+
+			Wacky = self.World.LobbyInfo.GlobalSettings
+				.OptionOrDefault("wackymode", info.WackyModeCheckboxEnabled);
+		}
 
 		void ITick.Tick(Actor self)
 		{
+			if (IsTraitDisabled)
+				return;
+
 			if (--ticks <= 0)
 			{
 				ticks = info.SpawnInterval;
 
-                var toSpawn = amount - crates;
+				var toSpawn = amount - crates;
 
 				for (var n = 0; n < toSpawn; n++)
 					SpawnCrate(self);
@@ -192,7 +231,7 @@ namespace OpenRA.Mods.SS.Traits
 
 		string ChooseCrateActor()
 		{
-			var crateShares = info.CrateActorShares;
+			var crateShares = Wacky ? info.WackyCrateActorShares : info.CrateActorShares;
 			var n = self.World.SharedRandom.Next(crateShares.Sum());
 
 			var cumulativeShares = 0;
@@ -200,7 +239,7 @@ namespace OpenRA.Mods.SS.Traits
 			{
 				cumulativeShares += crateShares[i];
 				if (n <= cumulativeShares)
-					return info.CrateActors[i];
+					return (Wacky ? info.WackyCrateActors : info.CrateActors)[i];
 			}
 
 			return null;
