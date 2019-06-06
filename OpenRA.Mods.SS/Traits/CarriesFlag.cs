@@ -98,6 +98,7 @@ namespace OpenRA.Mods.SS.Traits
 
             Flag = null;
             flagPreviews = null;
+            RevokeCondition(self);
         }
 
         IEnumerable<IRenderable> IRender.Render(Actor self, WorldRenderer wr)

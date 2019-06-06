@@ -355,34 +355,34 @@
 		RequiresCondition: crate-firepower >= 10 || crate-wacky
 		Modifier: 200
 	SpeedMultiplier@SPEED-1:
-		RequiresCondition: crate-speed == 1 && !crate-wacky
+		RequiresCondition: crate-speed == 1 && !crate-wacky && !carrying-flag
 		Modifier: 110
 	SpeedMultiplier@SPEED-2:
-		RequiresCondition: crate-speed == 2 && !crate-wacky
+		RequiresCondition: crate-speed == 2 && !crate-wacky && !carrying-flag
 		Modifier: 120
 	SpeedMultiplier@SPEED-3:
-		RequiresCondition: crate-speed == 3 && !crate-wacky
+		RequiresCondition: crate-speed == 3 && !crate-wacky && !carrying-flag
 		Modifier: 130
 	SpeedMultiplier@SPEED-4:
-		RequiresCondition: crate-speed == 4 && !crate-wacky
+		RequiresCondition: crate-speed == 4 && !crate-wacky && !carrying-flag
 		Modifier: 140
 	SpeedMultiplier@SPEED-5:
-		RequiresCondition: crate-speed == 5 && !crate-wacky
+		RequiresCondition: crate-speed == 5 && !crate-wacky && !carrying-flag
 		Modifier: 150
 	SpeedMultiplier@SPEED-6:
-		RequiresCondition: crate-speed == 6 && !crate-wacky
+		RequiresCondition: crate-speed == 6 && !crate-wacky && !carrying-flag
 		Modifier: 160
 	SpeedMultiplier@SPEED-7:
-		RequiresCondition: crate-speed == 7 && !crate-wacky
+		RequiresCondition: crate-speed == 7 && !crate-wacky && !carrying-flag
 		Modifier: 170
 	SpeedMultiplier@SPEED-8:
-		RequiresCondition: crate-speed == 8 && !crate-wacky
+		RequiresCondition: crate-speed == 8 && !crate-wacky && !carrying-flag
 		Modifier: 180
 	SpeedMultiplier@SPEED-9:
-		RequiresCondition: crate-speed == 9 && !crate-wacky
+		RequiresCondition: crate-speed == 9 && !crate-wacky && !carrying-flag
 		Modifier: 190
 	SpeedMultiplier@SPEED-10:
-		RequiresCondition: crate-speed >= 10 || crate-wacky
+		RequiresCondition: (crate-speed >= 10 && !carrying-flag) || crate-wacky
 		Modifier: 200
 	RangeMultiplier@RANGE-1:
 		RequiresCondition: crate-range == 1 && !crate-wacky
@@ -887,6 +887,7 @@
 
 ^CarriesFlag:
 	CarriesFlag:
+		Condition: carrying-flag
 
 ^Vehicle:
 	Inherits@1: ^ExistsInWorld
