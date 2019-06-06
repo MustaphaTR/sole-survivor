@@ -43,6 +43,7 @@
     <Compile Include="Scripting\Properties\SSSpawnProperties.cs" />
     <Compile Include="Traits\CarriesFlag.cs" />
     <Compile Include="Traits\Crates\ArmageddonCrateAction.cs" />
+    <Compile Include="Traits\Crates\WackyCrateAction.cs" />
     <Compile Include="Traits\Flag.cs" />
     <Compile Include="Traits\Conditions\SwitchCondition.cs" />
     <Compile Include="Traits\Crates\GrantExternalConditionWhenShroudOrFogEnabledCrateAction.cs" />

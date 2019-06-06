@@ -203,7 +203,7 @@ WACKYCRATE:
 		XmasImages: xcrateo
 	SSCrate:
 		Lifetime: 240
-	GrantExternalConditionCrateAction@WACKY:
+	WackyCrateAction@WACKY:
 		SelectionShares: 1
 		Sequence: wacky
 		Duration: 250
