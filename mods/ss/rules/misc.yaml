@@ -17,7 +17,7 @@ CRATE:
 		Sequence: hide-map
 		Notification: GlobalDarkness
 	HealUnitsCrateAction:
-		SelectionShares: 10
+		SelectionShares: 8
 		Sequence: heal
 		Notification: HealthUpgraded
 	SwitchConditionCrateAction@radar:
@@ -38,7 +38,7 @@ CRATE:
 		RevokeNotification: RadarActivated
 	GiveUnitCrateAction@cloak-detector:
 		Units: proxy.cloak-detector
-		SelectionShares: 10
+		SelectionShares: 8
 		Sequence: hide-map
 		Notification: GlobalStealthDeactivated
 	GiveUnitCrateAction@cloak-remover:
@@ -61,44 +61,44 @@ CRATE:
 		Notification: StealthDeactivated
 		RevokeNotification: StealthMode
 	GrantExternalConditionCrateAction@armor:
-		SelectionShares: 15
+		SelectionShares: 20
 		Sequence: armorup
 		Condition: crate-armor
 		Sound: armorup.aud
 		Notification: ArmorUpgraded
 	GrantExternalConditionCrateAction@firepower:
-		SelectionShares: 15
+		SelectionShares: 20
 		Sequence: firepowerup
 		Condition: crate-firepower
 		Sound: firepowerup.aud
 		Notification: WeaponUpgraded
 	GrantExternalConditionCrateAction@speed:
-		SelectionShares: 15
+		SelectionShares: 20
 		Sequence: speedup
 		Condition: crate-speed
 		Sound: speedup.aud
 		Notification: SpeedUpgraded
 	GrantExternalConditionCrateAction@range:
-		SelectionShares: 15
+		SelectionShares: 20
 		Sequence: airstrike
 		Condition: crate-range
 		Sound: rangeup.aud
 		Notification: RangeUpgraded
 	GrantExternalConditionCrateAction@rof:
-		SelectionShares: 15
+		SelectionShares: 20
 		Sequence: rateoffireup
 		Condition: crate-rof
 		Sound: rateoffireup.aud
 		Notification: RapidReload
 	GrantExternalConditionWhenShroudOrFogEnabledCrateAction@sight:
-		SelectionShares: 15
+		SelectionShares: 20
 		Sequence: reveal-map
 		Condition: crate-sight
 		Sound: radarup.aud
 		Notification: RangeUpgraded
 	LevelUpCrateAction:
 		Levels: 1
-		SelectionShares: 8
+		SelectionShares: 5
 		Prerequisites: global-veterancy
 	PlayerExperienceCrateAction:
 		Experience: 5
@@ -108,7 +108,7 @@ CRATE:
 		MinDistance: 5
 		SetCameraPosition: true
 		Sequence: teleport
-		SelectionShares: 6
+		SelectionShares: 5
 		Sound: teleport.aud
 		Notification: TeleportActivated
 	RenderSprites:
@@ -121,42 +121,42 @@ UPGRADECRATE:
 	SSCrate:
 		Lifetime: 240
 	GrantExternalConditionCrateAction@armor:
-		SelectionShares: 15
+		SelectionShares: 20
 		Sequence: armorup
 		Condition: crate-armor
 		Sound: armorup.aud
 		Notification: MegaArmor
 		Levels: 2
 	GrantExternalConditionCrateAction@firepower:
-		SelectionShares: 15
+		SelectionShares: 20
 		Sequence: firepowerup
 		Condition: crate-firepower
 		Sound: firepowerup.aud
 		Notification: MegaWeapon
 		Levels: 2
 	GrantExternalConditionCrateAction@speed:
-		SelectionShares: 15
+		SelectionShares: 20
 		Sequence: speedup
 		Condition: crate-speed
 		Sound: speedup.aud
 		Notification: MegaSpeed
 		Levels: 2
 	GrantExternalConditionCrateAction@range:
-		SelectionShares: 15
+		SelectionShares: 20
 		Sequence: airstrike
 		Condition: crate-range
 		Sound: rangeup.aud
 		Notification: MegaRange
 		Levels: 2
 	GrantExternalConditionCrateAction@rof:
-		SelectionShares: 15
+		SelectionShares: 20
 		Sequence: rateoffireup
 		Condition: crate-rof
 		Sound: rateoffireup.aud
 		Notification: MegaReload
 		Levels: 2
 	GrantExternalConditionWhenShroudOrFogEnabledCrateAction@sight:
-		SelectionShares: 15
+		SelectionShares: 20
 		Sequence: reveal-map
 		Condition: crate-sight
 		Sound: radarup.aud
