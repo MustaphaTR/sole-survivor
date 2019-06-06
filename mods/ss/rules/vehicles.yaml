@@ -737,6 +737,9 @@ MHQ:
 		ArrowSequence: arrow
 		ClockSequence: clock
 		CircleSequence: circles
+		UseDirectionalTarget: True
+		TargetPlaceholderCursorAnimation: airstriketarget
+		DirectionArrowAnimation: airstrikedirection
 	AirstrikePower@Airstrike:
 		Icon: airstrike
 		ChargeInterval: 500
@@ -753,6 +756,9 @@ MHQ:
 		ArrowSequence: arrow
 		ClockSequence: clock
 		CircleSequence: circles
+		UseDirectionalTarget: True
+		TargetPlaceholderCursorAnimation: airstriketarget
+		DirectionArrowAnimation: airstrikedirection
 	SupportPowerChargeBar:
 	DetectCloaked@RANGE-0:
 		Range: 5c0
