@@ -1190,7 +1190,7 @@
 	Health:
 		HP: 40000
 	Armor:
-		Type: Wood
+		Type: Heavy
 	Buildable:
 		Queue: Biolab
 		BuildPaletteOrder: 50
@@ -1253,7 +1253,7 @@
 	Health:
 		HP: 30000
 	Armor:
-		Type: Wood
+		Type: Light
 	RevealsShroud:
 		Range: 6c0
 	Mobile:

@@ -19,7 +19,7 @@ TRAN:
 		AltitudeVelocity: 0c100
 		Crushes: crate, flag
 	Health:
-		HP: 9000
+		HP: 125000
 	Armor:
 		Type: Light
 	RevealsShroud:
@@ -89,7 +89,7 @@ HELI:
 		LandableTerrainTypes: Clear,Rough,Road,Ore,Beach,Tiberium,BlueTiberium
 		Crushes: crate, flag
 	Health:
-		HP: 12500
+		HP: 17500
 	Armor:
 		Type: Light
 	RevealsShroud:
@@ -196,7 +196,7 @@ ORCA:
 		LandableTerrainTypes: Clear,Rough,Road,Ore,Beach,Tiberium,BlueTiberium
 		Crushes: crate, flag
 	Health:
-		HP: 9000
+		HP: 17500
 	Armor:
 		Type: Light
 	RevealsShroud:

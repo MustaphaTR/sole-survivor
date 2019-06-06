@@ -15,7 +15,7 @@ E1:
 	Mobile:
 		Speed: 56
 	Health:
-		HP: 5000
+		HP: 12500
 	AutoTarget:
 		ScanRadius: 4
 	Armament:
@@ -44,7 +44,7 @@ E2:
 	Mobile:
 		Speed: 71
 	Health:
-		HP: 5000
+		HP: 13500
 	AutoTarget:
 		ScanRadius: 4
 	Armament:
@@ -80,7 +80,7 @@ E3:
 	Mobile:
 		Speed: 42
 	Health:
-		HP: 4500
+		HP: 10000
 	AutoTarget:
 		ScanRadius: 6
 	Armament:
@@ -112,7 +112,7 @@ E4:
 	Mobile:
 		Speed: 56
 	Health:
-		HP: 9000
+		HP: 19000
 	AutoTarget:
 		ScanRadius: 4
 	Armament:
@@ -147,7 +147,7 @@ E5:
 		Speed: 56
 		Locomotor: chem
 	Health:
-		HP: 9000
+		HP: 20000
 	AutoTarget:
 		ScanRadius: 4
 	Armament:
@@ -184,7 +184,7 @@ E6:
 	Mobile:
 		Speed: 48
 	Health:
-		HP: 3000
+		HP: 10000
 	Passenger:
 		PipType: Yellow
 	GivesBuildableArea:
@@ -274,6 +274,8 @@ STEG:
 	Inherits: ^DINO
 	Tooltip:
 		Name: Stegosaurus
+	Health:
+		HP: 80000
 	Armament:
 		Weapon: tail
 	WithDeathAnimation:
@@ -289,7 +291,7 @@ TREX:
 	Tooltip:
 		Name: Tyrannosaurus rex
 	Health:
-		HP: 50000
+		HP: 60000
 	Armament:
 		Weapon: teeth
 	Selectable:
@@ -305,6 +307,8 @@ TRIC:
 	Inherits: ^DINO
 	Tooltip:
 		Name: Triceratops
+	Health:
+		HP: 50000
 	Armament:
 		Weapon: horn
 	SelectionDecorations:
