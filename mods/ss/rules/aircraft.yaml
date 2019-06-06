@@ -19,7 +19,7 @@ TRAN:
 		AltitudeVelocity: 0c100
 		Crushes: crate, flag
 	Health:
-		HP: 125000
+		HP: 12500
 	Armor:
 		Type: Light
 	RevealsShroud:
