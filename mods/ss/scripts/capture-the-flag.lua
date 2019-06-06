@@ -12,22 +12,22 @@ FlagCircles = { }
 Flags = { }
 
 CtFTick = function()
+
+end
+
+OnCircle = function(player)
 	Trigger.AfterDelay(0, function()
-		if CtFOption ~= "disabled" then
-			for _,player in pairs(players) do
-				if not Units[player.InternalName].IsDead and Units[player.InternalName].Location == FlagCircles[player.TeamLeader.InternalName].Location then
-					local flag = Units[player.InternalName].DropFlag()
-					if flag ~= nil then
-						if flag.Owner ~= player.TeamLeader then
-							player.Experience = player.Experience + 25
-							if CtFOption == "score" then
-								flag.Teleport(FlagCircles[flag.Owner.InternalName].Location)
-							else
-								flag.Destroy()
-								for _,loser in pairs(Utils.Where(players, function(p) return p.TeamLeader == flag.Owner end)) do
-									loser.MarkFailedObjective(0)
-								end
-							end
+		if not Units[player.InternalName].IsDead then
+			local flag = Units[player.InternalName].DropFlag()
+			if flag ~= nil then
+				if flag.Owner ~= player.TeamLeader then
+					player.Experience = player.Experience + 25
+					if CtFOption == "score" then
+						flag.Teleport(FlagCircles[flag.Owner.InternalName].Location)
+					else
+						flag.Destroy()
+						for _,loser in pairs(Utils.Where(players, function(p) return p.TeamLeader == flag.Owner end)) do
+							loser.MarkFailedObjective(0)
 						end
 					end
 				end
@@ -46,6 +46,10 @@ CtFWorldLoaded = function()
 					FlagCircles[player.InternalName] = Actor.Create("flagcircle", true, { Owner = player, Location = player.SpawnCellPosition })
 					Flags[player.InternalName] = Actor.Create("flag", true, { Owner = player, Location = player.SpawnCellPosition })
 				end
+
+				Trigger.OnEnteredFootprint({ FlagCircles[player.TeamLeader.InternalName].Location }, function()
+					OnCircle(player)
+				end)
 			end
 		end)
 	end

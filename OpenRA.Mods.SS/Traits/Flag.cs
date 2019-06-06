@@ -74,6 +74,7 @@ namespace OpenRA.Mods.SS.Traits
     {
         readonly Actor self;
         readonly FlagInfo info;
+        readonly SpawnSSUnit spawner;
         public bool Collected;
 
         [Sync] public CPos Location;
@@ -83,6 +84,7 @@ namespace OpenRA.Mods.SS.Traits
             self = init.Self;
             this.info = info;
 
+            spawner = self.World.WorldActor.Trait<SpawnSSUnit>();
             if (init.Contains<LocationInit>())
                 SetPosition(self, init.Get<LocationInit, CPos>());
         }
@@ -92,6 +94,11 @@ namespace OpenRA.Mods.SS.Traits
         void INotifyCrushed.OnCrush(Actor self, Actor crusher, BitSet<CrushClass> crushClasses)
         {
             if (!crushClasses.Contains(info.CrushClass))
+                return;
+
+            // You can't take your team's flag if it is already on the spawn point.
+            if (self.Location == spawner.PlayerSpawnPoints[self.Owner]
+                && spawner.TeamLeaders.Where(tl => tl.Value == self.Owner).Select(tl => tl.Key).Contains(crusher.Owner))
                 return;
 
             self.World.AddFrameEndTask(w => OnCrushInner(crusher));
