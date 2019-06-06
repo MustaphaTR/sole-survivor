@@ -1204,7 +1204,7 @@
 		Range: 6c0
 	Mobile:
 		Locomotor: critter
-		Speed: 113
+		Speed: 105
 		Voice: Move
 	SelectionDecorations:
 	WithSpriteControlGroupDecoration:
@@ -1258,7 +1258,7 @@
 		Range: 6c0
 	Mobile:
 		Voice: Move
-		Speed: 71
+		Speed: 85
 		Locomotor: critter
 	SelectionDecorations:
 	WithSpriteControlGroupDecoration:

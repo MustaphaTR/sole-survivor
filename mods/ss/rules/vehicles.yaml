@@ -105,8 +105,8 @@ APC:
 		Description: Armed infantry transport.\nCan attack Aircraft.\n  Strong vs Vehicles\n  Weak vs Infantry
 	Mobile:
 		TurnSpeed: 10
-		Speed: 132
-		PauseOnCondition: !(!notmobile)
+		Speed: 85
+		PauseOnCondition: notmobile
 	Health:
 		HP: 40000
 	Repairable:
@@ -161,8 +161,8 @@ ARTY:
 		Queue: Vehicle.Nod
 		Description: Long-range artillery.\n  Strong vs Infantry, Vehicles and Buildings
 	Mobile:
-		TurnSpeed: 4
-		Speed: 85
+		TurnSpeed: 3
+		Speed: 99
 	Health:
 		HP: 35000
 	Repairable:
@@ -206,8 +206,8 @@ FTNK:
 		Queue: Vehicle.Nod
 		Description: Heavily armored flame-throwing vehicle.\n  Strong vs Infantry, Buildings and Vehicles\n  Weak vs Tanks
 	Mobile:
-		TurnSpeed: 7
-		Speed: 99
+		TurnSpeed: 5
+		Speed: 85
 	Health:
 		HP: 45000
 	Repairable:
@@ -292,7 +292,7 @@ BIKE:
 		Description: Fast scout vehicle, armed with\nrockets.\nCan attack Aircraft.\n  Strong vs Vehicles, Tanks\n  Weak vs Infantry
 	Mobile:
 		TurnSpeed: 10
-		Speed: 213
+		Speed: 205
 		Locomotor: bike
 	Health:
 		HP: 21000
@@ -526,7 +526,7 @@ MSAM:
 		Description: Long range rocket artillery.\n  Strong vs all Ground units.
 	Mobile:
 		Speed: 85
-		TurnSpeed: 4
+		TurnSpeed: 5
 	Health:
 		HP: 40000
 	Repairable:

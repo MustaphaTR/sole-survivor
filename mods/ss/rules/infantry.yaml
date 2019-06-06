@@ -276,6 +276,8 @@ STEG:
 		Name: Stegosaurus
 	Health:
 		HP: 80000
+	Mobile:
+		Speed: 65
 	Armament:
 		Weapon: tail
 	WithDeathAnimation:
@@ -325,6 +327,8 @@ RAPT:
 		Name: Velociraptor
 	Health:
 		HP: 30000
+	Mobile:
+		Speed: 205
 	Armament:
 		Weapon: claw
 	Buildable:
