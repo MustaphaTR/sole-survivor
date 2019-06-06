@@ -469,7 +469,7 @@ HTNK:
 		Speed: 56
 		TurnSpeed: 3
 	Health:
-		HP: 85000
+		HP: 75000
 	Repairable:
 		HpPerStep: 2637
 		RepairActors: fix
