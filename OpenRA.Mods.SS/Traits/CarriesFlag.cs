@@ -32,6 +32,8 @@ namespace OpenRA.Mods.SS.Traits
     public class CarriesFlag : INotifyCreated, INotifyKilled, ITick, IRender
     {
         readonly CarriesFlagInfo info;
+        readonly SpawnSSUnit spawner;
+        readonly BuildingInfluence bi;
 
         public Actor Flag;
         IActorPreview[] flagPreviews;
@@ -43,6 +45,9 @@ namespace OpenRA.Mods.SS.Traits
         {
             this.info = info;
             Flag = null;
+
+            spawner = self.World.WorldActor.Trait<SpawnSSUnit>();
+            bi = self.World.WorldActor.Trait<BuildingInfluence>();
         }
 
         void INotifyCreated.Created(Actor self)
@@ -86,11 +91,10 @@ namespace OpenRA.Mods.SS.Traits
         {
             self.World.Add(Flag);
             var positionable = Flag.Trait<IPositionable>();
-            if (positionable.CanEnterCell(self.Location))
+            if (positionable.CanExistInCell(self.Location) && bi.GetBuildingAt(self.Location) == null)
                 positionable.SetPosition(Flag, self.Location);
             else
             {
-                var spawner = self.World.WorldActor.Trait<SpawnSSUnit>();
                 var sp = spawner.PlayerSpawnPoints[spawner.TeamLeaders[Flag.Owner]];
                 positionable.SetPosition(Flag, sp);
             }
