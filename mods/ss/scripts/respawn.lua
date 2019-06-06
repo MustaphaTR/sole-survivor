@@ -27,48 +27,50 @@ end
 
 RespawnTick = function()
 	for _,player in pairs(players) do
-		if Units[player.InternalName] ~= nil then
-			if Units[player.InternalName].IsDead then
-				if RespawnOption ~= "disabled" then
-					if RespawnTimers[player.InternalName] == RespawnDelay[RespawnOption] then
-						player.Experience = player.Experience - 20
-					end
-
-					RespawnTimers[player.InternalName] = RespawnTimers[player.InternalName] - 1
-
-					if RespawnTimers[player.InternalName] < 0 then
-						local unitType = Units[player.InternalName].Type
-
-						Units[player.InternalName] = Actor.Create(unitType, true, { Owner = player, Location = player.SpawnCellPosition })
-						RespawnTimers[player.InternalName] = RespawnDelay[RespawnOption]
-						if player.IsLocalPlayer then
-							Camera.Position = player.SpawnWorldPosition
+		if not player.IsObjectiveFailed(0) then
+			if Units[player.InternalName] ~= nil then
+				if Units[player.InternalName].IsDead then
+					if RespawnOption ~= "disabled" then
+						if RespawnTimers[player.InternalName] == RespawnDelay[RespawnOption] then
+							player.Experience = player.Experience - 20
 						end
-					end
-				else
-					player.MarkFailedObjective(0)
-						
-					local buildings = player.GetActorsByTypes( { "gtwr", "gun" } )
-					Utils.Do(buildings, function(building)
-						building.Kill()
-					end)
 
-					local husks = player.GetActorsByTypes( { "gtwr.husk", "gun.husk" } )
-					Utils.Do(husks, function(husk)
-						husk.Owner = neutral
-					end)
+						RespawnTimers[player.InternalName] = RespawnTimers[player.InternalName] - 1
+
+						if RespawnTimers[player.InternalName] < 0 then
+							local unitType = Units[player.InternalName].Type
+
+							Units[player.InternalName] = Actor.Create(unitType, true, { Owner = player, Location = player.SpawnCellPosition })
+							RespawnTimers[player.InternalName] = RespawnDelay[RespawnOption]
+							if player.IsLocalPlayer then
+								Camera.Position = player.SpawnWorldPosition
+							end
+						end
+					else
+						player.MarkFailedObjective(0)
+							
+						local buildings = player.GetActorsByTypes( { "gtwr", "gun" } )
+						Utils.Do(buildings, function(building)
+							building.Kill()
+						end)
+
+						local husks = player.GetActorsByTypes( { "gtwr.husk", "gun.husk" } )
+						Utils.Do(husks, function(husk)
+							husk.Owner = neutral
+						end)
+					end
 				end
 			end
-		end
 
-		local win = true
-		for _,enemy in pairs(Utils.Where(players, function(p) return p ~= player and (p.Team == 0 or p.Team ~= player.Team) end)) do
-			if not enemy.IsObjectiveFailed(0) then
-				win = false
+			local win = true
+			for _,enemy in pairs(Utils.Where(players, function(p) return p ~= player and (p.Team == 0 or p.Team ~= player.Team) end)) do
+				if not enemy.IsObjectiveFailed(0) then
+					win = false
+				end
 			end
-		end
-		if win then
-			player.MarkCompletedObjective(0)
+			if win then
+				player.MarkCompletedObjective(0)
+			end
 		end
 	end
 end
