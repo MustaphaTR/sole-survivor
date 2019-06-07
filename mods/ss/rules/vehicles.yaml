@@ -35,10 +35,6 @@ MCV:
 	MustBeDestroyed:
 		RequiredForShortGame: true
 	BaseBuilding:
-	SpawnActorOnDeath:
-		Actor: MCV.Husk
-		OwnerType: InternalName
-		EffectiveOwnerFromOwner: true
 	SelectionDecorations:
 	UnitStatValues:
 
@@ -77,10 +73,6 @@ HARV:
 		Type: Heavy
 	RevealsShroud:
 		Range: 4c0
-	SpawnActorOnDeath:
-		Actor: HARV.Husk
-		OwnerType: InternalName
-		EffectiveOwnerFromOwner: true
 	Explodes:
 		Weapon: TiberiumExplosion
 	SelectionDecorations:
@@ -139,10 +131,6 @@ APC:
 		MaxWeight: 5
 		PipCount: 5
 		LoadingCondition: notmobile
-	SpawnActorOnDeath:
-		Actor: APC.Husk
-		OwnerType: InternalName
-		EffectiveOwnerFromOwner: true
 	UnitStatValues:
 		Damage: 2000
 
@@ -180,10 +168,6 @@ ARTY:
 	WithMuzzleOverlay:
 	AutoTarget:
 		InitialStanceAI: Defend
-	SpawnActorOnDeath:
-		Actor: ARTY.Husk
-		OwnerType: InternalName
-		EffectiveOwnerFromOwner: true
 	Explodes:
 		Weapon: ArtilleryShell
 		EmptyWeapon: UnitExplode
@@ -226,10 +210,6 @@ FTNK:
 	Explodes:
 		Weapon: FlametankExplode
 		EmptyWeapon: FlametankExplode
-	SpawnActorOnDeath:
-		Actor: FTNK.Husk
-		OwnerType: InternalName
-		EffectiveOwnerFromOwner: true
 	UnitStatValues:
 		Damage: 10000
 
@@ -269,10 +249,6 @@ BGGY:
 	AttackTurreted:
 	WithMuzzleOverlay:
 	WithSpriteTurret:
-	SpawnActorOnDeath:
-		Actor: BGGY.Husk
-		OwnerType: InternalName
-		EffectiveOwnerFromOwner: true
 	UnitStatValues:
 		Damage: 1000
 
@@ -308,10 +284,6 @@ BIKE:
 		LocalOffset: -128, -170, 170, -128, 170, 170
 		LocalYaw: 100, -100
 	AttackFrontal:
-	SpawnActorOnDeath:
-		Actor: BIKE.Husk
-		OwnerType: InternalName
-		EffectiveOwnerFromOwner: true
 	UnitStatValues:
 		Damage: 2500
 
@@ -351,10 +323,6 @@ JEEP:
 	AttackTurreted:
 	WithMuzzleOverlay:
 	WithSpriteTurret:
-	SpawnActorOnDeath:
-		Actor: JEEP.Husk
-		OwnerType: InternalName
-		EffectiveOwnerFromOwner: true
 	UnitStatValues:
 		Damage: 1000
 
@@ -397,10 +365,6 @@ LTNK:
 	AttackTurreted:
 	WithMuzzleOverlay:
 	WithSpriteTurret:
-	SpawnActorOnDeath:
-		Actor: LTNK.Husk
-		OwnerType: InternalName
-		EffectiveOwnerFromOwner: true
 	UnitStatValues:
 		Damage: 2500
 
@@ -440,10 +404,6 @@ MTNK:
 	AttackTurreted:
 	WithMuzzleOverlay:
 	WithSpriteTurret:
-	SpawnActorOnDeath:
-		Actor: MTNK.Husk
-		OwnerType: InternalName
-		EffectiveOwnerFromOwner: true
 	SelectionDecorations:
 	Selectable:
 		DecorationBounds: 28,28
@@ -500,10 +460,6 @@ HTNK:
 		Delay: 10
 		HealIfBelow: 50
 		DamageCooldown: 200
-	SpawnActorOnDeath:
-		Actor: HTNK.Husk
-		OwnerType: InternalName
-		EffectiveOwnerFromOwner: true
 	SelectionDecorations:
 	Selectable:
 		DecorationBounds: 34,34,0,-3
@@ -548,10 +504,6 @@ MSAM:
 		LocalOffset: 213,-128,0, 213,128,0
 	AttackFrontal:
 	WithSpriteTurret:
-	SpawnActorOnDeath:
-		Actor: MSAM.Husk
-		OwnerType: InternalName
-		EffectiveOwnerFromOwner: true
 	WithTurretAimAnimation:
 		Sequence: aim
 	UnitStatValues:
@@ -606,10 +558,6 @@ MLRS:
 		Sequence: turret0
 	AutoTarget:
 		InitialStanceAI: Defend
-	SpawnActorOnDeath:
-		Actor: MLRS.Husk
-		OwnerType: InternalName
-		EffectiveOwnerFromOwner: true
 	ReloadAmmoPool@ROF-0:
 		Delay: 75
 		Count: 1
@@ -692,10 +640,6 @@ STNK:
 	AutoTarget:
 		InitialStance: HoldFire
 		InitialStanceAI: ReturnFire
-	SpawnActorOnDeath:
-		Actor: STNK.Husk
-		OwnerType: InternalName
-		EffectiveOwnerFromOwner: true
 	UnitStatValues:
 		Damage: 6000
 
@@ -798,10 +742,6 @@ MHQ:
 		RequiresCondition: !crate-no-radar
 	SwitchCondition@RADAR:
 		Condition: crate-no-radar
-	SpawnActorOnDeath:
-		Actor: MHQ.Husk
-		OwnerType: InternalName
-		EffectiveOwnerFromOwner: true
 	UnitStatValues:
 		Damage: 3000
 		ReloadDelay: 500
@@ -831,7 +771,3 @@ TRUCK:
 	DeliversCash:
 		Payload: 500
 		PlayerExperience: 50
-	SpawnActorOnDeath:
-		Actor: TRUCK.Husk
-		OwnerType: InternalName
-		EffectiveOwnerFromOwner: true
