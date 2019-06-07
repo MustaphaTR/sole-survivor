@@ -127,7 +127,7 @@ namespace OpenRA.Mods.SS.Traits
             if (flagPreviews != null)
                 foreach (var preview in flagPreviews)
                     foreach (var pp in preview.Render(wr, pos))
-                        yield return pp.WithZOffset(1);
+                        yield return pp.WithZOffset(1).AsDecoration();
         }
 
         IEnumerable<Rectangle> IRender.ScreenBounds(Actor self, WorldRenderer wr)

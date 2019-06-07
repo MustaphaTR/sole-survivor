@@ -926,6 +926,7 @@
 	Guardable:
 	Tooltip:
 		GenericName: Vehicle
+	TeamLeaderColorModifier:
 	RenderNameTag:
 	Demolishable:
 	MustBeDestroyed:
@@ -988,6 +989,7 @@
 	Guardable:
 	Tooltip:
 		GenericName: Helicopter
+	TeamLeaderColorModifier:
 	RenderNameTag:
 	WithFacingSpriteBody:
 	WithShadow:
@@ -1126,6 +1128,7 @@
 	MustBeDestroyed:
 	Tooltip:
 		GenericName: Soldier
+	TeamLeaderColorModifier:
 	RenderNameTag:
 	Guard:
 	TakeCover:
@@ -1277,6 +1280,7 @@
 		Cost: 1000
 	Tooltip:
 		Name: Visceroid
+	TeamLeaderColorModifier:
 	RenderNameTag:
 	Armament:
 		Weapon: Chemspray
@@ -1683,6 +1687,7 @@
 		Type: Light
 	HiddenUnderFog:
 		Type: CenterPosition
+	TeamLeaderColorModifier:
 	WithFacingSpriteBody:
 	HitShape:
 	MapEditorData:
@@ -1789,6 +1794,7 @@
 	-AcceptsDeliveredCash:
 
 ^EngineerBuilding:
+	TeamLeaderColorModifier:
 	GrantConditionOnDeploy@REMOVE:
 		DeployedCondition: deployed
 		SkipMakeAnimation: true
