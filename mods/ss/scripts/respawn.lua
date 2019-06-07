@@ -89,7 +89,7 @@ SetupObjectives = function()
 				if CtFOption == "victory" then
 					player.AddPrimaryObjective("Capture all enemy flags.")
 				elseif not warningShown then
-					Media.DisplayMessage("You are playing without any victory conditions. The game cannot end!")
+					Media.DisplayMessage("You are playing without any victory conditions. The game cannot end!", "Battlefield Control")
 					warningShown = true
 				end
 			end
@@ -111,19 +111,19 @@ SetupObjectives = function()
 
 		Trigger.OnPlayerLost(player, function()
 			Trigger.AfterDelay(DateTime.Seconds(1), function()
+				Media.DisplayMessage("" .. player.Name .. " has been defeated!", "Battlefield Control")
 				Media.PlaySpeechNotification(player, "Lose")
+			end)
+
+			local units = Utils.Where(player.GetActors(), function(a) return a.HasProperty("Kill") end)
+			Utils.Do(units, function(unit)
+				unit.Kill()
 			end)
 		end)
 		Trigger.OnPlayerWon(player, function()
 			Trigger.AfterDelay(DateTime.Seconds(1), function()
+				Media.DisplayMessage("" .. player.Name .. " is victorious!", "Battlefield Control")
 				Media.PlaySpeechNotification(player, "Win")
-			end)
-		end)
-
-		Trigger.OnPlayerLost(player, function()
-			local units = Utils.Where(player.GetActors(), function(a) return a.HasProperty("Kill") end)
-			Utils.Do(units, function(unit)
-				unit.Kill()
 			end)
 		end)
 	end

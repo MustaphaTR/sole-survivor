@@ -97,7 +97,7 @@ namespace OpenRA.Mods.SS.Traits
 				recipient.World.AddFrameEndTask(w =>
 				{
                     var mobile = recipient.TraitOrDefault<Mobile>();
-                    var locations = recipient.World.Map.FindTilesInAnnulus(recipient.Location, info.MinDistance, info.MaxDistance).Where(c => mobile.CanExistInCell(c));
+                    var locations = recipient.World.Map.FindTilesInAnnulus(recipient.Location, info.MinDistance, info.MaxDistance).Where(c => mobile.CanEnterCell(c));
                     if (mobile != null && locations.Any())
                     {
                         recipient.CancelActivity();

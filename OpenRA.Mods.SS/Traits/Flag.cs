@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
+using OpenRA.Network;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
@@ -96,6 +97,10 @@ namespace OpenRA.Mods.SS.Traits
             if (!crushClasses.Contains(info.CrushClass))
                 return;
 
+            // Only players can take flags.
+            if (!crusher.Owner.Playable)
+                return;
+
             // You can't take your team's flag if it is already on the spawn point.
             if (self.Location == spawner.PlayerSpawnPoints[self.Owner]
                 && spawner.TeamLeaders.Where(tl => tl.Value == self.Owner).Select(tl => tl.Key).Contains(crusher.Owner))
@@ -115,6 +120,9 @@ namespace OpenRA.Mods.SS.Traits
             var carriesFlag = crusher.TraitOrDefault<CarriesFlag>();
             if (carriesFlag != null)
             {
+                var team = FindPlayersClient(self.World, self.Owner).Team;
+                Game.AddChatLine(Color.White, "Battlefield Control", crusher.Owner.PlayerName + " has taken flag of " + (team == 0 ? self.Owner.PlayerName : "Team " + team) + ".");
+
                 carriesFlag.GrantCondition(crusher);
                 carriesFlag.TakeFlag(crusher, self);
             }
@@ -190,6 +198,11 @@ namespace OpenRA.Mods.SS.Traits
             var cs = self.World.WorldActor.TraitOrDefault<CrateSpawner>();
             if (cs != null)
                 cs.DecrementCrates();
+        }
+
+        static Session.Client FindPlayersClient(World w, Player p)
+        {
+            return w.LobbyInfo.Clients.FirstOrDefault(c => c.Slot == p.PlayerReference.Name);
         }
     }
 }
