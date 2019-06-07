@@ -18,16 +18,19 @@ end
 OnCircle = function(player)
 	Trigger.AfterDelay(0, function()
 		if not Units[player.InternalName].IsDead then
-			local flag = Units[player.InternalName].DropFlag()
-			if flag ~= nil then
-				if flag.Owner ~= player.TeamLeader then
-					player.Experience = player.Experience + 25
-					if CtFOption == "score" then
-						flag.Teleport(FlagCircles[flag.Owner.InternalName].Location)
-					else
-						flag.Destroy()
-						for _,loser in pairs(Utils.Where(players, function(p) return p.TeamLeader == flag.Owner end)) do
-							loser.MarkFailedObjective(0)
+			local circle = FlagCircles[player.TeamLeader.InternalName]
+			if Units[player.InternalName].Location == circle.Location then
+				local flag = Units[player.InternalName].DropFlag()
+				if flag ~= nil then
+					if flag.Owner ~= player.TeamLeader then
+						player.Experience = player.Experience + 25
+						if CtFOption == "score" then
+							flag.Teleport(FlagCircles[flag.Owner.InternalName].Location)
+						else
+							flag.Destroy()
+							for _,loser in pairs(Utils.Where(players, function(p) return p.TeamLeader == flag.Owner end)) do
+								loser.MarkFailedObjective(0)
+							end
 						end
 					end
 				end
