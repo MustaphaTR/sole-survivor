@@ -57,7 +57,7 @@
 	GrantConditionOnPrerequisite@VETERANCY:
 		Condition: veterancy
 		Prerequisites: global-veterancy
-	GivesExperienceMultiplier:
+	GainsExperienceMultiplier:
 		Modifier: 0
 		RequiresCondition: veterancy
 	GrantCondition@RANK-ELITE:

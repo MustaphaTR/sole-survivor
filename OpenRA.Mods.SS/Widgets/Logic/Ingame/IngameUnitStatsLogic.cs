@@ -367,7 +367,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                         foreach (var rm in unit.TraitsImplementing<IRangeModifier>().Select(rm => rm.GetRangeModifier()))
                             rangeValue = rangeValue * rm / 100;
 
-                        return (int)(((float)(armamanets.Max(ar => ar.Weapon.Range.Length) - rangeValue.Length) / (float)armamanets.Max(ar => ar.Weapon.Range.Length)) * 200);
+                        return (int)(((float)(rangeValue.Length - armamanets.Max(ar => ar.Weapon.Range.Length)) / (float)armamanets.Max(ar => ar.Weapon.Range.Length)) * 100);
                     }
                 }
 
