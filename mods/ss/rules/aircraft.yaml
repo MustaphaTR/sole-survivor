@@ -127,6 +127,7 @@ HELI:
 		Actor: HELI.Husk
 	UnitStatValues:
 		Damage: 2000
+		Range: 4c0
 	SelectionDecorations:
 	ReloadAmmoPool@ROF-0:
 		Delay: 40
@@ -224,6 +225,7 @@ ORCA:
 		MoveSequence: move
 	UnitStatValues:
 		Damage: 5000
+		Range: 5c0
 	SelectionDecorations:
 	ReloadAmmoPool@ROF-0:
 		Delay: 100
