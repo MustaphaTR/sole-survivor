@@ -88,9 +88,13 @@ SetupObjectives = function()
 			else
 				if CtFOption == "victory" then
 					player.AddPrimaryObjective("Capture all enemy flags.")
-				elseif not warningShown then
-					Media.DisplayMessage("You are playing without any victory conditions. The game cannot end!", "Battlefield Control")
-					warningShown = true
+				else
+					player.AddPrimaryObjective("Why are we still here? Just to suffer?")
+
+					if not warningShown then
+						Media.DisplayMessage("You are playing without any victory conditions. The game cannot end!", "Battlefield Control")
+						warningShown = true
+					end
 				end
 			end
 		else
