@@ -80,7 +80,9 @@ AITick = function()
 						unit.Move(crate.Location)
 					end
 
-					if unit.Type == "e6" then
+					if unit.Flag ~= nil then
+						unit.Move(FlagCircles[bot.TeamLeader.InternalName].Location)
+					elseif unit.Type == "e6" then
 						Trigger.AfterDelay(5, function()
 							if unit.IsIdle then
 								BuildEngiStuff(unit)
