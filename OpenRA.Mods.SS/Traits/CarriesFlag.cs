@@ -107,7 +107,7 @@ namespace OpenRA.Mods.SS.Traits
 
         IEnumerable<IRenderable> IRender.Render(Actor self, WorldRenderer wr)
         {
-            if (Flag != null && flagPreviews == null)
+            if (Flag != null && !Flag.IsDead && flagPreviews == null)
             {
                 var flagInits = new TypeDictionary()
                 {
