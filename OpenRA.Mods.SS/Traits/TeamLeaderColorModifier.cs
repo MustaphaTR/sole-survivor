@@ -21,7 +21,7 @@ namespace OpenRA.Mods.SS.Traits
     [Desc("Changes the remap color of the player to one of the team leader.")]
     public class TeamLeaderColorModifierInfo : ITraitInfo
     {
-        [PaletteReference] public readonly string Palette = "player";
+        [PaletteReference(true)] public readonly string Palette = "player";
 
         public object Create(ActorInitializer init) { return new TeamLeaderColorModifier(init.Self, this); }
     }
