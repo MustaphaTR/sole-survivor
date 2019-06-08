@@ -23,7 +23,12 @@ OnCircle = function(player)
 				local flag = Units[player.InternalName].DropFlag()
 				if flag ~= nil then
 					if flag.Owner ~= player.TeamLeader then
-						player.Experience = player.Experience + 25
+						player.Experience = player.Experience + 40
+						if flag.Owner.Team == 0 then
+							Media.DisplayMessage(player.Name .. " has captured flag of " .. flag.Owner.Name, "Battlefield Control")
+						else
+							Media.DisplayMessage(player.Name .. " has captured flag of Team " .. flag.Owner.Team, "Battlefield Control")
+						end
 						if CtFOption == "score" then
 							flag.Teleport(FlagCircles[flag.Owner.InternalName].Location)
 						else

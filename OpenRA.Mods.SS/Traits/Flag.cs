@@ -120,8 +120,12 @@ namespace OpenRA.Mods.SS.Traits
             var carriesFlag = crusher.TraitOrDefault<CarriesFlag>();
             if (carriesFlag != null)
             {
-                var team = FindPlayersClient(self.World, self.Owner).Team;
-                Game.AddChatLine(Color.White, "Battlefield Control", crusher.Owner.PlayerName + " has taken flag of " + (team == 0 ? self.Owner.PlayerName : "Team " + team) + ".");
+                var flagTeam = FindPlayersClient(self.World, self.Owner).Team;
+                var crusherTeam = FindPlayersClient(crusher.World, crusher.Owner).Team;
+                if (flagTeam == crusherTeam)
+                    Game.AddChatLine(Color.White, "Battlefield Control", crusher.Owner.PlayerName + " has taken their flag.");
+                else
+                    Game.AddChatLine(Color.White, "Battlefield Control", crusher.Owner.PlayerName + " has taken flag of " + (flagTeam == 0 ? self.Owner.PlayerName : "Team " + flagTeam) + ".");
 
                 carriesFlag.GrantCondition(crusher);
                 carriesFlag.TakeFlag(crusher, self);
