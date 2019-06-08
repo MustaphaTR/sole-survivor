@@ -87,7 +87,7 @@ OrcaAGMissiles:
 		Arm: 1
 		HorizontalRateOfTurn: 20
 		Speed: 256
-		RangeLimit: 6c0
+		RangeLimit: 12c0
 	Warhead@1Dam: SpreadDamage
 		ValidTargets: Ground
 		Versus:
