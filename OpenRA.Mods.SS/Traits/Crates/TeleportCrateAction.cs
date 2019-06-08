@@ -24,13 +24,13 @@ namespace OpenRA.Mods.SS.Traits
 		[Desc("The maxiumum distance unit can be teleported to.")]
 		public readonly int MaxDistance = 50;
 
-        [Desc("The maxiumum distance unit can be teleported to.")]
-        public readonly int MinDistance = 0;
+		[Desc("The maxiumum distance unit can be teleported to.")]
+		public readonly int MinDistance = 0;
 
-        [Desc("Set camera position to where unit get teleported to.")]
-        public readonly bool SetCameraPosition = false;
+		[Desc("Set camera position to where unit get teleported to.")]
+		public readonly bool SetCameraPosition = false;
 
-        [Desc("The range to search for extra collectors in.", "Extra collectors will also be granted the crate action.")]
+		[Desc("The range to search for extra collectors in.", "Extra collectors will also be granted the crate action.")]
 		public readonly WDist Range = new WDist(1);
 
 		[Desc("The maximum number of extra collectors to grant the crate action to.")]
@@ -40,31 +40,31 @@ namespace OpenRA.Mods.SS.Traits
 	}
 
 	class TeleportCrateAction : CrateAction, IRender
-    {
+	{
 		readonly Actor self;
-        readonly TeleportCrateActionInfo info;
-        WorldRenderer wr;
+		readonly TeleportCrateActionInfo info;
+		WorldRenderer wr;
 
-        public TeleportCrateAction(Actor self, TeleportCrateActionInfo info)
+		public TeleportCrateAction(Actor self, TeleportCrateActionInfo info)
 			: base(self, info)
 		{
 			this.self = self;
 			this.info = info;
 		}
 
-        public IEnumerable<IRenderable> Render(Actor self, WorldRenderer wr)
-        {
-            return new IRenderable[] { };
-        }
+		public IEnumerable<IRenderable> Render(Actor self, WorldRenderer wr)
+		{
+			return new IRenderable[] { };
+		}
 
-        IEnumerable<Rectangle> IRender.ScreenBounds(Actor self, WorldRenderer wr)
-        {
-            this.wr = wr;
+		IEnumerable<Rectangle> IRender.ScreenBounds(Actor self, WorldRenderer wr)
+		{
+			this.wr = wr;
 
-            yield break;
-        }
+			yield break;
+		}
 
-        public override int GetSelectionShares(Actor collector)
+		public override int GetSelectionShares(Actor collector)
 		{
 			var mobile = collector.TraitOrDefault<Mobile>();
 			return mobile != null ? info.SelectionShares : 0;
@@ -93,24 +93,26 @@ namespace OpenRA.Mods.SS.Traits
 
 			foreach (var actor in inRange.Append(collector))
 			{
-				var recipient = actor;	// loop variable in closure hazard
+				var recipient = actor;  // loop variable in closure hazard
+				recipient.CancelActivity();
+
 				recipient.World.AddFrameEndTask(w =>
 				{
-                    var mobile = recipient.TraitOrDefault<Mobile>();
-                    var locations = recipient.World.Map.FindTilesInAnnulus(recipient.Location, info.MinDistance, info.MaxDistance).Where(c => mobile.CanEnterCell(c));
-                    if (mobile != null && locations.Any())
-                    {
-                        recipient.CancelActivity();
+					var mobile = recipient.TraitOrDefault<Mobile>();
+					var locations = recipient.World.Map.FindTilesInAnnulus(recipient.Location, info.MinDistance, info.MaxDistance).Where(c => mobile.CanEnterCell(c));
+					if (mobile != null && locations.Any())
+					{
+						recipient.CancelActivity();
 
-                        var loc = locations.Random(recipient.World.SharedRandom);
-                        mobile.SetPosition(recipient, recipient.World.Map.CenterOfCell(loc));
+						var loc = locations.Random(recipient.World.SharedRandom);
+						mobile.SetPosition(recipient, recipient.World.Map.CenterOfCell(loc));
 
-                        if (info.SetCameraPosition && recipient.Owner == recipient.World.RenderPlayer)
-                        {
-                            wr.Viewport.Center(new Actor[] { recipient });
-                        }
-                    }
-                });
+						if (info.SetCameraPosition && recipient.Owner == recipient.World.RenderPlayer)
+						{
+							wr.Viewport.Center(new Actor[] { recipient });
+						}
+					}
+				});
 			}
 
 			base.Activate(collector);
