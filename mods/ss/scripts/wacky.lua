@@ -7,20 +7,16 @@
    information, see COPYING.
 ]]
 
-Tick = function()
-	TimeLimitTick()
-	AITick()
-	CloakInvulnTick()
-	RespawnTick()
-	CtFTick()
-	WackyTick()
+WackyTick = function()
+
 end
 
-WorldLoaded = function()
-	TimeLimitWorldLoaded()
-	AIWorldLoaded()
-	CloakInvulnWorldLoaded()
-	RespawnWorldLoaded()
-	CtFWorldLoaded()
-	WackyWorldLoaded()
+WackyWorldLoaded = function()
+	if Lobby.Wacky() then
+		players = Player.GetPlayers(function(p) return not p.IsNonCombatant end)
+
+		for _,player in pairs(players) do
+			Actor.Create("proxy.wacky", true, { Owner = player })
+		end
+	end
 end

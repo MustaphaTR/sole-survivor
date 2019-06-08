@@ -39,6 +39,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Scripting\Global\LobbyGlobal.cs" />
     <Compile Include="Scripting\Properties\FlagProperties.cs" />
     <Compile Include="Scripting\Properties\SSSpawnProperties.cs" />
     <Compile Include="Traits\CarriesFlag.cs" />

@@ -203,11 +203,18 @@ WACKYCRATE:
 		XmasImages: xcrateo
 	SSCrate:
 		Lifetime: 240
-	WackyCrateAction@WACKY:
+	WackyCrateAction@NORMAL:
 		SelectionShares: 1
 		Sequence: wacky
 		Duration: 250
 		Condition: crate-wacky
+		Prerequisites: !proxy.wacky
+	WackyCrateAction@WACKY:
+		SelectionShares: 1
+		Sequence: wacky
+		Duration: 750
+		Condition: crate-wacky
+		Prerequisites: proxy.wacky
 	RenderSprites:
 		Image: crate-orange
 
@@ -257,6 +264,13 @@ fact.colorpicker:
 	RenderSprites:
 		Image: fact
 		Palette: colorpicker
+		
+proxy.wacky:
+	AlwaysVisible:
+	Interactable:
+	Tooltip:
+		Name: Wacky Mode
+	ProvidesPrerequisite@proxyname:
 
 proxy.cloak-detector:
 	Inherits: CAMERA
