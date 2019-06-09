@@ -10,29 +10,29 @@
 #endregion
 
 using System.Linq;
-using OpenRA.Traits;
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Traits;
 
 namespace OpenRA.Mods.SS.Traits
 {
-    [Desc("Grants a condition on the collector and heals it.")]
-    public class WackyCrateActionInfo : GrantExternalConditionCrateActionInfo
-    {
-        public override object Create(ActorInitializer init) { return new WackyCrateAction(init.Self, this); }
-    }
+	[Desc("Grants a condition on the collector and heals it.")]
+	public class WackyCrateActionInfo : GrantExternalConditionCrateActionInfo
+	{
+		public override object Create(ActorInitializer init) { return new WackyCrateAction(init.Self, this); }
+	}
 
-    public class WackyCrateAction : GrantExternalConditionCrateAction
-    {
-        public WackyCrateAction(Actor self, WackyCrateActionInfo info)
-            : base(self, info) { }
+	public class WackyCrateAction : GrantExternalConditionCrateAction
+	{
+		public WackyCrateAction(Actor self, WackyCrateActionInfo info)
+			: base(self, info) { }
 
-        public override void Activate(Actor collector)
-        {
-            var health = collector.TraitOrDefault<Health>();
-            if (health != null)
-                health.InflictDamage(collector, collector, new Damage(-(health.MaxHP - health.HP)), true);
+		public override void Activate(Actor collector)
+		{
+			var health = collector.TraitOrDefault<Health>();
+			if (health != null)
+				health.InflictDamage(collector, collector, new Damage(-(health.MaxHP - health.HP)), true);
 
-            base.Activate(collector);
-        }
-    }
+			base.Activate(collector);
+		}
+	}
 }

@@ -27,27 +27,27 @@ namespace OpenRA.Mods.SS.Traits
 	public class SwitchCondition : INotifyCreated
 	{
 		public readonly SwitchConditionInfo Info;
-        public int Token = ConditionManager.InvalidConditionToken;
-        ConditionManager conditionManager;
+		public int Token = ConditionManager.InvalidConditionToken;
+		ConditionManager conditionManager;
 
-        public SwitchCondition(Actor self, SwitchConditionInfo info)
+		public SwitchCondition(Actor self, SwitchConditionInfo info)
 		{
 			Info = info;
 		}
 
-        void INotifyCreated.Created(Actor self)
-        {
-            conditionManager = self.Trait<ConditionManager>();
-        }
+		void INotifyCreated.Created(Actor self)
+		{
+			conditionManager = self.Trait<ConditionManager>();
+		}
 
 		public void GrantCondition(Actor self)
-        {
-            if (conditionManager == null)
-                return;
+		{
+			if (conditionManager == null)
+				return;
 
-            Token = conditionManager.GrantCondition(self, Info.Condition);
+			Token = conditionManager.GrantCondition(self, Info.Condition);
 		}
-        
+
 		public void RevokeCondition(Actor self)
 		{
 			if (conditionManager == null)

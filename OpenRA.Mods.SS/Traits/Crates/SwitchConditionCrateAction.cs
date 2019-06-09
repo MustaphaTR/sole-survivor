@@ -16,105 +16,106 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.SS.Traits
 {
-    [Desc("Grants a condition on the collector if it is not, revokes it if it is.")]
-    class SwitchConditionCrateActionInfo : CrateActionInfo
-    {
-        [FieldLoader.Require]
-        [Desc("The condition to grant or revoke. Must be included in the target actor's ExternalConditions list.")]
-        public readonly string Condition = null;
+	[Desc("Grants a condition on the collector if it is not, revokes it if it is.")]
+	class SwitchConditionCrateActionInfo : CrateActionInfo
+	{
+		[FieldLoader.Require]
+		[Desc("The condition to grant or revoke. Must be included in the target actor's ExternalConditions list.")]
+		public readonly string Condition = null;
 
-        [Desc("The range to search for extra collectors in.", "Extra collectors will also be granted the crate action.")]
-        public readonly WDist Range = new WDist(3);
+		[Desc("The range to search for extra collectors in.", "Extra collectors will also be granted the crate action.")]
+		public readonly WDist Range = new WDist(3);
 
-        [Desc("The maximum number of extra collectors to grant the crate action to.", "-1 = no limit")]
-        public readonly int MaxExtraCollectors = 4;
+		[Desc("The maximum number of extra collectors to grant the crate action to.", "-1 = no limit")]
+		public readonly int MaxExtraCollectors = 4;
 
-        [Desc("Effect to draw when the condition is revoked.")]
-        public readonly string RevokeSequence = null;
+		[Desc("Effect to draw when the condition is revoked.")]
+		public readonly string RevokeSequence = null;
 
-        [Desc("Notification to play when the condition is revoked.")]
-        [NotificationReference("Speech")] public readonly string RevokeNotification = null;
+		[NotificationReference("Speech")]
+		[Desc("Notification to play when the condition is revoked.")]
+		public readonly string RevokeNotification = null;
 
-        public override object Create(ActorInitializer init) { return new SwitchConditionCrateAction(init.Self, this); }
+		public override object Create(ActorInitializer init) { return new SwitchConditionCrateAction(init.Self, this); }
 	}
 
 	class SwitchConditionCrateAction : CrateAction
-    {
-        readonly Actor self;
-        readonly SwitchConditionCrateActionInfo info;
+	{
+		readonly Actor self;
+		readonly SwitchConditionCrateActionInfo info;
 
-        public SwitchConditionCrateAction(Actor self, SwitchConditionCrateActionInfo info)
+		public SwitchConditionCrateAction(Actor self, SwitchConditionCrateActionInfo info)
 			: base(self, info)
-        {
+		{
 			this.self = self;
 			this.info = info;
 		}
 
-        bool AcceptsCondition(Actor a)
-        {
-            if (a.TraitOrDefault<ConditionManager>() == null)
-                return false;
+		bool AcceptsCondition(Actor a)
+		{
+			if (a.TraitOrDefault<ConditionManager>() == null)
+				return false;
 
-            return a.TraitsImplementing<SwitchCondition>()
-                .Any(t => t.Info.Condition == info.Condition);
-        }
+			return a.TraitsImplementing<SwitchCondition>()
+				.Any(t => t.Info.Condition == info.Condition);
+		}
 
-        public override int GetSelectionShares(Actor collector)
-        {
-            return AcceptsCondition(collector) ? info.SelectionShares : 0;
-        }
+		public override int GetSelectionShares(Actor collector)
+		{
+			return AcceptsCondition(collector) ? info.SelectionShares : 0;
+		}
 
 		public override void Activate(Actor collector)
-        {
-            var actorsInRange = self.World.FindActorsInCircle(self.CenterPosition, info.Range)
-                .Where(a => a != self && a != collector && a.Owner == collector.Owner && AcceptsCondition(a));
+		{
+			var actorsInRange = self.World.FindActorsInCircle(self.CenterPosition, info.Range)
+				.Where(a => a != self && a != collector && a.Owner == collector.Owner && AcceptsCondition(a));
 
-            if (info.MaxExtraCollectors > -1)
-                actorsInRange = actorsInRange.Take(info.MaxExtraCollectors);
+			if (info.MaxExtraCollectors > -1)
+				actorsInRange = actorsInRange.Take(info.MaxExtraCollectors);
 
-            collector.World.AddFrameEndTask(w =>
-            {
-                foreach (var a in actorsInRange.Append(collector))
-                {
-                    if (!a.IsInWorld || a.IsDead)
-                        continue;
+			collector.World.AddFrameEndTask(w =>
+			{
+				foreach (var a in actorsInRange.Append(collector))
+				{
+					if (!a.IsInWorld || a.IsDead)
+						continue;
 
-                    if (a.TraitOrDefault<ConditionManager>() == null)
-                        return;
+					if (a.TraitOrDefault<ConditionManager>() == null)
+						return;
 
-                    var switchCondition = a.TraitsImplementing<SwitchCondition>()
-                        .FirstOrDefault(t => t.Info.Condition == info.Condition);
+					var switchCondition = a.TraitsImplementing<SwitchCondition>()
+						.FirstOrDefault(t => t.Info.Condition == info.Condition);
 
-                    if (switchCondition != null)
-                    {
-                        var granted = switchCondition.Token != ConditionManager.InvalidConditionToken;
-                        if (!granted)
-                        {
-                            switchCondition.GrantCondition(a);
+					if (switchCondition != null)
+					{
+						var granted = switchCondition.Token != ConditionManager.InvalidConditionToken;
+						if (!granted)
+						{
+							switchCondition.GrantCondition(a);
 
-                            if (!string.IsNullOrEmpty(Info.Notification))
-                                Game.Sound.PlayNotification(self.World.Map.Rules, collector.Owner, "Speech",
-                                    Info.Notification, collector.Owner.Faction.InternalName);
+							if (!string.IsNullOrEmpty(Info.Notification))
+								Game.Sound.PlayNotification(self.World.Map.Rules, collector.Owner, "Speech",
+									Info.Notification, collector.Owner.Faction.InternalName);
 
-                            Game.Sound.Play(SoundType.World, info.Sound, self.CenterPosition);
-                            if (Info.Image != null && Info.Sequence != null)
-                                collector.World.AddFrameEndTask(world => world.Add(new SpriteEffect(collector, world, Info.Image, Info.Sequence, Info.Palette)));
-                        }
-                        else
-                        {
-                            switchCondition.RevokeCondition(a);
+							Game.Sound.Play(SoundType.World, info.Sound, self.CenterPosition);
+							if (Info.Image != null && Info.Sequence != null)
+								collector.World.AddFrameEndTask(world => world.Add(new SpriteEffect(collector, world, Info.Image, Info.Sequence, Info.Palette)));
+						}
+						else
+						{
+							switchCondition.RevokeCondition(a);
 
-                            if (!string.IsNullOrEmpty(info.RevokeNotification))
-                                Game.Sound.PlayNotification(self.World.Map.Rules, collector.Owner, "Speech",
-                                    info.RevokeNotification, collector.Owner.Faction.InternalName);
+							if (!string.IsNullOrEmpty(info.RevokeNotification))
+								Game.Sound.PlayNotification(self.World.Map.Rules, collector.Owner, "Speech",
+									info.RevokeNotification, collector.Owner.Faction.InternalName);
 
-                            Game.Sound.Play(SoundType.World, info.Sound, self.CenterPosition);
-                            if (Info.Image != null && info.RevokeSequence != null)
-                                collector.World.AddFrameEndTask(world => world.Add(new SpriteEffect(collector, world, Info.Image, info.RevokeSequence, info.Palette)));
-                        }
-                    }
-                }
-            });
+							Game.Sound.Play(SoundType.World, info.Sound, self.CenterPosition);
+							if (Info.Image != null && info.RevokeSequence != null)
+								collector.World.AddFrameEndTask(world => world.Add(new SpriteEffect(collector, world, Info.Image, info.RevokeSequence, info.Palette)));
+						}
+					}
+				}
+			});
 		}
 	}
 }
