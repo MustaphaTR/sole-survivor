@@ -20,7 +20,6 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 {
     public class IngameUnitStatsLogic : ChromeLogic
     {
-
         [ObjectCreator.UseCtor]
         public IngameUnitStatsLogic(Widget widget, World world)
         {
@@ -61,6 +60,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                             return health.Text + ": Infinite";
                         }
                     }
+
                     var healthTrait = unit.TraitOrDefault<Health>();
                     if (healthTrait != null)
                     {
@@ -97,6 +97,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                             return 100;
                         }
                     }
+
                     var healthTrait = unit.TraitOrDefault<Health>();
                     if (healthTrait != null)
                     {
@@ -134,6 +135,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                             return sight.Text + ": Infinite";
                         }
                     }
+
                     var revealsShroudTrait = unit.TraitsImplementing<RevealsShroud>().MaxBy(rs => rs.Info.Range);
                     if (revealsShroudTrait != null)
                     {
@@ -170,6 +172,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                             return 100;
                         }
                     }
+
                     var revealsShroudTrait = unit.TraitsImplementing<RevealsShroud>().MaxBy(rs => rs.Info.Range);
                     if (revealsShroudTrait != null)
                     {
@@ -254,6 +257,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                             return rof.Text + ": Infinite";
                         }
                     }
+
                     var armamanets = unit.TraitsImplementing<Armament>();
                     if (armamanets.Any())
                     {
@@ -290,6 +294,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                             return 100;
                         }
                     }
+
                     var armamanets = unit.TraitsImplementing<Armament>();
                     if (armamanets.Any())
                     {
@@ -327,6 +332,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                             return range.Text + ": Infinite";
                         }
                     }
+
                     var attackBase = unit.TraitsImplementing<AttackBase>();
                     if (attackBase.Any())
                     {
@@ -360,6 +366,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                             return 100;
                         }
                     }
+
                     var armamanets = unit.TraitsImplementing<Armament>();
                     if (armamanets.Any())
                     {
@@ -397,6 +404,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                             return speed.Text + ": Infinite";
                         }
                     }
+
                     var mobile = unit.Info.TraitInfoOrDefault<MobileInfo>();
                     if (mobile != null)
                     {
@@ -406,6 +414,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
                         return speed.Text + ": " + speedValue.ToString();
                     }
+
                     var aircraft = unit.Info.TraitInfoOrDefault<AircraftInfo>();
                     if (aircraft != null)
                     {
@@ -442,6 +451,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                             return 100;
                         }
                     }
+
                     var mobile = unit.Info.TraitInfoOrDefault<MobileInfo>();
                     if (mobile != null)
                     {
@@ -451,6 +461,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
                         return (int)(((float)(speedValue - mobile.Speed) / (float)mobile.Speed) * 100);
                     }
+
                     var aircraft = unit.Info.TraitInfoOrDefault<AircraftInfo>();
                     if (aircraft != null)
                     {

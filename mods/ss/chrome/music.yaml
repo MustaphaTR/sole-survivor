@@ -30,11 +30,14 @@ Container@MUSIC_PANEL:
 							X: 2
 							Y: 0
 							Visible: false
+							EnableChildMouseOver: True
 							Children:
-								Label@TITLE:
+								LabelWithTooltip@TITLE:
 									X: 10
 									Width: PARENT_RIGHT - 50
 									Height: 25
+									TooltipContainer: TOOLTIP_CONTAINER
+									TooltipTemplate: SIMPLE_TOOLTIP
 								Label@LENGTH:
 									Width: 50
 									X: PARENT_RIGHT - 60
@@ -128,12 +131,12 @@ Container@MUSIC_PANEL:
 									Height: 16
 									ImageCollection: music
 									ImageName: next
-						Slider@MUSIC_SLIDER:
+						ExponentialSlider@MUSIC_SLIDER:
 							X: 145
 							Y: 3
 							Width: 185
 							Height: 20
-							Ticks: 5
+							Ticks: 7
 				Label@TIME_LABEL:
 					X: (PARENT_RIGHT - WIDTH) / 2
 					Y: 315
@@ -192,3 +195,4 @@ Container@MUSIC_PANEL:
 			Width: 300
 			Height: 20
 			Font: Small
+		TooltipContainer@TOOLTIP_CONTAINER:

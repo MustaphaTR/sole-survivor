@@ -113,19 +113,19 @@ Container@MENU_BACKGROUND:
 							Width: 140
 							Height: 35
 							Text: Skirmish
-						Button@MISSIONS_BUTTON:
+						Button@LOAD_BUTTON:
 							X: 150
 							Y: 0
 							Width: 140
 							Height: 35
-							Text: Missions
-							Visible: false
-						Button@LOAD_BUTTON:
+							Text: Load
+							Visible: true
+						Button@MISSIONS_BUTTON:
 							X: 300
 							Y: 0
 							Width: 140
 							Height: 35
-							Text: Load
+							Text: Missions
 							Visible: false
 						Button@BACK_BUTTON:
 							Key: escape

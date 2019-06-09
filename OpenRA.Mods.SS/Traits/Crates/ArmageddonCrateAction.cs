@@ -18,32 +18,32 @@ namespace OpenRA.Mods.SS.Traits
 {
 	[Desc("Kills all player owned units on the map.")]
 	class ArmageddonCrateActionInfo : CrateActionInfo
-    {
-        [Desc("The deathtypes used to kill the units.")]
-        public readonly BitSet<DamageType> DeathTypes = default(BitSet<DamageType>);
+	{
+		[Desc("The deathtypes used to kill the units.")]
+		public readonly BitSet<DamageType> DeathTypes = default(BitSet<DamageType>);
 
-        public override object Create(ActorInitializer init) { return new ArmageddonCrateAction(init.Self, this); }
+		public override object Create(ActorInitializer init) { return new ArmageddonCrateAction(init.Self, this); }
 	}
 
 	class ArmageddonCrateAction : CrateAction
-    {
-        readonly Actor self;
-        readonly ArmageddonCrateActionInfo info;
+	{
+		readonly Actor self;
+		readonly ArmageddonCrateActionInfo info;
 
-        public ArmageddonCrateAction(Actor self, ArmageddonCrateActionInfo info)
+		public ArmageddonCrateAction(Actor self, ArmageddonCrateActionInfo info)
 			: base(self, info)
-        {
-            this.info = info;
-            this.self = self;
-        }
-
-        public override void Activate(Actor collector)
 		{
-            var actors = self.World.Actors.Where(a => a.Owner.Playable);
-            foreach (var actor in actors)
-                actor.Kill(self, info.DeathTypes);
+			this.info = info;
+			this.self = self;
+		}
 
-            base.Activate(collector);
-        }
+		public override void Activate(Actor collector)
+		{
+			var actors = self.World.Actors.Where(a => a.Owner.Playable);
+			foreach (var actor in actors)
+				actor.Kill(self, info.DeathTypes);
+
+			base.Activate(collector);
+		}
 	}
 }

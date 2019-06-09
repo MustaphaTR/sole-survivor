@@ -25,9 +25,9 @@ OnCircle = function(player)
 					if flag.Owner ~= player.TeamLeader then
 						player.Experience = player.Experience + 40
 						if flag.Owner.Team == 0 then
-							Media.DisplayMessage(player.Name .. " has captured flag of " .. flag.Owner.Name, "Battlefield Control")
+							Media.DisplayMessage(player.Name .. " has captured flag of " .. flag.Owner.Name, "Battlefield Control", HSLColor.Yellow)
 						else
-							Media.DisplayMessage(player.Name .. " has captured flag of Team " .. flag.Owner.Team, "Battlefield Control")
+							Media.DisplayMessage(player.Name .. " has captured flag of Team " .. flag.Owner.Team, "Battlefield Control", HSLColor.Yellow)
 						end
 						if CtFOption == "score" then
 							flag.Teleport(FlagCircles[flag.Owner.InternalName].Location)
