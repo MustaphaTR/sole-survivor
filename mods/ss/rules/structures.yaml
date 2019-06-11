@@ -403,6 +403,10 @@ WEAP:
 	ProductionBar:
 		ProductionType: Vehicle.GDI
 	ProvidesPrerequisite@buildingname:
+	-ActorPreviewPlaceBuildingPreview:
+	SequencePlaceBuildingPreview:
+		Sequence: place
+		SequencePalette: placebuilding
 
 HPAD:
 	Inherits: ^BaseBuilding
@@ -805,6 +809,10 @@ SAM:
 	WithMuzzleOverlay:
 	BodyOrientation:
 		UseClassicFacingFudge: True
+	-ActorPreviewPlaceBuildingPreview:
+	SequencePlaceBuildingPreview:
+		Sequence: place
+		SequencePalette: placebuilding
 
 OBLI:
 	Inherits: ^Defense
