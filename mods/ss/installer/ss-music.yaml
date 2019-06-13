@@ -1,0 +1,12 @@
+ss-music: Sole Survivor Disc
+	IDFiles:
+		SCORES.MIX: 81539a98dfd78d79464f81d54d0bc508f7baec3a
+	Install:
+		copy: .
+			^Content/ss/scores-ss.mix: SCORES.MIX
+ss-music-linux: Sole Survivor Disc
+	IDFiles:
+		scores.mix: 81539a98dfd78d79464f81d54d0bc508f7baec3a
+	Install:
+		copy: .
+			^Content/ss/scores-ss.mix: scores.mix

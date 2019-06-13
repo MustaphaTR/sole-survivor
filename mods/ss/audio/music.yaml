@@ -1,3 +1,17 @@
+# Sole Survivor tracks
+mudremx: Mud (Remix)
+drill: Drill
+creeping: Creeping Upon
+crshnvox: Crush (Remix)
+workremx: Workmen (Remix)
+depthchg: Depth Charge
+hellnvox: Hell March (Remix)
+ironfist: Iron Fist
+mercy98: No Mercy '98
+map1: Map Theme
+	Hidden: true
+
+# Tiberian Dawn tracks
 aoi: Act On Instinct
 airstrik: Air Strike
 ccthang: C&C Thang
@@ -20,8 +34,6 @@ justdoit2: Just Do It Up (SFX)
 	Filename: justdoit
 	Extension: var
 jdi_v2: Just Do It Up 2 (Take 'Em out)
-map1: Map Theme
-	Hidden: true
 march: March To Doom
 nod_map1: Nod Map Theme
 	Hidden: true

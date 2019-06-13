@@ -8,6 +8,7 @@ PackageFormats: Mix
 
 Packages:
 	~^Content/cnc
+	~^Content/ss
 	.
 	$ss: ss
 	./mods/common: common
@@ -21,6 +22,7 @@ Packages:
 	~movies.mix
 	~scores.mix
 	~scores2.mix
+	~scores-ss.mix
 	~scores-covertops.mix
 	~transit.mix
 	ss|bits/snow.mix
@@ -245,7 +247,7 @@ ColorValidator:
 	TeamColorPresets: f70606, ff7a22, f8d3b3, f8e947, b6f706, f335a0, a64d6c, ce08f9, f5b2db, 12b572, 380135, 1d06f7, 328dff, 78dbf8, cef6b1, 000000
 
 ModContent:
-	InstallPromptMessage: Tiberian Dawn requires artwork and audio from the original game.\n\nQuick Install will automatically download this content (without music\nor videos) from a mirror of the 2007 C&C Gold freeware release.\n\nAdvanced Install includes options for downloading the music and for\ncopying the videos and other content from an original game disc.
+	InstallPromptMessage: Sole Survivor requires artwork and audio from the original game.\n\nQuick Install will automatically download this content (without music\nor videos) from a mirror of the 2007 C&C Gold freeware release.\n\nAdvanced Install includes options for downloading the music and for\ncopying the videos and other content from an original game disc.
 	QuickDownload: basefiles
 	HeaderMessage: Game content may be extracted from the original game discs or an\nexisting digital install. OpenRA can also download the base game\nfiles from an online mirror of the 2007 freeware release of C&C.
 	Packages:
@@ -267,6 +269,9 @@ ModContent:
 		music-covertops: Covert Operations Music
 			TestFiles: ^Content/cnc/scores-covertops.mix
 			Sources: covertops, covertops-linux, tfd, origin
+		music-ss: Sole Survivor Music
+			TestFiles: ^Content/ss/scores-ss.mix
+			Sources: ss-music, ss-music-linux
 	Downloads:
 		ss|installer/downloads.yaml
 	Sources:
@@ -275,3 +280,4 @@ ModContent:
 		ss|installer/gdi95.yaml
 		ss|installer/nod95.yaml
 		ss|installer/origin.yaml
+		ss|installer/ss-music.yaml
