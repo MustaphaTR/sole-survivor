@@ -92,7 +92,7 @@ SetupObjectives = function()
 					player.AddPrimaryObjective("Why are we still here? Just to suffer?")
 
 					if not warningShown then
-						Media.DisplayMessage("You are playing without any victory conditions. The game cannot end!", "Battlefield Control", HSLColor.Yellow)
+						Media.DisplaySystemMessage("You are playing without any victory conditions. The game cannot end!", "Battlefield Control")
 						warningShown = true
 					end
 				end
@@ -114,7 +114,7 @@ SetupObjectives = function()
 		end
 
 		Trigger.OnPlayerLost(player, function()
-			Media.DisplayMessage(player.Name .. " has been defeated!", "Battlefield Control", HSLColor.Yellow)
+			Media.DisplaySystemMessage(player.Name .. " has been defeated!", "Battlefield Control")
 			Trigger.AfterDelay(DateTime.Seconds(1), function()
 				Media.PlaySpeechNotification(player, "Lose")
 			end)
@@ -125,7 +125,7 @@ SetupObjectives = function()
 			end)
 		end)
 		Trigger.OnPlayerWon(player, function()
-			Media.DisplayMessage(player.Name .. " is victorious!", "Battlefield Control", HSLColor.Yellow)
+			Media.DisplaySystemMessage(player.Name .. " is victorious!", "Battlefield Control")
 			Trigger.AfterDelay(DateTime.Seconds(1), function()
 				Media.PlaySpeechNotification(player, "Win")
 			end)
