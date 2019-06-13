@@ -34,18 +34,21 @@ BuildEngiStuff = function(engi)
 		engiLoc + CVec.New( 1, 1)
 	}
 
-	local buildableLocations = Utils.Where(locations, function(l) return Map.TerrainType(l) == "Clear" or Map.TerrainType(l) == "Road" end)
+	local buildableLocations = Utils.Where(locations, function(l) return (Map.TerrainType(l) == "Clear" or Map.TerrainType(l) == "Road") and BuildingInfluence.BuildingAtCell(l) == nil and #Map.ActorsInBox(Map.CenterOfCell(l) + WVec.New(-512, -512, 0), Map.CenterOfCell(l) + WVec.New(512, 512, 0)) == 0 end)
 
 	if #buildableLocations > 0 then
 		local towerLocation = Utils.Random(buildableLocations)
-		local turretLocation = Utils.Random(Utils.Where(buildableLocations, function(l) return l ~= towerLocation end))
 
 		if #engi.Owner.GetActorsByType("gtwr") == 0 then
 			Actor.Create("gtwr", true, { Owner = engi.Owner, Location = towerLocation })
 		end
 
-		if #engi.Owner.GetActorsByType("gun") == 0 then
-			Actor.Create("gun",  true, { Owner = engi.Owner, Location = turretLocation })
+		if #buildableLocations > 1 then
+			local turretLocation = Utils.Random(Utils.Where(buildableLocations, function(l) return l ~= towerLocation end))
+
+			if #engi.Owner.GetActorsByType("gun") == 0 then
+				Actor.Create("gun",  true, { Owner = engi.Owner, Location = turretLocation })
+			end
 		end
 	end
 end
