@@ -759,7 +759,7 @@ GUN.husk:
 	WithBuildingBib:
 		HasMinibib: Yes
 	Tooltip:
-		Name: Gun Turret (Destroyed)
+		Name: Turret (Destroyed)
 		GenericStancePrefix: true
 		ShowOwnerRow: true
 	ProvidesPrerequisite@buildingname:
