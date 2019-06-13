@@ -863,7 +863,7 @@ OBLI:
 
 GTWR:
 	Inherits: ^Defense
-	Inherits@AUTOTARGET: ^AutoTargetGround
+	Inherits@AUTOTARGET: ^AutoTargetAll
 	Inherits@CRATE: ^AcceptsCratePowerups
 	Inherits@ENGINEER: ^EngineerBuilding
 	Inherits@EXTERNAL-ARMOR: ^RequiresExternalArmorCratePowerup
