@@ -64,7 +64,7 @@ namespace OpenRA.Mods.SS.Traits
 		public readonly int BaseSize = 0;
 
 		[Desc("Possible base sizes to select.")]
-		public readonly int[] BaseSizes = { 0, 1, 2, 4, 6, 8 };
+		public readonly int[] BaseSizes = { 0, 1, 2, 4, 5, 6, 8, 10, 12, 16 };
 
 		[Desc("Base buildings to spawn.")]
 		public readonly string[] BaseBuildings = { "atwr", "obli" };
@@ -79,7 +79,7 @@ namespace OpenRA.Mods.SS.Traits
 		public readonly int BaseSizeDropdownDisplayOrder = 0;
 
 		[Desc("Inner radius for spawning base buildings")]
-		public readonly int InnerBaseRadius = 2;
+		public readonly int InnerBaseRadius = 1;
 
 		[Desc("Outer radius for spawning base buildings")]
 		public readonly int OuterBaseRadius = 3;
