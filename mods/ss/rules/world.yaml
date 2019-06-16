@@ -359,11 +359,12 @@ World:
 	CreateMPPlayers:
 	SpawnSSUnit:
 		TeamSpawnsCheckboxDisplayOrder: 3
+		BaseSizeDropdownDisplayOrder: 6
 	MapOptions:
 		ShortGameCheckboxEnabled: false
 		ShortGameCheckboxVisible: false
 		TechLevelDropdownVisible: false
-		GameSpeedDropdownDisplayOrder: 6
+		GameSpeedDropdownDisplayOrder: 7
 	SSCrateSpawner:
 		CrateActors: crate, upgradecrate, healcrate, experiencecrate, wackycrate, armageddoncrate
 		CrateActorShares: 840, 50, 90, 10, 10, 0

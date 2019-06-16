@@ -225,8 +225,8 @@ TowerMissile:
 		Spread: 683
 		ValidTargets: Ground
 		Versus:
-			None: 48
-			Wood: 24
+			None: 60
+			Wood: 25
 			Light: 100
 			Heavy: 100
 		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath

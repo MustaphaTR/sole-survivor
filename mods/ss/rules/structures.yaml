@@ -816,8 +816,8 @@ SAM:
 
 OBLI:
 	Inherits: ^Defense
-	Inherits@IDISABLE: ^DisabledOverlay
 	Inherits@AUTOTARGET: ^AutoTargetGround
+	Inherits@EXPERIENCE: ^GivesExperience
 	Valued:
 		Cost: 1500
 	Tooltip:
@@ -849,7 +849,6 @@ OBLI:
 		LocalOffset: 0,-85,1280
 	AttackCharges:
 		RequiresCondition: !build-incomplete
-		PauseOnCondition: lowpower
 		ChargeLevel: 50
 		ChargingCondition: charging
 	AmbientSound:
@@ -857,9 +856,6 @@ OBLI:
 		SoundFiles: obelpowr.aud
 		Interval: 30, 40
 	-SpawnActorsOnSell:
-	DetectCloaked:
-		Range: 5c0
-		RequiresCondition: !lowpower
 
 GTWR:
 	Inherits: ^Defense
@@ -927,8 +923,8 @@ GTWR.husk:
 
 ATWR:
 	Inherits: ^Defense
-	Inherits@IDISABLE: ^DisabledOverlay
 	Inherits@AUTOTARGET: ^AutoTargetAll
+	Inherits@EXPERIENCE: ^GivesExperience
 	Valued:
 		Cost: 1000
 	Tooltip:
@@ -964,12 +960,8 @@ ATWR:
 		LocalOffset: 256,128,0, 256,-128,0
 		LocalYaw: -100,100
 	AttackTurreted:
-		PauseOnCondition: lowpower
 	BodyOrientation:
 		QuantizedFacings: 8
-	DetectCloaked:
-		Range: 5c0
-		RequiresCondition: !lowpower
 
 SBAG:
 	Inherits: ^Wall

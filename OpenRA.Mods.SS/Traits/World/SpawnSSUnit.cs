@@ -52,6 +52,38 @@ namespace OpenRA.Mods.SS.Traits
 		[Desc("Initial facing of the units.")]
 		public readonly int UnitFacing = 0;
 
+		[Translate]
+		[Desc("Descriptive label for the base size option in the lobby.")]
+		public readonly string BaseSizeDropdownLabel = "Base Size";
+
+		[Translate]
+		[Desc("Tooltip description for the base size option in the lobby.")]
+		public readonly string BaseSizeDropdownDescription = "Amount of towers to spawn around your spawnpoint";
+
+		[Desc("Default base size.")]
+		public readonly int BaseSize = 0;
+
+		[Desc("Possible base sizes to select.")]
+		public readonly int[] BaseSizes = { 0, 1, 2, 4, 6, 8 };
+
+		[Desc("Base buildings to spawn.")]
+		public readonly string[] BaseBuildings = { "atwr", "obli" };
+
+		[Desc("Prevent the base size from being changed in the lobby.")]
+		public readonly bool BaseSizeDropdownLocked = false;
+
+		[Desc("Display the base size option in the lobby.")]
+		public readonly bool BaseSizeDropdownVisible = true;
+
+		[Desc("Display order for the base size option in the lobby.")]
+		public readonly int BaseSizeDropdownDisplayOrder = 0;
+
+		[Desc("Inner radius for spawning base buildings")]
+		public readonly int InnerBaseRadius = 2;
+
+		[Desc("Outer radius for spawning base buildings")]
+		public readonly int OuterBaseRadius = 3;
+
 		IEnumerable<LobbyOption> ILobbyOptions.LobbyOptions(Ruleset rules)
 		{
 			yield return new LobbyBooleanOption(
@@ -62,6 +94,11 @@ namespace OpenRA.Mods.SS.Traits
 				TeamSpawnsCheckboxDisplayOrder,
 				TeamSpawnsCheckboxEnabled,
 				TeamSpawnsCheckboxLocked);
+
+			var baseSizes = BaseSizes.ToDictionary(bs => bs.ToString(), bs => bs.ToString());
+
+			yield return new LobbyOption("basesize", BaseSizeDropdownLabel, BaseSizeDropdownDescription, BaseSizeDropdownVisible, BaseSizeDropdownDisplayOrder,
+				new ReadOnlyDictionary<string, string>(baseSizes), BaseSize.ToString(), BaseSizeDropdownLocked);
 		}
 
 		public object Create(ActorInitializer init) { return new SpawnSSUnit(this); }
@@ -73,6 +110,7 @@ namespace OpenRA.Mods.SS.Traits
 
 		WorldRenderer wr;
 		bool teamSpawns;
+		int baseSize;
 
 		public Dictionary<Player, CPos> PlayerSpawnPoints = new Dictionary<Player, CPos>();
 		public Dictionary<Player, Player> TeamLeaders = new Dictionary<Player, Player>();
@@ -89,6 +127,9 @@ namespace OpenRA.Mods.SS.Traits
 
 			teamSpawns = world.LobbyInfo.GlobalSettings
 				.OptionOrDefault("teamspawns", info.TeamSpawnsCheckboxEnabled);
+
+			int.TryParse(world.LobbyInfo.GlobalSettings
+				.OptionOrDefault("basesize", info.BaseSize.ToString()), out baseSize);
 
 			spawnPointOccupation = world.Actors.Where(a => a.Info.Name == "mpspawn")
 				.Select(a => a.Location)
@@ -108,6 +149,7 @@ namespace OpenRA.Mods.SS.Traits
 					var leader = FindPlayerInSlot(world, l.Slot);
 					TeamLeaders[leader] = leader;
 					SpawnUnitForPlayer(world, leader, sp);
+					SpawnBuildingsForPlayer(world, leader, sp);
 
 					var teamMateSpawnCells = world.Map.FindTilesInAnnulus(sp, info.InnerTeammateRadius + 1, info.OuterTeammateRadius);
 					foreach (var p in players.Where(p => p != l && p.Team == l.Team))
@@ -125,8 +167,10 @@ namespace OpenRA.Mods.SS.Traits
 				foreach (var p in players.Where(p => p.Team == 0))
 				{
 					var player = FindPlayerInSlot(world, p.Slot);
+					var cell = GetSpawnPointForPlayer(world, p);
 					TeamLeaders[player] = player;
-					SpawnUnitForPlayer(world, player, GetSpawnPointForPlayer(world, p));
+					SpawnUnitForPlayer(world, player, cell);
+					SpawnBuildingsForPlayer(world, player, cell);
 				}
 			}
 			else
@@ -134,8 +178,10 @@ namespace OpenRA.Mods.SS.Traits
 				foreach (var p in players)
 				{
 					var player = FindPlayerInSlot(world, p.Slot);
+					var cell = GetSpawnPointForPlayer(world, p);
 					TeamLeaders[player] = player;
-					SpawnUnitForPlayer(world, player, GetSpawnPointForPlayer(world, p));
+					SpawnUnitForPlayer(world, player, cell);
+					SpawnBuildingsForPlayer(world, player, cell);
 				}
 			}
 		}
@@ -177,6 +223,45 @@ namespace OpenRA.Mods.SS.Traits
 
 			if (w.LocalPlayer == p)
 				wr.Viewport.Center(w.Map.CenterOfCell(sp));
+		}
+
+		void SpawnBuildingsForPlayer(World w, Player p, CPos sp)
+		{
+			var buildings = info.BaseBuildings;
+			var buildingSpawnCells = w.Map.FindTilesInAnnulus(sp, info.InnerBaseRadius + 1, info.OuterBaseRadius).ToArray();
+			for (int i = 0; i < baseSize - (baseSize % buildings.Count()); i++)
+			{
+				var actor = buildings[i % buildings.Count()];
+				SpawnBuildingForPlayer(w, p, buildingSpawnCells, actor);
+			}
+
+			for (int i = 0; i < baseSize % buildings.Count(); i++)
+			{
+				var actor = buildings.Random(w.SharedRandom);
+				SpawnBuildingForPlayer(w, p, buildingSpawnCells, actor);
+			}
+		}
+
+		void SpawnBuildingForPlayer(World w, Player p, CPos[] cells, string actor)
+		{
+			var actorRules = w.Map.Rules.Actors[actor.ToLowerInvariant()];
+			var building = actorRules.TraitInfo<BuildingInfo>();
+			var validCells = cells.Where(c => w.CanPlaceBuilding(c, actorRules, building, null));
+			if (!validCells.Any())
+			{
+				Log.Write("debug", "No cells available to spawn base building {0} for player {1}".F(actor, p));
+				return;
+			}
+
+			var cell = validCells.Random(w.SharedRandom);
+
+			w.CreateActor(actor, new TypeDictionary
+			{
+				new LocationInit(cell),
+				new OwnerInit(p),
+				new SkipMakeAnimsInit(),
+				new FacingInit(info.UnitFacing < 0 ? w.SharedRandom.Next(256) : info.UnitFacing),
+			});
 		}
 	}
 }
