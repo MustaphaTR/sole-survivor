@@ -536,6 +536,7 @@ flags: flags.png
 	Vehicle: 0,32,32,16
 	Aircraft: 0,32,32,16
 	Dinosour: 0,32,32,16
+	Original: 0,32,32,16
 
 strategic: strategic.png
 	unowned: 0,0,32,32

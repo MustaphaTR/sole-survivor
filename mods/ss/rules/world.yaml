@@ -135,25 +135,31 @@
 		Side: Random
 		InternalName: Infantry
 		RandomFactionMembers: e1, e2, e3, e4, e5, e6, rmbo
-		Description: Random Infantry\nA random infantry will be chosen when the game starts.
+		Description: Random Infantry\nA random infantry will be chosen when the game starts.\nThis includes following:\n - Minigunner\n - Grenadier\n - Rocket Soldier\n - Flamethrower\n - Chemical Warrior\n - Engineer\n - Commando
 	Faction@RandomVehicle:
 		Name: Vehicle
 		Side: Random
 		InternalName: Vehicle
 		RandomFactionMembers: harv, jeep, bggy, apc, bike, ltnk, mtnk, ftnk, mhq, arty, msam, mlrs, htnk, stnk
-		Description: Random Vehicle\nA random vehicle will be chosen when the game starts.
+		Description: Random Vehicle\nA random vehicle will be chosen when the game starts.\nThis includes following:\n - Harvester\n - Hum-vee\n - Nod Buggy\n - APC\n - Recon Bike\n - Light Tank\n - Medium Tank\n - Flame Tank\n - Mobile HQ\n - Artillery\n - Rocket Launcher\n - Mobile SSM\n - Mammoth Tank\n - Stealth Tank
 	Faction@RandomAircraft:
 		Name: Aircraft
 		Side: Random
 		InternalName: Aircraft
 		RandomFactionMembers: tran, orca, heli
-		Description: Random Aircraft\nA random aircraft will be chosen when the game starts.
+		Description: Random Aircraft\nA random aircraft will be chosen when the game starts.\nThis includes following:\n - Chinook\n - Orca\n - Apache
 	Faction@RandomDino:
 		Name: Dinosour
 		Side: Random
 		InternalName: Dinosour
 		RandomFactionMembers: steg, trex, tric, rapt
-		Description: Random Dinosour\nA random dinosour will be chosen when the game starts.
+		Description: Random Dinosour\nA random dinosour will be chosen when the game starts.\nThis includes following:\n - Stegosaurus\n - Tyrannosaurus Rex\n - Triceratops\n - Velociraptor
+	Faction@RandomOriginal:
+		Name: Original
+		Side: Random
+		InternalName: Original
+		RandomFactionMembers: e1, e2, e3, e4, e5, rmbo, jeep, bggy, apc, bike, ltnk, mtnk, ftnk, arty, msam, mlrs, htnk, stnk, steg, trex, tric, rapt, pvice
+		Description: Random Original Unit\nA random unit that existed in the original game will be chosen when the game starts.\nThis includes following:\n - Minigunner\n - Grenadier\n - Rocket Soldier\n - Flamethrower\n - Chemical Warrior\n - Commando\n - Hum-vee\n - Nod Buggy\n - APC\n - Recon Bike\n - Light Tank\n - Medium Tank\n - Flame Tank\n - Artillery\n - Rocket Launcher\n - Mobile SSM\n - Mammoth Tank\n - Stealth Tank\n - Stegosaurus\n - Tyrannosaurus Rex\n - Triceratops\n - Velociraptor\n - Viceroid
 	Faction@e1:
 		Name: Minigunner
 		Side: Infantry
