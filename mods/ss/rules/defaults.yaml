@@ -59,7 +59,7 @@
 		Prerequisites: global-veterancy
 	GainsExperienceMultiplier:
 		Modifier: 0
-		RequiresCondition: veterancy
+		RequiresCondition: !veterancy
 	GrantCondition@RANK-ELITE:
 		RequiresCondition: rank-veteran >= 4
 		Condition: rank-elite

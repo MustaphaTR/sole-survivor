@@ -96,10 +96,6 @@ CRATE:
 		Condition: crate-sight
 		Sound: radarup.aud
 		Notification: RangeUpgraded
-	LevelUpCrateAction:
-		Levels: 1
-		SelectionShares: 5
-		Prerequisites: global-veterancy
 	PlayerExperienceCrateAction:
 		Experience: 5
 		SelectionShares: 2
