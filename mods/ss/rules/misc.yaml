@@ -61,7 +61,7 @@ CRATE:
 		Notification: StealthDeactivated
 		RevokeNotification: StealthMode
 	SSMultiplierCrateAction@armor:
-		SelectionShares: 20
+		SelectionShares: 50
 		Sequence: armorup
 		Type: Armor
 		Sound: armorup.aud
@@ -69,25 +69,25 @@ CRATE:
 		Amount: 5
 		TeamBonus: 1
 	SSMultiplierCrateAction@firepower:
-		SelectionShares: 20
+		SelectionShares: 50
 		Sequence: firepowerup
 		Type: Damage
 		Sound: firepowerup.aud
 		Notification: WeaponUpgraded
 	SSMultiplierCrateAction@speed:
-		SelectionShares: 20
+		SelectionShares: 50
 		Sequence: speedup
 		Type: Speed
 		Sound: speedup.aud
 		Notification: SpeedUpgraded
 	SSMultiplierCrateAction@range:
-		SelectionShares: 20
+		SelectionShares: 50
 		Sequence: airstrike
 		Type: Range
 		Sound: rangeup.aud
 		Notification: RangeUpgraded
 	SSMultiplierCrateAction@reload:
-		SelectionShares: 20
+		SelectionShares: 50
 		Sequence: rateoffireup
 		Type: Reload
 		Sound: rateoffireup.aud
@@ -95,14 +95,14 @@ CRATE:
 		Amount: 5
 		TeamBonus: 1
 	SSMultiplierCrateAction@sight:
-		SelectionShares: 20
+		SelectionShares: 50
 		Sequence: reveal-map
 		Type: Sight
 		Sound: radarup.aud
 		Notification: RangeUpgraded
 	PlayerExperienceCrateAction:
 		Experience: 5
-		SelectionShares: 2
+		SelectionShares: 1
 		Sequence: experience
 	TeleportCrateAction:
 		MinDistance: 5
@@ -121,13 +121,13 @@ UPGRADECRATE:
 	SSCrate:
 		Lifetime: 250
 	SSMultiplierCrateAction@armor:
-		SelectionShares: 20
+		SelectionShares: 50
 		Sequence: armorup
 		Type: Armor
 		Sound: armorup.aud
 		Notification: MegaArmor
 	SSMultiplierCrateAction@damage:
-		SelectionShares: 20
+		SelectionShares: 50
 		Sequence: firepowerup
 		Type: Damage
 		Sound: firepowerup.aud
@@ -135,7 +135,7 @@ UPGRADECRATE:
 		Amount: 20
 		TeamBonus: 4
 	SSMultiplierCrateAction@speed:
-		SelectionShares: 20
+		SelectionShares: 50
 		Sequence: speedup
 		Type: Speed
 		Sound: speedup.aud
@@ -143,7 +143,7 @@ UPGRADECRATE:
 		Amount: 20
 		TeamBonus: 4
 	SSMultiplierCrateAction@range:
-		SelectionShares: 20
+		SelectionShares: 50
 		Sequence: airstrike
 		Type: Range
 		Sound: rangeup.aud
@@ -151,13 +151,13 @@ UPGRADECRATE:
 		Amount: 20
 		TeamBonus: 4
 	SSMultiplierCrateAction@reload:
-		SelectionShares: 20
+		SelectionShares: 50
 		Sequence: rateoffireup
 		Type: Reload
 		Sound: rateoffireup.aud
 		Notification: MegaReload
 	SSMultiplierCrateAction@sight:
-		SelectionShares: 20
+		SelectionShares: 50
 		Sequence: reveal-map
 		Type: Sight
 		Sound: radarup.aud
