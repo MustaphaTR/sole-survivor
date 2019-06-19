@@ -8,6 +8,7 @@
 ]]
 
 Units = { }
+InitialDelays = { }
 
 IdleHunt = function(actor)
 	if actor.HasProperty("Hunt") and not actor.IsDead then
@@ -71,50 +72,66 @@ SetupPlayerUnits = function(player)
 	Units[player.InternalName] = Utils.Where(player.GetActors(), function(a) return a.Type ~= "player" end)[1]
 end
 
-AITick = function()
-	Trigger.AfterDelay(5, function()
-		for _,bot in pairs(bots) do
-			local unit = Units[bot.InternalName]
+SetupBotInitialDelays = function()
+	for i = 1, #bots, 1 do
+		InitialDelays[bots[i].InternalName] = i % 5
+	end
+end
 
-			if unit ~= nil and not unit.IsDead then
-				if unit.IsIdle then
-					local crates = GetNearbyCrates(unit, 8)
-					for _,crate in pairs(crates) do
-						unit.Move(crate.Location)
-					end
+TickAI = function(bot)
+	local unit = Units[bot.InternalName]
 
-					if unit.Flag ~= nil then
-						unit.Move(FlagCircles[bot.TeamLeader.InternalName].Location)
-					elseif unit.Type == "e6" then
-						Trigger.AfterDelay(5, function()
-							if unit.IsIdle then
-								BuildEngiStuff(unit)
-							end
-						end)
-					elseif unit.Type == "tran" then
-						-- Do nothing!
-					else
-						IdleHunt(unit)
-					end
-				end
-				if unit.Health <= unit.MaxHealth * 25 / 100 then
-					local healcrate = GetNearbyHealCrate(unit, 10)
+	if unit ~= nil and not unit.IsDead then
+		if unit.IsIdle then
+			local crates = GetNearbyCrates(unit, 8)
+			for _,crate in pairs(crates) do
+				unit.Move(crate.Location)
+			end
 
-					if healcrate ~= nil then
-						unit.Stop()
-						unit.Move(healcrate.Location)
+			if unit.Flag ~= nil then
+				unit.Move(FlagCircles[bot.TeamLeader.InternalName].Location)
+			elseif unit.Type == "e6" then
+				Trigger.AfterDelay(5, function()
+					if unit.IsIdle then
+						BuildEngiStuff(unit)
 					end
-				end
+				end)
+			elseif unit.Type == "tran" then
+				-- Do nothing!
+			else
+				IdleHunt(unit)
 			end
 		end
+		if unit.Health <= unit.MaxHealth * 25 / 100 then
+		local healcrate = GetNearbyHealCrate(unit, 10)
+
+			if healcrate ~= nil then
+				unit.Stop()
+				unit.Move(healcrate.Location)
+			end
+		end
+	end
+	
+	Trigger.AfterDelay(5, function()
+		TickAI(bot)
 	end)
+end
+
+AITick = function()
+
 end
 
 AIWorldLoaded = function()
 	players = Player.GetPlayers(function(p) return not p.IsNonCombatant end)
 	bots = Utils.Where(players, function(p) return p.IsBot end)
 
+	SetupBotInitialDelays()
 	for _,player in pairs(players) do
 		SetupPlayerUnits(player)
+	end
+	for _,bot in pairs(bots) do
+		Trigger.AfterDelay(InitialDelays[bot.InternalName], function()
+			TickAI(bot)
+		end)
 	end
 end
