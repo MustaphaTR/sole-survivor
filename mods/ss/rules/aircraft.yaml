@@ -315,9 +315,7 @@ C17:
 A10:
 	Inherits: ^Plane
 	Inherits@CRATE: ^AcceptsCratePowerups
-	Inherits@EXTERNAL-FIREPOWER: ^RequiresExternalFirepowerCratePowerup
-	Inherits@EXTERNAL-ROF: ^RequiresExternalROFCratePowerup
-	Inherits@EXTERNAL-SPEED: ^RequiresExternalSpeedCratePowerup
+	SSExternalMultiplierManager:
 	Interactable:
 	Tooltip:
 		Name: A10 Bomber
@@ -350,7 +348,7 @@ A10:
 U2:
 	Inherits: ^Plane
 	Inherits@CRATE: ^AcceptsCratePowerups
-	Inherits@EXTERNAL-SPEED: ^RequiresExternalSpeedCratePowerup
+	SSExternalMultiplierManager:
 	Tooltip:
 		Name: Spy Plane
 	Aircraft:

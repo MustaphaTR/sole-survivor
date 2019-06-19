@@ -13,7 +13,6 @@ Tick = function()
 	CloakInvulnTick()
 	RespawnTick()
 	CtFTick()
-	WackyTick()
 end
 
 WorldLoaded = function()
@@ -22,5 +21,4 @@ WorldLoaded = function()
 	CloakInvulnWorldLoaded()
 	RespawnWorldLoaded()
 	CtFWorldLoaded()
-	WackyWorldLoaded()
 end

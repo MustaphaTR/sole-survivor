@@ -14,6 +14,7 @@ using System.Linq;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.SS.Traits;
 using OpenRA.Primitives;
+using OpenRA.Traits;
 using OpenRA.Widgets;
 
 namespace OpenRA.Mods.Common.Widgets.Logic
@@ -50,7 +51,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                         if (usv.Health > 0)
                         {
                             var healthValue = usv.Health;
-                            foreach (var dm in unit.TraitsImplementing<DamageMultiplier>().Where(dm => !dm.IsTraitDisabled && dm.Info.Modifier != 0).Select(dm => dm.Info.Modifier))
+                            foreach (var dm in unit.TraitsImplementing<IDamageModifier>().Select(dm => dm.GetDamageModifier(unit, new Damage(usv.Health))).Where(d => d != 0))
                                 healthValue = healthValue / dm * 100;
 
                             return health.Text + ": " + healthValue.ToString();
@@ -65,7 +66,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                     if (healthTrait != null)
                     {
                         var healthValue = healthTrait.MaxHP;
-                        foreach (var dm in unit.TraitsImplementing<DamageMultiplier>().Where(dm => !dm.IsTraitDisabled && dm.Info.Modifier != 0).Select(dm => dm.Info.Modifier))
+                        foreach (var dm in unit.TraitsImplementing<IDamageModifier>().Select(dm => dm.GetDamageModifier(unit, new Damage(healthTrait.MaxHP))).Where(d => d != 0))
                             healthValue = healthValue / dm * 100;
 
                         return health.Text + ": " + healthValue.ToString();
@@ -87,7 +88,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                         if (usv.Health > 0)
                         {
                             var healthValue = usv.Health;
-                            foreach (var dm in unit.TraitsImplementing<DamageMultiplier>().Where(dm => !dm.IsTraitDisabled && dm.Info.Modifier != 0).Select(dm => dm.Info.Modifier))
+                            foreach (var dm in unit.TraitsImplementing<IDamageModifier>().Select(dm => dm.GetDamageModifier(unit, new Damage(usv.Health))).Where(d => d != 0))
                                 healthValue = healthValue / dm * 100;
 
                             return (int)(((float)(healthValue - usv.Health) / (float)usv.Health) * 100);
@@ -102,7 +103,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
                     if (healthTrait != null)
                     {
                         var healthValue = healthTrait.MaxHP;
-                        foreach (var dm in unit.TraitsImplementing<DamageMultiplier>().Where(dm => !dm.IsTraitDisabled && dm.Info.Modifier != 0).Select(dm => dm.Info.Modifier))
+                        foreach (var dm in unit.TraitsImplementing<IDamageModifier>().Select(dm => dm.GetDamageModifier(unit, new Damage(healthTrait.MaxHP))).Where(d => d != 0))
                             healthValue = healthValue / dm * 100;
 
                         return (int)(((float)(healthValue - healthTrait.MaxHP) / (float)healthTrait.MaxHP) * 100);

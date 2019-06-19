@@ -645,10 +645,6 @@ STNK:
 
 MHQ:
 	Inherits: ^Vehicle
-	Inherits@EXTERNAL-FIREPOWER: ^ProvidesExternalFirepowerCratePowerup
-	Inherits@EXTERNAL-SPEED: ^ProvidesExternalSpeedCratePowerup
-	Inherits@EXTERNAL-ROF: ^ProvidesExternalROFCratePowerup
-	Inherits@EXTERNAL-SIGHT: ^ProvidesExternalSightCratePowerup
 	Valued:
 		Cost: 1000
 	Tooltip:

@@ -378,7 +378,7 @@ World:
 		WaterChance: 0
 		InitialSpawnDelay: 0
 		DropdownDisplayOrder: 0
-		WackyModeCheckboxDisplayOrder: 6
+		WackyModeCheckboxDisplayOrder: 7
 	ScriptLobbyDropdown@time-limit:
 		ID: time-limit
 		Label: Time Limit
@@ -446,7 +446,7 @@ World:
 		Default: disabled
 		DisplayOrder: 5
 	LuaScript:
-		Scripts: cloak-invuln.lua, ai-scripts.lua, time-limit.lua, respawn.lua, capture-the-flag.lua, wacky.lua, world-tick.lua
+		Scripts: cloak-invuln.lua, ai-scripts.lua, time-limit.lua, respawn.lua, capture-the-flag.lua, world-tick.lua
 	PathFinder:
 	ValidateOrder:
 	DebugPauseState:

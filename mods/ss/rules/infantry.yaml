@@ -167,11 +167,6 @@ E5:
 
 E6:
 	Inherits: ^Soldier
-	Inherits@EXTERNAL-ARMOR: ^ProvidesExternalArmorCratePowerup
-	Inherits@EXTERNAL-FIREPOWER: ^ProvidesExternalFirepowerCratePowerup
-	Inherits@EXTERNAL-RANGE: ^ProvidesExternalRangeCratePowerup
-	Inherits@EXTERNAL-ROF: ^ProvidesExternalROFCratePowerup
-	Inherits@EXTERNAL-SIGHT: ^ProvidesExternalSightCratePowerup
 	Valued:
 		Cost: 500
 	Tooltip:
@@ -204,7 +199,7 @@ E6:
 	ProximityExternalCondition@REMOVE:
 		Range: 1c512
 		ValidStances: Ally
-		Condition: removeablezzz
+		Condition: removeable
 	UnitStatValues:
 		Damage: 3000
 		Range: 6c0

@@ -3,7 +3,7 @@ CRATE:
 	WithCrateBody:
 		XmasImages: xcrateb
 	SSCrate:
-		Lifetime: 240
+		Lifetime: 250
 	RevealMapCrateAction:
 		SelectionShares: 2
 		Sequence: reveal-map
@@ -60,40 +60,44 @@ CRATE:
 		Condition: decloak-crate-collected
 		Notification: StealthDeactivated
 		RevokeNotification: StealthMode
-	GrantExternalConditionCrateAction@armor:
+	SSMultiplierCrateAction@armor:
 		SelectionShares: 20
 		Sequence: armorup
-		Condition: crate-armor
+		Type: Armor
 		Sound: armorup.aud
 		Notification: ArmorUpgraded
-	GrantExternalConditionCrateAction@firepower:
+		Amount: 5
+		TeamBonus: 1
+	SSMultiplierCrateAction@firepower:
 		SelectionShares: 20
 		Sequence: firepowerup
-		Condition: crate-firepower
+		Type: Damage
 		Sound: firepowerup.aud
 		Notification: WeaponUpgraded
-	GrantExternalConditionCrateAction@speed:
+	SSMultiplierCrateAction@speed:
 		SelectionShares: 20
 		Sequence: speedup
-		Condition: crate-speed
+		Type: Speed
 		Sound: speedup.aud
 		Notification: SpeedUpgraded
-	GrantExternalConditionCrateAction@range:
+	SSMultiplierCrateAction@range:
 		SelectionShares: 20
 		Sequence: airstrike
-		Condition: crate-range
+		Type: Range
 		Sound: rangeup.aud
 		Notification: RangeUpgraded
-	GrantExternalConditionCrateAction@rof:
+	SSMultiplierCrateAction@reload:
 		SelectionShares: 20
 		Sequence: rateoffireup
-		Condition: crate-rof
+		Type: Reload
 		Sound: rateoffireup.aud
 		Notification: RapidReload
-	GrantExternalConditionWhenShroudOrFogEnabledCrateAction@sight:
+		Amount: 5
+		TeamBonus: 1
+	SSMultiplierCrateAction@sight:
 		SelectionShares: 20
 		Sequence: reveal-map
-		Condition: crate-sight
+		Type: Sight
 		Sound: radarup.aud
 		Notification: RangeUpgraded
 	PlayerExperienceCrateAction:
@@ -115,49 +119,51 @@ UPGRADECRATE:
 	WithCrateBody:
 		XmasImages: xcrates
 	SSCrate:
-		Lifetime: 240
-	GrantExternalConditionCrateAction@armor:
+		Lifetime: 250
+	SSMultiplierCrateAction@armor:
 		SelectionShares: 20
 		Sequence: armorup
-		Condition: crate-armor
+		Type: Armor
 		Sound: armorup.aud
 		Notification: MegaArmor
-		Levels: 2
-	GrantExternalConditionCrateAction@firepower:
+	SSMultiplierCrateAction@damage:
 		SelectionShares: 20
 		Sequence: firepowerup
-		Condition: crate-firepower
+		Type: Damage
 		Sound: firepowerup.aud
 		Notification: MegaWeapon
-		Levels: 2
-	GrantExternalConditionCrateAction@speed:
+		Amount: 20
+		TeamBonus: 4
+	SSMultiplierCrateAction@speed:
 		SelectionShares: 20
 		Sequence: speedup
-		Condition: crate-speed
+		Type: Speed
 		Sound: speedup.aud
 		Notification: MegaSpeed
-		Levels: 2
-	GrantExternalConditionCrateAction@range:
+		Amount: 20
+		TeamBonus: 4
+	SSMultiplierCrateAction@range:
 		SelectionShares: 20
 		Sequence: airstrike
-		Condition: crate-range
+		Type: Range
 		Sound: rangeup.aud
 		Notification: MegaRange
-		Levels: 2
-	GrantExternalConditionCrateAction@rof:
+		Amount: 20
+		TeamBonus: 4
+	SSMultiplierCrateAction@reload:
 		SelectionShares: 20
 		Sequence: rateoffireup
-		Condition: crate-rof
+		Type: Reload
 		Sound: rateoffireup.aud
 		Notification: MegaReload
-		Levels: 2
-	GrantExternalConditionWhenShroudOrFogEnabledCrateAction@sight:
+	SSMultiplierCrateAction@sight:
 		SelectionShares: 20
 		Sequence: reveal-map
-		Condition: crate-sight
+		Type: Sight
 		Sound: radarup.aud
 		Notification: MegaRange
-		Levels: 2
+		Amount: 20
+		TeamBonus: 4
 	RenderSprites:
 		Image: crate-blue
 
@@ -166,7 +172,7 @@ HEALCRATE:
 	WithCrateBody:
 		XmasImages: xcrateg
 	SSCrate:
-		Lifetime: 240
+		Lifetime: 250
 	SSHealCrateAction:
 		Weapon: Atomic
 		Sequence: heal
@@ -181,7 +187,7 @@ EXPERIENCECRATE:
 	WithCrateBody:
 		XmasImages: xcrated
 	SSCrate:
-		Lifetime: 240
+		Lifetime: 250
 	LevelUpCrateAction:
 		Levels: 1
 		SelectionShares: 1
@@ -198,19 +204,12 @@ WACKYCRATE:
 	WithCrateBody:
 		XmasImages: xcrateo
 	SSCrate:
-		Lifetime: 240
-	WackyCrateAction@NORMAL:
-		SelectionShares: 1
-		Sequence: wacky
-		Duration: 250
-		Condition: crate-wacky
-		Prerequisites: !proxy.wacky
+		Lifetime: 250
 	WackyCrateAction@WACKY:
 		SelectionShares: 1
 		Sequence: wacky
 		Duration: 750
 		Condition: crate-wacky
-		Prerequisites: proxy.wacky
 	RenderSprites:
 		Image: crate-orange
 
@@ -219,7 +218,7 @@ ARMAGEDDONCRATE:
 	WithCrateBody:
 		XmasImages: xcrater
 	SSCrate:
-		Lifetime: 480
+		Lifetime: 500
 	ArmageddonCrateAction@ARMAGEDDON:
 		SelectionShares: 1
 		Sequence: redskull
@@ -260,13 +259,6 @@ fact.colorpicker:
 	RenderSprites:
 		Image: fact
 		Palette: colorpicker
-		
-proxy.wacky:
-	AlwaysVisible:
-	Interactable:
-	Tooltip:
-		Name: Wacky Mode
-	ProvidesPrerequisite@proxyname:
 
 proxy.cloak-detector:
 	Inherits: CAMERA
@@ -340,7 +332,7 @@ CAMERA.small:
 CAMERA.spyplane:
 	Inherits: CAMERA.small
 	Inherits@CRATE: ^AcceptsCratePowerups
-	Inherits@EXTERNAL-SIGHT: ^RequiresExternalSightCratePowerup
+	SSExternalMultiplierManager:
 	ConditionManager:
 	RevealsShroud:
 		Range: 7c512

@@ -33,6 +33,7 @@ namespace OpenRA.Mods.SS.Traits
 	{
 		readonly CarriesFlagInfo info;
 		readonly SpawnSSUnit spawner;
+		readonly SSMultiplierManager multiplierManager;
 		readonly BuildingInfluence bi;
 
 		public Actor Flag;
@@ -47,6 +48,7 @@ namespace OpenRA.Mods.SS.Traits
 			Flag = null;
 
 			spawner = self.World.WorldActor.Trait<SpawnSSUnit>();
+			multiplierManager = self.TraitOrDefault<SSMultiplierManager>();
 			bi = self.World.WorldActor.Trait<BuildingInfluence>();
 		}
 
@@ -83,6 +85,9 @@ namespace OpenRA.Mods.SS.Traits
 		{
 			if (Flag != null)
 				DropFlag(self);
+
+			if (multiplierManager != null)
+				multiplierManager.SpeedModifier = 100;
 
 			Flag = flag;
 		}

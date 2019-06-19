@@ -49,6 +49,13 @@ Player:
 		Enabled: False
 		DisplayOrder: 5
 		Prerequisites: global-radar
+	LobbyPrerequisiteCheckbox@TEAMBONUS:
+		ID: teambonus
+		Label: Team Bonus
+		Description: Crate powerups apply a smaller buff to all teammates
+		Enabled: True
+		DisplayOrder: 6
+		Prerequisites: global-teambonus
 	GrantConditionOnPrerequisite@RADAR:
 		Condition: radar
 		Prerequisites: global-radar

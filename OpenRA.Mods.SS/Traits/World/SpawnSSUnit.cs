@@ -114,6 +114,7 @@ namespace OpenRA.Mods.SS.Traits
 
 		public Dictionary<Player, CPos> PlayerSpawnPoints = new Dictionary<Player, CPos>();
 		public Dictionary<Player, Player> TeamLeaders = new Dictionary<Player, Player>();
+		public Dictionary<Player, int> Teams = new Dictionary<Player, int>();
 		Dictionary<CPos, bool> spawnPointOccupation = new Dictionary<CPos, bool>();
 
 		public SpawnSSUnit(SpawnSSUnitInfo info)
@@ -147,6 +148,7 @@ namespace OpenRA.Mods.SS.Traits
 				{
 					var sp = GetSpawnPointForPlayer(world, l);
 					var leader = FindPlayerInSlot(world, l.Slot);
+					Teams[leader] = l.Team;
 					TeamLeaders[leader] = leader;
 					SpawnUnitForPlayer(world, leader, sp);
 					SpawnBuildingsForPlayer(world, leader, sp);
@@ -159,6 +161,7 @@ namespace OpenRA.Mods.SS.Traits
 						var ip = actorRules.TraitInfo<IPositionableInfo>();
 						var validCell = teamMateSpawnCells.Shuffle(world.SharedRandom).FirstOrDefault(c => ip.CanEnterCell(world, null, c));
 
+						Teams[player] = p.Team;
 						TeamLeaders[player] = leader;
 						SpawnUnitForPlayer(world, player, validCell);
 					}
@@ -168,6 +171,7 @@ namespace OpenRA.Mods.SS.Traits
 				{
 					var player = FindPlayerInSlot(world, p.Slot);
 					var cell = GetSpawnPointForPlayer(world, p);
+					Teams[player] = p.Team;
 					TeamLeaders[player] = player;
 					SpawnUnitForPlayer(world, player, cell);
 					SpawnBuildingsForPlayer(world, player, cell);
@@ -179,6 +183,7 @@ namespace OpenRA.Mods.SS.Traits
 				{
 					var player = FindPlayerInSlot(world, p.Slot);
 					var cell = GetSpawnPointForPlayer(world, p);
+					Teams[player] = p.Team;
 					TeamLeaders[player] = player;
 					SpawnUnitForPlayer(world, player, cell);
 					SpawnBuildingsForPlayer(world, player, cell);
