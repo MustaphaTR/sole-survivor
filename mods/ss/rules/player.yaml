@@ -52,7 +52,7 @@ Player:
 	LobbyPrerequisiteCheckbox@TEAMBONUS:
 		ID: teambonus
 		Label: Team Bonus
-		Description: Crate powerups apply a smaller buff to all teammates
+		Description: Crate power ups apply a smaller buff to all teammates
 		Enabled: True
 		DisplayOrder: 6
 		Prerequisites: global-teambonus
