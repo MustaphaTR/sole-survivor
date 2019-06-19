@@ -39,7 +39,7 @@ Player:
 		ID: veterancy
 		Label: Veterancy
 		Description: Units get veterancy by killing others
-		Enabled: True
+		Enabled: False
 		DisplayOrder: 4
 		Prerequisites: global-veterancy
 	LobbyPrerequisiteCheckbox@GLOBALRADAR:
