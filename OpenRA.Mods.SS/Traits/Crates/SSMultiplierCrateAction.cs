@@ -26,6 +26,9 @@ namespace OpenRA.Mods.SS.Traits
 		[Desc("Amount of bonus to add.")]
 		public readonly int Amount = 10;
 
+		[Desc("Bonus can still appear when stat is maxed.")]
+		public readonly bool AvailableWhenMaxed = true;
+
 		[Desc("Amount of bonus to add to other team members.")]
 		public readonly int TeamBonus = 2;
 
@@ -54,30 +57,33 @@ namespace OpenRA.Mods.SS.Traits
 			if (manager == null)
 				return 0;
 
-			if (info.Type == SSMultiplier.Armor && manager.ArmorModifier <= 50)
-				return 0;
+			if (!info.AvailableWhenMaxed)
+			{
+				if (info.Type == SSMultiplier.Armor && manager.ArmorModifier <= 50)
+					return 0;
 
-			if (info.Type == SSMultiplier.Damage && manager.DamageModifier >= 200)
-				return 0;
+				if (info.Type == SSMultiplier.Damage && manager.DamageModifier >= 200)
+					return 0;
+
+				if (info.Type == SSMultiplier.Sight && manager.SightModifier >= 200)
+					return 0;
+
+				if (info.Type == SSMultiplier.Range && manager.RangeModifier >= 200)
+					return 0;
+
+				if (info.Type == SSMultiplier.Reload && manager.ReloadModifier <= 50)
+					return 0;
+
+				if (info.Type == SSMultiplier.Speed && manager.SpeedModifier >= 200)
+					return 0;
+			}
 
 			if (info.Type == SSMultiplier.Sight)
 			{
-				if (manager.SightModifier >= 200)
-					return 0;
-
 				var shroud = collector.Owner.PlayerActor.TraitOrDefault<Shroud>();
 				if (shroud != null && shroud.ExploreMapEnabled && !shroud.FogEnabled)
 					return 0;
 			}
-
-			if (info.Type == SSMultiplier.Range && manager.RangeModifier >= 200)
-				return 0;
-
-			if (info.Type == SSMultiplier.Reload && manager.ReloadModifier <= 50)
-				return 0;
-
-			if (info.Type == SSMultiplier.Speed && manager.SpeedModifier >= 200)
-				return 0;
 
 			return info.SelectionShares;
 		}
