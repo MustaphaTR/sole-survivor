@@ -58,7 +58,7 @@ HARV:
 		Priority: 7
 		DecorationBounds: 36,36
 	Mobile:
-		Speed: 85
+		Speed: 91
 	Armament:
 		Weapon: HarvesterWeapon
 	AttackFrontal:
@@ -97,7 +97,7 @@ APC:
 		Description: Armed infantry transport.\nCan attack Aircraft.\n  Strong vs Vehicles\n  Weak vs Infantry
 	Mobile:
 		TurnSpeed: 10
-		Speed: 85
+		Speed: 91
 		PauseOnCondition: notmobile
 	Health:
 		HP: 40000
@@ -150,7 +150,7 @@ ARTY:
 		Description: Long-range artillery.\n  Strong vs Infantry, Vehicles and Buildings
 	Mobile:
 		TurnSpeed: 3
-		Speed: 99
+		Speed: 117
 	Health:
 		HP: 35000
 	Repairable:
@@ -191,7 +191,7 @@ FTNK:
 		Description: Heavily armored flame-throwing vehicle.\n  Strong vs Infantry, Buildings and Vehicles\n  Weak vs Tanks
 	Mobile:
 		TurnSpeed: 5
-		Speed: 85
+		Speed: 91
 	Health:
 		HP: 45000
 	Repairable:
@@ -229,7 +229,7 @@ BGGY:
 		Description: Fast scout and anti-infantry vehicle.\n  Strong vs Infantry\n  Weak vs Tanks
 	Mobile:
 		TurnSpeed: 10
-		Speed: 170
+		Speed: 156
 	Health:
 		HP: 23000
 	Repairable:
@@ -268,7 +268,7 @@ BIKE:
 		Description: Fast scout vehicle, armed with\nrockets.\nCan attack Aircraft.\n  Strong vs Vehicles, Tanks\n  Weak vs Infantry
 	Mobile:
 		TurnSpeed: 10
-		Speed: 205
+		Speed: 178
 		Locomotor: bike
 	Health:
 		HP: 21000
@@ -303,7 +303,7 @@ JEEP:
 		Description: Fast scout and anti-infantry vehicle.\n  Strong vs Infantry\n  Weak vs Tanks
 	Mobile:
 		TurnSpeed: 10
-		Speed: 156
+		Speed: 130
 	Health:
 		HP: 31000
 	Repairable:
@@ -343,8 +343,8 @@ LTNK:
 		BuildDurationModifier: 40
 		Description: Fast, light tank.\n  Strong vs Vehicles, Tanks\n  Weak vs Infantry
 	Mobile:
-		TurnSpeed: 7
-		Speed: 110
+		TurnSpeed: 5
+		Speed: 117
 	Health:
 		HP: 35000
 	Repairable:
@@ -383,7 +383,7 @@ MTNK:
 		Queue: Vehicle.GDI
 		Description: General-Purpose GDI Tank.\n  Strong vs Tanks, Vehicles\n  Weak vs Infantry
 	Mobile:
-		Speed: 85
+		Speed: 91
 	Health:
 		HP: 45000
 	Repairable:
@@ -426,8 +426,8 @@ HTNK:
 		Description: Heavily armored GDI Tank.\nCan attack Aircraft.\n  Strong vs Everything
 	Mobile:
 		Locomotor: heavytracked
-		Speed: 56
-		TurnSpeed: 3
+		Speed: 65
+		TurnSpeed: 5
 	Health:
 		HP: 75000
 	Repairable:
@@ -439,7 +439,7 @@ HTNK:
 		Range: 6c0
 	WithSpriteTurret:
 	Turreted:
-		TurnSpeed: 3
+		TurnSpeed: 5
 	Armament@PRIMARY:
 		Weapon: 120mmDual
 		LocalOffset: 900,180,340, 900,-180,340
@@ -464,7 +464,7 @@ HTNK:
 	Selectable:
 		DecorationBounds: 34,34,0,-3
 	UnitStatValues:
-		Damage: 4000
+		Damage: 5906
 
 MSAM:
 	Inherits: ^Tank
@@ -481,7 +481,7 @@ MSAM:
 		Queue: Vehicle.GDI
 		Description: Long range rocket artillery.\n  Strong vs all Ground units.
 	Mobile:
-		Speed: 85
+		Speed: 91
 		TurnSpeed: 5
 	Health:
 		HP: 40000
@@ -524,8 +524,8 @@ MLRS:
 		Queue: Vehicle.Nod
 		Description: Long range rocket artillery.
 	Mobile:
-		Speed: 99
-		TurnSpeed: 7
+		Speed: 65
+		TurnSpeed: 5
 	Health:
 		HP: 30000
 	Repairable:
@@ -562,7 +562,7 @@ MLRS:
 		Delay: 75
 		Count: 1
 	UnitStatValues:
-		Damage: 7500
+		Damage: 11812
 		Range: 9c0
 
 STNK:
@@ -581,8 +581,8 @@ STNK:
 		Description: Long-range missile tank that can cloak.\nCan attack Aircraft.\nHas weak armor. Can be spotted by infantry and defense structures.\n  Strong vs Vehicles, Tanks\n  Weak vs Infantry.
 	Mobile:
 		Locomotor: heavywheeled
-		TurnSpeed: 10
-		Speed: 142
+		TurnSpeed: 5
+		Speed: 139
 	Health:
 		HP: 25000
 	Repairable:
@@ -613,7 +613,7 @@ MHQ:
 	Armor:
 		Type: Light
 	Mobile:
-		Speed: 85
+		Speed: 91
 	RevealsShroud:
 		Range: 10c0
 	WithIdleOverlay@SPINNER:
