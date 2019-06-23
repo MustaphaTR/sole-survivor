@@ -89,6 +89,20 @@ SetupObjectives = function()
 			Utils.Do(husks, function(husk)
 				husk.Owner = neutral
 			end)
+
+			for _,other in pairs(players) do
+				if not other.IsObjectiveFailed(0) then
+					local win = true
+					for _,enemy in pairs(Utils.Where(players, function(p) return p ~= other and (p.Team == 0 or p.Team ~= other.Team) end)) do
+						if not enemy.IsObjectiveFailed(0) then
+							win = false
+						end
+					end
+					if win then
+						other.MarkCompletedObjective(0)
+					end
+				end
+			end
 		end)
 		Trigger.OnPlayerWon(player, function()
 			Media.DisplaySystemMessage(player.Name .. " is victorious!", "Battlefield Control")
@@ -100,19 +114,7 @@ SetupObjectives = function()
 end
 
 RespawnTick = function()
-	for _,player in pairs(players) do
-		if not player.IsObjectiveFailed(0) then
-			local win = true
-			for _,enemy in pairs(Utils.Where(players, function(p) return p ~= player and (p.Team == 0 or p.Team ~= player.Team) end)) do
-				if not enemy.IsObjectiveFailed(0) then
-					win = false
-				end
-			end
-			if win then
-				player.MarkCompletedObjective(0)
-			end
-		end
-	end
+
 end
 
 RespawnWorldLoaded = function()
