@@ -7,18 +7,22 @@ CRATE:
 	RevealMapCrateAction:
 		SelectionShares: 2
 		Sequence: reveal-map
+		Sound: crunshrd.aud
 		Notification: MapReveal
 	HideMapToAllCrateAction:
 		SelectionShares: 1
 		Sequence: hide-map
+		Sound: crshroud.aud
 		Notification: GlobalDarkness
 	HideMapCrateAction:
 		SelectionShares: 2
 		Sequence: hide-map
+		Sound: crshroud.aud
 		Notification: GlobalDarkness
 	HealUnitsCrateAction:
 		SelectionShares: 8
 		Sequence: heal
+		Sound: crheal.aud
 		Notification: HealthUpgraded
 	SwitchConditionCrateAction@radar:
 		Condition: crate-radar
@@ -64,7 +68,7 @@ CRATE:
 		SelectionShares: 50
 		Sequence: armorup
 		Type: Armor
-		Sound: armorup.aud
+		Sound: crarmor.aud
 		Notification: ArmorUpgraded
 		Amount: 5
 		TeamBonus: 1
@@ -72,25 +76,25 @@ CRATE:
 		SelectionShares: 50
 		Sequence: firepowerup
 		Type: Damage
-		Sound: firepowerup.aud
+		Sound: crweapon.aud
 		Notification: WeaponUpgraded
 	SSMultiplierCrateAction@speed:
 		SelectionShares: 50
 		Sequence: speedup
 		Type: Speed
-		Sound: speedup.aud
+		Sound: crspeed.aud
 		Notification: SpeedUpgraded
 	SSMultiplierCrateAction@range:
 		SelectionShares: 50
 		Sequence: airstrike
 		Type: Range
-		Sound: rangeup.aud
+		Sound: crrange.aud
 		Notification: RangeUpgraded
 	SSMultiplierCrateAction@reload:
 		SelectionShares: 50
 		Sequence: rateoffireup
 		Type: Reload
-		Sound: rateoffireup.aud
+		Sound: crreload.aud
 		Notification: RapidReload
 		Amount: 5
 		TeamBonus: 1
@@ -124,13 +128,13 @@ UPGRADECRATE:
 		SelectionShares: 50
 		Sequence: armorup
 		Type: Armor
-		Sound: armorup.aud
+		Sound: crarmor.aud
 		Notification: MegaArmor
 	SSMultiplierCrateAction@damage:
 		SelectionShares: 50
 		Sequence: firepowerup
 		Type: Damage
-		Sound: firepowerup.aud
+		Sound: crweapon.aud
 		Notification: MegaWeapon
 		Amount: 20
 		TeamBonus: 4
@@ -138,7 +142,7 @@ UPGRADECRATE:
 		SelectionShares: 50
 		Sequence: speedup
 		Type: Speed
-		Sound: speedup.aud
+		Sound: crspeed.aud
 		Notification: MegaSpeed
 		Amount: 20
 		TeamBonus: 4
@@ -146,7 +150,7 @@ UPGRADECRATE:
 		SelectionShares: 50
 		Sequence: airstrike
 		Type: Range
-		Sound: rangeup.aud
+		Sound: crrange.aud
 		Notification: MegaRange
 		Amount: 20
 		TeamBonus: 4
@@ -154,7 +158,7 @@ UPGRADECRATE:
 		SelectionShares: 50
 		Sequence: rateoffireup
 		Type: Reload
-		Sound: rateoffireup.aud
+		Sound: crreload.aud
 		Notification: MegaReload
 	SSMultiplierCrateAction@sight:
 		SelectionShares: 50
@@ -176,6 +180,7 @@ HEALCRATE:
 	SSHealCrateAction:
 		Weapon: Atomic
 		Sequence: heal
+		Sound: crheal.aud
 		SelectionShares: 30
 		Notification: HealthUpgraded
 		WeaponNotification: NuclearBomb
