@@ -214,7 +214,6 @@ WACKYCRATE:
 		SelectionShares: 1
 		Sequence: wacky
 		Duration: 750
-		Condition: crate-wacky
 	RenderSprites:
 		Image: crate-orange
 

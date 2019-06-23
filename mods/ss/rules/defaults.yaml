@@ -300,7 +300,6 @@
 
 ^CarriesFlag:
 	CarriesFlag:
-		Condition: carrying-flag
 
 ^Vehicle:
 	Inherits@1: ^ExistsInWorld
