@@ -8,7 +8,6 @@
 ]]
 
 Units = { }
-InitialDelays = { }
 
 IdleHunt = function(actor)
 	if actor.HasProperty("Hunt") and not actor.IsDead then
@@ -72,12 +71,6 @@ SetupPlayerUnits = function(player)
 	Units[player.InternalName] = Utils.Where(player.GetActors(), function(a) return a.Type ~= "player" end)[1]
 end
 
-SetupBotInitialDelays = function()
-	for i = 1, #bots, 1 do
-		InitialDelays[bots[i].InternalName] = i % 5
-	end
-end
-
 TickAI = function(bot)
 	local unit = Units[bot.InternalName]
 
@@ -102,8 +95,9 @@ TickAI = function(bot)
 				IdleHunt(unit)
 			end
 		end
+
 		if unit.Health <= unit.MaxHealth * 25 / 100 then
-		local healcrate = GetNearbyHealCrate(unit, 10)
+			local healcrate = GetNearbyHealCrate(unit, 10)
 
 			if healcrate ~= nil then
 				unit.Stop()
@@ -125,13 +119,13 @@ AIWorldLoaded = function()
 	players = Player.GetPlayers(function(p) return not p.IsNonCombatant end)
 	bots = Utils.Where(players, function(p) return p.IsBot end)
 
-	SetupBotInitialDelays()
 	for _,player in pairs(players) do
 		SetupPlayerUnits(player)
 	end
-	for _,bot in pairs(bots) do
-		Trigger.AfterDelay(InitialDelays[bot.InternalName], function()
-			TickAI(bot)
+
+	for i = 1, #bots, 1 do
+		Trigger.AfterDelay(i % 5, function()
+			TickAI(bots[i])
 		end)
 	end
 end
