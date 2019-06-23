@@ -272,13 +272,19 @@ Patriot:
 		Shadow: True
 		LaunchAngle: 62
 	Warhead@1Dam: SpreadDamage
-		Spread: 682
+		Spread: 768
 		Damage: 7500
 		Versus:
-			None: 20
-			Wood: 84
+			None: 75
+			Wood: 85
 			Light: 100
-			Heavy: 74
-	-Warhead@2Smu:
+			Heavy: 75
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+		InvalidTargets: Vehicle, Structure, Wall
+	Warhead@3Eff: CreateEffect
+		Explosions: big_napalm
+		ImpactSounds: flamer2.aud
 	Warhead@4EffAir: CreateEffect
-		Explosions: poof
+		Explosions: big_napalm
+		ImpactSounds: flamer2.aud
