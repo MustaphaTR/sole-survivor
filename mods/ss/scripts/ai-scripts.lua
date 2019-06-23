@@ -72,8 +72,11 @@ SetupPlayerUnits = function(player)
 end
 
 TickAI = function(bot)
-	local unit = Units[bot.InternalName]
+	if bot.IsObjectiveFailed(0) then
+		return
+	end
 
+	local unit = Units[bot.InternalName]
 	if unit ~= nil and not unit.IsDead then
 		if unit.IsIdle then
 			local crates = GetNearbyCrates(unit, 8)
@@ -105,7 +108,7 @@ TickAI = function(bot)
 			end
 		end
 	end
-	
+
 	Trigger.AfterDelay(5, function()
 		TickAI(bot)
 	end)
