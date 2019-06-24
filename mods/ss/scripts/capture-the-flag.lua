@@ -17,10 +17,10 @@ end
 
 OnCircle = function(player)
 	Trigger.AfterDelay(0, function()
-		if not Units[player.InternalName].IsDead then
+		if not player.Unit.IsDead then
 			local circle = FlagCircles[player.TeamLeader.InternalName]
-			if Units[player.InternalName].Location == circle.Location then
-				local flag = Units[player.InternalName].DropFlag()
+			if player.Unit.Location == circle.Location then
+				local flag = player.Unit.DropFlag()
 				if flag ~= nil then
 					if flag.Owner ~= player.TeamLeader then
 						player.Experience = player.Experience + 40

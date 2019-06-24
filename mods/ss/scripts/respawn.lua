@@ -19,14 +19,14 @@ RespawnDelay =
 }
 
 Respawn = function(player)
-	Trigger.OnKilled(Units[player.InternalName], function()
+	Trigger.OnKilled(player.Unit, function()
 		if not player.IsObjectiveFailed(0) then
 			player.Experience = player.Experience - 20
 
 			Trigger.AfterDelay(RespawnDelay[RespawnOption], function()
-				local unitType = Units[player.InternalName].Type
+				local unitType = player.Unit.Type
 
-				Units[player.InternalName] = Actor.Create(unitType, true, { Owner = player, Location = player.SpawnCellPosition })
+				player.Unit = Actor.Create(unitType, true, { Owner = player, Location = player.SpawnCellPosition })
 				if player.IsLocalPlayer then
 					Camera.Position = player.SpawnWorldPosition
 				end
@@ -126,7 +126,7 @@ RespawnWorldLoaded = function()
 		if RespawnOption ~= "disabled" then
 			Respawn(player)
 		else
-			Trigger.OnKilled(Units[player.InternalName], function()
+			Trigger.OnKilled(player.Unit, function()
 				player.MarkFailedObjective(0)
 			end)
 		end

@@ -40,10 +40,10 @@ CloakInvulnWorldLoaded = function()
 
 	for _,player in pairs(players) do
 		if StartingCloakOption ~= "disabled" then
-			Units[player.InternalName].GrantCondition("starting-cloak", CloakDuration[StartingCloakOption])
+			player.Unit.GrantCondition("starting-cloak", CloakDuration[StartingCloakOption])
 		end
 		if StartingInvulnOption ~= "disabled" then
-			Units[player.InternalName].GrantCondition("invulnerability", InvulnDuration[StartingInvulnOption])
+			player.Unit.GrantCondition("invulnerability", InvulnDuration[StartingInvulnOption])
 		end
 	end
 end

@@ -44,5 +44,12 @@ namespace OpenRA.Mods.SS.Scripting
         {
             get { return spawnSSUnit.TeamLeaders[player]; }
         }
+
+        [Desc("Returns to or sets the player's.")]
+        public Actor Unit
+        {
+            get { return spawnSSUnit.Units[player]; }
+            set { spawnSSUnit.Units[player] = value; }
+        }
     }
 }

@@ -7,8 +7,6 @@
    information, see COPYING.
 ]]
 
-Units = { }
-
 IdleHunt = function(actor)
 	if actor.HasProperty("Hunt") and not actor.IsDead then
 		Trigger.OnIdle(actor, actor.Hunt)
@@ -68,7 +66,7 @@ GetNearbyHealCrate = function(actor, distance)
 end
 
 SetupPlayerUnits = function(player)
-	Units[player.InternalName] = Utils.Where(player.GetActors(), function(a) return a.Type ~= "player" end)[1]
+	player.Unit = Utils.Where(player.GetActors(), function(a) return a.Type ~= "player" end)[1]
 end
 
 TickAI = function(bot)
@@ -76,7 +74,7 @@ TickAI = function(bot)
 		return
 	end
 
-	local unit = Units[bot.InternalName]
+	local unit = bot.Unit
 	if unit ~= nil and not unit.IsDead then
 		if unit.IsIdle then
 			local crates = GetNearbyCrates(unit, 8)

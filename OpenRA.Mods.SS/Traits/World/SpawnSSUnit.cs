@@ -115,6 +115,7 @@ namespace OpenRA.Mods.SS.Traits
 		public Dictionary<Player, CPos> PlayerSpawnPoints = new Dictionary<Player, CPos>();
 		public Dictionary<Player, Player> TeamLeaders = new Dictionary<Player, Player>();
 		public Dictionary<Player, int> Teams = new Dictionary<Player, int>();
+		public Dictionary<Player, Actor> Units = new Dictionary<Player, Actor>();
 		Dictionary<CPos, bool> spawnPointOccupation = new Dictionary<CPos, bool>();
 
 		public SpawnSSUnit(SpawnSSUnitInfo info)
@@ -215,7 +216,7 @@ namespace OpenRA.Mods.SS.Traits
 
 		void SpawnUnitForPlayer(World w, Player p, CPos sp)
 		{
-			w.CreateActor(p.Faction.InternalName.ToLowerInvariant(), new TypeDictionary
+			Units[p] = w.CreateActor(p.Faction.InternalName.ToLowerInvariant(), new TypeDictionary
 			{
 				new LocationInit(sp),
 				new OwnerInit(p),
