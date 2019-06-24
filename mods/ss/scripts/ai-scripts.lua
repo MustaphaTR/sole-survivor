@@ -65,10 +65,6 @@ GetNearbyHealCrate = function(actor, distance)
 	return Utils.Random(crates)
 end
 
-SetupPlayerUnits = function(player)
-	player.Unit = Utils.Where(player.GetActors(), function(a) return a.Type ~= "player" end)[1]
-end
-
 TickAI = function(bot)
 	if bot.IsObjectiveFailed(0) then
 		return
@@ -120,9 +116,6 @@ AIWorldLoaded = function()
 	players = Player.GetPlayers(function(p) return not p.IsNonCombatant end)
 	bots = Utils.Where(players, function(p) return p.IsBot end)
 
-	for _,player in pairs(players) do
-		SetupPlayerUnits(player)
-	end
 
 	for i = 1, #bots, 1 do
 		Trigger.AfterDelay(i % 5, function()
