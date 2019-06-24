@@ -24,6 +24,8 @@ namespace OpenRA.Mods.Common.Widgets.Logic
         [ObjectCreator.UseCtor]
         public IngameUnitStatsLogic(Widget widget, World world)
         {
+            var spawner = world.WorldActor.Trait<SpawnSSUnit>();
+
             var health = widget.Get<LabelWidget>("STAT_HEALTH");
             var sight = widget.Get<LabelWidget>("STAT_SIGHT");
             var damage = widget.Get<LabelWidget>("STAT_DAMAGE");
@@ -40,11 +42,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
             health.GetText = () =>
             {
-                var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<UnitStatValues>() != null);
-
-                if (units.Any())
+                var unit = spawner.Units[world.LocalPlayer];
+                if (unit != null && !unit.IsDead)
                 {
-                    var unit = units.First();
                     var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
                     if (usv != null)
                     {
@@ -77,11 +77,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
             };
             healthBar.GetPercentage = () =>
             {
-                var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<UnitStatValues>() != null);
-
-                if (units.Any())
+                var unit = spawner.Units[world.LocalPlayer];
+                if (unit != null && !unit.IsDead)
                 {
-                    var unit = units.First();
                     var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
                     if (usv != null)
                     {
@@ -115,11 +113,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
             sight.GetText = () =>
             {
-                var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<UnitStatValues>() != null);
-
-                if (units.Any())
+                var unit = spawner.Units[world.LocalPlayer];
+                if (unit != null && !unit.IsDead)
                 {
-                    var unit = units.First();
                     var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
                     if (usv != null)
                     {
@@ -152,11 +148,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
             };
             sightBar.GetPercentage = () =>
             {
-                var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<UnitStatValues>() != null);
-
-                if (units.Any())
+                var unit = spawner.Units[world.LocalPlayer];
+                if (unit != null && !unit.IsDead)
                 {
-                    var unit = units.First();
                     var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
                     if (usv != null)
                     {
@@ -190,11 +184,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
             damage.GetText = () =>
             {
-                var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<UnitStatValues>() != null);
-
-                if (units.Any())
+                var unit = spawner.Units[world.LocalPlayer];
+                if (unit != null && !unit.IsDead)
                 {
-                    var unit = units.First();
                     var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
                     if (usv != null)
                     {
@@ -213,11 +205,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
             };
             damageBar.GetPercentage = () =>
             {
-                var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<UnitStatValues>() != null);
-
-                if (units.Any())
+                var unit = spawner.Units[world.LocalPlayer];
+                if (unit != null && !unit.IsDead)
                 {
-                    var unit = units.First();
                     var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
                     if (usv != null)
                     {
@@ -237,11 +227,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
             rof.GetText = () =>
             {
-                var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<UnitStatValues>() != null);
-
-                if (units.Any())
+                var unit = spawner.Units[world.LocalPlayer];
+                if (unit != null && !unit.IsDead)
                 {
-                    var unit = units.First();
                     var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
                     if (usv != null)
                     {
@@ -274,11 +262,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
             };
             rofBar.GetPercentage = () =>
             {
-                var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<UnitStatValues>() != null);
-
-                if (units.Any())
+                var unit = spawner.Units[world.LocalPlayer];
+                if (unit != null && !unit.IsDead)
                 {
-                    var unit = units.First();
                     var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
                     if (usv != null)
                     {
@@ -312,11 +298,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
             range.GetText = () =>
             {
-                var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<UnitStatValues>() != null);
-
-                if (units.Any())
+                var unit = spawner.Units[world.LocalPlayer];
+                if (unit != null && !unit.IsDead)
                 {
-                    var unit = units.First();
                     var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
                     if (usv != null)
                     {
@@ -346,11 +330,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
             };
             rangeBar.GetPercentage = () =>
             {
-                var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<UnitStatValues>() != null);
-
-                if (units.Any())
+                var unit = spawner.Units[world.LocalPlayer];
+                if (unit != null && !unit.IsDead)
                 {
-                    var unit = units.First();
                     var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
                     if (usv != null)
                     {
@@ -384,11 +366,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
             speed.GetText = () =>
             {
-                var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<UnitStatValues>() != null);
-
-                if (units.Any())
+                var unit = spawner.Units[world.LocalPlayer];
+                if (unit != null && !unit.IsDead)
                 {
-                    var unit = units.First();
                     var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
                     if (usv != null)
                     {
@@ -431,11 +411,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
             };
             speedBar.GetPercentage = () =>
             {
-                var units = world.Actors.Where(a => a.Owner == world.LocalPlayer && !a.IsDead && a.TraitOrDefault<UnitStatValues>() != null);
-
-                if (units.Any())
+                var unit = spawner.Units[world.LocalPlayer];
+                if (unit != null && !unit.IsDead)
                 {
-                    var unit = units.First();
                     var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
                     if (usv != null)
                     {
