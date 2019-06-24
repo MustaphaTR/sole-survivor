@@ -7,6 +7,8 @@
    information, see COPYING.
 ]]
 
+Bots = { { }, { }, { }, { }, { } }
+
 IdleHunt = function(actor)
 	if actor.HasProperty("Hunt") and not actor.IsDead then
 		Trigger.OnIdle(actor, actor.Hunt)
@@ -65,46 +67,44 @@ GetNearbyHealCrate = function(actor, distance)
 	return Utils.Random(crates)
 end
 
-TickAI = function(bot)
-	if bot.IsObjectiveFailed(0) then
-		return
-	end
+TickAI = function(bots)
+	for _,bot in pairs(bots) do
+		local unit = bot.Unit
+		if unit ~= nil and not unit.IsDead then
+			if unit.IsIdle then
+				local crates = GetNearbyCrates(unit, 8)
+				for _,crate in pairs(crates) do
+					unit.Move(crate.Location)
+				end
 
-	local unit = bot.Unit
-	if unit ~= nil and not unit.IsDead then
-		if unit.IsIdle then
-			local crates = GetNearbyCrates(unit, 8)
-			for _,crate in pairs(crates) do
-				unit.Move(crate.Location)
+				if unit.Flag ~= nil then
+					unit.Move(FlagCircles[bot.TeamLeader.InternalName].Location)
+				elseif unit.Type == "e6" then
+					Trigger.AfterDelay(5, function()
+						if unit.IsIdle then
+							BuildEngiStuff(unit)
+						end
+					end)
+				elseif unit.Type == "tran" then
+					-- Do nothing!
+				else
+					IdleHunt(unit)
+				end
 			end
 
-			if unit.Flag ~= nil then
-				unit.Move(FlagCircles[bot.TeamLeader.InternalName].Location)
-			elseif unit.Type == "e6" then
-				Trigger.AfterDelay(5, function()
-					if unit.IsIdle then
-						BuildEngiStuff(unit)
-					end
-				end)
-			elseif unit.Type == "tran" then
-				-- Do nothing!
-			else
-				IdleHunt(unit)
-			end
-		end
+			if unit.Health <= unit.MaxHealth * 25 / 100 then
+				local healcrate = GetNearbyHealCrate(unit, 10)
 
-		if unit.Health <= unit.MaxHealth * 25 / 100 then
-			local healcrate = GetNearbyHealCrate(unit, 10)
-
-			if healcrate ~= nil then
-				unit.Stop()
-				unit.Move(healcrate.Location)
+				if healcrate ~= nil then
+					unit.Stop()
+					unit.Move(healcrate.Location)
+				end
 			end
 		end
 	end
 
 	Trigger.AfterDelay(5, function()
-		TickAI(bot)
+		TickAI(bots)
 	end)
 end
 
@@ -112,14 +112,20 @@ AITick = function()
 
 end
 
+DivideBots = function(bots)
+	for i = 1, #bots, 1 do
+		Bots[i % 5 + 1][#Bots[i % 5 + 1] + 1] = bots[i]
+	end
+end
+
 AIWorldLoaded = function()
 	players = Player.GetPlayers(function(p) return not p.IsNonCombatant end)
-	bots = Utils.Where(players, function(p) return p.IsBot end)
+	local bots = Utils.Where(players, function(p) return p.IsBot end)
 
-
-	for i = 1, #bots, 1 do
-		Trigger.AfterDelay(i % 5, function()
-			TickAI(bots[i])
+	DivideBots(bots)
+	for i = 1, #Bots, 1 do
+		Trigger.AfterDelay(i, function()
+			TickAI(Bots[i])
 		end)
 	end
 end
