@@ -137,7 +137,7 @@ namespace OpenRA.Mods.SS.Traits
 				.Select(a => a.Location)
 				.ToDictionary(s => s, s => false);
 
-			var players = world.LobbyInfo.Clients;
+			var players = world.LobbyInfo.Clients.Where(c => !c.IsObserver);
 			if (teamSpawns)
 			{
 				var teams = players.Select(p => p.Team).Distinct();
