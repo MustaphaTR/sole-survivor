@@ -74,7 +74,7 @@ ArtilleryShell:
 		Speed: 204
 		Blockable: false
 		LaunchAngle: 56
-		Inaccuracy: 1c256
+		Inaccuracy: 1c768
 		ContrailLength: 30
 	Warhead@1Dam: SpreadDamage
 		Spread: 341
