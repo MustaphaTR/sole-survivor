@@ -276,7 +276,7 @@ BIKE:
 		HpPerStep: 1000
 		RepairActors: fix
 	Armor:
-		Type: None
+		Type: Wood
 	RevealsShroud:
 		Range: 6c512
 	Armament:
