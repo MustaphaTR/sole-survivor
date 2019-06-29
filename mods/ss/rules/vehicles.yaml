@@ -637,7 +637,6 @@ MHQ:
 		ClockSequence: clock
 		CircleSequence: circles
 		UseDirectionalTarget: True
-		TargetPlaceholderCursorAnimation: airstriketarget
 		DirectionArrowAnimation: airstrikedirection
 	AirstrikePower@Airstrike:
 		Icon: airstrike
@@ -656,7 +655,6 @@ MHQ:
 		ClockSequence: clock
 		CircleSequence: circles
 		UseDirectionalTarget: True
-		TargetPlaceholderCursorAnimation: airstriketarget
 		DirectionArrowAnimation: airstrikedirection
 	SupportPowerChargeBar:
 	DetectCloaked:

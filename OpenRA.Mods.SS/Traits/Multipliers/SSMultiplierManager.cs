@@ -26,7 +26,7 @@ namespace OpenRA.Mods.SS.Traits
 		public override object Create(ActorInitializer init) { return new SSMultiplierManager(init.Self, this); }
 	}
 
-	public class SSMultiplierManager : ConditionalTrait<SSMultiplierManagerInfo>, ITick, IDamageModifier, IFirepowerModifier, IRevealsShroudModifier, IRangeModifier, IReloadModifier, ISpeedModifier, ISelectionBar
+	public class SSMultiplierManager : ConditionalTrait<SSMultiplierManagerInfo>, ITick, IDamageModifier, IFirepowerModifier, IRevealsShroudModifier, IRangeModifier, IDetectCloakedModifier, IReloadModifier, IReloadAmmoModifier, ISpeedModifier, ISelectionBar
 	{
 		Actor self;
 
@@ -85,7 +85,17 @@ namespace OpenRA.Mods.SS.Traits
 			return IsTraitDisabled ? 100 : RangeModifier;
 		}
 
+		int IDetectCloakedModifier.GetDetectCloakedModifier()
+		{
+			return IsTraitDisabled ? 100 : RangeModifier;
+		}
+
 		int IReloadModifier.GetReloadModifier()
+		{
+			return IsTraitDisabled ? 100 : ReloadModifier;
+		}
+
+		int IReloadAmmoModifier.GetReloadAmmoModifier()
 		{
 			return IsTraitDisabled ? 100 : ReloadModifier;
 		}

@@ -1,6 +1,6 @@
 Metadata:
 	Title: Sole Survivor
-	Version: 644c80a
+	Version: 2d654e0
 	Website: https://www.openra.net
 	WebIcon32: https://raw.githubusercontent.com/MustaphaTR/sole-survivor/master/mods/ss/icon.png
 
@@ -36,7 +36,7 @@ Packages:
 
 MapFolders:
 	ss|maps: System
-	~^maps/cnc/2f6e50a: User
+	~^maps/cnc/2d654e0: User
 
 Rules:
 	ss|rules/misc.yaml
@@ -133,6 +133,7 @@ ChromeLayout:
 	ss|chrome/assetbrowser.yaml
 	ss|chrome/missionbrowser.yaml
 	ss|chrome/editor.yaml
+	ss|chrome/dialog-hotkey.yaml
 
 Voices:
 	ss|audio/voices.yaml
@@ -173,27 +174,35 @@ Fonts:
 	Tiny:
 		Font: common|FreeSans.ttf
 		Size: 10
+		Ascender: 8
 	TinyBold:
 		Font: common|FreeSansBold.ttf
 		Size: 10
+		Ascender: 8
 	Small:
 		Font: common|FreeSans.ttf
 		Size: 12
+		Ascender: 9
 	Regular:
 		Font: common|FreeSans.ttf
 		Size: 14
+		Ascender: 11
 	Bold:
 		Font: common|FreeSansBold.ttf
 		Size: 14
+		Ascender: 11
 	MediumBold:
 		Font: common|FreeSansBold.ttf
 		Size: 18
+		Ascender: 14
 	BigBold:
 		Font: common|FreeSansBold.ttf
 		Size: 24
+		Ascender: 18
 	Title:
 		Font: common|FreeSansBold.ttf
 		Size: 32
+		Ascender: 24
 
 Missions:
 

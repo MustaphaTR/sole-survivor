@@ -4,7 +4,7 @@ Container@LOBBY_PLAYER_BIN:
 	Children:
 		Container@LABEL_CONTAINER:
 			X: 5
-			Y: 0 - 25
+			Y: 0 - 24
 			Width: PARENT_RIGHT
 			Height: PARENT_BOTTOM
 			Children:
@@ -16,16 +16,16 @@ Container@LOBBY_PLAYER_BIN:
 					Font: Bold
 				Label@COLOR:
 					X: 210
-					Width: 64
+					Width: 76
 					Height: 25
 					Text: Color
 					Align: Center
 					Font: Bold
 				Label@FACTION:
-					X: 279
-					Width: 132
+					X: 291
+					Width: 120
 					Height: 25
-					Text: Class
+					Text: Faction
 					Align: Center
 					Font: Bold
 				Label@TEAM:
@@ -108,7 +108,7 @@ Container@LOBBY_PLAYER_BIN:
 							Visible: false
 						DropDownButton@COLOR:
 							X: 210
-							Width: 64
+							Width: 76
 							Height: 25
 							Font: Regular
 							IgnoreChildMouseOver: true
@@ -119,8 +119,8 @@ Container@LOBBY_PLAYER_BIN:
 									Width: PARENT_RIGHT - 35
 									Height: PARENT_BOTTOM - 12
 						DropDownButton@FACTION:
-							X: 279
-							Width: 132
+							X: 291
+							Width: 120
 							Height: 25
 							Font: Regular
 							IgnoreChildMouseOver: true
@@ -136,7 +136,7 @@ Container@LOBBY_PLAYER_BIN:
 									X: 40
 									Width: 60
 									Height: 25
-									Text: Class
+									Text: Faction
 						DropDownButton@TEAM_DROPDOWN:
 							X: 416
 							Width: 50
@@ -225,11 +225,11 @@ Container@LOBBY_PLAYER_BIN:
 						ColorBlock@COLORBLOCK:
 							X: 215
 							Y: 6
-							Width: 29
+							Width: 41
 							Height: 13
 						Container@FACTION:
-							X: 279
-							Width: 132
+							X: 291
+							Width: 120
 							Height: 25
 							Children:
 								Image@FACTIONFLAG:
@@ -241,7 +241,7 @@ Container@LOBBY_PLAYER_BIN:
 									X: 40
 									Width: 60
 									Height: 25
-									Text: Class
+									Text: Faction
 						Label@TEAM:
 							X: 416
 							Width: 25

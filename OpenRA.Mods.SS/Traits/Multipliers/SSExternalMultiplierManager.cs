@@ -23,7 +23,7 @@ namespace OpenRA.Mods.SS.Traits
 		public override object Create(ActorInitializer init) { return new SSExternalMultiplierManager(init.Self, this); }
 	}
 
-	public class SSExternalMultiplierManager : ConditionalTrait<SSExternalMultiplierManagerInfo>, IDamageModifier, IFirepowerModifier, IRevealsShroudModifier, IRangeModifier, IReloadModifier, ISpeedModifier
+	public class SSExternalMultiplierManager : ConditionalTrait<SSExternalMultiplierManagerInfo>, IDamageModifier, IFirepowerModifier, IRevealsShroudModifier, IRangeModifier, IDetectCloakedModifier, IReloadModifier, IReloadAmmoModifier, ISpeedModifier
 	{
 		Actor self;
 		Actor main;
@@ -65,7 +65,17 @@ namespace OpenRA.Mods.SS.Traits
 			return mainManager == null || IsTraitDisabled ? 100 : mainManager.RangeModifier;
 		}
 
+		int IDetectCloakedModifier.GetDetectCloakedModifier()
+		{
+			return mainManager == null || IsTraitDisabled ? 100 : mainManager.RangeModifier;
+		}
+
 		int IReloadModifier.GetReloadModifier()
+		{
+			return mainManager == null || IsTraitDisabled ? 100 : mainManager.ReloadModifier;
+		}
+
+		int IReloadAmmoModifier.GetReloadAmmoModifier()
 		{
 			return mainManager == null || IsTraitDisabled ? 100 : mainManager.ReloadModifier;
 		}
