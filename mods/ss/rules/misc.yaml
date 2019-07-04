@@ -401,7 +401,7 @@ FLAG:
 	RenderSprites:
 	WithSpriteBody:
 	RevealsShroud:
-		Range: 1c0
+		Range: 1c512
 		Type: CenterPosition
 	HiddenUnderFog:
 		Type: CenterPosition
@@ -415,9 +415,9 @@ FLAGCIRCLE:
 	RenderSprites:
 	WithSpriteBody:
 	RevealsShroud:
-		Range: 1c0
+		Range: 1c512
 		Type: CenterPosition
-	HiddenUnderFog:
+	HiddenUnderShroud:
 		Type: CenterPosition
 	BodyOrientation:
 		QuantizedFacings: 1
