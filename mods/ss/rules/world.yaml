@@ -17,7 +17,7 @@
 		OverrideFullFog: full
 	Locomotor@FOOT:
 		Name: foot
-		Crushes: crate, flag
+		Crushes: crate, teleporter, flag
 		SharesCell: true
 		TerrainSpeeds:
 			Clear: 90
@@ -31,7 +31,7 @@
 			Beach: 80
 	Locomotor@CHEM:
 		Name: chem
-		Crushes: crate, flag
+		Crushes: crate, teleporter, flag
 		SharesCell: true
 		TerrainSpeeds:
 			Clear: 90
@@ -43,7 +43,7 @@
 			Beach: 80
 	Locomotor@WHEELED:
 		Name: wheeled
-		Crushes: crate, flag
+		Crushes: crate, teleporter, flag
 		TerrainSpeeds:
 			Clear: 80
 			Rough: 50
@@ -54,7 +54,7 @@
 			Beach: 50
 	Locomotor@BIKE:
 		Name: bike
-		Crushes: crate, flag
+		Crushes: crate, teleporter, flag
 		TerrainSpeeds:
 			Clear: 70
 			Rough: 35
@@ -65,7 +65,7 @@
 			Beach: 35
 	Locomotor@HEAVYWHEELED:
 		Name: heavywheeled
-		Crushes: crate, flag, infantry
+		Crushes: crate, teleporter, flag, infantry
 		TerrainSpeeds:
 			Clear: 80
 			Rough: 50
@@ -76,7 +76,7 @@
 			Beach: 50
 	Locomotor@TRACKED:
 		Name: tracked
-		Crushes: wall, crate, flag, infantry
+		Crushes: wall, crate, teleporter, flag, infantry
 		TerrainSpeeds:
 			Clear: 80
 			Rough: 70
@@ -87,7 +87,7 @@
 			Beach: 70
 	Locomotor@HEAVYTRACKED:
 		Name: heavytracked
-		Crushes: wall, heavywall, crate, flag, infantry
+		Crushes: wall, heavywall, crate, teleporter, flag, infantry
 		TerrainSpeeds:
 			Clear: 80
 			Rough: 70
@@ -115,7 +115,7 @@
 			River: 100
 	Locomotor@CRITTER:
 		Name: critter
-		Crushes: crate, flag
+		Crushes: crate, teleporter, flag
 		TerrainSpeeds:
 			Clear: 90
 			Rough: 80

@@ -36,7 +36,7 @@ namespace OpenRA.Mods.SS.Traits
 
 		void INotifyCreated.Created(Actor self)
 		{
-			Spawner = self.Trait<SpawnSSUnit>();
+			Spawner = self.TraitOrDefault<SpawnSSUnit>();
 			worldNotifySelection = self.TraitsImplementing<INotifySelection>().ToArray();
 		}
 

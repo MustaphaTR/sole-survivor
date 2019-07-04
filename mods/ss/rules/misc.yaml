@@ -4,6 +4,8 @@ CRATE:
 		XmasImages: xcrateb
 	SSCrate:
 		Lifetime: 250
+	Tooltip:
+		Name: Regular Crate
 	RevealMapCrateAction:
 		SelectionShares: 2
 		Sequence: reveal-map
@@ -124,6 +126,8 @@ UPGRADECRATE:
 		XmasImages: xcrates
 	SSCrate:
 		Lifetime: 250
+	Tooltip:
+		Name: Upgrade Crate
 	SSMultiplierCrateAction@armor:
 		SelectionShares: 50
 		Sequence: armorup
@@ -177,6 +181,8 @@ HEALCRATE:
 		XmasImages: xcrateg
 	SSCrate:
 		Lifetime: 250
+	Tooltip:
+		Name: Heal Crate
 	SSHealCrateAction:
 		Weapon: Atomic
 		Sequence: heal
@@ -193,6 +199,8 @@ EXPERIENCECRATE:
 		XmasImages: xcrated
 	SSCrate:
 		Lifetime: 250
+	Tooltip:
+		Name: Experience Crate
 	LevelUpCrateAction:
 		Levels: 1
 		SelectionShares: 1
@@ -210,6 +218,8 @@ WACKYCRATE:
 		XmasImages: xcrateo
 	SSCrate:
 		Lifetime: 250
+	Tooltip:
+		Name: Wacky Crate
 	WackyCrateAction@WACKY:
 		SelectionShares: 1
 		Sequence: wacky
@@ -223,11 +233,31 @@ ARMAGEDDONCRATE:
 		XmasImages: xcrater
 	SSCrate:
 		Lifetime: 500
+	Tooltip:
+		Name: Armageddon Crate
 	ArmageddonCrateAction@ARMAGEDDON:
 		SelectionShares: 1
 		Sequence: redskull
 	RenderSprites:
 		Image: crate-red
+
+TELEPORTER:
+	Inherits: ^Crate
+	WithCrateBody:
+		XmasImages: xcratew
+	-SSCrate:
+	-HiddenUnderFog:
+	HiddenUnderShroud:
+	Tooltip:
+		Name: Teleportation Crate
+	Teleporter:
+		MinDistance: 5
+		SetCameraPosition: true
+		Sequence: teleport
+		Sound: teleport.aud
+		Notification: TeleportActivated
+	RenderSprites:
+		Image: crate-white
 
 mpspawn:
 	Interactable:

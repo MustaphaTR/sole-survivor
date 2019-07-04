@@ -1,4 +1,3 @@
-
 resources:
 	Defaults:
 		UseTilesetExtension: true
@@ -286,6 +285,10 @@ crate-dark:
 	idle:
 		ZOffset: -511
 
+crate-white:
+	idle:
+		ZOffset: -511
+
 xcrateb:
 	idle: xcrate
 		ZOffset: -511
@@ -313,6 +316,11 @@ xcrater:
 xcrated:
 	idle: xcrate
 		Start: 5
+		ZOffset: -511
+
+xcratew:
+	idle: xcrate
+		Start: 6
 		ZOffset: -511
 
 crate-effects:
