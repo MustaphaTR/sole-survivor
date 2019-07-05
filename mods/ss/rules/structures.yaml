@@ -833,7 +833,7 @@ OBLI:
 	Armor:
 		Type: Heavy
 	RevealsShroud:
-		Range: 8c0
+		Range: 12c0
 	WithBuildingBib:
 		HasMinibib: Yes
 	-WithSpriteBody:
@@ -935,7 +935,7 @@ ATWR:
 	Armor:
 		Type: Heavy
 	RevealsShroud:
-		Range: 8c0
+		Range: 12c0
 	WithBuildingBib:
 		HasMinibib: Yes
 	Turreted:

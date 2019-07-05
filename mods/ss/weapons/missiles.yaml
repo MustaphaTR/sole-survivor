@@ -214,13 +214,13 @@ BoatMissile:
 TowerMissile:
 	Inherits: ^MissileWeapon
 	ReloadDelay: 15
-	Range: 7c0
+	Range: 11c0
 	Report: rocket2.aud
 	ValidTargets: Ground
 	Projectile: Missile
 		HorizontalRateOfTurn: 20
 		Speed: 298
-		RangeLimit: 8c409
+		RangeLimit: 12c614
 	Warhead@1Dam: SpreadDamage
 		Spread: 683
 		ValidTargets: Ground
@@ -236,14 +236,14 @@ TowerMissile:
 TowerAAMissile:
 	Inherits: ^MissileWeapon
 	ReloadDelay: 15
-	Range: 8c0
+	Range: 11c0
 	Report: rocket2.aud
 	ValidTargets: Air
 	Projectile: Missile
 		Image: MISSILE
 		HorizontalRateOfTurn: 20
 		Speed: 426
-		RangeLimit: 9c614
+		RangeLimit: 12c614
 		Inaccuracy: 0
 	Warhead@1Dam: SpreadDamage
 		Spread: 682
