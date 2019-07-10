@@ -661,6 +661,82 @@ Container@PLAYER_WIDGETS:
 									Width: 166
 									Height: 5
 									Bar: progressbar-thumb-green
+				Container@SKIRMISH_STATS:
+					Y: 260
+					Height: WINDOW_BOTTOM - 438
+					Width: 194
+					Logic: IngameScoreScreenLogic
+					Children:
+						Container@STATS_HEADERS:
+							Y: 80
+							Width: 194
+							Children:
+								Label@NAME:
+									Y: 1
+									Width: 90
+									Height: 25
+									Text: Player
+									Font: Bold
+								Label@FACTION:
+									X: 91
+									Y: 1
+									Width: 32
+									Height: 25
+									Text: Class
+									Font: Bold
+								Label@SCORE:
+									X: PARENT_RIGHT - 27
+									Y: 1
+									Width: 25
+									Height: 25
+									Text: Score
+									Font: Bold
+									Align: Right
+						ScrollPanel@PLAYER_LIST:
+							Y: 105
+							Width: 194
+							Height: WINDOW_BOTTOM - 463
+							ItemSpacing: 5
+							Children:
+								ScrollItem@TEAM_TEMPLATE:
+									Width: PARENT_RIGHT - 27
+									Height: 20
+									X: 2
+									Visible: false
+									Children:
+										Label@TEAM:
+											X: 6
+											Y: 0 
+											Width: 150
+											Height: 20
+											Font: Bold
+										Label@TEAM_SCORE:
+											X: PARENT_RIGHT - 27
+											Y: 0
+											Width: 25
+											Height: 20
+											Font: Bold
+											Align: Right
+								Container@PLAYER_TEMPLATE:
+									Width: PARENT_RIGHT - 27
+									Height: 25
+									X: 2
+									Children:
+										Label@NAME:
+											Width: 90
+											Height: 25
+											Shadow: True
+										Image@FACTIONFLAG:
+											X: 91
+											Y: 4
+											Width: 32
+											Height: 16
+										Label@SCORE:
+											X: PARENT_RIGHT - 27
+											Width: 25
+											Height: 25
+											Align: Right
+											Shadow: True
 		Container@PRODUCTION_BACKGROUND:
 			X: WINDOW_RIGHT - 204
 			Y: WINDOW_BOTTOM - 51
