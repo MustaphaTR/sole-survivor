@@ -137,14 +137,14 @@ namespace OpenRA.Mods.SS.Traits
 
             recipient.World.AddFrameEndTask(w =>
             {
-                var mobile = recipient.TraitOrDefault<Mobile>();
-                var locations = recipient.World.Map.FindTilesInAnnulus(recipient.Location, info.MinDistance, info.MaxDistance).Where(c => mobile.CanEnterCell(c));
-                if (mobile != null && locations.Any())
+                var positionable = recipient.TraitOrDefault<IPositionable>();
+                var locations = recipient.World.Map.FindTilesInAnnulus(recipient.Location, info.MinDistance, info.MaxDistance).Where(c => positionable.CanEnterCell(c));
+                if (positionable != null && locations.Any())
                 {
                     recipient.CancelActivity();
 
                     var loc = locations.Random(recipient.World.SharedRandom);
-                    mobile.SetPosition(recipient, recipient.World.Map.CenterOfCell(loc));
+                    positionable.SetPosition(recipient, recipient.World.Map.CenterOfCell(loc));
 
                     if (info.SetCameraPosition && recipient.Owner == recipient.World.RenderPlayer)
                     {
