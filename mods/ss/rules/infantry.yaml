@@ -1,8 +1,8 @@
 E1:
 	Inherits: ^Soldier
-	Inherits@EXPERIENCE: ^GainsExperience
-	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Inherits@DECORATIONS: ^InfantryExperienceHospitalHazmatOverrides
+	Inherits@EXPERIENCE: ^GainsExperience
 	Valued:
 		Cost: 100
 	Tooltip:
@@ -29,9 +29,9 @@ E1:
 
 E2:
 	Inherits: ^Soldier
-	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Inherits@DECORATIONS: ^InfantryExperienceHospitalHazmatOverrides
+	Inherits@EXPERIENCE: ^GainsExperience
 	Valued:
 		Cost: 160
 	Tooltip:
@@ -65,9 +65,9 @@ E2:
 
 E3:
 	Inherits: ^Soldier
-	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Inherits@DECORATIONS: ^InfantryExperienceHospitalHazmatOverrides
+	Inherits@EXPERIENCE: ^GainsExperience
 	Valued:
 		Cost: 300
 	Tooltip:
@@ -97,9 +97,9 @@ E3:
 
 E4:
 	Inherits: ^Soldier
-	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Inherits@DECORATIONS: ^InfantryExperienceHospitalHazmatOverrides
+	Inherits@EXPERIENCE: ^GainsExperience
 	Valued:
 		Cost: 200
 	Tooltip:
@@ -131,9 +131,9 @@ E4:
 
 E5:
 	Inherits: ^Soldier
-	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Inherits@DECORATIONS: ^InfantryExperienceHospitalHazmatOverrides
+	Inherits@EXPERIENCE: ^GainsExperience
 	Valued:
 		Cost: 300
 	Tooltip:
@@ -207,9 +207,9 @@ E6:
 
 RMBO:
 	Inherits: ^Soldier
-	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Inherits@DECORATIONS: ^InfantryExperienceHospitalHazmatOverrides
+	Inherits@EXPERIENCE: ^GainsExperience
 	Valued:
 		Cost: 2000
 	Tooltip:
