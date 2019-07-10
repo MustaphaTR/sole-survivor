@@ -15,7 +15,11 @@ RespawnDelay =
 	two = DateTime.Seconds(2),
 	three = DateTime.Seconds(3),
 	five = DateTime.Seconds(5),
-	ten = DateTime.Seconds(10)
+	ten = DateTime.Seconds(10),
+	fifteen = DateTime.Seconds(15),
+	thirty = DateTime.Seconds(30),
+	forthfive = DateTime.Seconds(45),
+	sixty = DateTime.Seconds(60)
 }
 
 Respawn = function(player)
@@ -23,6 +27,7 @@ Respawn = function(player)
 		if not player.IsObjectiveFailed(0) then
 			player.Experience = player.Experience - 20
 
+			TickTimer(player, RespawnDelay[RespawnOption])
 			Trigger.AfterDelay(RespawnDelay[RespawnOption], function()
 				local unitType = player.Unit.Type
 
@@ -34,6 +39,22 @@ Respawn = function(player)
 			end)
 		end
 	end)
+end
+
+TickTimer = function(player, timer)
+	if player.IsLocalPlayer then
+		if timer <= 0 then
+			SSUserInterface.SetCenteralText("")
+
+			return
+		end
+
+		SSUserInterface.SetCenteralText("Respawn in " .. Utils.FormatTime(timer))
+
+		Trigger.AfterDelay(DateTime.Seconds(1), function()
+			TickTimer(player, timer - DateTime.Seconds(1))
+		end)
+	end
 end
 
 SetupObjectives = function()

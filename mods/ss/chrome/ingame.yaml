@@ -32,6 +32,14 @@ Container@INGAME_ROOT:
 					Font: Bold
 					Align: Center
 					Contrast: true
+				Label@MISSION_CENTER_TEXT:
+					X: WINDOW_RIGHT / 2 - 256
+					Y: WINDOW_BOTTOM / 2
+					Width: 512
+					Height: 25
+					Font: BigBold
+					Align: Center
+					Contrast: true
 				StrategicProgress@STRATEGIC_PROGRESS:
 					X: WINDOW_RIGHT / 2
 					Y: 40
