@@ -160,6 +160,12 @@
 		InternalName: Original
 		RandomFactionMembers: e1, e2, e3, e4, e5, rmbo, jeep, bggy, apc, bike, ltnk, mtnk, ftnk, arty, msam, mlrs, htnk, stnk, steg, trex, tric, rapt, pvice
 		Description: Random Original Unit\nA random unit that existed in the original game will be chosen when the game starts.\nThis includes following:\n - Minigunner\n - Grenadier\n - Rocket Soldier\n - Flamethrower\n - Chemical Warrior\n - Commando\n - Hum-vee\n - Nod Buggy\n - APC\n - Recon Bike\n - Light Tank\n - Medium Tank\n - Flame Tank\n - Artillery\n - Rocket Launcher\n - Mobile SSM\n - Mammoth Tank\n - Stealth Tank\n - Stegosaurus\n - Tyrannosaurus Rex\n - Triceratops\n - Velociraptor\n - Viceroid
+	Faction@RandomNew:
+		Name: New
+		Side: Random
+		InternalName: New
+		RandomFactionMembers: e6, harv, mhq, tran, orca, heli
+		Description: Random New Unit\nA random unit that didn't exist in the original game will be chosen when the game starts.\nThis includes following:\n - Engineer\n - Harvester\n - Mobile HQ\n - Chinook\n - Orca\n - Apache
 	Faction@e1:
 		Name: Minigunner
 		Side: Infantry
@@ -433,6 +439,10 @@ World:
 			three: 3 Seconds
 			five: 5 Seconds
 			ten: 10 Seconds
+			fifteen: 15 Seconds
+			thirty: 30 Seconds
+			fortyfive: 45 Seconds
+			sixty: 1 Minute
 		Default: three
 		DisplayOrder: 3
 	ScriptLobbyDropdown@ctf-mode:

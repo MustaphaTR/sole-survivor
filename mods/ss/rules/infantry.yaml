@@ -195,7 +195,6 @@ E6:
 		LimitedAudio: BuildingInProgress
 		OnHoldAudio: OnHold
 		CancelledAudio: Cancelled
-		LowPowerModifier: 300
 	ProximityExternalCondition@REMOVE:
 		Range: 1c512
 		ValidStances: Ally
