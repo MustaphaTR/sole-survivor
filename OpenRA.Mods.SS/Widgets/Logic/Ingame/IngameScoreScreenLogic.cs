@@ -67,9 +67,13 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
                     nameLabel.GetText = () =>
                     {
-                        var suffix = pp.WinState == WinState.Undefined ? "" : " (" + pp.WinState + ")";
+                        var suffix = "";
+                        if (pp.WinState == WinState.Lost)
+                            suffix = " (L)";
+                        else if (pp.WinState == WinState.Won)
+                            suffix = " (W)";
                         if (client != null && client.State == Session.ClientState.Disconnected)
-                            suffix = " (Gone)";
+                            suffix = " (G)";
 
                         return name.Update(Pair.New(pp.PlayerName, suffix));
                     };
@@ -117,7 +121,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
                     nameLabel.GetText = () =>
                     {
-                        var suffix = client.State == Session.ClientState.Disconnected ? " (Gone)" : "";
+                        var suffix = client.State == Session.ClientState.Disconnected ? " (G)" : "";
                         return name.Update(Pair.New(client.Name, suffix));
                     };
 
