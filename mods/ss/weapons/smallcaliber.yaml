@@ -13,7 +13,7 @@ Sniper:
 			Light: 5
 			Heavy: 5
 		InvalidTargets: Structure, Wall, Trees
-		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
+		DamageTypes: TriggerProne, BulletDeath
 
 ^HeavyMG:
 	ReloadDelay: 25
@@ -29,7 +29,7 @@ Sniper:
 			Wood: 50
 			Light: 70
 			Heavy: 30
-		DamageTypes: Prone50Percent, TriggerProne, RippedApartDeath
+		DamageTypes: TriggerProne, RippedApartDeath
 	Warhead@2Eff: CreateEffect
 		Explosions: piffs
 		ImpactActors: false
@@ -76,7 +76,7 @@ HeliAGGun:
 			Wood: 50
 			Light: 75
 			Heavy: 25
-		DamageTypes: Prone80Percent, TriggerProne, RippedApartDeath
+		DamageTypes: TriggerProne, RippedApartDeath
 
 HeliAAGun:
 	Inherits: HeliAGGun
@@ -112,7 +112,7 @@ Pistol:
 			Wood: 30
 			Light: 40
 			Heavy: 10
-		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
+		DamageTypes: TriggerProne, BulletDeath
 	Warhead@2Eff: CreateEffect
 		Explosions: piff
 
@@ -155,7 +155,7 @@ APCGun:
 			Wood: 25
 			Light: 75
 			Heavy: 25
-		DamageTypes: Prone50Percent, TriggerProne, DefaultDeath
+		DamageTypes: TriggerProne, DefaultDeath
 	Warhead@2Eff: CreateEffect
 		Explosions: small_frag
 		ValidTargets: Ground, Water, Air

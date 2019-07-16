@@ -24,7 +24,7 @@
 			Wood: 116
 			Light: 140
 			Heavy: 140
-		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+		DamageTypes: TriggerProne, ExplosionDeath
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 		InvalidTargets: Vehicle, Structure, Wall, Husk, Trees, Creep
@@ -205,7 +205,7 @@ BoatMissile:
 			Wood: 75
 			Light: 60
 			Heavy: 25
-		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+		DamageTypes: TriggerProne, SmallExplosionDeath
 	Warhead@3Eff: CreateEffect
 		Explosions: small_poof
 	Warhead@4EffAir: CreateEffect
@@ -229,7 +229,7 @@ TowerMissile:
 			Wood: 25
 			Light: 100
 			Heavy: 100
-		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+		DamageTypes: TriggerProne, SmallExplosionDeath
 	Warhead@3Eff: CreateEffect
 		Explosions: med_frag
 

@@ -543,10 +543,7 @@
 	RenderNameTag:
 	Guard:
 	TakeCover:
-		SpeedModifier: 60
-		DamageModifiers:
-			Prone50Percent: 50
-			Prone80Percent: 80
+		SpeedModifier: 100
 		DamageTriggers: TriggerProne
 		ProneOffset: 400,0,0
 	WithInfantryBody:

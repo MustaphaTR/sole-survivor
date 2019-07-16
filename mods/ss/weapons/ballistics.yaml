@@ -14,7 +14,7 @@
 			Wood: 100
 			Light: 100
 			Heavy: 100
-		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+		DamageTypes: TriggerProne, ExplosionDeath
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Crater
 		InvalidTargets: Vehicle, Structure, Wall, Husk, Trees, Creep
@@ -84,7 +84,7 @@ ArtilleryShell:
 			Wood: 120
 			Light: 112
 			Heavy: 75
-		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+		DamageTypes: TriggerProne, SmallExplosionDeath
 	Warhead@3Eff: CreateEffect
 		Explosions: poof
 		ImpactSounds: xplosml2.aud
@@ -108,6 +108,6 @@ Grenade:
 			Wood: 50
 			Light: 80
 			Heavy: 34
-		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+		DamageTypes: TriggerProne, SmallExplosionDeath
 	Warhead@3Eff: CreateEffect
 		Explosions: small_poof
