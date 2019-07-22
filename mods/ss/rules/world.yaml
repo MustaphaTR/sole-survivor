@@ -378,13 +378,22 @@ World:
 		TechLevelDropdownVisible: false
 		GameSpeedDropdownDisplayOrder: 7
 	SSCrateSpawner:
-		CrateActors: crate, upgradecrate, healcrate, experiencecrate, wackycrate, armageddoncrate
-		CrateActorShares: 840, 50, 90, 10, 10, 0
+		CrateActors: crate, upgradecrate, healcrate, experiencecrate, wackycrate
+		CrateActorShares: 840, 50, 90, 10, 10
 		SpawnInterval: 250
 		WaterChance: 0
 		InitialSpawnDelay: 0
 		DropdownDisplayOrder: 0
 		WackyModeCheckboxDisplayOrder: 7
+	CrateSpawner:
+		CrateActors: armageddoncrate
+		SpawnInterval: 1500
+		Maximum: 1
+		WaterChance: 0
+		CheckboxLabel: Armageddon
+		CheckboxDescription: One Red Armageddon crate spawns which kills everyone when taken
+		CheckboxEnabled: false
+		CheckboxDisplayOrder: 8
 	ScriptLobbyDropdown@time-limit:
 		ID: time-limit
 		Label: Time Limit
