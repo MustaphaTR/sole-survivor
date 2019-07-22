@@ -22,10 +22,19 @@ RespawnDelay =
 	sixty = DateTime.Seconds(60)
 }
 
+PenaltyOption = Map.LobbyOption("death-penalty")
+Penalty =
+{
+	disabled = 0;
+	five = 5,
+	ten = 10,
+	twenty = 20
+}
+
 Respawn = function(player)
 	Trigger.OnKilled(player.Unit, function()
 		if not player.IsObjectiveFailed(0) then
-			player.Experience = player.Experience - 20
+			player.Experience = player.Experience - Penalty[PenaltyOption]
 
 			TickTimer(player, RespawnDelay[RespawnOption])
 			Trigger.AfterDelay(RespawnDelay[RespawnOption], function()
