@@ -425,7 +425,6 @@
 	Inherits@1: ^ExistsInWorld
 	Inherits@3: ^SpriteActor
 	Inherits@4: ^AcceptsCratePowerups
-	Inherits@6: ^AcceptsCloakCrate
 	Huntable:
 	OwnerLostAction:
 		Action: Kill
@@ -537,6 +536,7 @@
 	Inherits@3: ^StartingCloak
 	Inherits@4: ^StartingInvulnerability
 	Inherits@5: ^CarriesFlag
+	Inherits@6: ^AcceptsCloakCrate
 	MustBeDestroyed:
 	Tooltip:
 		GenericName: Soldier
