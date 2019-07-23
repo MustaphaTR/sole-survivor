@@ -30,11 +30,15 @@ TimeVictory = function()
 	if #winners ~= 1 then
 		UserInterface.SetMissionText("Tie!", HSLColor.White)
 	else
+		timeout = true
+
 		for _,player in pairs(players) do
-			if winners[1] == player or (player.Team ~= 0 and player.Team == winners[1].Team) then
-				player.MarkCompletedObjective(0)
-			else
-				player.MarkFailedObjective(0)
+			if not player.IsObjectiveFailed(0) and not player.IsObjectiveCompleted(0) then
+				if winners[1] == player or (player.Team ~= 0 and player.Team == winners[1].Team) then
+					player.MarkCompletedObjective(0)
+				else
+					player.MarkFailedObjective(0)
+				end
 			end
 		end
 	end

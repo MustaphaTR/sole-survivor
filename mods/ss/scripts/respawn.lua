@@ -33,7 +33,7 @@ Penalty =
 
 Respawn = function(player)
 	Trigger.OnKilled(player.Unit, function()
-		if not player.IsObjectiveFailed(0) then
+		if not player.IsObjectiveFailed(0) and not player.IsObjectiveCompleted(0) then
 			player.Experience = player.Experience - Penalty[PenaltyOption]
 
 			TickTimer(player, RespawnDelay[RespawnOption])
@@ -120,16 +120,18 @@ SetupObjectives = function()
 				husk.Owner = neutral
 			end)
 
-			for _,other in pairs(players) do
-				if not other.IsObjectiveFailed(0) then
-					local win = true
-					for _,enemy in pairs(Utils.Where(players, function(p) return p ~= other and (p.Team == 0 or p.Team ~= other.Team) end)) do
-						if not enemy.IsObjectiveFailed(0) then
-							win = false
+			if not timeout then
+				for _,other in pairs(players) do
+					if not other.IsObjectiveFailed(0) and not other.IsObjectiveCompleted(0) then
+						local win = true
+						for _,enemy in pairs(Utils.Where(players, function(p) return p ~= other and (p.Team == 0 or p.Team ~= other.Team) end)) do
+							if not enemy.IsObjectiveFailed(0) then
+								win = false
+							end
 						end
-					end
-					if win then
-						other.MarkCompletedObjective(0)
+						if win then
+							other.MarkCompletedObjective(0)
+						end
 					end
 				end
 			end
