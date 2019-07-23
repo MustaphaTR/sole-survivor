@@ -39,6 +39,8 @@ namespace OpenRA.Mods.SS.Traits
 
 		public override void Activate(Actor collector)
 		{
+			Game.AddSystemLine("Battlefield Control", collector.Owner.PlayerName + " has taken the armageddon crate!");
+
 			var actors = self.World.Actors.Where(a => a.Owner.Playable && a.TraitOrDefault<SSMultiplierManager>() != null);
 			foreach (var actor in actors)
 				actor.Kill(self, info.DeathTypes);
