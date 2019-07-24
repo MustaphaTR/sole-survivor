@@ -37,9 +37,12 @@ Sniper:
 
 HighV:
 	Inherits: ^HeavyMG
-	ValidTargets: Ground, Air
+
+HighV.AA:
+	Inherits: ^HeavyMG
+	ValidTargets: Air
 	Warhead@1Dam: SpreadDamage
-		ValidTargets: Ground, Air
+		ValidTargets: Air
 
 Vulcan:
 	Inherits: ^HeavyMG
@@ -118,28 +121,41 @@ Pistol:
 
 M16:
 	Inherits: ^LightMG
-	ValidTargets: Ground, Air
+
+M16.AA:
+	Inherits: ^LightMG
+	ValidTargets: Air
 	Warhead@1Dam: SpreadDamage
-		ValidTargets: Ground, Air
+		ValidTargets: Air
 
 MachineGun:
 	Inherits: ^LightMG
 	Burst: 5
 	Report: mgun11.aud
-	ValidTargets: Ground, Air
 	Warhead@1Dam: SpreadDamage
-		ValidTargets: Ground, Air
 		Versus:
 			Wood: 10
 			Light: 70
 	Warhead@2Eff: CreateEffect
 		Explosions: piffs
 
+MachineGun.AA:
+	Inherits: MachineGun
+	ValidTargets: Air
+	Warhead@1Dam: SpreadDamage
+		ValidTargets: Air
+
 MachineGunH:
 	Inherits: MachineGun
 	Warhead@1Dam: SpreadDamage
 		Versus:
 			Light: 80
+
+MachineGunH.AA:
+	Inherits: MachineGunH
+	ValidTargets: Air
+	Warhead@1Dam: SpreadDamage
+		ValidTargets: Air
 
 APCGun:
 	ReloadDelay: 18

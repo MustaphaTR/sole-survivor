@@ -49,6 +49,14 @@ TRAN:
 		Weapon: M16
 		LocalOffset: 768,0,-85
 		MuzzleSequence: muzzle
+	Armament@AA:
+		Weapon: M16.AA
+		LocalOffset: 768,0,-85
+		MuzzleSequence: muzzle
+		RequiresCondition: antiair
+	GrantConditionOnPrerequisite:
+		Condition: antiair
+		Prerequisites: global-moreaa
 	WithMuzzleOverlay:
 	Cargo:
 		Types: Infantry, Vehicle

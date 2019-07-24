@@ -247,6 +247,14 @@ BGGY:
 		Weapon: MachineGun
 		LocalOffset: 171,0,43
 		MuzzleSequence: muzzle
+	Armament@AA:
+		Weapon: MachineGun.AA
+		LocalOffset: 171,0,43
+		MuzzleSequence: muzzle
+		RequiresCondition: antiair
+	GrantConditionOnPrerequisite:
+		Condition: antiair
+		Prerequisites: global-moreaa
 	AttackTurreted:
 	WithMuzzleOverlay:
 	WithSpriteTurret:
@@ -321,6 +329,14 @@ JEEP:
 		Weapon: MachineGunH
 		LocalOffset: 171,0,85
 		MuzzleSequence: muzzle
+	Armament@AA:
+		Weapon: MachineGunH.AA
+		LocalOffset: 171,0,85
+		MuzzleSequence: muzzle
+		RequiresCondition: antiair
+	GrantConditionOnPrerequisite:
+		Condition: antiair
+		Prerequisites: global-moreaa
 	AttackTurreted:
 	WithMuzzleOverlay:
 	WithSpriteTurret:
@@ -363,6 +379,16 @@ LTNK:
 		RecoilRecovery: 17
 		LocalOffset: 720,0,90
 		MuzzleSequence: muzzle
+	Armament@AA:
+		Weapon: 70mm.AA
+		Recoil: 85
+		RecoilRecovery: 17
+		LocalOffset: 720,0,90
+		MuzzleSequence: muzzle
+		RequiresCondition: antiair
+	GrantConditionOnPrerequisite:
+		Condition: antiair
+		Prerequisites: global-moreaa
 	AttackTurreted:
 	WithMuzzleOverlay:
 	WithSpriteTurret:
@@ -402,6 +428,16 @@ MTNK:
 		RecoilRecovery: 26
 		LocalOffset: 768,0,90
 		MuzzleSequence: muzzle
+	Armament@AA:
+		Weapon: 120mm.AA
+		Recoil: 128
+		RecoilRecovery: 26
+		LocalOffset: 768,0,90
+		MuzzleSequence: muzzle
+		RequiresCondition: antiair
+	GrantConditionOnPrerequisite:
+		Condition: antiair
+		Prerequisites: global-moreaa
 	AttackTurreted:
 	WithMuzzleOverlay:
 	WithSpriteTurret:
@@ -544,6 +580,14 @@ MLRS:
 		Weapon: Patriot
 		LocalOffset: 0,-171,0, 0,171,0
 		PauseOnCondition: !ammo
+	Armament@AA:
+		Weapon: Patriot.AA
+		LocalOffset: 0,-171,0, 0,171,0
+		PauseOnCondition: !ammo
+		RequiresCondition: antiair
+	GrantConditionOnPrerequisite:
+		Condition: antiair
+		Prerequisites: global-moreaa
 	AmmoPool:
 		Ammo: 2
 		PipCount: 0

@@ -63,6 +63,13 @@ Player:
 		Enabled: True
 		DisplayOrder: 9
 		Prerequisites: global-scorecrates
+	LobbyPrerequisiteCheckbox@MOREAA:
+		ID: moreaa
+		Label: More Anti-Air
+		Description: More units, compared to Tiberian Dawn, can attack air units
+		Enabled: True
+		DisplayOrder: 10
+		Prerequisites: global-moreaa
 	GrantConditionOnPrerequisite@RADAR:
 		Condition: radar
 		Prerequisites: global-radar

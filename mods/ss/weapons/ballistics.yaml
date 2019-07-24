@@ -23,17 +23,40 @@
 		ImpactSounds: xplos.aud
 		ImpactActors: false
 
+^BallisticAntiAirWeapon:
+	Inherits: ^BallisticWeapon
+	ValidTargets: Air
+	Warhead@1Dam: SpreadDamage
+		ValidTargets: Air
+	-Warhead@2Smu: LeaveSmudge
+	Warhead@3Eff: CreateEffect
+		Explosions: small_poof
+		ValidTargets: Air
+
 70mm:
 	Inherits: ^BallisticWeapon
 	ReloadDelay: 30
 	Range: 4c0
 	Report: tnkfire3.aud
-	ValidTargets: Ground, Air
 	Projectile: Bullet
 		Speed: 853
 	Warhead@1Dam: SpreadDamage
 		Damage: 2500
-		ValidTargets: Ground, Air
+		Versus:
+			None: 24
+			Wood: 72
+			Light: 100
+			Heavy: 88
+
+70mm.AA:
+	Inherits: ^BallisticAntiAirWeapon
+	ReloadDelay: 30
+	Range: 4c0
+	Report: tnkfire3.aud
+	Projectile: Bullet
+		Speed: 853
+	Warhead@1Dam: SpreadDamage
+		Damage: 2500
 		Versus:
 			None: 24
 			Wood: 72
@@ -42,9 +65,9 @@
 
 120mm:
 	Inherits: ^BallisticWeapon
-	ValidTargets: Ground, Air
-	Warhead@1Dam: SpreadDamage
-		ValidTargets: Ground, Air
+
+120mm.AA:
+	Inherits: ^BallisticAntiAirWeapon
 
 120mmDual:
 	Inherits: ^BallisticWeapon

@@ -881,6 +881,14 @@ GTWR:
 		Weapon: HighV
 		LocalOffset: 256,0,256
 		MuzzleSequence: muzzle
+	Armament@AA:
+		Weapon: HighV.AA
+		LocalOffset: 256,0,256
+		MuzzleSequence: muzzle
+		RequiresCondition: antiair
+	GrantConditionOnPrerequisite:
+		Condition: antiair
+		Prerequisites: global-moreaa
 	AttackTurreted:
 		RequiresCondition: !build-incomplete && !deployed
 	-WithDeathAnimation:
