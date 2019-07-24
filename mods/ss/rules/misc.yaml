@@ -110,6 +110,7 @@ CRATE:
 		Experience: 5
 		SelectionShares: 1
 		Sequence: experience
+		Prerequisites: global-scorecrates
 	TeleportCrateAction:
 		MinDistance: 5
 		SetCameraPosition: true
@@ -195,6 +196,7 @@ HEALCRATE:
 
 EXPERIENCECRATE:
 	Inherits: ^Crate
+	ConditionManager:
 	WithCrateBody:
 		XmasImages: xcrated
 	SSCrate:
@@ -209,6 +211,13 @@ EXPERIENCECRATE:
 		Experience: 20
 		SelectionShares: 19
 		Sequence: experience
+		Prerequisites: global-scorecrates
+	GrantConditionOnPrerequisite:
+		Condition: disabled
+		Prerequisites: !global-scorecrates, !global-veterancy
+	KillsSelf:
+		RemoveInstead: true
+		RequiresCondition: disabled
 	RenderSprites:
 		Image: crate-dark
 
