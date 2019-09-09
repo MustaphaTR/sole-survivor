@@ -133,7 +133,6 @@ ChromeLayout:
 	ss|chrome/assetbrowser.yaml
 	ss|chrome/missionbrowser.yaml
 	ss|chrome/editor.yaml
-	ss|chrome/dialog-hotkey.yaml
 
 Voices:
 	ss|audio/voices.yaml
