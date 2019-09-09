@@ -75,6 +75,9 @@ TickAI = function(bots)
 				local crates = GetNearbyCrates(unit, 8)
 				for _,crate in pairs(crates) do
 					unit.Move(crate.Location)
+					if unit.HasProperty("Land") then
+						unit.Land(crate)
+					end
 				end
 
 				if unit.Flag ~= nil then
@@ -98,6 +101,9 @@ TickAI = function(bots)
 				if healcrate ~= nil then
 					unit.Stop()
 					unit.Move(healcrate.Location)
+					if unit.HasProperty("Land") then
+						unit.Land(healcrate)
+					end
 				end
 			end
 		end

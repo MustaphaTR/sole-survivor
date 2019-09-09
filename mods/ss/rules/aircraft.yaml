@@ -11,13 +11,9 @@ TRAN:
 		Queue: Aircraft.GDI, Aircraft.Nod
 		Description: Fast Infantry Transport Helicopter.
 	Aircraft:
-		LandWhenIdle: true
 		TurnSpeed: 5
 		Speed: 150
-		InitialFacing: 224
-		LandableTerrainTypes: Clear,Rough,Road,Ore,Beach,Tiberium,BlueTiberium
 		AltitudeVelocity: 0c100
-		Crushes: crate, teleporter, flag
 	Health:
 		HP: 12500
 	Armor:
@@ -91,12 +87,8 @@ HELI:
 		Queue: Aircraft.Nod
 		Description: Helicopter Gunship with Chainguns.\n  Strong vs Infantry, Light Vehicles and\n  Aircraft\n  Weak vs Tanks
 	Aircraft:
-		LandWhenIdle: true
-		InitialFacing: 224
 		TurnSpeed: 7
 		Speed: 180
-		LandableTerrainTypes: Clear,Rough,Road,Ore,Beach,Tiberium,BlueTiberium
-		Crushes: crate, teleporter, flag
 	Health:
 		HP: 17500
 	Armor:
@@ -159,12 +151,8 @@ ORCA:
 		Queue: Aircraft.GDI
 		Description: Helicopter Gunship with AG Missiles.\n  Strong vs Buildings, Tanks\n  Weak vs Infantry
 	Aircraft:
-		LandWhenIdle: true
-		InitialFacing: 224
 		TurnSpeed: 7
 		Speed: 186
-		LandableTerrainTypes: Clear,Rough,Road,Ore,Beach,Tiberium,BlueTiberium
-		Crushes: crate, teleporter, flag
 	Health:
 		HP: 17500
 	Armor:

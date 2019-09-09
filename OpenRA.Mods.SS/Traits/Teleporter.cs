@@ -209,6 +209,11 @@ namespace OpenRA.Mods.SS.Traits
             return self.IsAtGroundLevel() && crushClasses.Contains(info.CrushClass);
         }
 
+        LongBitSet<PlayerBitMask> ICrushable.CrushableBy(Actor self, BitSet<CrushClass> crushClasses)
+        {
+            return self.IsAtGroundLevel() && crushClasses.Contains(info.CrushClass) ? self.World.AllPlayersMask : self.World.NoPlayersMask;
+        }
+
         void INotifyAddedToWorld.AddedToWorld(Actor self)
         {
             self.World.AddToMaps(self, this);

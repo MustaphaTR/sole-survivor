@@ -107,7 +107,7 @@ namespace OpenRA.Mods.SS.Traits
         }
 
         void INotifyParachute.OnParachute(Actor self) { }
-        void INotifyParachute.OnLanded(Actor self, Actor ignore)
+        void INotifyParachute.OnLanded(Actor self)
         {
             // Check whether the crate landed on anything
             var landedOn = self.World.ActorMap.GetActorsAt(self.Location)
@@ -224,6 +224,11 @@ namespace OpenRA.Mods.SS.Traits
         {
             // Crate can only be crushed if it is not in the air.
             return self.IsAtGroundLevel() && crushClasses.Contains(info.CrushClass);
+        }
+
+        LongBitSet<PlayerBitMask> ICrushable.CrushableBy(Actor self, BitSet<CrushClass> crushClasses)
+        {
+            return self.IsAtGroundLevel() && crushClasses.Contains(info.CrushClass) ? self.World.AllPlayersMask : self.World.NoPlayersMask;
         }
 
         void INotifyAddedToWorld.AddedToWorld(Actor self)
