@@ -372,7 +372,7 @@
 	OwnerLostAction:
 		Action: Kill
 	AppearsOnRadar:
-		UseLocation: yes
+		UseLocation: true
 	Targetable@GROUND:
 		TargetTypes: Ground, Vehicle
 		RequiresCondition: !airborne
@@ -729,7 +729,7 @@
 	OwnerLostAction:
 		Action: Kill
 	AppearsOnRadar:
-		UseLocation: yes
+		UseLocation: true
 	HiddenUnderFog:
 		Type: GroundPosition
 		AlwaysVisibleStances: None
@@ -807,7 +807,7 @@
 		EmptyWeapon: BuildingExplode
 	CaptureNotification:
 		Notification: BuildingCaptured
-		NewOwnerVoice: no
+		NewOwnerVoice: false
 	ActorLostNotification:
 		Notification: BuildingLost
 	ShakeOnDeath:
@@ -1117,7 +1117,7 @@
 		Damage: 100
 		Interval: 6
 	Targetable:
-		RequiresForceFire: yes
+		RequiresForceFire: true
 		TargetTypes: Ground, Husk
 	Capturable:
 		Types: husk
@@ -1165,7 +1165,7 @@
 		Name: Bridge
 		ShowOwnerRow: false
 	Targetable:
-		RequiresForceFire: yes
+		RequiresForceFire: true
 		TargetTypes: Ground, Water
 	Health:
 		HP: 60000
