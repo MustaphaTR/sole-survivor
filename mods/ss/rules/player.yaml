@@ -76,3 +76,4 @@ Player:
 	ProvidesRadar:
 		RequiresCondition: radar
 	GameSaveViewportManager:
+	PlayerRadarTerrain:
