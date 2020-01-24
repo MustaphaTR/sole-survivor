@@ -48,7 +48,7 @@ namespace OpenRA.Mods.Common.Traits
 			if (health != null && health.DamageState == DamageState.Undamaged)
 			{
 				var weapon = collector.World.Map.Rules.Weapons[info.Weapon.ToLowerInvariant()];
-				health.InflictDamage(collector, collector, new Damage(-(health.MaxHP - health.HP)), true);
+				weapon.Impact(Target.FromPos(collector.CenterPosition), collector);
 
 				if (!string.IsNullOrEmpty(info.WeaponNotification))
 					Game.Sound.PlayNotification(self.World.Map.Rules, collector.Owner, "Speech",
