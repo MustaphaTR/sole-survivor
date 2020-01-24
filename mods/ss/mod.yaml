@@ -117,14 +117,13 @@ ChromeLayout:
 	ss|chrome/ingame-chat.yaml
 	ss|chrome/ingame-menu.yaml
 	ss|chrome/ingame-debug.yaml
-	ss|chrome/ingame-debuginfo.yaml
 	ss|chrome/ingame-infochat.yaml
 	ss|chrome/ingame-info.yaml
 	ss|chrome/ingame-infobriefing.yaml
 	ss|chrome/ingame-infoscripterror.yaml
 	ss|chrome/ingame-infoobjectives.yaml
 	ss|chrome/ingame-infostats.yaml
-	ss|chrome/ingame-observerstats.yaml
+	ss|chrome/ingame-debuginfo.yaml
 	ss|chrome/music.yaml
 	ss|chrome/settings.yaml
 	ss|chrome/credits.yaml

@@ -10,12 +10,11 @@ Container@INGAME_ROOT:
 				TakeScreenshotKey: TakeScreenshot
 				MuteAudioKey: ToggleMute
 		LogicKeyListener@WORLD_KEYHANDLER:
-			Logic: CycleBasesHotkeyLogic, CycleProductionActorsHotkeyLogic, JumpToLastEventHotkeyLogic, JumpToSelectedActorsHotkeyLogic, TogglePixelDoubleHotkeyLogic, TogglePlayerStanceColorHotkeyLogic, CycleStatusBarsHotkeyLogic, PauseHotkeyLogic
-				CycleBasesKey: CycleBase
-				CycleProductionActorsKey: CycleProductionBuildings
+			Logic: JumpToLastEventHotkeyLogic, JumpToSelectedActorsHotkeyLogic, ResetZoomHotkeyLogic, TogglePlayerStanceColorHotkeyLogic, CycleStatusBarsHotkeyLogic, PauseHotkeyLogic, RemoveFromControlGroupHotkeyLogic
+				RemoveFromControlGroupKey: RemoveFromControlGroup
 				JumpToLastEventKey: ToLastEvent
 				JumpToSelectedActorsKey: ToSelection
-				TogglePixelDoubleKey: TogglePixelDouble
+				ResetZoomKey: ResetZoom
 				TogglePlayerStanceColorKey: TogglePlayerStanceColor
 				CycleStatusBarsKey: CycleStatusBars
 				PauseKey: Pause
@@ -136,23 +135,6 @@ Container@OBSERVER_WIDGETS:
 					Y: 5
 					ImageCollection: order-icons
 					ImageName: options
-		MenuButton@OBSERVER_STATS_BUTTON:
-			Key: StatisticsBasic
-			X: WINDOW_RIGHT - 260 - WIDTH
-			Y: 35
-			Width: 30
-			Height: 25
-			TooltipText: Statistics
-			TooltipContainer: TOOLTIP_CONTAINER
-			MenuContainer: INGAME_OBSERVERSTATS_BG
-			HideIngameUI: false
-			Pause: false
-			Children:
-				Image@ICON:
-					X: 7
-					Y: 5
-					ImageCollection: order-icons
-					ImageName: stats
 		Background@RADAR:
 			X: WINDOW_RIGHT - WIDTH - 5
 			Y: 5

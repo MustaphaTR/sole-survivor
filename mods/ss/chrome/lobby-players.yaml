@@ -25,7 +25,7 @@ Container@LOBBY_PLAYER_BIN:
 					X: 291
 					Width: 120
 					Height: 25
-					Text: Faction
+					Text: Class
 					Align: Center
 					Font: Bold
 				Label@TEAM:
@@ -136,7 +136,7 @@ Container@LOBBY_PLAYER_BIN:
 									X: 40
 									Width: 60
 									Height: 25
-									Text: Faction
+									Text: Class
 						DropDownButton@TEAM_DROPDOWN:
 							X: 416
 							Width: 50
@@ -241,7 +241,7 @@ Container@LOBBY_PLAYER_BIN:
 									X: 40
 									Width: 60
 									Height: 25
-									Text: Faction
+									Text: Class
 						Label@TEAM:
 							X: 416
 							Width: 25

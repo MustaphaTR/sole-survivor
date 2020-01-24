@@ -2,7 +2,7 @@ Container@INGAME_MENU:
 	Width: WINDOW_RIGHT
 	Height: WINDOW_BOTTOM
 	Logic: IngameMenuLogic
-		Buttons: EXIT_EDITOR, SAVE_MAP, ABORT_MISSION, SURRENDER, LOAD_GAME, SAVE_GAME, MUSIC, SETTINGS, RESUME
+		Buttons: EXIT_EDITOR, SAVE_MAP, ABORT_MISSION, SURRENDER, RESTART, LOAD_GAME, SAVE_GAME, MUSIC, SETTINGS, RESUME
 		ButtonStride: 130, 0
 	Children:
 		Image@EVA:
@@ -14,7 +14,7 @@ Container@INGAME_MENU:
 			ImageName: eva
 		Label@VERSION_LABEL:
 			X: WINDOW_RIGHT - 128 - 43
-			Y: 115
+			Y: 116
 			Width: 128
 			Align: Center
 			Contrast: true

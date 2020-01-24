@@ -44,11 +44,11 @@ namespace OpenRA.Mods.Common.Traits
 
 		public override void Activate(Actor collector)
 		{
-			var health = collector.TraitOrDefault<Health>();
+			var health = collector.TraitOrDefault<IHealth>();
 			if (health != null && health.DamageState == DamageState.Undamaged)
 			{
 				var weapon = collector.World.Map.Rules.Weapons[info.Weapon.ToLowerInvariant()];
-				weapon.Impact(Target.FromPos(collector.CenterPosition), collector, Enumerable.Empty<int>());
+				health.InflictDamage(collector, collector, new Damage(-(health.MaxHP - health.HP)), true);
 
 				if (!string.IsNullOrEmpty(info.WeaponNotification))
 					Game.Sound.PlayNotification(self.World.Map.Rules, collector.Owner, "Speech",
