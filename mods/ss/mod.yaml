@@ -1,6 +1,6 @@
 Metadata:
 	Title: Sole Survivor
-	Version: 68cc732
+	Version: 9050a24
 	Website: https://www.openra.net
 	WebIcon32: https://raw.githubusercontent.com/MustaphaTR/sole-survivor/master/mods/ss/icon.png
 
@@ -36,7 +36,7 @@ Packages:
 
 MapFolders:
 	ss|maps: System
-	~^maps/cnc/68cc732: User
+	~^maps/cnc/9050a24: User
 
 Rules:
 	ss|rules/misc.yaml
@@ -95,6 +95,7 @@ Assemblies:
 
 ChromeLayout:
 	ss|chrome/mainmenu.yaml
+	ss|chrome/mainmenu-prompts.yaml
 	ss|chrome/playerprofile.yaml
 	ss|chrome/multiplayer-browser.yaml
 	ss|chrome/multiplayer-browserpanels.yaml
@@ -223,6 +224,9 @@ SpriteSequenceFormat: TilesetSpecificSpriteSequence
 		JUNGLE: .jun
 
 ModelSequenceFormat: PlaceholderModelSequence
+
+AssetBrowser:
+	SupportedExtensions: .shp, .tem, .des, .sno, .jun, .vqa
 
 GameSpeeds:
 	slowest:

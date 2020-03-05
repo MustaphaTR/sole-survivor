@@ -1,197 +1,192 @@
-shellmap:
-	Image: reticle.png
-	Regions:
-		reticle: 0, 0, 512, 512
-
-shellmapbits:
+^Chrome:
 	Image: chrome.png
-	Regions:
-		record: 288, 16, 16, 16
+	# Image2x: chrome-2x.png
+	# Image3x: chrome-3x.png
 
 logos:
-	Image: chrome.png
+	Inherits: ^Chrome
 	Regions:
-		eva: 768, 320, 128, 64
+		eva: 769, 320, 128, 64
 		nod-load: 0, 256, 256, 256
 		gdi-load: 256, 256, 256, 256
 
 button:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 0, 192, 2, 2, 60, 60, 2, 2
 
 button-hover:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 0, 128, 2, 2, 60, 60, 2, 2
 
 button-disabled:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 64, 128, 2, 2, 60, 60, 2, 2
 
 button-pressed:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 64, 192, 2, 2, 60, 60, 2, 2
 
 button-highlighted:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 256, 128, 1, 1, 30, 30, 1, 1
 
 button-highlighted-hover:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 288, 128, 1, 1, 30, 30, 1, 1
 
 button-highlighted-pressed:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 256, 160, 1, 1, 30, 30, 1, 1
 
 button-highlighted-disabled:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 288, 160, 1, 1, 30, 30, 1, 1
 
 # A copy of button
 textfield:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 0, 192, 2, 2, 60, 60, 2, 2
 
 # A copy of button-hover
 textfield-hover:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 0, 128, 2, 2, 60, 60, 2, 2
 
 # A copy of button-disabled
 textfield-disabled:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 64, 128, 2, 2, 60, 60, 2, 2
 
 # A copy of button-pressed
 textfield-focused:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 64, 192, 2, 2, 60, 60, 2, 2
 
 # A copy of button
 progressbar-bg:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 0, 192, 2, 2, 60, 60, 2, 2
 
 # A copy of button-hover
 progressbar-thumb:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 0, 128, 2, 2, 60, 60, 2, 2
 
 progressbar-thumb-green:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 128, 64, 2, 2, 60, 60, 2, 2
 
 # A copy of panel-gray
 scrollpanel-bg:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 64, 64, 2, 2, 60, 60, 2, 2
 
 scrollpanel-button:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 0, 192, 2, 2, 60, 60, 2, 2
 
 scrollpanel-button-hover:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 0, 128, 2, 2, 60, 60, 2, 2
 
 scrollpanel-button-disabled:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 64, 128, 2, 2, 60, 60, 2, 2
 
 scrollpanel-button-pressed:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 64, 192, 2, 2, 60, 60, 2, 2
 
 # A copy of button-hover
 scrollitem-hover:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 0, 128, 2, 2, 60, 60, 2, 2
 
 # A copy of button-pressed
 scrollitem-selected:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 64, 192, 2, 2, 60, 60, 2, 2
 
 slider:
-	Image: chrome.png
+	Inherits: ^Chrome
 	Regions:
 		tick: 64, 64, 1, 4
 
 # A copy of panel-gray
 slider-track:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 64, 64, 2, 2, 60, 60, 2, 2
 
 slider-thumb:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 0, 192, 2, 2, 60, 60, 2, 2
 
 slider-thumb-hover:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 0, 128, 2, 2, 60, 60, 2, 2
 
 slider-thumb-disabled:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 64, 128, 2, 2, 60, 60, 2, 2
 
 slider-thumb-pressed:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 64, 192, 2, 2, 60, 60, 2, 2
 	Regions:
 		
 # A copy of button
 checkbox:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 0, 192, 2, 2, 60, 60, 2, 2
 
 # A copy of button-hover
 checkbox-hover:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 0, 128, 2, 2, 60, 60, 2, 2
 
 # A copy of button-disabled
 checkbox-disabled:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 64, 128, 2, 2, 60, 60, 2, 2
 
 # A copy of button-pressed
 checkbox-pressed:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 64, 192, 2, 2, 60, 60, 2, 2
 
 # A copy of button-highlighted-pressed
 checkbox-highlighted:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 256, 160, 1, 1, 30, 30, 1, 1
 
 panel-black:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 64, 0, 2, 2, 60, 60, 2, 2
 
 panel-darkred:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 0, 64, 2, 2, 60, 60, 2, 2
 
 panel-gray:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 64, 64, 2, 2, 60, 60, 2, 2
 
 panel-allblack:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 0, 0, 2, 2, 60, 60, 2, 2
 
 panel-transparent:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 128, 0, 2, 2, 60, 60, 2, 2
 	PanelSides: Edges
 
 shellmapborder:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 128, 128, 33, 33, 62, 62, 33, 33
 	PanelSides: Edges
 
 music:
-	Image: chrome.png
+	Inherits: ^Chrome
 	Regions:
 		pause: 256, 0, 16, 16
 		stop: 272, 0, 16, 16
@@ -202,7 +197,7 @@ music:
 		slowmo: 416, 80, 16, 16
 
 lobby-bits:
-	Image: chrome.png
+	Inherits: ^Chrome
 	Regions:
 		spawn-claimed: 458, 55, 19, 19
 		spawn-unclaimed: 435, 55, 19, 19
@@ -220,7 +215,7 @@ lobby-bits:
 		player-anonymous: 496, 112, 16, 16
 
 reload-icon:
-	Image: chrome.png
+	Inherits: ^Chrome
 	Regions:
 		enabled: 256, 192, 16, 16
 		disabled-0: 272, 192, 16, 16
@@ -237,7 +232,7 @@ reload-icon:
 		disabled-11: 448, 192, 16, 16
 
 checkbox-bits:
-	Image: chrome.png
+	Inherits: ^Chrome
 	Regions:
 		checked: 272, 32, 16, 16
 		checked-disabled: 272, 48, 16, 16
@@ -245,7 +240,7 @@ checkbox-bits:
 		crossed-disabled: 288, 48, 16, 16
 
 scrollbar:
-	Image: chrome.png
+	Inherits: ^Chrome
 	Regions:
 		down_arrow: 304, 0, 16, 16
 		down_pressed: 304, 16, 16, 16
@@ -307,7 +302,7 @@ strategic:
 		player_owned: 96, 0, 32, 32
 
 sidebar-bits:
-	Image: chrome.png
+	Inherits: ^Chrome
 	Regions:
 		indicator-left: 416, 48, 16, 8
 		indicator-right: 416, 56, 16, 8
@@ -316,7 +311,7 @@ sidebar-bits:
 		production-tooltip-cost: 464, 80, 16, 16
 
 production-icons:
-	Image: chrome.png
+	Inherits: ^Chrome
 	Regions:
 		building: 384, 0, 16, 16
 		building-disabled: 384, 16, 16, 16
@@ -338,7 +333,7 @@ production-icons:
 		support-alert: 464, 32, 16, 16
 
 order-icons:
-	Image: chrome.png
+	Inherits: ^Chrome
 	Regions:
 		options: 480, 0, 16, 16
 		options-disabled: 480, 16, 16, 16
@@ -357,7 +352,7 @@ order-icons:
 		stats-active: 496, 96, 16, 16
 
 command-icons:
-	Image: chrome.png
+	Inherits: ^Chrome
 	Regions:
 		attack-move: 320, 128, 24, 24
 		attack-move-disabled: 320, 152, 24, 24
@@ -377,7 +372,7 @@ command-icons:
 		queue-orders-disabled: 488, 152, 24, 24
 
 stance-icons:
-	Image: chrome.png
+	Inherits: ^Chrome
 	Regions:
 		attack-anything: 320, 176, 16, 16
 		attack-anything-disabled: 336, 176, 16, 16
@@ -393,82 +388,82 @@ stance-icons:
 		hold-fire-active: 496, 176, 16, 16
 
 dropdown:
-	Image: chrome.png
+	Inherits: ^Chrome
 	Regions:
 		separator: 64, 1, 1, 19
 
 command-button:
-	Image: chrome.png
+	Inherits: ^Chrome
 
 command-button-hover:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 2, 130, 0, 0, 60, 60, 0, 0
 	PanelSides: Center
 
 command-button-disabled:
-	Image: chrome.png
+	Inherits: ^Chrome
 
 command-button-pressed:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 66, 194, 0, 0, 60, 60, 0, 0
 	PanelSides: Center
 
 command-button-highlighted:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 257, 129, 0, 0, 30, 30, 0, 0
 	PanelSides: Center
 
 command-button-highlighted-hover:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 289, 129, 0, 0, 30, 30, 0, 0
 	PanelSides: Center
 
 command-button-highlighted-pressed:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 257, 161, 0, 0, 30, 30, 0, 0
 	PanelSides: Center
 
 command-button-highlighted-disabled:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 289, 161, 0, 0, 30, 30, 0, 0
 	PanelSides: Center
 
 stance-button:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 2, 194, 0, 0, 60, 60, 0, 0
 	PanelSides: Center
 
 stance-button-hover:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 2, 130, 0, 0, 60, 60, 0, 0
 	PanelSides: Center
 
 stance-button-disabled:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 66, 130, 0, 0, 60, 60, 0, 0
 	PanelSides: Center
 
 stance-button-pressed:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 66, 194, 0, 0, 60, 60, 0, 0
 	PanelSides: Center
 
 stance-button-highlighted:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 257, 129, 0, 0, 30, 30, 0, 0
 	PanelSides: Center
 
 stance-button-highlighted-hover:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 289, 129, 0, 0, 30, 30, 0, 0
 	PanelSides: Center
 
 stance-button-highlighted-pressed:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 257, 161, 0, 0, 30, 30, 0, 0
 	PanelSides: Center
 
 stance-button-highlighted-disabled:
-	Image: chrome.png
+	Inherits: ^Chrome
 	PanelRegion: 289, 161, 0, 0, 30, 30, 0, 0
 	PanelSides: Center
