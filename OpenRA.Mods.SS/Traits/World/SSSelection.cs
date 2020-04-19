@@ -30,6 +30,8 @@ namespace OpenRA.Mods.SS.Traits
 		public SpawnSSUnit Spawner { get; private set; }
 
 		readonly HashSet<Actor> actors = new HashSet<Actor>();
+		IEnumerable<Actor> rolloverActors;
+
 		INotifySelection[] worldNotifySelection;
 
 		public SSSelection(SSSelectionInfo info) { }
@@ -145,6 +147,16 @@ namespace OpenRA.Mods.SS.Traits
 		{
 			actors.Clear();
 			UpdateHash();
+		}
+
+		public void SetRollover(IEnumerable<Actor> rollover)
+		{
+			rolloverActors = rollover;
+		}
+
+		public bool RolloverContains(Actor a)
+		{
+			return rolloverActors != null && rolloverActors.Contains(a);
 		}
 
 		void ITick.Tick(Actor self)

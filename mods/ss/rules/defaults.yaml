@@ -340,7 +340,11 @@
 	Tooltip:
 		GenericName: Vehicle
 	TeamLeaderColorModifier:
-	RenderNameTag:
+	WithSSNameTagDecoration:
+		Margin: 0, -12
+		Position: Top
+		ValidStances: Ally, Neutral, Enemy
+		UsePlayerColor: true
 	Demolishable:
 	MustBeDestroyed:
 	Voiced:
@@ -406,7 +410,11 @@
 	Tooltip:
 		GenericName: Helicopter
 	TeamLeaderColorModifier:
-	RenderNameTag:
+	WithSSNameTagDecoration:
+		Margin: 0, -12
+		Position: Top
+		ValidStances: Ally, Neutral, Enemy
+		UsePlayerColor: true
 	WithFacingSpriteBody:
 	WithShadow:
 		Offset: 43, 128, 0
@@ -544,7 +552,11 @@
 	Tooltip:
 		GenericName: Soldier
 	TeamLeaderColorModifier:
-	RenderNameTag:
+	WithSSNameTagDecoration:
+		Margin: 0, -12
+		Position: Top
+		ValidStances: Ally, Neutral, Enemy
+		UsePlayerColor: true
 	Guard:
 	TakeCover:
 		SpeedModifier: 100
@@ -615,7 +627,11 @@
 		Cost: 1000
 	Tooltip:
 		Name: Dinosaur
-	RenderNameTag:
+	WithSSNameTagDecoration:
+		Margin: 0, -12
+		Position: Top
+		ValidStances: Ally, Neutral, Enemy
+		UsePlayerColor: true
 	RevealsShroud:
 		Range: 6c0
 	Mobile:
@@ -693,7 +709,11 @@
 	Tooltip:
 		Name: Visceroid
 	TeamLeaderColorModifier:
-	RenderNameTag:
+	WithSSNameTagDecoration:
+		Margin: 0, -12
+		Position: Top
+		ValidStances: Ally, Neutral, Enemy
+		UsePlayerColor: true
 	Armament:
 		Weapon: Chemspray
 		LocalOffset: 384,0,0
