@@ -85,6 +85,7 @@ APC:
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@CLOAK: ^AcceptsCloakCrate
+	Inherits@TRANSPORT: ^Transport
 	Valued:
 		Cost: 600
 	Tooltip:
@@ -130,7 +131,6 @@ APC:
 	Cargo:
 		Types: Infantry
 		MaxWeight: 5
-		PipCount: 5
 		LoadingCondition: notmobile
 	UnitStatValues:
 		Damage: 2000
@@ -590,7 +590,6 @@ MLRS:
 		Prerequisites: global-moreaa
 	AmmoPool:
 		Ammo: 2
-		PipCount: 0
 		AmmoCondition: ammo
 	AttackTurreted:
 	WithSpriteTurret:

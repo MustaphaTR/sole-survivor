@@ -1,6 +1,7 @@
 TRAN:
 	Inherits: ^Helicopter
 	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@TRANSPORT: ^Transport
 	Valued:
 		Cost: 750
 	Tooltip:
@@ -57,7 +58,6 @@ TRAN:
 	Cargo:
 		Types: Infantry, Vehicle
 		MaxWeight: 10
-		PipCount: 10
 		LoadedCondition: loaded
 	AttackGarrisoned:
 		Armaments: garrisoned
@@ -114,7 +114,6 @@ HELI:
 		FacingTolerance: 20
 	AmmoPool:
 		Ammo: 10
-		PipCount: 5
 		AmmoCondition: ammo
 	WithIdleOverlay@ROTORAIR:
 		Offset: 0,0,85
@@ -136,6 +135,11 @@ HELI:
 		Count: 1
 	Selectable:
 		DecorationBounds: 30,24
+	WithAmmoPipsDecoration:
+		Position: BottomLeft
+		Margin: 4, 3
+		RequiresSelection: true
+		PipCount: 5
 
 ORCA:
 	Inherits: ^Helicopter
@@ -175,7 +179,6 @@ ORCA:
 		FacingTolerance: 20
 	AmmoPool:
 		Ammo: 6
-		PipCount: 6
 		AmmoCondition: ammo
 	SpawnActorOnDeath:
 		Actor: ORCA.Husk
@@ -190,6 +193,10 @@ ORCA:
 		Count: 2
 	Selectable:
 		DecorationBounds: 30,24
+	WithAmmoPipsDecoration:
+		Position: BottomLeft
+		Margin: 4, 3
+		RequiresSelection: true
 
 C17:
 	Inherits: ^Plane
@@ -208,7 +215,6 @@ C17:
 		Type: CenterPosition
 	Cargo:
 		MaxWeight: 10
-		PipCount: 10
 	DamageMultiplier@INVULNERABLE:
 		Modifier: 0
 	Contrail@1:

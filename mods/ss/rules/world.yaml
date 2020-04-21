@@ -320,7 +320,6 @@
 	ResourceType@green-tib:
 		Type: Tiberium
 		Name: Tiberium
-		PipColor: Green
 		ResourceType: 1
 		Palette: staticterrain
 		TerrainType: Tiberium
@@ -332,7 +331,6 @@
 	ResourceType@blue-tib:
 		Type: BlueTiberium
 		Name: Tiberium
-		PipColor: Blue
 		ResourceType: 2
 		Palette: bluetiberium
 		TerrainType: BlueTiberium
@@ -379,6 +377,9 @@ World:
 		ShortGameCheckboxVisible: false
 		TechLevelDropdownVisible: false
 		GameSpeedDropdownDisplayOrder: 7
+	# SSMultiplierOptions:
+	#	MaxMultiplierDropdownDisplayOrder: 8
+	#	StandardMultiplierDropdownDisplayOrder: 9
 	SSCrateSpawner:
 		CrateActors: crate, upgradecrate, healcrate, experiencecrate, wackycrate
 		CrateActorShares: 840, 50, 90, 10, 10

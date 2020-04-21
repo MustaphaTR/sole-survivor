@@ -133,30 +133,30 @@
 		Image: rank
 		Sequence: rank-veteran-1
 		Palette: effect
-		ReferencePoint: Bottom, Right
+		Position: BottomRight
+		Margin: 5, 6
 		RequiresCondition: rank-veteran == 1
-		ZOffset: 256
 	WithDecoration@RANK-2:
 		Image: rank
 		Sequence: rank-veteran-2
 		Palette: effect
-		ReferencePoint: Bottom, Right
+		Position: BottomRight
+		Margin: 5, 6
 		RequiresCondition: rank-veteran == 2
-		ZOffset: 256
 	WithDecoration@RANK-3:
 		Image: rank
 		Sequence: rank-veteran-3
 		Palette: effect
-		ReferencePoint: Bottom, Right
+		Position: BottomRight
+		Margin: 5, 6
 		RequiresCondition: rank-veteran == 3
-		ZOffset: 256
 	WithDecoration@RANK-ELITE:
 		Image: rank
 		Sequence: rank-elite
 		Palette: effect
-		ReferencePoint: Bottom, Right
+		Position: BottomRight
+		Margin: 5, 6
 		RequiresCondition: rank-elite
-		ZOffset: 256
 
 ^InfantryExperienceHospitalHazmatOverrides:
 	WithDecoration@RANK-1:
@@ -301,6 +301,25 @@
 ^CarriesFlag:
 	CarriesFlag:
 		Condition: carrying-flag
+
+^Transport:
+	Cargo:
+	WithCargoPipsDecoration:
+		Position: BottomLeft
+		Margin: 4, 3
+		RequiresSelection: true
+		CustomPipSequences:
+			gray: pip-gray
+			yellow: pip-yellow
+			red: pip-red
+
+^StoresResources:
+	StoresResources:
+	WithResourceStoragePipsDecoration:
+		Position: BottomLeft
+		Margin: 4, 3
+		RequiresSelection: true
+		PipCount: 10
 
 ^Vehicle:
 	Inherits@1: ^ExistsInWorld
@@ -490,7 +509,8 @@
 	WithDecoration@HAZMAT:
 		Image: pips
 		Sequence: pip-hazmat
-		ReferencePoint: Bottom, Right
+		Position: BottomRight
+		Margin: 5, 6
 		RequiresCondition: hazmatsuits
 	ActorLostNotification:
 	SpawnActorOnDeath:
@@ -519,7 +539,8 @@
 	WithDecoration@REDCROSS:
 		Image: pips
 		Sequence: pip-heal
-		ReferencePoint: Bottom, Right
+		Position: BottomRight
+		Margin: 5, 6
 		RequiresCondition: hospitalheal
 		BlinkInterval: 32
 		BlinkPattern: On, Off
@@ -580,7 +601,7 @@
 	RevealsShroud:
 		Range: 2c0
 	Passenger:
-		PipType: Gray
+		CustomPipType: gray
 	ActorLostNotification:
 		Notification: CivilianKilled
 		NotifyAll: true

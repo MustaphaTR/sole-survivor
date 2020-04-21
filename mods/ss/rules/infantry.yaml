@@ -187,7 +187,7 @@ E6:
 	Health:
 		HP: 10000
 	Passenger:
-		PipType: Yellow
+		CustomPipType: yellow
 	GivesBuildableArea:
 		AreaTypes: building
 	ProvidesPrerequisite:
@@ -234,7 +234,7 @@ RMBO:
 	Health:
 		HP: 15000
 	Passenger:
-		PipType: Red
+		CustomPipType: red
 		Voice: Move
 	RevealsShroud:
 		Range: 6c0

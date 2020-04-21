@@ -102,6 +102,7 @@ NUK2:
 
 PROC:
 	Inherits: ^BaseBuilding
+	Inherits@RESOURCES: ^StoresResources
 	HitShape:
 		Type: Rectangle
 			TopLeft: -1536, -512
@@ -136,9 +137,7 @@ PROC:
 		DragLength: 12
 		TickRate: 15
 	StoresResources:
-		PipColor: Green
-		PipCount: 10
-		Capacity: 700
+		Capacity: 1000
 	Selectable:
 		Bounds: 72,56
 		DecorationBounds: 73,72
@@ -155,6 +154,7 @@ PROC:
 SILO:
 	Inherits: ^BaseBuilding
 	Inherits@shape: ^2x1Shape
+	Inherits@RESOURCES: ^StoresResources
 	Valued:
 		Cost: 300
 	Tooltip:
@@ -178,8 +178,6 @@ SILO:
 	WithResourceLevelSpriteBody:
 		Sequence: stages
 	StoresResources:
-		PipCount: 10
-		PipColor: Green
 		Capacity: 3000
 	-SpawnActorsOnSell:
 	Power:
