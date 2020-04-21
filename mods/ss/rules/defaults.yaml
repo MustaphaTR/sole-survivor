@@ -898,7 +898,7 @@
 	WithBuildingRepairDecoration:
 		Image: allyrepair
 		Sequence: repair
-		ReferencePoint: Center
+		Position: Center
 		Palette: player
 		IsPlayerPalette: True
 	CaptureManager:
@@ -935,6 +935,7 @@
 	Inherits: ^CivBuilding
 	OwnerLostAction:
 		Action: ChangeOwner
+	CaptureManager:
 	Capturable:
 		Types: building
 	CaptureNotification:
@@ -954,10 +955,9 @@
 	WithBuildingRepairDecoration:
 		Image: allyrepair
 		Sequence: repair
-		ReferencePoint: Center
+		Position: Center
 		Palette: player
 		IsPlayerPalette: True
-	CaptureManager:
 
 ^CivField:
 	Inherits: ^CivBuilding
