@@ -19,441 +19,444 @@ using OpenRA.Widgets;
 
 namespace OpenRA.Mods.Common.Widgets.Logic
 {
-    public class IngameUnitStatsLogic : ChromeLogic
-    {
-        [ObjectCreator.UseCtor]
-        public IngameUnitStatsLogic(Widget widget, World world)
-        {
-            var spawner = world.WorldActor.Trait<SpawnSSUnit>();
+	public class IngameUnitStatsLogic : ChromeLogic
+	{
+		[ObjectCreator.UseCtor]
+		public IngameUnitStatsLogic(Widget widget, World world)
+		{
+			var spawner = world.WorldActor.Trait<SpawnSSUnit>();
 
-            var health = widget.Get<LabelWidget>("STAT_HEALTH");
-            var sight = widget.Get<LabelWidget>("STAT_SIGHT");
-            var damage = widget.Get<LabelWidget>("STAT_DAMAGE");
-            var range = widget.Get<LabelWidget>("STAT_RANGE");
-            var rof = widget.Get<LabelWidget>("STAT_ROF");
-            var speed = widget.Get<LabelWidget>("STAT_SPEED");
+			var options = world.WorldActor.TraitOrDefault<SSMultiplierOptions>();
+			var max = options != null ? 100f / (options.MaxMultiplier - 100) : 1;
 
-            var healthBar = widget.Get<ProgressBarWidget>("STAT_HEALTH_BAR");
-            var sightBar = widget.Get<ProgressBarWidget>("STAT_SIGHT_BAR");
-            var damageBar = widget.Get<ProgressBarWidget>("STAT_DAMAGE_BAR");
-            var rangeBar = widget.Get<ProgressBarWidget>("STAT_RANGE_BAR");
-            var rofBar = widget.Get<ProgressBarWidget>("STAT_ROF_BAR");
-            var speedBar = widget.Get<ProgressBarWidget>("STAT_SPEED_BAR");
+			var health = widget.Get<LabelWidget>("STAT_HEALTH");
+			var sight = widget.Get<LabelWidget>("STAT_SIGHT");
+			var damage = widget.Get<LabelWidget>("STAT_DAMAGE");
+			var range = widget.Get<LabelWidget>("STAT_RANGE");
+			var rof = widget.Get<LabelWidget>("STAT_ROF");
+			var speed = widget.Get<LabelWidget>("STAT_SPEED");
 
-            health.GetText = () =>
-            {
-                var unit = spawner.Units[world.LocalPlayer];
-                if (unit != null && !unit.IsDead)
-                {
-                    var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
-                    if (usv != null)
-                    {
-                        if (usv.Health > 0)
-                        {
-                            var healthValue = usv.Health;
-                            foreach (var dm in unit.TraitsImplementing<IDamageModifier>().Select(dm => dm.GetDamageModifier(unit, new Damage(usv.Health))).Where(d => d != 0))
-                                healthValue = healthValue / dm * 100;
+			var healthBar = widget.Get<ProgressBarWidget>("STAT_HEALTH_BAR");
+			var sightBar = widget.Get<ProgressBarWidget>("STAT_SIGHT_BAR");
+			var damageBar = widget.Get<ProgressBarWidget>("STAT_DAMAGE_BAR");
+			var rangeBar = widget.Get<ProgressBarWidget>("STAT_RANGE_BAR");
+			var rofBar = widget.Get<ProgressBarWidget>("STAT_ROF_BAR");
+			var speedBar = widget.Get<ProgressBarWidget>("STAT_SPEED_BAR");
 
-                            return health.Text + ": " + healthValue.ToString();
-                        }
-                        else if (usv.Health < 0)
-                        {
-                            return health.Text + ": Infinite";
-                        }
-                    }
+			health.GetText = () =>
+			{
+				var unit = spawner.Units[world.LocalPlayer];
+				if (unit != null && !unit.IsDead)
+				{
+					var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
+					if (usv != null)
+					{
+						if (usv.Health > 0)
+						{
+							var healthValue = usv.Health;
+							foreach (var dm in unit.TraitsImplementing<IDamageModifier>().Select(dm => dm.GetDamageModifier(unit, new Damage(usv.Health))).Where(d => d != 0))
+								healthValue = healthValue / dm * 100;
 
-                    var healthTrait = unit.TraitOrDefault<Health>();
-                    if (healthTrait != null)
-                    {
-                        var healthValue = healthTrait.MaxHP;
-                        foreach (var dm in unit.TraitsImplementing<IDamageModifier>().Select(dm => dm.GetDamageModifier(unit, new Damage(healthTrait.MaxHP))).Where(d => d != 0))
-                            healthValue = healthValue / dm * 100;
+							return health.Text + ": " + healthValue.ToString();
+						}
+						else if (usv.Health < 0)
+						{
+							return health.Text + ": Infinite";
+						}
+					}
 
-                        return health.Text + ": " + healthValue.ToString();
-                    }
-                }
+					var healthTrait = unit.TraitOrDefault<Health>();
+					if (healthTrait != null)
+					{
+						var healthValue = healthTrait.MaxHP;
+						foreach (var dm in unit.TraitsImplementing<IDamageModifier>().Select(dm => dm.GetDamageModifier(unit, new Damage(healthTrait.MaxHP))).Where(d => d != 0))
+							healthValue = healthValue / dm * 100;
 
-                return health.Text + ":";
-            };
-            healthBar.GetPercentage = () =>
-            {
-                var unit = spawner.Units[world.LocalPlayer];
-                if (unit != null && !unit.IsDead)
-                {
-                    var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
-                    if (usv != null)
-                    {
-                        if (usv.Health > 0)
-                        {
-                            var healthValue = usv.Health;
-                            foreach (var dm in unit.TraitsImplementing<IDamageModifier>().Select(dm => dm.GetDamageModifier(unit, new Damage(usv.Health))).Where(d => d != 0))
-                                healthValue = healthValue / dm * 100;
+						return health.Text + ": " + healthValue.ToString();
+					}
+				}
 
-                            return (int)(((float)(healthValue - usv.Health) / (float)usv.Health) * 100);
-                        }
-                        else if (usv.Health < 0)
-                        {
-                            return 100;
-                        }
-                    }
+				return health.Text + ":";
+			};
+			healthBar.GetPercentage = () =>
+			{
+				var unit = spawner.Units[world.LocalPlayer];
+				if (unit != null && !unit.IsDead)
+				{
+					var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
+					if (usv != null)
+					{
+						if (usv.Health > 0)
+						{
+							var healthValue = usv.Health;
+							foreach (var dm in unit.TraitsImplementing<IDamageModifier>().Select(dm => dm.GetDamageModifier(unit, new Damage(usv.Health))).Where(d => d != 0))
+								healthValue = healthValue / dm * 100;
 
-                    var healthTrait = unit.TraitOrDefault<Health>();
-                    if (healthTrait != null)
-                    {
-                        var healthValue = healthTrait.MaxHP;
-                        foreach (var dm in unit.TraitsImplementing<IDamageModifier>().Select(dm => dm.GetDamageModifier(unit, new Damage(healthTrait.MaxHP))).Where(d => d != 0))
-                            healthValue = healthValue / dm * 100;
+							return (int)(((float)(healthValue - usv.Health) / (float)usv.Health) * 100 * max);
+						}
+						else if (usv.Health < 0)
+						{
+							return 100;
+						}
+					}
 
-                        return (int)(((float)(healthValue - healthTrait.MaxHP) / (float)healthTrait.MaxHP) * 100);
-                    }
-                }
+					var healthTrait = unit.TraitOrDefault<Health>();
+					if (healthTrait != null)
+					{
+						var healthValue = healthTrait.MaxHP;
+						foreach (var dm in unit.TraitsImplementing<IDamageModifier>().Select(dm => dm.GetDamageModifier(unit, new Damage(healthTrait.MaxHP))).Where(d => d != 0))
+							healthValue = healthValue / dm * 100;
 
-                return 0;
-            };
+						return (int)(((float)(healthValue - healthTrait.MaxHP) / (float)healthTrait.MaxHP) * 100 * max);
+					}
+				}
 
-            sight.GetText = () =>
-            {
-                var unit = spawner.Units[world.LocalPlayer];
-                if (unit != null && !unit.IsDead)
-                {
-                    var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
-                    if (usv != null)
-                    {
-                        if (usv.Sight > WDist.Zero)
-                        {
-                            var revealsShroudValue = usv.Sight;
-                            foreach (var rsm in unit.TraitsImplementing<IRevealsShroudModifier>().Select(rsm => rsm.GetRevealsShroudModifier()))
-                                revealsShroudValue = revealsShroudValue * rsm / 100;
+				return 0;
+			};
 
-                            return sight.Text + ": " + Math.Round((float)revealsShroudValue.Length / 1024, 2).ToString();
-                        }
-                        else if (usv.Sight < WDist.Zero)
-                        {
-                            return sight.Text + ": Infinite";
-                        }
-                    }
+			sight.GetText = () =>
+			{
+				var unit = spawner.Units[world.LocalPlayer];
+				if (unit != null && !unit.IsDead)
+				{
+					var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
+					if (usv != null)
+					{
+						if (usv.Sight > WDist.Zero)
+						{
+							var revealsShroudValue = usv.Sight;
+							foreach (var rsm in unit.TraitsImplementing<IRevealsShroudModifier>().Select(rsm => rsm.GetRevealsShroudModifier()))
+								revealsShroudValue = revealsShroudValue * rsm / 100;
 
-                    var revealsShroudTrait = unit.TraitsImplementing<RevealsShroud>().MaxBy(rs => rs.Info.Range);
-                    if (revealsShroudTrait != null)
-                    {
-                        var revealsShroudValue = revealsShroudTrait.Info.Range;
-                        foreach (var rsm in unit.TraitsImplementing<IRevealsShroudModifier>().Select(rsm => rsm.GetRevealsShroudModifier()))
-                            revealsShroudValue = revealsShroudValue * rsm / 100;
+							return sight.Text + ": " + Math.Round((float)revealsShroudValue.Length / 1024, 2).ToString();
+						}
+						else if (usv.Sight < WDist.Zero)
+						{
+							return sight.Text + ": Infinite";
+						}
+					}
 
-                        return sight.Text + ": " + Math.Round((float)revealsShroudValue.Length / 1024, 2).ToString();
-                    }
-                }
+					var revealsShroudTrait = unit.TraitsImplementing<RevealsShroud>().MaxBy(rs => rs.Info.Range);
+					if (revealsShroudTrait != null)
+					{
+						var revealsShroudValue = revealsShroudTrait.Info.Range;
+						foreach (var rsm in unit.TraitsImplementing<IRevealsShroudModifier>().Select(rsm => rsm.GetRevealsShroudModifier()))
+							revealsShroudValue = revealsShroudValue * rsm / 100;
 
-                return sight.Text + ":";
-            };
-            sightBar.GetPercentage = () =>
-            {
-                var unit = spawner.Units[world.LocalPlayer];
-                if (unit != null && !unit.IsDead)
-                {
-                    var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
-                    if (usv != null)
-                    {
-                        if (usv.Sight > WDist.Zero)
-                        {
-                            var revealsShroudValue = usv.Sight;
-                            foreach (var rsm in unit.TraitsImplementing<IRevealsShroudModifier>().Select(rsm => rsm.GetRevealsShroudModifier()))
-                                revealsShroudValue = revealsShroudValue * rsm / 100;
+						return sight.Text + ": " + Math.Round((float)revealsShroudValue.Length / 1024, 2).ToString();
+					}
+				}
 
-                            return (int)(((float)(revealsShroudValue.Length - usv.Sight.Length) / (float)usv.Sight.Length) * 100);
-                        }
-                        else if (usv.Sight < WDist.Zero)
-                        {
-                            return 100;
-                        }
-                    }
+				return sight.Text + ":";
+			};
+			sightBar.GetPercentage = () =>
+			{
+				var unit = spawner.Units[world.LocalPlayer];
+				if (unit != null && !unit.IsDead)
+				{
+					var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
+					if (usv != null)
+					{
+						if (usv.Sight > WDist.Zero)
+						{
+							var revealsShroudValue = usv.Sight;
+							foreach (var rsm in unit.TraitsImplementing<IRevealsShroudModifier>().Select(rsm => rsm.GetRevealsShroudModifier()))
+								revealsShroudValue = revealsShroudValue * rsm / 100;
 
-                    var revealsShroudTrait = unit.TraitsImplementing<RevealsShroud>().MaxBy(rs => rs.Info.Range);
-                    if (revealsShroudTrait != null)
-                    {
-                        var revealsShroudValue = revealsShroudTrait.Info.Range;
-                        foreach (var rsm in unit.TraitsImplementing<IRevealsShroudModifier>().Select(rsm => rsm.GetRevealsShroudModifier()))
-                            revealsShroudValue = revealsShroudValue * rsm / 100;
+							return (int)(((float)(revealsShroudValue.Length - usv.Sight.Length) / (float)usv.Sight.Length) * 100 * max);
+						}
+						else if (usv.Sight < WDist.Zero)
+						{
+							return 100;
+						}
+					}
 
-                        return (int)(((float)(revealsShroudValue.Length - revealsShroudTrait.Info.Range.Length) / (float)revealsShroudTrait.Info.Range.Length) * 100);
-                    }
-                }
+					var revealsShroudTrait = unit.TraitsImplementing<RevealsShroud>().MaxBy(rs => rs.Info.Range);
+					if (revealsShroudTrait != null)
+					{
+						var revealsShroudValue = revealsShroudTrait.Info.Range;
+						foreach (var rsm in unit.TraitsImplementing<IRevealsShroudModifier>().Select(rsm => rsm.GetRevealsShroudModifier()))
+							revealsShroudValue = revealsShroudValue * rsm / 100;
 
-                return 0;
-            };
+						return (int)(((float)(revealsShroudValue.Length - revealsShroudTrait.Info.Range.Length) / (float)revealsShroudTrait.Info.Range.Length) * 100 * max);
+					}
+				}
 
-            damage.GetText = () =>
-            {
-                var unit = spawner.Units[world.LocalPlayer];
-                if (unit != null && !unit.IsDead)
-                {
-                    var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
-                    if (usv != null)
-                    {
-                        if (usv.Damage < 0)
-                            return damage.Text + ": Infinite";
+				return 0;
+			};
 
-                        var damageValue = usv.Damage;
-                        foreach (var dm in unit.TraitsImplementing<IFirepowerModifier>().Select(fm => fm.GetFirepowerModifier()))
-                            damageValue = damageValue * dm / 100;
+			damage.GetText = () =>
+			{
+				var unit = spawner.Units[world.LocalPlayer];
+				if (unit != null && !unit.IsDead)
+				{
+					var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
+					if (usv != null)
+					{
+						if (usv.Damage < 0)
+							return damage.Text + ": Infinite";
 
-                        return damage.Text + ": " + damageValue.ToString();
-                    }
-                }
+						var damageValue = usv.Damage;
+						foreach (var dm in unit.TraitsImplementing<IFirepowerModifier>().Select(fm => fm.GetFirepowerModifier()))
+							damageValue = damageValue * dm / 100;
 
-                return damage.Text + ":";
-            };
-            damageBar.GetPercentage = () =>
-            {
-                var unit = spawner.Units[world.LocalPlayer];
-                if (unit != null && !unit.IsDead)
-                {
-                    var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
-                    if (usv != null)
-                    {
-                        if (usv.Damage < 0)
-                            return 100;
+						return damage.Text + ": " + damageValue.ToString();
+					}
+				}
 
-                        var damageValue = usv.Damage;
-                        foreach (var dm in unit.TraitsImplementing<IFirepowerModifier>().Select(fm => fm.GetFirepowerModifier()))
-                            damageValue = damageValue * dm / 100;
+				return damage.Text + ":";
+			};
+			damageBar.GetPercentage = () =>
+			{
+				var unit = spawner.Units[world.LocalPlayer];
+				if (unit != null && !unit.IsDead)
+				{
+					var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
+					if (usv != null)
+					{
+						if (usv.Damage < 0)
+							return 100;
 
-                        return (int)(((float)(damageValue - usv.Damage) / (float)usv.Damage) * 100);
-                    }
-                }
+						var damageValue = usv.Damage;
+						foreach (var dm in unit.TraitsImplementing<IFirepowerModifier>().Select(fm => fm.GetFirepowerModifier()))
+							damageValue = damageValue * dm / 100;
 
-                return 0;
-            };
+						return (int)(((float)(damageValue - usv.Damage) / (float)usv.Damage) * 100 * max);
+					}
+				}
 
-            rof.GetText = () =>
-            {
-                var unit = spawner.Units[world.LocalPlayer];
-                if (unit != null && !unit.IsDead)
-                {
-                    var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
-                    if (usv != null)
-                    {
-                        if (usv.ReloadDelay > 0)
-                        {
-                            var rofValue = usv.ReloadDelay;
-                            foreach (var rm in unit.TraitsImplementing<IReloadModifier>().Select(sm => sm.GetReloadModifier()))
-                                rofValue = rofValue * rm / 100;
+				return 0;
+			};
 
-                            return rof.Text + ": " + rofValue.ToString();
-                        }
-                        else if (usv.ReloadDelay < 0)
-                        {
-                            return rof.Text + ": Infinite";
-                        }
-                    }
+			rof.GetText = () =>
+			{
+				var unit = spawner.Units[world.LocalPlayer];
+				if (unit != null && !unit.IsDead)
+				{
+					var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
+					if (usv != null)
+					{
+						if (usv.ReloadDelay > 0)
+						{
+							var rofValue = usv.ReloadDelay;
+							foreach (var rm in unit.TraitsImplementing<IReloadModifier>().Select(sm => sm.GetReloadModifier()))
+								rofValue = rofValue * rm / 100;
 
-                    var armamanets = unit.TraitsImplementing<Armament>();
-                    if (armamanets.Any())
-                    {
-                        var rofValue = armamanets.Max(ar => ar.Weapon.ReloadDelay);
-                        foreach (var rm in unit.TraitsImplementing<IReloadModifier>().Select(sm => sm.GetReloadModifier()))
-                            rofValue = rofValue * rm / 100;
+							return rof.Text + ": " + rofValue.ToString();
+						}
+						else if (usv.ReloadDelay < 0)
+						{
+							return rof.Text + ": Infinite";
+						}
+					}
 
-                        return rof.Text + ": " + rofValue.ToString();
-                    }
-                }
+					var armamanets = unit.TraitsImplementing<Armament>();
+					if (armamanets.Any())
+					{
+						var rofValue = armamanets.Max(ar => ar.Weapon.ReloadDelay);
+						foreach (var rm in unit.TraitsImplementing<IReloadModifier>().Select(sm => sm.GetReloadModifier()))
+							rofValue = rofValue * rm / 100;
 
-                return rof.Text + ":";
-            };
-            rofBar.GetPercentage = () =>
-            {
-                var unit = spawner.Units[world.LocalPlayer];
-                if (unit != null && !unit.IsDead)
-                {
-                    var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
-                    if (usv != null)
-                    {
-                        if (usv.ReloadDelay > 0)
-                        {
-                            var rofValue = usv.ReloadDelay;
-                            foreach (var rm in unit.TraitsImplementing<IReloadModifier>().Select(sm => sm.GetReloadModifier()))
-                                rofValue = rofValue * rm / 100;
+						return rof.Text + ": " + rofValue.ToString();
+					}
+				}
 
-                            return (int)(((float)(usv.ReloadDelay - rofValue) / (float)usv.ReloadDelay) * 200);
-                        }
-                        else if (usv.ReloadDelay < 0)
-                        {
-                            return 100;
-                        }
-                    }
+				return rof.Text + ":";
+			};
+			rofBar.GetPercentage = () =>
+			{
+				var unit = spawner.Units[world.LocalPlayer];
+				if (unit != null && !unit.IsDead)
+				{
+					var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
+					if (usv != null)
+					{
+						if (usv.ReloadDelay > 0)
+						{
+							var rofValue = usv.ReloadDelay;
+							foreach (var rm in unit.TraitsImplementing<IReloadModifier>().Select(sm => sm.GetReloadModifier()))
+								rofValue = rofValue * rm / 100;
 
-                    var armamanets = unit.TraitsImplementing<Armament>();
-                    if (armamanets.Any())
-                    {
-                        var rofValue = armamanets.Max(ar => ar.Weapon.ReloadDelay);
-                        foreach (var rm in unit.TraitsImplementing<IReloadModifier>().Select(sm => sm.GetReloadModifier()))
-                            rofValue = rofValue * rm / 100;
+							return (int)(((float)(usv.ReloadDelay - rofValue) / (float)usv.ReloadDelay) * 100 * (max + 1));
+						}
+						else if (usv.ReloadDelay < 0)
+						{
+							return 100;
+						}
+					}
 
-                        return (int)(((float)(armamanets.Max(ar => ar.Weapon.ReloadDelay - rofValue)) / (float)armamanets.Max(ar => ar.Weapon.ReloadDelay)) * 200);
-                    }
-                }
+					var armamanets = unit.TraitsImplementing<Armament>();
+					if (armamanets.Any())
+					{
+						var rofValue = armamanets.Max(ar => ar.Weapon.ReloadDelay);
+						foreach (var rm in unit.TraitsImplementing<IReloadModifier>().Select(sm => sm.GetReloadModifier()))
+							rofValue = rofValue * rm / 100;
 
-                return 0;
-            };
+						return (int)(((float)(armamanets.Max(ar => ar.Weapon.ReloadDelay - rofValue)) / (float)armamanets.Max(ar => ar.Weapon.ReloadDelay)) * 100 * (max + 1));
+					}
+				}
 
-            range.GetText = () =>
-            {
-                var unit = spawner.Units[world.LocalPlayer];
-                if (unit != null && !unit.IsDead)
-                {
-                    var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
-                    if (usv != null)
-                    {
-                        if (usv.Range > WDist.Zero)
-                        {
-                            var rangeValue = usv.Range;
-                            foreach (var rm in unit.TraitsImplementing<IRangeModifier>().Select(rm => rm.GetRangeModifier()))
-                                rangeValue = rangeValue * rm / 100;
+				return 0;
+			};
 
-                            return range.Text + ": " + Math.Round((float)rangeValue.Length / 1024, 2).ToString();
-                        }
-                        else if (usv.Range < WDist.Zero)
-                        {
-                            return range.Text + ": Infinite";
-                        }
-                    }
+			range.GetText = () =>
+			{
+				var unit = spawner.Units[world.LocalPlayer];
+				if (unit != null && !unit.IsDead)
+				{
+					var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
+					if (usv != null)
+					{
+						if (usv.Range > WDist.Zero)
+						{
+							var rangeValue = usv.Range;
+							foreach (var rm in unit.TraitsImplementing<IRangeModifier>().Select(rm => rm.GetRangeModifier()))
+								rangeValue = rangeValue * rm / 100;
 
-                    var attackBase = unit.TraitsImplementing<AttackBase>();
-                    if (attackBase.Any())
-                    {
-                        var rangeValue = attackBase.Max(ab => ab.GetMaximumRange());
-                        return range.Text + ": " + Math.Round((float)rangeValue.Length / 1024, 2).ToString();
-                    }
-                }
+							return range.Text + ": " + Math.Round((float)rangeValue.Length / 1024, 2).ToString();
+						}
+						else if (usv.Range < WDist.Zero)
+						{
+							return range.Text + ": Infinite";
+						}
+					}
 
-                return range.Text + ":";
-            };
-            rangeBar.GetPercentage = () =>
-            {
-                var unit = spawner.Units[world.LocalPlayer];
-                if (unit != null && !unit.IsDead)
-                {
-                    var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
-                    if (usv != null)
-                    {
-                        if (usv.Range > WDist.Zero)
-                        {
-                            var rangeValue = usv.Range;
-                            foreach (var rm in unit.TraitsImplementing<IRangeModifier>().Select(rm => rm.GetRangeModifier()))
-                                rangeValue = rangeValue * rm / 100;
+					var attackBase = unit.TraitsImplementing<AttackBase>();
+					if (attackBase.Any())
+					{
+						var rangeValue = attackBase.Max(ab => ab.GetMaximumRange());
+						return range.Text + ": " + Math.Round((float)rangeValue.Length / 1024, 2).ToString();
+					}
+				}
 
-                            return (int)(((float)(rangeValue.Length - usv.Range.Length) / (float)usv.Range.Length) * 100);
-                        }
-                        else if (usv.Range < WDist.Zero)
-                        {
-                            return 100;
-                        }
-                    }
+				return range.Text + ":";
+			};
+			rangeBar.GetPercentage = () =>
+			{
+				var unit = spawner.Units[world.LocalPlayer];
+				if (unit != null && !unit.IsDead)
+				{
+					var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
+					if (usv != null)
+					{
+						if (usv.Range > WDist.Zero)
+						{
+							var rangeValue = usv.Range;
+							foreach (var rm in unit.TraitsImplementing<IRangeModifier>().Select(rm => rm.GetRangeModifier()))
+								rangeValue = rangeValue * rm / 100;
 
-                    var armamanets = unit.TraitsImplementing<Armament>();
-                    if (armamanets.Any())
-                    {
-                        var rangeValue = armamanets.Max(ar => ar.Weapon.Range);
-                        foreach (var rm in unit.TraitsImplementing<IRangeModifier>().Select(rm => rm.GetRangeModifier()))
-                            rangeValue = rangeValue * rm / 100;
+							return (int)(((float)(rangeValue.Length - usv.Range.Length) / (float)usv.Range.Length) * 100 * max);
+						}
+						else if (usv.Range < WDist.Zero)
+						{
+							return 100;
+						}
+					}
 
-                        return (int)(((float)(rangeValue.Length - armamanets.Max(ar => ar.Weapon.Range.Length)) / (float)armamanets.Max(ar => ar.Weapon.Range.Length)) * 100);
-                    }
-                }
+					var armamanets = unit.TraitsImplementing<Armament>();
+					if (armamanets.Any())
+					{
+						var rangeValue = armamanets.Max(ar => ar.Weapon.Range);
+						foreach (var rm in unit.TraitsImplementing<IRangeModifier>().Select(rm => rm.GetRangeModifier()))
+							rangeValue = rangeValue * rm / 100;
 
-                return 0;
-            };
+						return (int)(((float)(rangeValue.Length - armamanets.Max(ar => ar.Weapon.Range.Length)) / (float)armamanets.Max(ar => ar.Weapon.Range.Length)) * 100 * max);
+					}
+				}
 
-            speed.GetText = () =>
-            {
-                var unit = spawner.Units[world.LocalPlayer];
-                if (unit != null && !unit.IsDead)
-                {
-                    var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
-                    if (usv != null)
-                    {
-                        if (usv.Speed > 0)
-                        {
-                            var speedValue = usv.Speed;
-                            foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
-                                speedValue = speedValue * sm / 100;
+				return 0;
+			};
 
-                            return speed.Text + ": " + speedValue.ToString();
-                        }
-                        else if (usv.Speed < 0)
-                        {
-                            return speed.Text + ": Infinite";
-                        }
-                    }
+			speed.GetText = () =>
+			{
+				var unit = spawner.Units[world.LocalPlayer];
+				if (unit != null && !unit.IsDead)
+				{
+					var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
+					if (usv != null)
+					{
+						if (usv.Speed > 0)
+						{
+							var speedValue = usv.Speed;
+							foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
+								speedValue = speedValue * sm / 100;
 
-                    var mobile = unit.Info.TraitInfoOrDefault<MobileInfo>();
-                    if (mobile != null)
-                    {
-                        var speedValue = mobile.Speed;
-                        foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
-                            speedValue = speedValue * sm / 100;
+							return speed.Text + ": " + speedValue.ToString();
+						}
+						else if (usv.Speed < 0)
+						{
+							return speed.Text + ": Infinite";
+						}
+					}
 
-                        return speed.Text + ": " + speedValue.ToString();
-                    }
+					var mobile = unit.Info.TraitInfoOrDefault<MobileInfo>();
+					if (mobile != null)
+					{
+						var speedValue = mobile.Speed;
+						foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
+							speedValue = speedValue * sm / 100;
 
-                    var aircraft = unit.Info.TraitInfoOrDefault<AircraftInfo>();
-                    if (aircraft != null)
-                    {
-                        var speedValue = aircraft.Speed;
-                        foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
-                            speedValue = speedValue * sm / 100;
+						return speed.Text + ": " + speedValue.ToString();
+					}
 
-                        return speed.Text + ": " + speedValue.ToString();
-                    }
-                }
+					var aircraft = unit.Info.TraitInfoOrDefault<AircraftInfo>();
+					if (aircraft != null)
+					{
+						var speedValue = aircraft.Speed;
+						foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
+							speedValue = speedValue * sm / 100;
 
-                return speed.Text + ":";
-            };
-            speedBar.GetPercentage = () =>
-            {
-                var unit = spawner.Units[world.LocalPlayer];
-                if (unit != null && !unit.IsDead)
-                {
-                    var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
-                    if (usv != null)
-                    {
-                        if (usv.Speed > 0)
-                        {
-                            var speedValue = usv.Speed;
-                            foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
-                                speedValue = speedValue * sm / 100;
+						return speed.Text + ": " + speedValue.ToString();
+					}
+				}
 
-                            return (int)(((float)(speedValue - usv.Speed) / (float)usv.Speed) * 100);
-                        }
-                        else if (usv.Speed < 0)
-                        {
-                            return 100;
-                        }
-                    }
+				return speed.Text + ":";
+			};
+			speedBar.GetPercentage = () =>
+			{
+				var unit = spawner.Units[world.LocalPlayer];
+				if (unit != null && !unit.IsDead)
+				{
+					var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
+					if (usv != null)
+					{
+						if (usv.Speed > 0)
+						{
+							var speedValue = usv.Speed;
+							foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
+								speedValue = speedValue * sm / 100;
 
-                    var mobile = unit.Info.TraitInfoOrDefault<MobileInfo>();
-                    if (mobile != null)
-                    {
-                        var speedValue = mobile.Speed;
-                        foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
-                            speedValue = speedValue * sm / 100;
+							return (int)(((float)(speedValue - usv.Speed) / (float)usv.Speed) * 100 * max);
+						}
+						else if (usv.Speed < 0)
+						{
+							return 100;
+						}
+					}
 
-                        return (int)(((float)(speedValue - mobile.Speed) / (float)mobile.Speed) * 100);
-                    }
+					var mobile = unit.Info.TraitInfoOrDefault<MobileInfo>();
+					if (mobile != null)
+					{
+						var speedValue = mobile.Speed;
+						foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
+							speedValue = speedValue * sm / 100;
 
-                    var aircraft = unit.Info.TraitInfoOrDefault<AircraftInfo>();
-                    if (aircraft != null)
-                    {
-                        var speedValue = aircraft.Speed;
-                        foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
-                            speedValue = speedValue * sm / 100;
+						return (int)(((float)(speedValue - mobile.Speed) / (float)mobile.Speed) * 100 * max);
+					}
 
-                        return (int)(((float)(speedValue - aircraft.Speed) / (float)aircraft.Speed) * 100);
-                    }
-                }
+					var aircraft = unit.Info.TraitInfoOrDefault<AircraftInfo>();
+					if (aircraft != null)
+					{
+						var speedValue = aircraft.Speed;
+						foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
+							speedValue = speedValue * sm / 100;
 
-                return 0;
-            };
-        }
-    }
+						return (int)(((float)(speedValue - aircraft.Speed) / (float)aircraft.Speed) * 100 * max);
+					}
+				}
+
+				return 0;
+			};
+		}
+	}
 }

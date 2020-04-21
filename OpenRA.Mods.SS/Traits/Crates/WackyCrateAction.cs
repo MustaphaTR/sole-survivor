@@ -27,11 +27,18 @@ namespace OpenRA.Mods.SS.Traits
 	public class WackyCrateAction : CrateAction
 	{
 		WackyCrateActionInfo info;
+		SSMultiplierOptions options;
+
+		int max, min;
 
 		public WackyCrateAction(Actor self, WackyCrateActionInfo info)
 			: base(self, info)
 		{
 			this.info = info;
+			options = self.World.WorldActor.TraitOrDefault<SSMultiplierOptions>();
+
+			max = options != null ? options.MaxMultiplier : 200;
+			min = 100 / (max / 100);
 		}
 
 		public override int GetSelectionShares(Actor collector)
@@ -48,12 +55,12 @@ namespace OpenRA.Mods.SS.Traits
 			var manager = collector.TraitOrDefault<SSMultiplierManager>();
 			if (manager != null)
 			{
-				manager.ArmorModifier = 50;
-				manager.DamageModifier = 200;
-				manager.SightModifier = 200;
-				manager.RangeModifier = 200;
-				manager.ReloadModifier = 50;
-				manager.SpeedModifier = 200;
+				manager.ArmorModifier = min;
+				manager.DamageModifier = max;
+				manager.SightModifier = max;
+				manager.RangeModifier = max;
+				manager.ReloadModifier = min;
+				manager.SpeedModifier = max;
 
 				manager.WackyTick = info.Duration;
 				manager.WackyDuration = info.Duration;

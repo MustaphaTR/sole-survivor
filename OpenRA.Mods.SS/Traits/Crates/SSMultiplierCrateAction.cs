@@ -41,11 +41,19 @@ namespace OpenRA.Mods.SS.Traits
 	public class SSMultiplierCrateAction : CrateAction
 	{
 		SSMultiplierCrateActionInfo info;
+		SSMultiplierOptions options;
+
+		int max, min, standard;
 
 		public SSMultiplierCrateAction(Actor self, SSMultiplierCrateActionInfo info)
 			: base(self, info)
 		{
 			this.info = info;
+			options = self.World.WorldActor.TraitOrDefault<SSMultiplierOptions>();
+
+			max = options != null ? options.MaxMultiplier : 200;
+			min = 100 / (max / 100);
+			standard = options != null ? options.StandardMultiplier / 10 : 1;
 		}
 
 		public override int GetSelectionShares(Actor collector)
@@ -59,22 +67,22 @@ namespace OpenRA.Mods.SS.Traits
 
 			if (!info.AvailableWhenMaxed)
 			{
-				if (info.Type == SSMultiplier.Armor && manager.ArmorModifier <= 50)
+				if (info.Type == SSMultiplier.Armor && manager.ArmorModifier <= min)
 					return 0;
 
-				if (info.Type == SSMultiplier.Damage && manager.DamageModifier >= 200)
+				if (info.Type == SSMultiplier.Damage && manager.DamageModifier >= max)
 					return 0;
 
-				if (info.Type == SSMultiplier.Sight && manager.SightModifier >= 200)
+				if (info.Type == SSMultiplier.Sight && manager.SightModifier >= max)
 					return 0;
 
-				if (info.Type == SSMultiplier.Range && manager.RangeModifier >= 200)
+				if (info.Type == SSMultiplier.Range && manager.RangeModifier >= max)
 					return 0;
 
-				if (info.Type == SSMultiplier.Reload && manager.ReloadModifier <= 50)
+				if (info.Type == SSMultiplier.Reload && manager.ReloadModifier <= min)
 					return 0;
 
-				if (info.Type == SSMultiplier.Speed && manager.SpeedModifier >= 200)
+				if (info.Type == SSMultiplier.Speed && manager.SpeedModifier >= max)
 					return 0;
 			}
 
@@ -94,7 +102,7 @@ namespace OpenRA.Mods.SS.Traits
 
 			var manager = collector.TraitOrDefault<SSMultiplierManager>();
 			if (manager != null)
-				ApplyBonus(manager, info.Amount);
+				ApplyBonus(manager, info.Amount * standard);
 
 			if (info.TeamBonus > 0)
 			{
@@ -113,7 +121,7 @@ namespace OpenRA.Mods.SS.Traits
 					{
 						var actor = collector.World.ActorsWithTrait<SSMultiplierManager>().Where(a => a.Actor.Owner == player).FirstOrDefault();
 						if (actor != null)
-							ApplyBonus(actor.Trait, info.TeamBonus);
+							ApplyBonus(actor.Trait, info.TeamBonus * standard);
 					}
 				}
 			}
@@ -125,17 +133,17 @@ namespace OpenRA.Mods.SS.Traits
 				return;
 
 			if (info.Type == SSMultiplier.Armor)
-				manager.ArmorModifier = Math.Max(50, manager.ArmorModifier - amount);
+				manager.ArmorModifier = Math.Max(min, manager.ArmorModifier - amount);
 			else if (info.Type == SSMultiplier.Damage)
-				manager.DamageModifier = Math.Min(200, manager.DamageModifier + amount);
+				manager.DamageModifier = Math.Min(max, manager.DamageModifier + amount);
 			else if (info.Type == SSMultiplier.Sight)
-				manager.SightModifier = Math.Min(200, manager.SightModifier + amount);
+				manager.SightModifier = Math.Min(max, manager.SightModifier + amount);
 			else if (info.Type == SSMultiplier.Range)
-				manager.RangeModifier = Math.Min(200, manager.RangeModifier + amount);
+				manager.RangeModifier = Math.Min(max, manager.RangeModifier + amount);
 			else if (info.Type == SSMultiplier.Reload)
-				manager.ReloadModifier = Math.Max(50, manager.ReloadModifier - amount);
+				manager.ReloadModifier = Math.Max(min, manager.ReloadModifier - amount);
 			else
-				manager.SpeedModifier = Math.Min(200, manager.SpeedModifier + amount);
+				manager.SpeedModifier = Math.Min(max, manager.SpeedModifier + amount);
 		}
 	}
 }
