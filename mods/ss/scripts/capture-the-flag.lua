@@ -8,6 +8,7 @@
 ]]
 
 CtFOption = Map.LobbyOption("ctf-mode")
+EmptyDrop = Player.GetPlayer("Neutral").HasPrerequisites({ "global-emptydrop" })
 FlagCircles = { }
 Flags = { }
 
@@ -17,11 +18,21 @@ end
 
 OnCircle = function(player)
 	Trigger.AfterDelay(0, function()
-		if not player.Unit.IsDead then
+		if not player.Unit.IsDead and player.Unit.Flag ~= nil then
 			local circle = FlagCircles[player.TeamLeader.InternalName]
 			if player.Unit.Location == circle.Location then
-				local flag = player.Unit.DropFlag()
-				if flag ~= nil then
+				local flagOnMap = true
+				if not EmptyDrop then
+					for _,other in pairs(players) do
+						if not other.Unit.IsDead and other.Unit.Flag == Flags[player.TeamLeader.InternalName] then
+							flagOnMap = false
+							break
+						end
+					end
+				end
+
+				if EmptyDrop or (flagOnMap and Flags[player.TeamLeader.InternalName].Location == FlagCircles[player.TeamLeader.InternalName].Location) or player.Unit.Flag == Flags[player.TeamLeader.InternalName] then
+					local flag = player.Unit.DropFlag()
 					if flag.Owner ~= player.TeamLeader then
 						player.Experience = player.Experience + 40
 						if flag.Owner.Team == 0 then
