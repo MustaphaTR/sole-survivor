@@ -56,8 +56,7 @@ namespace OpenRA.Mods.Common.Traits
 	public class LobbyConditionCheckbox : INotifyCreated
 	{
 		readonly LobbyConditionCheckboxInfo info;
-		public int Token = ConditionManager.InvalidConditionToken;
-		ConditionManager conditionManager;
+		public int Token = Actor.InvalidConditionToken;
 
 		public LobbyConditionCheckbox(LobbyConditionCheckboxInfo info)
 		{
@@ -68,13 +67,7 @@ namespace OpenRA.Mods.Common.Traits
 		{
 			var enabled = self.World.LobbyInfo.GlobalSettings.OptionOrDefault(info.ID, info.Enabled);
 			if (enabled)
-            {
-                conditionManager = self.TraitOrDefault<ConditionManager>();
-                if (conditionManager == null)
-                    return;
-
-                Token = conditionManager.GrantCondition(self, info.Condition);
-            }
+                Token = self.GrantCondition(info.Condition);
         }
 	}
 }

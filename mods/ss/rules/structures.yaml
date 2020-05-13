@@ -686,8 +686,8 @@ TMPL:
 		ArrowSequence: arrow
 		ClockSequence: clock
 		CircleSequence: circles
-	WithNukeLaunchAnimation:
-	WithNukeLaunchOverlay:
+	WithSupportPowerActivationAnimation:
+	WithSupportPowerActivationOverlay:
 		Sequence: smoke
 	SupportPowerChargeBar:
 	ProvidesPrerequisite@buildingname:
@@ -739,7 +739,6 @@ GUN:
 GUN.husk:
 	Inherits: ^CivBuildingHusk
 	Inherits@ENGINEER: ^EngineerBuilding
-	ConditionManager:
 	OwnerLostAction:
 		Action: ChangeOwner
 	-Interactable:
@@ -902,7 +901,6 @@ GTWR:
 GTWR.husk:
 	Inherits: ^CivBuildingHusk
 	Inherits@ENGINEER: ^EngineerBuilding
-	ConditionManager:
 	OwnerLostAction:
 		Action: ChangeOwner
 	-Interactable:

@@ -11,7 +11,6 @@ Player:
 		NewOptionsNotification: NewOptions
 		CannotPlaceNotification: BuildingCannotPlaceAudio
 	TechTree:
-	ConditionManager:
 	SupportPowerManager:
 	ScriptTriggers:
 	MissionObjectives:

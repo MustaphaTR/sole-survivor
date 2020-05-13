@@ -196,7 +196,6 @@ HEALCRATE:
 
 EXPERIENCECRATE:
 	Inherits: ^Crate
-	ConditionManager:
 	WithCrateBody:
 		XmasImages: xcrated
 	SSCrate:
@@ -377,7 +376,6 @@ CAMERA.spyplane:
 	Inherits: CAMERA.small
 	Inherits@CRATE: ^AcceptsCratePowerups
 	SSExternalMultiplierManager:
-	ConditionManager:
 	RevealsShroud:
 		Range: 7c512
 	DetectCloaked:

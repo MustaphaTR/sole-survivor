@@ -21,6 +21,9 @@
     <Optimize>false</Optimize>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Traits\World\SSMultiplierOptions.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="../engine/OpenRA.Game/OpenRA.Game.csproj">
       <Private>False</Private>
     </ProjectReference>

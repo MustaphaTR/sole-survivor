@@ -29,7 +29,7 @@ namespace OpenRA.Mods.SS.Traits
 		public object Create(ActorInitializer init) { return new CarriesFlag(init.Self, this); }
 	}
 
-	public class CarriesFlag : INotifyCreated, INotifyKilled, ITick, IRender
+	public class CarriesFlag : INotifyKilled, ITick, IRender
 	{
 		readonly CarriesFlagInfo info;
 		readonly SpawnSSUnit spawner;
@@ -39,8 +39,7 @@ namespace OpenRA.Mods.SS.Traits
 		public Actor Flag;
 		IActorPreview[] flagPreviews;
 
-		public int Token = ConditionManager.InvalidConditionToken;
-		ConditionManager conditionManager;
+		public int Token = Actor.InvalidConditionToken;
 
 		public CarriesFlag(Actor self, CarriesFlagInfo info)
 		{
@@ -52,11 +51,6 @@ namespace OpenRA.Mods.SS.Traits
 			bi = self.World.WorldActor.Trait<BuildingInfluence>();
 		}
 
-		void INotifyCreated.Created(Actor self)
-		{
-			conditionManager = self.Trait<ConditionManager>();
-		}
-
 		void ITick.Tick(Actor self)
 		{
 			if (flagPreviews != null)
@@ -66,19 +60,16 @@ namespace OpenRA.Mods.SS.Traits
 
 		public void GrantCondition(Actor self)
 		{
-			if (conditionManager == null || string.IsNullOrEmpty(info.Condition))
+			if (string.IsNullOrEmpty(info.Condition))
 				return;
 
-			Token = conditionManager.GrantCondition(self, info.Condition);
+			Token = self.GrantCondition(info.Condition);
 		}
 
 		public void RevokeCondition(Actor self)
 		{
-			if (conditionManager == null)
-				return;
-
-			if (conditionManager.TokenValid(self, Token))
-				Token = conditionManager.RevokeCondition(self, Token);
+			if (self.TokenValid(Token))
+				Token = self.RevokeCondition(Token);
 		}
 
 		public void TakeFlag(Actor self, Actor flag)

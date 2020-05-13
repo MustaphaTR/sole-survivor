@@ -9,13 +9,13 @@
  */
 #endregion
 
-using OpenRA.Mods.Common.Traits;
+using OpenRA.Mods.Common;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.SS.Traits
 {
 	[Desc("Allows a condition to be granted from an external source (Lua, warheads, etc).")]
-	public class SwitchConditionInfo : ITraitInfo, Requires<ConditionManagerInfo>
+	public class SwitchConditionInfo : ITraitInfo
 	{
 		[GrantedConditionReference]
 		[FieldLoader.Require]
@@ -24,37 +24,25 @@ namespace OpenRA.Mods.SS.Traits
 		public object Create(ActorInitializer init) { return new SwitchCondition(init.Self, this); }
 	}
 
-	public class SwitchCondition : INotifyCreated
+	public class SwitchCondition
 	{
 		public readonly SwitchConditionInfo Info;
-		public int Token = ConditionManager.InvalidConditionToken;
-		ConditionManager conditionManager;
+		public int Token = Actor.InvalidConditionToken;
 
 		public SwitchCondition(Actor self, SwitchConditionInfo info)
 		{
 			Info = info;
 		}
 
-		void INotifyCreated.Created(Actor self)
-		{
-			conditionManager = self.Trait<ConditionManager>();
-		}
-
 		public void GrantCondition(Actor self)
 		{
-			if (conditionManager == null)
-				return;
-
-			Token = conditionManager.GrantCondition(self, Info.Condition);
+			Token = self.GrantCondition(Info.Condition);
 		}
 
 		public void RevokeCondition(Actor self)
 		{
-			if (conditionManager == null)
-				return;
-
-			if (conditionManager.TokenValid(self, Token))
-				Token = conditionManager.RevokeCondition(self, Token);
+			if (self.TokenValid(Token))
+				Token = self.RevokeCondition(Token);
 		}
 	}
 }

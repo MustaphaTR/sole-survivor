@@ -3,7 +3,6 @@
 	UpdatesPlayerStatistics:
 	CombatDebugOverlay:
 	ScriptTriggers:
-	ConditionManager:
 	RenderDebugState:
 
 ^SpriteActor:
@@ -905,7 +904,6 @@
 
 ^CivBuilding:
 	Inherits: ^Building
-	-ConditionManager:
 	Tooltip:
 		GenericName: Civilian Building
 		GenericStancePrefix: false

@@ -53,9 +53,6 @@ namespace OpenRA.Mods.SS.Traits
 
 		bool AcceptsCondition(Actor a)
 		{
-			if (a.TraitOrDefault<ConditionManager>() == null)
-				return false;
-
 			return a.TraitsImplementing<SwitchCondition>()
 				.Any(t => t.Info.Condition == info.Condition);
 		}
@@ -80,15 +77,12 @@ namespace OpenRA.Mods.SS.Traits
 					if (!a.IsInWorld || a.IsDead)
 						continue;
 
-					if (a.TraitOrDefault<ConditionManager>() == null)
-						return;
-
 					var switchCondition = a.TraitsImplementing<SwitchCondition>()
 						.FirstOrDefault(t => t.Info.Condition == info.Condition);
 
 					if (switchCondition != null)
 					{
-						var granted = switchCondition.Token != ConditionManager.InvalidConditionToken;
+						var granted = switchCondition.Token != Actor.InvalidConditionToken;
 						if (!granted)
 						{
 							switchCondition.GrantCondition(a);
