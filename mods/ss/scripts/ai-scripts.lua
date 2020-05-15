@@ -67,11 +67,13 @@ GetNearbyHealCrate = function(actor, distance)
 	return Utils.Random(crates)
 end
 
+healthCheckTimer = 5
 TickAI = function(bots)
+	healthCheckTimer = healthCheckTimer - 1
 	for _,bot in pairs(bots) do
 		local unit = bot.Unit
 		if unit ~= nil and not unit.IsDead then
-			if unit.IsIdle then
+			if unit.IsIdle or unit.IsIdleAircraft then
 				local crates = GetNearbyCrates(unit, 8)
 				for _,crate in pairs(crates) do
 					unit.Move(crate.Location)
@@ -89,7 +91,7 @@ TickAI = function(bots)
 						end
 					end)
 				elseif unit.Type == "tran" then
-					-- Do nothing!
+					unit.Move(unit.Location) -- Take off.
 				else
 					IdleHunt(unit)
 				end
@@ -99,10 +101,13 @@ TickAI = function(bots)
 				local healcrate = GetNearbyHealCrate(unit, 10)
 
 				if healcrate ~= nil then
-					unit.Stop()
-					unit.Move(healcrate.Location)
-					if unit.HasProperty("Land") then
-						unit.Land(healcrate)
+					if not unit.HasProperty("Land") or healthCheckTimer <= 0 then
+						unit.Stop()
+						unit.Move(healcrate.Location)
+						if unit.HasProperty("Land") then
+							unit.Land(healcrate)
+						end
+						healthCheckTimer = 5
 					end
 				end
 			end
