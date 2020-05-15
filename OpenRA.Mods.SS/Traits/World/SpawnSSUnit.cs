@@ -109,9 +109,9 @@ namespace OpenRA.Mods.SS.Traits
 		readonly SpawnSSUnitInfo info;
 
 		WorldRenderer wr;
-		bool teamSpawns;
 		int baseSize;
 
+		public bool TeamSpawns;
 		public Dictionary<Player, CPos> PlayerSpawnPoints = new Dictionary<Player, CPos>();
 		public Dictionary<Player, Player> TeamLeaders = new Dictionary<Player, Player>();
 		public Dictionary<Player, int> Teams = new Dictionary<Player, int>();
@@ -127,7 +127,7 @@ namespace OpenRA.Mods.SS.Traits
 		{
 			this.wr = wr;
 
-			teamSpawns = world.LobbyInfo.GlobalSettings
+			TeamSpawns = world.LobbyInfo.GlobalSettings
 				.OptionOrDefault("teamspawns", info.TeamSpawnsCheckboxEnabled);
 
 			int.TryParse(world.LobbyInfo.GlobalSettings
@@ -138,7 +138,7 @@ namespace OpenRA.Mods.SS.Traits
 				.ToDictionary(s => s, s => false);
 
 			var players = world.LobbyInfo.Clients.Where(c => !c.IsObserver);
-			if (teamSpawns)
+			if (TeamSpawns)
 			{
 				var teams = players.Select(p => p.Team).Distinct();
 				var leaders = new List<Session.Client>();

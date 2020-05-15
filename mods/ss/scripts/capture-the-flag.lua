@@ -16,36 +16,39 @@ CtFTick = function()
 
 end
 
-OnCircle = function(player)
+OnCircle = function(player, circle)
 	Trigger.AfterDelay(0, function()
 		if not player.Unit.IsDead and player.Unit.Flag ~= nil then
-			local circle = FlagCircles[player.TeamLeader.InternalName]
-			if player.Unit.Location == circle.Location then
-				local flagOnMap = true
-				if not EmptyDrop then
-					for _,other in pairs(players) do
-						if not other.Unit.IsDead and other.Unit.Flag == Flags[player.TeamLeader.InternalName] then
-							flagOnMap = false
-							break
+			if circle.Owner == player or (circle.Owner.Team ~= 0 and circle.Owner.Team == player.Team) then
+				if player.Unit.Location == circle.Location then
+					local flagOnMap = true
+					if not EmptyDrop then
+						for _,other in pairs(players) do
+							if not other.Unit.IsDead and other.Unit.Flag == Flags[circle.Owner.InternalName] then
+								flagOnMap = false
+								break
+							end
 						end
 					end
-				end
 
-				if EmptyDrop or (flagOnMap and Flags[player.TeamLeader.InternalName].Location == FlagCircles[player.TeamLeader.InternalName].Location) or player.Unit.Flag == Flags[player.TeamLeader.InternalName] then
-					local flag = player.Unit.DropFlag()
-					if flag.Owner ~= player.TeamLeader then
-						player.Experience = player.Experience + 40
-						if flag.Owner.Team == 0 then
-							Media.DisplaySystemMessage(player.Name .. " has captured flag of " .. flag.Owner.Name, "Battlefield Control")
-						else
-							Media.DisplaySystemMessage(player.Name .. " has captured flag of Team " .. flag.Owner.Team, "Battlefield Control")
-						end
-						if CtFOption == "score" then
-							flag.Teleport(FlagCircles[flag.Owner.InternalName].Location)
-						else
-							flag.Destroy()
-							for _,loser in pairs(Utils.Where(players, function(p) return p.TeamLeader == flag.Owner end)) do
-								loser.MarkFailedObjective(0)
+					if player.Unit.Flag.Owner.Team == 0 or player.Unit.Flag.Owner.Team ~= circle.Owner.Team or player.Unit.Flag.Owner == circle.Owner then
+						if EmptyDrop or (flagOnMap and Flags[circle.Owner.InternalName].Location == FlagCircles[circle.Owner.InternalName].Location) or player.Unit.Flag == Flags[circle.Owner.InternalName] then
+							local flag = player.Unit.DropFlag()
+							if flag.Owner ~= circle.Owner then
+								player.Experience = player.Experience + 40
+								if flag.Owner.Team == 0 or not Lobby.TeamSpawns() then
+									Media.DisplaySystemMessage(player.Name .. " has captured flag of " .. flag.Owner.Name, "Battlefield Control")
+								else
+									Media.DisplaySystemMessage(player.Name .. " has captured flag of Team " .. flag.Owner.Team, "Battlefield Control")
+								end
+								if CtFOption == "score" then
+									flag.Teleport(FlagCircles[flag.Owner.InternalName].Location)
+								else
+									flag.Destroy()
+									for _,loser in pairs(Utils.Where(players, function(p) return p.TeamLeader == flag.Owner end)) do
+										loser.MarkFailedObjective(0)
+									end
+								end
 							end
 						end
 					end
@@ -71,8 +74,10 @@ CtFWorldLoaded = function()
 					SpawnPoints[player.InternalName] = cell
 				end
 
-				Trigger.OnEnteredFootprint({ FlagCircles[player.TeamLeader.InternalName].Location }, function()
-					OnCircle(player)
+				Trigger.OnEnteredFootprint({ FlagCircles[player.TeamLeader.InternalName].Location }, function(a, id)
+					if not a.Owner.IsNonCombatant then
+						OnCircle(a.Owner, FlagCircles[player.TeamLeader.InternalName])
+					end
 				end)
 			end
 		end)

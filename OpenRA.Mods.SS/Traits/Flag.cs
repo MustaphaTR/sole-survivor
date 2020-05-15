@@ -104,14 +104,16 @@ namespace OpenRA.Mods.SS.Traits
 				return;
 
 			// You can't take your team's flag if it is already on the spawn point.
+			var flagTeam = FindPlayersClient(self.World, self.Owner).Team;
+			var crusherTeam = FindPlayersClient(crusher.World, crusher.Owner).Team;
 			if (self.Location == spawner.PlayerSpawnPoints[self.Owner]
-				&& spawner.TeamLeaders.Where(tl => tl.Value == self.Owner).Select(tl => tl.Key).Contains(crusher.Owner))
+				&& flagTeam != 0 && flagTeam == crusherTeam)
 				return;
 
-			self.World.AddFrameEndTask(w => OnCrushInner(crusher));
+			self.World.AddFrameEndTask(w => OnCrushInner(crusher, flagTeam, crusherTeam));
 		}
 
-		void OnCrushInner(Actor crusher)
+		void OnCrushInner(Actor crusher, int flagTeam, int crusherTeam)
 		{
 			if (Collected)
 				return;
@@ -122,12 +124,10 @@ namespace OpenRA.Mods.SS.Traits
 			var carriesFlag = crusher.TraitOrDefault<CarriesFlag>();
 			if (carriesFlag != null)
 			{
-				var flagTeam = FindPlayersClient(self.World, self.Owner).Team;
-				var crusherTeam = FindPlayersClient(crusher.World, crusher.Owner).Team;
 				if (self.Owner == crusher.Owner || (flagTeam != 0 && flagTeam == crusherTeam))
 					Game.AddSystemLine("Battlefield Control", crusher.Owner.PlayerName + " has taken their flag.");
 				else
-					Game.AddSystemLine("Battlefield Control", crusher.Owner.PlayerName + " has taken flag of " + (flagTeam == 0 ? self.Owner.PlayerName : "Team " + flagTeam) + ".");
+					Game.AddSystemLine("Battlefield Control", crusher.Owner.PlayerName + " has taken flag of " + (flagTeam == 0 || !spawner.TeamSpawns ? self.Owner.PlayerName : "Team " + flagTeam) + ".");
 
 				carriesFlag.GrantCondition(crusher);
 				carriesFlag.TakeFlag(crusher, self);
