@@ -42,7 +42,7 @@ Respawn = function(player)
 			Trigger.AfterDelay(RespawnDelay[RespawnOption], function()
 				local unitType = player.Unit.Type
 
-				local location = player.SpawnCellPosition
+				local location = SpawnPoints[player.InternalName]
 				if RandomRespawn then
 					location = Utils.Random(SpawnPoints)
 				end
@@ -167,9 +167,7 @@ RespawnWorldLoaded = function()
 		if RespawnOption ~= "disabled" then
 			Respawn(player)
 
-			if RandomRespawn then
-				SpawnPoints[player.InternalName] = player.SpawnCellPosition
-			end
+			SpawnPoints[player.InternalName] = player.SpawnCellPosition
 		else
 			Trigger.OnKilled(player.Unit, function()
 				player.MarkFailedObjective(0)

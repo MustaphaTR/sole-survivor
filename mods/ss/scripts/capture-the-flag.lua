@@ -64,6 +64,11 @@ CtFWorldLoaded = function()
 				if player == player.TeamLeader then
 					FlagCircles[player.InternalName] = Actor.Create("flagcircle", true, { Owner = player, Location = player.SpawnCellPosition })
 					Flags[player.InternalName] = Actor.Create("flag", true, { Owner = player, Location = player.SpawnCellPosition })
+
+					local cells = GetCells.FindTilesInAnnulus(player.SpawnCellPosition, 3, 4)
+					local cell = Utils.Random(Utils.Where(cells, function(c) return player.Unit.CanEnterCell(c) end))
+					player.Unit.Teleport(cell)
+					SpawnPoints[player.InternalName] = cell
 				end
 
 				Trigger.OnEnteredFootprint({ FlagCircles[player.TeamLeader.InternalName].Location }, function()

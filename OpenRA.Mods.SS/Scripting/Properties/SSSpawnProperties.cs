@@ -14,42 +14,43 @@ using OpenRA.Scripting;
 
 namespace OpenRA.Mods.SS.Scripting
 {
-    [ScriptPropertyGroup("General")]
-    public class SSSpawnProperties : ScriptPlayerProperties
-    {
-        readonly SpawnSSUnit spawnSSUnit;
-        readonly Player player;
+	[ScriptPropertyGroup("General")]
+	public class SSSpawnProperties : ScriptPlayerProperties
+	{
+		readonly SpawnSSUnit spawnSSUnit;
+		readonly Player player;
 
-        public SSSpawnProperties(ScriptContext context, Player player)
-            : base(context, player)
-        {
-            this.player = player;
-            spawnSSUnit = player.World.WorldActor.TraitOrDefault<SpawnSSUnit>();
-        }
+		public SSSpawnProperties(ScriptContext context, Player player)
+			: base(context, player)
+		{
+			this.player = player;
+			spawnSSUnit = player.World.WorldActor.TraitOrDefault<SpawnSSUnit>();
+		}
 
-        [Desc("Returns the player's spawn position in CPos.")]
-        public CPos SpawnCellPosition
-        {
-            get { return spawnSSUnit.PlayerSpawnPoints[player]; }
-        }
+		[Desc("Returns the player's spawn position in CPos.")]
+		public CPos SpawnCellPosition
+		{
+			get { return spawnSSUnit.PlayerSpawnPoints[player]; }
+			set { spawnSSUnit.PlayerSpawnPoints[player] = value; }
+		}
 
-        [Desc("Returns the player's spawn position in WPos.")]
-        public WPos SpawnWorldPosition
-        {
-            get { return player.World.Map.CenterOfCell(spawnSSUnit.PlayerSpawnPoints[player]); }
-        }
+		[Desc("Returns the player's spawn position in WPos.")]
+		public WPos SpawnWorldPosition
+		{
+			get { return player.World.Map.CenterOfCell(spawnSSUnit.PlayerSpawnPoints[player]); }
+		}
 
-        [Desc("Returns to the leader of the team player is in.")]
-        public Player TeamLeader
-        {
-            get { return spawnSSUnit.TeamLeaders[player]; }
-        }
+		[Desc("Returns to the leader of the team player is in.")]
+		public Player TeamLeader
+		{
+			get { return spawnSSUnit.TeamLeaders[player]; }
+		}
 
-        [Desc("Returns to or sets the player's.")]
-        public Actor Unit
-        {
-            get { return spawnSSUnit.Units[player]; }
-            set { spawnSSUnit.Units[player] = value; }
-        }
-    }
+		[Desc("Returns to or sets the player's.")]
+		public Actor Unit
+		{
+			get { return spawnSSUnit.Units[player]; }
+			set { spawnSSUnit.Units[player] = value; }
+		}
+	}
 }
