@@ -73,7 +73,7 @@ Player:
 		ID: randomrespawn
 		Label: Random Respawn
 		Description: Players respawn at a random spawn point instead of having a set one
-		Enabled: False
+		Enabled: True
 		DisplayOrder: 11
 		Prerequisites: global-randomrespawn
 	LobbyPrerequisiteCheckbox@EMPTYDROP:
