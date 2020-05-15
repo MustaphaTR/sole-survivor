@@ -31,6 +31,8 @@ Penalty =
 	twenty = 20
 }
 
+SpawnPoints = { }
+
 Respawn = function(player)
 	Trigger.OnKilled(player.Unit, function()
 		if not player.IsObjectiveFailed(0) and not player.IsObjectiveCompleted(0) then
@@ -40,9 +42,14 @@ Respawn = function(player)
 			Trigger.AfterDelay(RespawnDelay[RespawnOption], function()
 				local unitType = player.Unit.Type
 
-				player.Unit = Actor.Create(unitType, true, { Owner = player, Location = player.SpawnCellPosition })
+				local location = player.SpawnCellPosition
+				if RandomRespawn then
+					location = Utils.Random(SpawnPoints)
+				end
+
+				player.Unit = Actor.Create(unitType, true, { Owner = player, Location = location })
 				if player.IsLocalPlayer then
-					Camera.Position = player.SpawnWorldPosition
+					Camera.Position = Map.CenterOfCell(location)
 				end
 				Respawn(player)
 			end)
@@ -153,10 +160,16 @@ RespawnWorldLoaded = function()
 	players = Player.GetPlayers(function(p) return not p.IsNonCombatant end)
 	neutral = Player.GetPlayer("Neutral")
 
+	RandomRespawn = neutral.HasPrerequisites({ "global-randomrespawn" })
+
 	SetupObjectives()
 	for _,player in pairs(players) do
 		if RespawnOption ~= "disabled" then
 			Respawn(player)
+
+			if RandomRespawn then
+				SpawnPoints[player.InternalName] = player.SpawnCellPosition
+			end
 		else
 			Trigger.OnKilled(player.Unit, function()
 				player.MarkFailedObjective(0)

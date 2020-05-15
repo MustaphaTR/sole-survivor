@@ -69,12 +69,19 @@ Player:
 		Enabled: True
 		DisplayOrder: 10
 		Prerequisites: global-moreaa
-	LobbyPrerequisiteCheckbox@EMPTYDROP:
-		ID: emptydrop
-		Label: Drop On Empty Pole
-		Description: Allow dropping enemy flag, even if we don't have our own flag there
+	LobbyPrerequisiteCheckbox@RANDOMRESPAWN:
+		ID: randomrespawn
+		Label: Random Respawn
+		Description: Players respawn at a random spawn point instead of having a set one
 		Enabled: False
 		DisplayOrder: 11
+		Prerequisites: global-randomrespawn
+	LobbyPrerequisiteCheckbox@EMPTYDROP:
+		ID: emptydrop
+		Label: Empty Pole Drop
+		Description: Allow dropping enemy flag, even if we don't have our own flag at the pole
+		Enabled: False
+		DisplayOrder: 12
 		Prerequisites: global-emptydrop
 	GrantConditionOnPrerequisite@RADAR:
 		Condition: radar
