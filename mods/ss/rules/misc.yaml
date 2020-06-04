@@ -21,7 +21,7 @@ CRATE:
 		Sequence: hide-map
 		Sound: crshroud.aud
 		Notification: GlobalDarkness
-	HealUnitsCrateAction:
+	HealActorsCrateAction:
 		SelectionShares: 8
 		Sequence: heal
 		Sound: crheal.aud

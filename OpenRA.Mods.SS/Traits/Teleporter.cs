@@ -21,7 +21,7 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.SS.Traits
 {
-	public class TeleporterInfo : ITraitInfo, IPositionableInfo, Requires<RenderSpritesInfo>
+	public class TeleporterInfo : TraitInfo, IPositionableInfo, Requires<RenderSpritesInfo>
 	{
 		[Desc("Image containing the effect animation sequence.")]
 		public readonly string Image = "crate-effects";
@@ -53,7 +53,7 @@ namespace OpenRA.Mods.SS.Traits
 		[Desc("Define actors that can collect crates by setting this into the Crushes field from the Mobile trait.")]
 		public readonly string CrushClass = "teleporter";
 
-		public object Create(ActorInitializer init) { return new Teleporter(init, this); }
+		public override object Create(ActorInitializer init) { return new Teleporter(init, this); }
 
 		public IReadOnlyDictionary<CPos, SubCell> OccupiedCells(ActorInfo info, CPos location, SubCell subCell = SubCell.Any)
 		{
@@ -106,8 +106,9 @@ namespace OpenRA.Mods.SS.Traits
 			self = init.Self;
 			this.info = info;
 
-			if (init.Contains<LocationInit>())
-				SetPosition(self, init.Get<LocationInit, CPos>());
+			var locationInit = init.GetOrDefault<LocationInit>(info);
+			if (locationInit != null)
+				SetPosition(self, locationInit.Value);
 		}
 
 		void INotifyCrushed.WarnCrush(Actor self, Actor crusher, BitSet<CrushClass> crushClasses) { }

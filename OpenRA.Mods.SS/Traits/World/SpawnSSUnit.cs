@@ -21,7 +21,7 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.SS.Traits
 {
 	[Desc("Spawns the initial unit for a Sole Survivor game. Handles different spawning logics.")]
-	public class SpawnSSUnitInfo : ITraitInfo, ILobbyOptions
+	public class SpawnSSUnitInfo : TraitInfo, ILobbyOptions
 	{
 		[Translate]
 		[Desc("Descriptive label for the team spawns checkbox in the lobby.")]
@@ -101,7 +101,7 @@ namespace OpenRA.Mods.SS.Traits
 				new ReadOnlyDictionary<string, string>(baseSizes), BaseSize.ToString(), BaseSizeDropdownLocked);
 		}
 
-		public object Create(ActorInitializer init) { return new SpawnSSUnit(this); }
+		public override object Create(ActorInitializer init) { return new SpawnSSUnit(this); }
 	}
 
 	public class SpawnSSUnit : IWorldLoaded

@@ -16,7 +16,7 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.Common.Traits
 {
 	[Desc("Controls the game speed, tech level, and short game lobby options.")]
-	public class SSMultiplierOptionsInfo : ITraitInfo, ILobbyOptions
+	public class SSMultiplierOptionsInfo : TraitInfo, ILobbyOptions
 	{
 		[Translate]
 		[Desc("Descriptive label for the maximum multiplier option in the lobby.")]
@@ -79,7 +79,7 @@ namespace OpenRA.Mods.Common.Traits
 					new ReadOnlyDictionary<string, string>(standardMultipliers), StandardMultiplier.ToString(), StandardMultiplierDropdownLocked);
 		}
 
-		public object Create(ActorInitializer init) { return new SSMultiplierOptions(this); }
+		public override object Create(ActorInitializer init) { return new SSMultiplierOptions(this); }
 	}
 
 	public class SSMultiplierOptions : INotifyCreated

@@ -20,13 +20,13 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.SS.Traits
 {
 	[Desc("This actor can carry a CtF flag.")]
-	public class CarriesFlagInfo : ITraitInfo
+	public class CarriesFlagInfo : TraitInfo
 	{
 		[GrantedConditionReference]
 		[Desc("Condition to grant when the actor is carrying a flag.")]
 		public readonly string Condition = null;
 
-		public object Create(ActorInitializer init) { return new CarriesFlag(init.Self, this); }
+		public override object Create(ActorInitializer init) { return new CarriesFlag(init.Self, this); }
 	}
 
 	public class CarriesFlag : INotifyKilled, ITick, IRender

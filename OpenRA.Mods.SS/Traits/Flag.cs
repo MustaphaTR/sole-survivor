@@ -21,7 +21,7 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.SS.Traits
 {
 	[Desc("Flag for the Capture the Flag mode.")]
-	public class FlagInfo : ITraitInfo, IPositionableInfo, Requires<RenderSpritesInfo>
+	public class FlagInfo : TraitInfo, IPositionableInfo, Requires<RenderSpritesInfo>
 	{
 		[Desc("Allowed to land on.")]
 		public readonly HashSet<string> TerrainTypes = new HashSet<string>();
@@ -29,7 +29,7 @@ namespace OpenRA.Mods.SS.Traits
 		[Desc("Define actors that can collect flag by setting this into the Crushes field from the Mobile trait.")]
 		public readonly string CrushClass = "flag";
 
-		public object Create(ActorInitializer init) { return new Flag(init, this); }
+		public override object Create(ActorInitializer init) { return new Flag(init, this); }
 
 		public IReadOnlyDictionary<CPos, SubCell> OccupiedCells(ActorInfo info, CPos location, SubCell subCell = SubCell.Any)
 		{
@@ -88,8 +88,9 @@ namespace OpenRA.Mods.SS.Traits
 			this.info = info;
 
 			spawner = self.World.WorldActor.Trait<SpawnSSUnit>();
-			if (init.Contains<LocationInit>())
-				SetPosition(self, init.Get<LocationInit, CPos>());
+			var locationInit = init.GetOrDefault<LocationInit>(info);
+			if (locationInit != null)
+				SetPosition(self, locationInit.Value);
 		}
 
 		void INotifyCrushed.WarnCrush(Actor self, Actor crusher, BitSet<CrushClass> crushClasses) { }

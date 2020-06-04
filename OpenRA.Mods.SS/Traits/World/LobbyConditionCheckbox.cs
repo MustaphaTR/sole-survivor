@@ -15,7 +15,7 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.Common.Traits
 {
 	[Desc("Grants defined conditions at game start for all players if the checkbox is enabled.")]
-	public class LobbyConditionCheckboxInfo : ITraitInfo, ILobbyOptions
+	public class LobbyConditionCheckboxInfo : TraitInfo, ILobbyOptions
 	{
 		[FieldLoader.Require]
 		[Desc("Internal id for this checkbox.")]
@@ -50,7 +50,7 @@ namespace OpenRA.Mods.Common.Traits
 				Visible, DisplayOrder, Enabled, Locked);
 		}
 
-		public object Create(ActorInitializer init) { return new LobbyConditionCheckbox(this); }
+		public override object Create(ActorInitializer init) { return new LobbyConditionCheckbox(this); }
 	}
 
 	public class LobbyConditionCheckbox : INotifyCreated

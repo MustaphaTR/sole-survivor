@@ -15,13 +15,13 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.SS.Traits
 {
 	[Desc("Allows a condition to be granted from an external source (Lua, warheads, etc).")]
-	public class SwitchConditionInfo : ITraitInfo
+	public class SwitchConditionInfo : TraitInfo
 	{
 		[GrantedConditionReference]
 		[FieldLoader.Require]
 		public readonly string Condition = null;
 
-		public object Create(ActorInitializer init) { return new SwitchCondition(init.Self, this); }
+		public override object Create(ActorInitializer init) { return new SwitchCondition(init.Self, this); }
 	}
 
 	public class SwitchCondition

@@ -19,12 +19,12 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.SS.Traits
 {
 	[Desc("Changes the remap color of the player to one of the team leader.")]
-	public class TeamLeaderColorModifierInfo : ITraitInfo
+	public class TeamLeaderColorModifierInfo : TraitInfo
 	{
 		[PaletteReference(true)]
 		public readonly string Palette = "player";
 
-		public object Create(ActorInitializer init) { return new TeamLeaderColorModifier(init.Self, this); }
+		public override object Create(ActorInitializer init) { return new TeamLeaderColorModifier(init.Self, this); }
 	}
 
 	public class TeamLeaderColorModifier : IRenderModifier, IRadarColorModifier

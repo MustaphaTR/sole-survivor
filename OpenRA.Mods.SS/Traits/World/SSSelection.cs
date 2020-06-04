@@ -18,9 +18,9 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.SS.Traits
 {
-	public class SSSelectionInfo : ITraitInfo
+	public class SSSelectionInfo : TraitInfo
 	{
-		public object Create(ActorInitializer init) { return new SSSelection(this); }
+		public override object Create(ActorInitializer init) { return new SSSelection(this); }
 	}
 
 	public class SSSelection : ISelection, INotifyCreated, INotifyOwnerChanged, ITick, IGameSaveTraitData

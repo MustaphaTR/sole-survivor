@@ -19,7 +19,7 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.SS.Traits
 {
-	public class SSCrateInfo : ITraitInfo, IPositionableInfo, Requires<RenderSpritesInfo>
+	public class SSCrateInfo : TraitInfo, IPositionableInfo, Requires<RenderSpritesInfo>
 	{
 		[Desc("Length of time (in seconds) until the crate gets removed automatically. " +
 			"A value of zero disables auto-removal.")]
@@ -31,7 +31,7 @@ namespace OpenRA.Mods.SS.Traits
 		[Desc("Define actors that can collect crates by setting this into the Crushes field from the Mobile trait.")]
 		public readonly string CrushClass = "crate";
 
-		public object Create(ActorInitializer init) { return new SSCrate(init, this); }
+		public override object Create(ActorInitializer init) { return new SSCrate(init, this); }
 
 		public IReadOnlyDictionary<CPos, SubCell> OccupiedCells(ActorInfo info, CPos location, SubCell subCell = SubCell.Any)
 		{
@@ -91,8 +91,9 @@ namespace OpenRA.Mods.SS.Traits
 			self = init.Self;
 			this.info = info;
 
-			if (init.Contains<LocationInit>())
-				SetPosition(self, init.Get<LocationInit, CPos>());
+			var locationInit = init.GetOrDefault<LocationInit>(info);
+			if (locationInit != null)
+				SetPosition(self, locationInit.Value);
 		}
 
 		void INotifyCrushed.WarnCrush(Actor self, Actor crusher, BitSet<CrushClass> crushClasses) { }
