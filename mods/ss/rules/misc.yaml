@@ -247,6 +247,7 @@ ARMAGEDDONCRATE:
 	ArmageddonCrateAction@ARMAGEDDON:
 		SelectionShares: 1
 		Sequence: redskull
+		Notification: Armageddon
 	RenderSprites:
 		Image: crate-red
 

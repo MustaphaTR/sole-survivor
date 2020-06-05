@@ -41,6 +41,17 @@ namespace OpenRA.Mods.SS.Traits
 		{
 			Game.AddSystemLine("Battlefield Control", collector.Owner.PlayerName + " has taken the armageddon crate!");
 
+			if (!string.IsNullOrEmpty(Info.Notification))
+				foreach (var player in self.World.Players)
+				{
+					// Don't play it twice to the collector, it is already handled in base.Activate()
+					if (collector.Owner == player)
+						continue;
+
+					Game.Sound.PlayNotification(self.World.Map.Rules, player, "Speech",
+						Info.Notification, collector.Owner.Faction.InternalName);
+				}
+
 			var actors = self.World.Actors.Where(a => a.Owner.Playable && a.TraitOrDefault<SSMultiplierManager>() != null);
 			foreach (var actor in actors)
 				actor.Kill(self, info.DeathTypes);
