@@ -367,8 +367,6 @@
 	MustBeDestroyed:
 	Voiced:
 		VoiceSet: VehicleVoice
-	BodyOrientation:
-		UseClassicFacingFudge: True
 	HitShape:
 	MapEditorData:
 		Categories: Vehicle
@@ -442,8 +440,6 @@
 	MustBeDestroyed:
 	Voiced:
 		VoiceSet: VehicleVoice
-	BodyOrientation:
-		UseClassicFacingFudge: True
 	HitShape:
 	MapEditorData:
 		Categories: Aircraft
@@ -1172,8 +1168,6 @@
 	Explodes:
 		Weapon: UnitExplodeSmall
 		EmptyWeapon: UnitExplodeSmall
-	BodyOrientation:
-		UseClassicFacingFudge: True
 
 ^LightHusk:
 	Inherits: ^Husk
@@ -1193,8 +1187,6 @@
 		Explosion: HeliCrash
 	Tooltip:
 		GenericName: Destroyed Helicopter
-	BodyOrientation:
-		UseClassicFacingFudge: True
 	-MapEditorData:
 
 ^Bridge:
