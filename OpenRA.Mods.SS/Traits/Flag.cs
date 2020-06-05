@@ -108,7 +108,7 @@ namespace OpenRA.Mods.SS.Traits
 			var flagTeam = FindPlayersClient(self.World, self.Owner).Team;
 			var crusherTeam = FindPlayersClient(crusher.World, crusher.Owner).Team;
 			if (self.Location == spawner.PlayerSpawnPoints[self.Owner]
-				&& flagTeam != 0 && flagTeam == crusherTeam)
+				&& ((flagTeam != 0 && flagTeam == crusherTeam) || (flagTeam == 0 && self.Owner == crusher.Owner)))
 				return;
 
 			self.World.AddFrameEndTask(w => OnCrushInner(crusher, flagTeam, crusherTeam));
