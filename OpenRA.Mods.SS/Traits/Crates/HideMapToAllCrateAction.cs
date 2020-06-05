@@ -37,6 +37,8 @@ namespace OpenRA.Mods.Common.Traits
 
 		public override void Activate(Actor collector)
 		{
+			Game.AddSystemLine("Battlefield Control", collector.Owner.PlayerName + " has reshrouded the map.");
+
 			foreach (var player in collector.World.Players)
 				player.Shroud.ResetExploration();
 
