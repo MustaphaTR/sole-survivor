@@ -501,7 +501,7 @@ HTNK:
 	Selectable:
 		DecorationBounds: 34,34,0,-3
 	UnitStatValues:
-		Damage: 5906
+		Damage: 4000
 
 MSAM:
 	Inherits: ^Tank
@@ -606,7 +606,7 @@ MLRS:
 		Delay: 75
 		Count: 1
 	UnitStatValues:
-		Damage: 11812
+		Damage: 7500
 		Range: 9c0
 
 STNK:
