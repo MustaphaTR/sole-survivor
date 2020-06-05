@@ -205,7 +205,7 @@
 		Name: Harvester
 		Side: Vehicle
 		InternalName: harv
-		Description: Harvester\nVehicle normally designed to harvest Tiberum. But it can use its blades to damage the enemies.
+		Description: Harvester\nVehicle normally designed to harvest Tiberum. But it can use its blades to damage the enemies.\nRepairs automatically up to 50% health while out of combat.
 	Faction@jeep:
 		Name: Hum-Vee
 		Side: Vehicle

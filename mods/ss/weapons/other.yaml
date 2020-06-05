@@ -112,7 +112,7 @@ HarvesterWeapon:
 		Speed: 1c682
 	Warhead@1Dam: SpreadDamage
 		Spread: 213
-		Damage: 6250
+		Damage: 6000
 		Versus:
 			Wood: 50
 			Light: 80

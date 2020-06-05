@@ -77,8 +77,13 @@ HARV:
 	Explodes:
 		Weapon: TiberiumExplosion
 	SelectionDecorations:
+	SelfHealing:
+		Step: 500
+		Delay: 10
+		HealIfBelow: 50
+		DamageCooldown: 200
 	UnitStatValues:
-		Damage: 6250
+		Damage: 6000
 
 APC:
 	Inherits: ^Tank
@@ -492,11 +497,6 @@ HTNK:
 		MuzzleSequence: muzzle
 	AttackTurreted:
 	WithMuzzleOverlay:
-	SelfHealing:
-		Step: 500
-		Delay: 10
-		HealIfBelow: 50
-		DamageCooldown: 200
 	SelectionDecorations:
 	Selectable:
 		DecorationBounds: 34,34,0,-3
