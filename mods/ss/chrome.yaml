@@ -292,6 +292,9 @@ flags:
 		Dinosour: 128, 16, 32, 16
 		Original: 160, 0, 32, 16
 		New: 160, 32, 32, 16
+		AI: 160, 48, 32, 16
+		GDI: 160, 64, 32, 16
+		Nod: 128, 64, 32, 16
 
 strategic:
 	Image: strategic.png

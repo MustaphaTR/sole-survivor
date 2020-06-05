@@ -731,8 +731,6 @@ GUN:
 		RequiresCondition: !build-incomplete && !deployed
 	WithMuzzleOverlay:
 	-WithDeathAnimation:
-	BodyOrientation:
-		UseClassicFacingFudge: True
 	SpawnActorOnDeath@HUSK:
 		Actor: GUN.husk
 
@@ -800,8 +798,6 @@ SAM:
 	AttackPopupTurreted:
 		PauseOnCondition: lowpower
 	WithMuzzleOverlay:
-	BodyOrientation:
-		UseClassicFacingFudge: True
 	-ActorPreviewPlaceBuildingPreview:
 	SequencePlaceBuildingPreview:
 		Sequence: place
