@@ -111,7 +111,7 @@ OrcaAAMissiles:
 
 MammothMissiles:
 	Inherits: ^MissileWeapon
-	ReloadDelay: 45
+	ReloadDelay: 90
 	Range: 5c0
 	Report: rocket1.aud
 	Burst: 2
