@@ -124,10 +124,10 @@ MammothMissiles:
 		Spread: 298
 		Damage: 5000
 		Versus:
-			None: 44
-			Wood: 66
-			Light: 90
-			Heavy: 44
+			None: 65
+			Wood: 65
+			Light: 45
+			Heavy: 20
 	Warhead@3Eff: CreateEffect
 		Explosions: small_poof
 	Warhead@4EffAir: CreateEffect
