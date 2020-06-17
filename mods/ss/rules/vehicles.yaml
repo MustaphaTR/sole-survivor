@@ -1,5 +1,7 @@
 MCV:
 	Inherits: ^Vehicle
+	Inherits@AUTOREPAIR: ^AcceptsAutoRepairCrate
+	Inherits@CLOAK: ^AcceptsCloakCrate
 	Valued:
 		Cost: 3500
 	Tooltip:
@@ -41,6 +43,7 @@ MCV:
 HARV:
 	Inherits: ^Tank
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@AUTOREPAIR: ^AcceptsNoAutoRepairCrate
 	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@CLOAK: ^AcceptsCloakCrate
 	Valued:
@@ -77,17 +80,13 @@ HARV:
 	Explodes:
 		Weapon: TiberiumExplosion
 	SelectionDecorations:
-	SelfHealing:
-		Step: 500
-		Delay: 10
-		HealIfBelow: 50
-		DamageCooldown: 200
 	UnitStatValues:
 		Damage: 6000
 
 APC:
 	Inherits: ^Tank
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Inherits@AUTOREPAIR: ^AcceptsAutoRepairCrate
 	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@CLOAK: ^AcceptsCloakCrate
 	Inherits@TRANSPORT: ^Transport
@@ -143,6 +142,7 @@ APC:
 ARTY:
 	Inherits: ^Tank
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@AUTOREPAIR: ^AcceptsAutoRepairCrate
 	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@CLOAK: ^AcceptsCloakCrate
 	Valued:
@@ -184,6 +184,7 @@ ARTY:
 FTNK:
 	Inherits: ^Tank
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@AUTOREPAIR: ^AcceptsAutoRepairCrate
 	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@CLOAK: ^AcceptsCloakCrate
 	Valued:
@@ -222,6 +223,7 @@ FTNK:
 BGGY:
 	Inherits: ^Vehicle
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Inherits@AUTOREPAIR: ^AcceptsAutoRepairCrate
 	Inherits@@EXPERIENCE: ^GainsExperience
 	Inherits@CLOAK: ^AcceptsCloakCrate
 	Valued:
@@ -269,6 +271,7 @@ BGGY:
 BIKE:
 	Inherits: ^Vehicle
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Inherits@AUTOREPAIR: ^AcceptsAutoRepairCrate
 	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@CLOAK: ^AcceptsCloakCrate
 	Valued:
@@ -304,6 +307,7 @@ BIKE:
 JEEP:
 	Inherits: ^Vehicle
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Inherits@AUTOREPAIR: ^AcceptsAutoRepairCrate
 	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@CLOAK: ^AcceptsCloakCrate
 	Valued:
@@ -351,6 +355,7 @@ JEEP:
 LTNK:
 	Inherits: ^Tank
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Inherits@AUTOREPAIR: ^AcceptsAutoRepairCrate
 	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@CLOAK: ^AcceptsCloakCrate
 	Valued:
@@ -403,6 +408,7 @@ LTNK:
 MTNK:
 	Inherits: ^Tank
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Inherits@AUTOREPAIR: ^AcceptsAutoRepairCrate
 	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@CLOAK: ^AcceptsCloakCrate
 	Valued:
@@ -455,6 +461,7 @@ MTNK:
 HTNK:
 	Inherits: ^Tank
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Inherits@AUTOREPAIR: ^AcceptsNoAutoRepairCrate
 	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@CLOAK: ^AcceptsCloakCrate
 	Valued:
@@ -506,6 +513,7 @@ HTNK:
 MSAM:
 	Inherits: ^Tank
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@AUTOREPAIR: ^AcceptsAutoRepairCrate
 	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@CLOAK: ^AcceptsCloakCrate
 	Valued:
@@ -549,6 +557,7 @@ MSAM:
 MLRS:
 	Inherits: ^Tank
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Inherits@AUTOREPAIR: ^AcceptsAutoRepairCrate
 	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@CLOAK: ^AcceptsCloakCrate
 	Valued:
@@ -612,6 +621,7 @@ MLRS:
 STNK:
 	Inherits: ^Vehicle
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Inherits@AUTOREPAIR: ^AcceptsAutoRepairCrate
 	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@CLOAK: ^AcceptsDecloakCrate
 	Valued:
@@ -648,6 +658,8 @@ STNK:
 
 MHQ:
 	Inherits: ^Vehicle
+	Inherits@AUTOREPAIR: ^AcceptsAutoRepairCrate
+	Inherits@CLOAK: ^AcceptsDecloakCrate
 	Valued:
 		Cost: 1000
 	Tooltip:
@@ -715,6 +727,8 @@ MHQ:
 
 TRUCK:
 	Inherits: ^Vehicle
+	Inherits@AUTOREPAIR: ^AcceptsAutoRepairCrate
+	Inherits@CLOAK: ^AcceptsDecloakCrate
 	Buildable:
 		Queue: Vehicle.GDI, Vehicle.Nod
 		BuildPaletteOrder: 35

@@ -264,6 +264,31 @@
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 
+^AcceptsAutoRepairCrate:
+	SelfHealing:
+		Step: 500
+		Delay: 25
+		HealIfBelow: 75
+		DamageCooldown: 250
+		RequiresCondition: auto-repair-crate-collected
+	WithDecoration@WRENCH:
+		Image: pips
+		Sequence: pip-repair
+		Position: BottomRight
+		Margin: 5, 6
+		RequiresCondition: auto-repair-crate-collected
+	SwitchCondition@AutoRepair:
+		Condition: auto-repair-crate-collected
+
+^AcceptsNoAutoRepairCrate:
+	Inherits: ^AcceptsAutoRepairCrate
+	SelfHealing:
+		RequiresCondition: !no-auto-repair-crate-collected
+	WithDecoration@WRENCH:
+		RequiresCondition: !no-auto-repair-crate-collected
+	SwitchCondition@AutoRepair:
+		Condition: no-auto-repair-crate-collected
+
 ^StartingCloak:
 	Cloak@Starting:
 		InitialDelay: 0
@@ -388,6 +413,7 @@
 	Inherits@7: ^StartingCloak
 	Inherits@8: ^StartingInvulnerability
 	Inherits@9: ^CarriesFlag
+	Inherits@10: ^AcceptsAutoRepairCrate
 	Huntable:
 	OwnerLostAction:
 		Action: Kill
@@ -564,6 +590,7 @@
 	Inherits@4: ^StartingInvulnerability
 	Inherits@5: ^CarriesFlag
 	Inherits@6: ^AcceptsCloakCrate
+	Inherits@7: ^AcceptsAutoRepairCrate
 	MustBeDestroyed:
 	Tooltip:
 		GenericName: Soldier
@@ -627,6 +654,7 @@
 	Inherits@6: ^StartingCloak
 	Inherits@7: ^StartingInvulnerability
 	Inherits@8: ^CarriesFlag
+	Inherits@9: ^AcceptsAutoRepairCrate
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Huntable:
 	OwnerLostAction:
@@ -696,6 +724,7 @@
 	Inherits@6: ^StartingCloak
 	Inherits@7: ^StartingInvulnerability
 	Inherits@8: ^CarriesFlag
+	Inherits@9: ^AcceptsAutoRepairCrate
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Huntable:
 	Health:

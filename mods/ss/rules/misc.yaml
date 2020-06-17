@@ -66,6 +66,22 @@ CRATE:
 		Condition: decloak-crate-collected
 		Notification: StealthDeactivated
 		RevokeNotification: StealthMode
+	SwitchConditionCrateAction@auto-repair:
+		SelectionShares: 10
+		Sequence: repair
+		RevokeSequence: norepair
+		Condition: auto-repair-crate-collected
+		Sound: fixit1.aud
+		# Notification: StealthMode
+		# RevokeNotification: StealthDeactivated
+	SwitchConditionCrateAction@auto-repair-reverse:
+		SelectionShares: 10
+		Sequence: norepair
+		RevokeSequence: repair
+		Condition: no-auto-repair-crate-collected
+		Sound: fixit1.aud
+		# Notification: StealthDeactivated
+		# RevokeNotification: StealthMode
 	SSMultiplierCrateAction@armor:
 		SelectionShares: 50
 		Sequence: armorup

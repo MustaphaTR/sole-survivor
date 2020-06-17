@@ -345,6 +345,14 @@ crate-effects:
 	teleport: teleportcrate
 	experience: expcrate
 	wacky: wackycrate
+	repair: select
+		Start: 2
+		Length: 1
+		Tick: 240
+	norepair: select
+		Start: 3
+		Length: 1
+		Tick: 240
 
 atomic:
 	Defaults:
@@ -399,6 +407,8 @@ pips:
 		Offset: 9, 5
 	pip-hazmat: pip-hazmat
 		Offset: -3, 0
+	pip-repair: select
+		Start: 3
 
 overlay:
 	Defaults: trans.icn

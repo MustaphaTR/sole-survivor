@@ -223,7 +223,7 @@
 		Name: Harvester
 		Side: Vehicle
 		InternalName: harv
-		Description: Harvester\nVehicle normally designed to harvest Tiberum. But it can use its blades to damage the enemies.\n\nRepairs automatically up to 50% health while out of combat.
+		Description: Harvester\nVehicle normally designed to harvest Tiberum. But it can use its blades to damage the enemies.\n\nStarts with Automatic Repair enabled.
 	Faction@jeep:
 		Name: Hum-Vee
 		Side: Vehicle
@@ -289,7 +289,7 @@
 		Name: Mammoth Tank
 		Side: Vehicle
 		InternalName: htnk
-		Description: Mammoth Tank\nHeavy tank armed with rocket launchers in addition to cannon.
+		Description: Mammoth Tank\nHeavy tank armed with rocket launchers in addition to cannon.\n\nStarts with Automatic Repair enabled.
 	Faction@stnk:
 		Name: Stealth Tank
 		Side: Vehicle
