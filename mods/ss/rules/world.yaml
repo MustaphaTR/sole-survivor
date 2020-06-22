@@ -176,8 +176,8 @@
 		Name: GDI
 		Side: Random
 		InternalName: GDI
-		RandomFactionMembers: e1, e2, e6, rmbo, harv, jeep, apc, mtnk, mhq, msam, htnk, tran, orca
-		Description: Random GDI Unit\nA random unit that is available in the GDI arsenal will be chosen when the game starts.\nThis includes following:\n - Minigunner\n - Grenadier\n - Engineer\n - Commando\n - Harvester\n - Hum-vee\n - APC\n - Medium Tank\n - Mobile HQ\n - Rocket Launcher\n - Mammoth Tank\n - Chinook\n - Orca
+		RandomFactionMembers: e1, e2, e3, e6, rmbo, harv, jeep, apc, mtnk, mhq, msam, htnk, tran, orca
+		Description: Random GDI Unit\nA random unit that is available in the GDI arsenal will be chosen when the game starts.\nThis includes following:\n - Minigunner\n - Grenadier\n - Rocket Soldier\n - Engineer\n - Commando\n - Harvester\n - Hum-vee\n - APC\n - Medium Tank\n - Mobile HQ\n - Rocket Launcher\n - Mammoth Tank\n - Chinook\n - Orca
 	Faction@RandomNod:
 		Name: Nod
 		Side: Random
