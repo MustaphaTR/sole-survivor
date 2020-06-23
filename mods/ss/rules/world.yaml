@@ -170,8 +170,8 @@
 		Name: AI
 		Side: Random
 		InternalName: AI
-		RandomFactionMembers: e1, e2, e3, e4, e5, harv, jeep, bggy, apc, bike, ltnk, mtnk, ftnk, arty, msam, mlrs, htnk, stnk, orca, heli, steg, trex, tric, rapt, pvice
-		Description: Random AI Unit\nA random unit that AI is capable of using properly will be chosen when the game starts.\nThis includes following:\n - Minigunner\n - Grenadier\n - Rocket Soldier\n - Flamethrower\n - Chemical Warrior\n - Harvester\n - Hum-vee\n - Nod Buggy\n - APC\n - Recon Bike\n - Light Tank\n - Medium Tank\n - Flame Tank\n - Artillery\n - Rocket Launcher\n - Mobile SSM\n - Mammoth Tank\n - Stealth Tank\n - Orca\n - Apache\n - Stegosaurus\n - Tyrannosaurus Rex\n - Triceratops\n - Velociraptor\n - Viceroid
+		RandomFactionMembers: e1, e2, e3, e4, e5, rmbo, harv, jeep, bggy, apc, bike, ltnk, mtnk, ftnk, arty, msam, mlrs, htnk, stnk, orca, heli, steg, trex, tric, rapt, pvice
+		Description: Random AI Unit\nA random unit that AI is capable of using properly will be chosen when the game starts.\nThis includes following:\n - Minigunner\n - Grenadier\n - Rocket Soldier\n - Flamethrower\n - Chemical Warrior\n - Commando\n - Harvester\n - Hum-vee\n - Nod Buggy\n - APC\n - Recon Bike\n - Light Tank\n - Medium Tank\n - Flame Tank\n - Artillery\n - Rocket Launcher\n - Mobile SSM\n - Mammoth Tank\n - Stealth Tank\n - Orca\n - Apache\n - Stegosaurus\n - Tyrannosaurus Rex\n - Triceratops\n - Velociraptor\n - Viceroid
 	Faction@RandomGDI:
 		Name: GDI
 		Side: Random

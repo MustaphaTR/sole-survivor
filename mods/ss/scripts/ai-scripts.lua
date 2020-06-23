@@ -8,6 +8,10 @@
 ]]
 
 Bots = { { }, { }, { }, { }, { } }
+CheckTimers = {
+	Health = { 25, 25, 25, 25, 25 },
+	Demolish = { 25, 25, 25, 25, 25 }
+}
 
 IdleHunt = function(actor)
 	if actor.HasProperty("Hunt") and not actor.IsDead then
@@ -57,6 +61,10 @@ GetNearbyCrates = function(actor, distance)
 	return Utils.Where(Map.ActorsInCircle(actor.CenterPosition, WDist.FromCells(distance)), function(a) return a.Type == "crate" or a.Type == "upgradecrate" or a.Type == "experiencecrate" or a.Type == "wackycrate" end)
 end
 
+GetNearbyEnemies = function(actor, distance)
+	return Utils.Where(Map.ActorsInCircle(actor.CenterPosition, WDist.FromCells(distance)), function(a) return a.Type ~= "e1" and a.Type ~= "e2" and a.Type ~= "e3" and a.Type ~= "e4" and a.Type ~= "e5" and a.Type ~= "e6" and a.Type ~= "rmbo" and a.Type ~= "tran" and a.Type ~= "heli" and a.Type ~= "orca" and a.Type ~= "a10" and a.Type ~= "u2" and not a.Owner.IsNonCombatant and (a.Owner.Team ~= actor.Owner.Team or a.Owner.Team == 0) end)
+end
+
 GetNearbyHealCrate = function(actor, distance)
 	local crates = Utils.Where(Map.ActorsInCircle(actor.CenterPosition, WDist.FromCells(distance)), function(a) return a.Type == "healcrate" end)
 
@@ -67,9 +75,10 @@ GetNearbyHealCrate = function(actor, distance)
 	return Utils.Random(crates)
 end
 
-healthCheckTimer = 5
-TickAI = function(bots)
-	healthCheckTimer = healthCheckTimer - 1
+TickAI = function(bots, i)
+	CheckTimers["Health"][i] = CheckTimers["Health"][i] - 1
+	CheckTimers["Demolish"][i] = CheckTimers["Demolish"][i] - 1
+
 	for _,bot in pairs(bots) do
 		local unit = bot.Unit
 		if unit ~= nil and not unit.IsDead then
@@ -97,25 +106,43 @@ TickAI = function(bots)
 				end
 			end
 
+			if unit.Type == "rmbo" and CheckTimers["Demolish"][i] <= 0 then
+				local enemies = GetNearbyEnemies(unit, 2)
+
+				if #enemies > 0 then
+					unit.Stop()
+					Utils.Do(enemies, function(enemy)
+						unit.Demolish(enemy)
+					end)
+				end
+			end
+
 			if unit.Health <= unit.MaxHealth * 25 / 100 then
 				local healcrate = GetNearbyHealCrate(unit, 10)
 
 				if healcrate ~= nil then
-					if not unit.HasProperty("Land") or healthCheckTimer <= 0 then
+					if not unit.HasProperty("Land") or CheckTimers["Health"][i] <= 0 then
 						unit.Stop()
 						unit.Move(healcrate.Location)
 						if unit.HasProperty("Land") then
 							unit.Land(healcrate)
 						end
-						healthCheckTimer = 5
 					end
 				end
 			end
 		end
 	end
 
+	if CheckTimers["Health"][i] <= 0 then
+		CheckTimers["Health"][i] = 5
+	end
+
+	if CheckTimers["Demolish"][i] <= 0 then
+		CheckTimers["Demolish"][i] = 5
+	end
+
 	Trigger.AfterDelay(5, function()
-		TickAI(bots)
+		TickAI(bots, i)
 	end)
 end
 
@@ -136,7 +163,7 @@ AIWorldLoaded = function()
 	DivideBots(bots)
 	for i = 1, #Bots, 1 do
 		Trigger.AfterDelay(i, function()
-			TickAI(Bots[i])
+			TickAI(Bots[i], i)
 		end)
 	end
 end
