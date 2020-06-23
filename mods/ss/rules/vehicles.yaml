@@ -659,7 +659,7 @@ STNK:
 MHQ:
 	Inherits: ^Vehicle
 	Inherits@AUTOREPAIR: ^AcceptsAutoRepairCrate
-	Inherits@CLOAK: ^AcceptsDecloakCrate
+	Inherits@CLOAK: ^AcceptsCloakCrate
 	Valued:
 		Cost: 1000
 	Tooltip:
