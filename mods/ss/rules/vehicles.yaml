@@ -728,7 +728,7 @@ MHQ:
 TRUCK:
 	Inherits: ^Vehicle
 	Inherits@AUTOREPAIR: ^AcceptsAutoRepairCrate
-	Inherits@CLOAK: ^AcceptsDecloakCrate
+	Inherits@CLOAK: ^AcceptsCloakCrate
 	Buildable:
 		Queue: Vehicle.GDI, Vehicle.Nod
 		BuildPaletteOrder: 35
