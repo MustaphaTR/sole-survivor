@@ -134,11 +134,11 @@ TickAI = function(bots, i)
 	end
 
 	if CheckTimers["Health"][i] <= 0 then
-		CheckTimers["Health"][i] = 5
+		CheckTimers["Health"][i] = 25
 	end
 
 	if CheckTimers["Demolish"][i] <= 0 then
-		CheckTimers["Demolish"][i] = 5
+		CheckTimers["Demolish"][i] = 25
 	end
 
 	Trigger.AfterDelay(5, function()
