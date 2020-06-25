@@ -427,6 +427,8 @@ World:
 			fifteen: 15 Minutes
 			twenty: 20 Minutes
 			thirty: 30 Minutes
+			fortyfive: 45 Minutes
+			sixty: 1 Hour
 		Default: fifteen
 		DisplayOrder: 1
 	ScriptLobbyDropdown@starting-cloak:

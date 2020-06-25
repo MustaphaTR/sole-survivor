@@ -15,7 +15,9 @@ TimeLimit =
 	ten = DateTime.Minutes(10),
 	fifteen = DateTime.Minutes(15),
 	twenty = DateTime.Minutes(20),
-	thirty = DateTime.Minutes(30)
+	thirty = DateTime.Minutes(30),
+	fortyfive = DateTime.Minutes(45),
+	sixty = DateTime.Minutes(60)
 }
 
 TimeVictory = function()
