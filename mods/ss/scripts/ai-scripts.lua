@@ -106,17 +106,6 @@ TickAI = function(bots, i)
 				end
 			end
 
-			if unit.Type == "rmbo" and CheckTimers["Demolish"][i] <= 0 then
-				local enemies = GetNearbyEnemies(unit, 2)
-
-				if #enemies > 0 then
-					unit.Stop()
-					Utils.Do(enemies, function(enemy)
-						unit.Demolish(enemy)
-					end)
-				end
-			end
-
 			if unit.Health <= unit.MaxHealth * 25 / 100 then
 				local healcrate = GetNearbyHealCrate(unit, 10)
 
@@ -128,6 +117,15 @@ TickAI = function(bots, i)
 							unit.Land(healcrate)
 						end
 					end
+				end
+			elseif unit.Type == "rmbo" and CheckTimers["Demolish"][i] <= 0 then
+				local enemies = GetNearbyEnemies(unit, 2)
+
+				if #enemies > 0 then
+					unit.Stop()
+					Utils.Do(enemies, function(enemy)
+						unit.Demolish(enemy)
+					end)
 				end
 			end
 		end
