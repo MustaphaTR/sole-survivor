@@ -25,7 +25,7 @@ Container@LOBBY_PLAYER_BIN:
 					X: 291
 					Width: 120
 					Height: 25
-					Text: Faction
+					Text: Class
 					Align: Center
 					Font: Bold
 				Label@TEAM:

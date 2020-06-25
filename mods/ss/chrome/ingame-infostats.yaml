@@ -45,7 +45,7 @@ Container@SKIRMISH_STATS:
 					Y: 1
 					Width: 120
 					Height: 25
-					Text: Faction
+					Text: Class
 					Font: Bold
 				Label@SCORE:
 					X: 360
