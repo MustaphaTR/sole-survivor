@@ -1,6 +1,6 @@
 Metadata:
 	Title: Sole Survivor
-	Version: 534b09a
+	Version: 1c8c49d
 	Website: https://www.openra.net
 	WebIcon32: https://raw.githubusercontent.com/MustaphaTR/sole-survivor/master/mods/ss/icon.png
 
@@ -36,7 +36,7 @@ Packages:
 
 MapFolders:
 	ss|maps: System
-	~^maps/cnc/534b09a: User
+	~^maps/cnc/1c8c49d: User
 
 Rules:
 	ss|rules/misc.yaml
