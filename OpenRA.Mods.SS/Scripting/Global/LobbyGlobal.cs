@@ -15,6 +15,7 @@ using OpenRA.Mods.Common.Scripting;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.SS.Traits;
 using OpenRA.Scripting;
+using OpenRA.Traits;
 
 namespace OpenRA.Mods.SS.Scripting
 {
@@ -27,6 +28,22 @@ namespace OpenRA.Mods.SS.Scripting
 			: base(context)
 		{
 			world = context.World;
+		}
+
+		[Desc("Returns the value of Explored Map lobby option.")]
+		public bool ExploredMap()
+		{
+			var shroud = world.WorldActor.Owner.PlayerActor.Trait<Shroud>();
+
+			return shroud.ExploreMapEnabled;
+		}
+
+		[Desc("Returns the value of Fog of War lobby option.")]
+		public bool FogOfWar()
+		{
+			var shroud = world.WorldActor.Owner.PlayerActor.Trait<Shroud>();
+
+			return shroud.FogEnabled;
 		}
 
 		[Desc("Returns the value of Wacky Mode lobby option.")]
