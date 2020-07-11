@@ -20,7 +20,7 @@
 		Damage: 2500
 		ValidTargets: Ground, Air
 		Versus:
-			None: 28
+			None: 25
 			Wood: 116
 			Light: 140
 			Heavy: 140
@@ -72,7 +72,7 @@ BikeRockets:
 		Speed: 213
 	Warhead@1Dam: SpreadDamage
 		Versus:
-			None: 28
+			None: 20
 			Wood: 92
 			Light: 124
 			Heavy: 124
@@ -91,7 +91,7 @@ OrcaAGMissiles:
 	Warhead@1Dam: SpreadDamage
 		ValidTargets: Ground
 		Versus:
-			None: 32
+			None: 30
 			Wood: 112
 			Light: 112
 			Heavy: 84
@@ -124,7 +124,7 @@ MammothMissiles:
 		Spread: 298
 		Damage: 5000
 		Versus:
-			None: 65
+			None: 50
 			Wood: 65
 			Light: 45
 			Heavy: 20
@@ -158,7 +158,7 @@ MammothMissiles:
 		Spread: 683
 		ValidTargets: Ground
 		Versus:
-			None: 24
+			None: 20
 			Wood: 60
 			Light: 100
 			Heavy: 48
@@ -180,7 +180,7 @@ MammothMissiles:
 	Warhead@1Dam: SpreadDamage
 		Damage: 6000
 		Versus:
-			None: 25
+			None: 15
 			Wood: 75
 			Light: 100
 			Heavy: 90
