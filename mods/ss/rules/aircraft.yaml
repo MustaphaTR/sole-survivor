@@ -236,6 +236,7 @@ A10:
 	Inherits: ^Plane
 	Inherits@CRATE: ^AcceptsCratePowerups
 	SSExternalMultiplierManager:
+	TeamLeaderColorModifier:
 	Interactable:
 	Tooltip:
 		Name: A10 Bomber
@@ -269,6 +270,7 @@ U2:
 	Inherits: ^Plane
 	Inherits@CRATE: ^AcceptsCratePowerups
 	SSExternalMultiplierManager:
+	TeamLeaderColorModifier:
 	Tooltip:
 		Name: Spy Plane
 	Aircraft:
