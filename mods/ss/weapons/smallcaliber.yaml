@@ -121,9 +121,13 @@ Pistol:
 
 M16:
 	Inherits: ^LightMG
+	Warhead@1Dam: SpreadDamage
+		Versus:
+			Wood: 35
+			Light: 45
 
 M16.AA:
-	Inherits: ^LightMG
+	Inherits: M16
 	ValidTargets: Air
 	Warhead@1Dam: SpreadDamage
 		ValidTargets: Air
