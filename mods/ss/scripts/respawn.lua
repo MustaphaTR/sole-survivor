@@ -40,18 +40,20 @@ Respawn = function(player)
 
 			TickTimer(player, RespawnDelay[RespawnOption])
 			Trigger.AfterDelay(RespawnDelay[RespawnOption], function()
-				local unitType = player.Unit.Type
+				if not player.IsObjectiveFailed(0) and not player.IsObjectiveCompleted(0) then
+					local unitType = player.Unit.Type
 
-				local location = SpawnPoints[player.InternalName]
-				if RandomRespawn then
-					location = Utils.Random(SpawnPoints)
-				end
+					local location = SpawnPoints[player.InternalName]
+					if RandomRespawn then
+						location = Utils.Random(SpawnPoints)
+					end
 
-				player.Unit = Actor.Create(unitType, true, { Owner = player, Location = location })
-				if player.IsLocalPlayer then
-					Camera.Position = Map.CenterOfCell(location)
+					player.Unit = Actor.Create(unitType, true, { Owner = player, Location = location })
+					if player.IsLocalPlayer then
+						Camera.Position = Map.CenterOfCell(location)
+					end
+					Respawn(player)
 				end
-				Respawn(player)
 			end)
 		end
 	end)
@@ -59,7 +61,7 @@ end
 
 TickTimer = function(player, timer)
 	if player.IsLocalPlayer then
-		if timer <= 0 then
+		if timer <= 0 or player.IsObjectiveFailed(0) or player.IsObjectiveCompleted(0) then
 			SSUserInterface.SetCenteralText("")
 
 			return
