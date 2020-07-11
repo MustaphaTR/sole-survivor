@@ -13,6 +13,8 @@ CheckTimers = {
 	Demolish = { 25, 25, 25, 25, 25 }
 }
 
+MHQActor = { }
+
 IdleHunt = function(actor)
 	if actor.HasProperty("Hunt") and not actor.IsDead then
 		Trigger.OnIdle(actor, actor.Hunt)
@@ -57,6 +59,21 @@ BuildEngiStuff = function(engi)
 	end
 end
 
+MHQSpyPlane = function(mhq)
+	MHQActor[mhq.Owner.InternalName] = mhq
+
+	Trigger.AfterDelay(550, function()
+		if mhq.IsDead then
+			return
+		end
+
+		local cell = Map.RandomCell()
+		mhq.TargetAirstrike(WPos.New(cell.X * 1024, cell.Y * 1024, 0))
+
+		MHQSpyPlane(mhq)
+	end)
+end
+
 GetNearbyCrates = function(actor, distance)
 	return Utils.Where(Map.ActorsInCircle(actor.CenterPosition, WDist.FromCells(distance)), function(a) return a.Type == "crate" or a.Type == "upgradecrate" or a.Type == "experiencecrate" or a.Type == "wackycrate" end)
 end
@@ -82,6 +99,12 @@ TickAI = function(bots, i)
 	for _,bot in pairs(bots) do
 		local unit = bot.Unit
 		if unit ~= nil and not unit.IsDead then
+			if unit.Type == "mhq" then
+				if (not Lobby.ExploredMap() or Lobby.FogOfWar()) and MHQActor[bot.InternalName] ~= unit then
+					MHQSpyPlane(unit)
+				end
+			end
+
 			if unit.IsIdle or unit.IsIdleAircraft then
 				local crates = GetNearbyCrates(unit, 8)
 				for _,crate in pairs(crates) do
@@ -163,5 +186,9 @@ AIWorldLoaded = function()
 		Trigger.AfterDelay(i, function()
 			TickAI(Bots[i], i)
 		end)
+	end
+
+	for _,bot in pairs(bots) do
+		MHQActor[bot.InternalName] = nil
 	end
 end
