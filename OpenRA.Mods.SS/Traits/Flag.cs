@@ -136,7 +136,7 @@ namespace OpenRA.Mods.SS.Traits
 		}
 
 		public CPos TopLeft { get { return Location; } }
-		public Pair<CPos, SubCell>[] OccupiedCells() { return new[] { Pair.New(Location, SubCell.FullCell) }; }
+		public (CPos, SubCell)[] OccupiedCells() { return new[] { (Location, SubCell.FullCell) }; }
 
 		public WPos CenterPosition { get; private set; }
 

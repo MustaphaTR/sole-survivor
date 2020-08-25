@@ -239,17 +239,21 @@ checkbox-bits:
 		crossed: 288, 32, 16, 16
 		crossed-disabled: 288, 48, 16, 16
 
-scrollbar:
+scrollpanel-decorations:
 	Inherits: ^Chrome
 	Regions:
-		down_arrow: 304, 0, 16, 16
-		down_pressed: 304, 16, 16, 16
-		up_arrow: 304, 32, 16, 16
-		up_pressed: 304, 48, 16, 16
-		right_arrow: 320, 48, 16, 16
-		right_pressed: 336, 48, 16, 16
-		left_arrow: 352, 48, 16, 16
-		left_pressed: 368, 48, 16, 16
+		down: 304, 0, 16, 16
+		down-pressed: 304, 0, 16, 16
+		down-disabled: 304, 16, 16, 16
+		up: 304, 32, 16, 16
+		up-pressed: 304, 32, 16, 16
+		up-disabled: 304, 48, 16, 16
+		right-arrow: 320, 48, 16, 16
+		right-pressed: 320, 48, 16, 16
+		right-disabled: 336, 48, 16, 16
+		left-arrow: 352, 48, 16, 16
+		left-pressed: 352, 48, 16, 16
+		left-disabled: 368, 48, 16, 16
 
 flags:
 	Image: flags.png
@@ -390,10 +394,20 @@ stance-icons:
 		hold-fire-disabled: 480, 176, 16, 16
 		hold-fire-active: 496, 176, 16, 16
 
-dropdown:
+dropdown-decorations:
+	Inherits: ^Chrome
+	Regions:
+		marker: 304, 0, 16, 16
+		marker-pressed: 304, 0, 16, 16
+		marker-disabled: 304, 16, 16, 16
+
+dropdown-separators:
 	Inherits: ^Chrome
 	Regions:
 		separator: 64, 1, 1, 19
+		separator-hover: 0, 129, 1, 19
+		separator-pressed: 64, 193, 1, 19
+		separator-disabled: 64, 129, 1, 19
 
 command-button:
 	Inherits: ^Chrome

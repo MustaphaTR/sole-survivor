@@ -148,20 +148,20 @@ namespace OpenRA.Mods.SS.Traits
 
 			if (crateActions.Any())
 			{
-				var shares = crateActions.Select(a => Pair.New(a, a.GetSelectionSharesOuter(crusher)));
+				var shares = crateActions.Select(a => (Action: a, Shares: a.GetSelectionSharesOuter(crusher)));
 
-				var totalShares = shares.Sum(a => a.Second);
+				var totalShares = shares.Sum(a => a.Shares);
 				var n = self.World.SharedRandom.Next(totalShares);
 
 				foreach (var s in shares)
 				{
-					if (n < s.Second)
+					if (n < s.Shares)
 					{
-						s.First.Activate(crusher);
+						s.Action.Activate(crusher);
 						return;
 					}
 
-					n -= s.Second;
+					n -= s.Shares;
 				}
 			}
 		}
@@ -173,7 +173,7 @@ namespace OpenRA.Mods.SS.Traits
 		}
 
 		public CPos TopLeft { get { return Location; } }
-		public Pair<CPos, SubCell>[] OccupiedCells() { return new[] { Pair.New(Location, SubCell.FullCell) }; }
+		public (CPos, SubCell)[] OccupiedCells() { return new[] { (Location, SubCell.FullCell) }; }
 
 		public WPos CenterPosition { get; private set; }
 

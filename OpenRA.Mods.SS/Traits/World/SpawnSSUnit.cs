@@ -50,7 +50,7 @@ namespace OpenRA.Mods.SS.Traits
 		public readonly int OuterTeammateRadius = 4;
 
 		[Desc("Initial facing of the units.")]
-		public readonly int UnitFacing = 0;
+		public readonly WAngle? UnitFacing = null;
 
 		[Translate]
 		[Desc("Descriptive label for the base size option in the lobby.")]
@@ -216,12 +216,13 @@ namespace OpenRA.Mods.SS.Traits
 
 		void SpawnUnitForPlayer(World w, Player p, CPos sp)
 		{
+			var facing = info.UnitFacing.HasValue ? info.UnitFacing.Value : new WAngle(w.SharedRandom.Next(1024));
 			Units[p] = w.CreateActor(p.Faction.InternalName.ToLowerInvariant(), new TypeDictionary
 			{
 				new LocationInit(sp),
 				new OwnerInit(p),
 				new SkipMakeAnimsInit(),
-				new FacingInit(info.UnitFacing < 0 ? w.SharedRandom.Next(256) : info.UnitFacing),
+				new FacingInit(facing),
 			});
 
 			spawnPointOccupation[sp] = true;
@@ -261,12 +262,13 @@ namespace OpenRA.Mods.SS.Traits
 
 			var cell = validCells.Random(w.SharedRandom);
 
+			var facing = info.UnitFacing.HasValue ? info.UnitFacing.Value : new WAngle(w.SharedRandom.Next(1024));
 			w.CreateActor(actor, new TypeDictionary
 			{
 				new LocationInit(cell),
 				new OwnerInit(p),
 				new SkipMakeAnimsInit(),
-				new FacingInit(info.UnitFacing < 0 ? w.SharedRandom.Next(256) : info.UnitFacing),
+				new FacingInit(facing),
 			});
 		}
 	}

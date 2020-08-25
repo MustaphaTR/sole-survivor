@@ -388,6 +388,7 @@ World:
 	SpawnMapActors:
 	CreateMPPlayers:
 	SpawnSSUnit:
+		UnitFacing: 0
 		TeamSpawnsCheckboxDisplayOrder: 3
 		BaseSizeDropdownDisplayOrder: 8
 	MapOptions:

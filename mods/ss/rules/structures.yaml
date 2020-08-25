@@ -23,7 +23,7 @@ FACT:
 	Transforms:
 		IntoActor: mcv
 		Offset: 1,1
-		Facing: 108
+		Facing: 432
 	ProductionQueue@Building:
 		Type: Building
 		Group: Building
@@ -130,7 +130,7 @@ PROC:
 		Range: 6c0
 	WithBuildingBib:
 	Refinery:
-		DockAngle: 112
+		DockAngle: 448
 		DockOffset: 0,2
 		IsDragRequired: True
 		DragOffset: -554,512,0
@@ -146,7 +146,7 @@ PROC:
 	FreeActor:
 		Actor: HARV
 		SpawnOffset: 1,2
-		Facing: 64
+		Facing: 256
 	WithResourceLevelOverlay:
 	ProvidesPrerequisite@buildingname:
 	SelectionDecorations:
@@ -719,8 +719,8 @@ GUN:
 	WithBuildingBib:
 		HasMinibib: true
 	Turreted:
-		TurnSpeed: 12
-		InitialFacing: 56
+		TurnSpeed: 48
+		InitialFacing: 224
 	-WithSpriteBody:
 	WithEmbeddedTurretSpriteBody:
 	Armament:
@@ -787,7 +787,7 @@ SAM:
 	RevealsShroud:
 		Range: 6c0
 	Turreted:
-		TurnSpeed: 10
+		TurnSpeed: 40
 		InitialFacing: 0
 		RealignDelay: -1
 	-WithSpriteBody:
@@ -890,7 +890,7 @@ GTWR:
 		QuantizedFacings: 8
 	WithMuzzleOverlay:
 	Turreted:
-		TurnSpeed: 255
+		TurnSpeed: 1023
 	SpawnActorOnDeath@HUSK:
 		Actor: GTWR.husk
 
@@ -940,7 +940,7 @@ ATWR:
 	WithBuildingBib:
 		HasMinibib: true
 	Turreted:
-		TurnSpeed: 255
+		TurnSpeed: 1023
 		Offset: 128,128,384
 	Armament@PRIMARY:
 		Weapon: TowerMissile

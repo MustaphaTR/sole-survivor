@@ -122,10 +122,10 @@
 	InaccuracyMultiplier@RANK-ELITE:
 		RequiresCondition: rank-elite
 		Modifier: 60
-	SelfHealing@ELITE:
+	ChangesHealth@ELITE:
 		Step: 200
 		Delay: 100
-		HealIfBelow: 100
+		StartIfBelow: 100
 		DamageCooldown: 125
 		RequiresCondition: rank-elite
 	WithDecoration@RANK-1:
@@ -265,10 +265,10 @@
 		ValidDamageStates: Critical
 
 ^AcceptsAutoRepairCrate:
-	SelfHealing:
+	ChangesHealth:
 		Step: 500
 		Delay: 25
-		HealIfBelow: 75
+		StartIfBelow: 75
 		DamageCooldown: 250
 		RequiresCondition: auto-repair-crate-collected
 	WithDecoration@WRENCH:
@@ -282,7 +282,7 @@
 
 ^AcceptsNoAutoRepairCrate:
 	Inherits: ^AcceptsAutoRepairCrate
-	SelfHealing:
+	ChangesHealth:
 		RequiresCondition: !no-auto-repair-crate-collected
 	WithDecoration@WRENCH:
 		RequiresCondition: !no-auto-repair-crate-collected
@@ -358,7 +358,7 @@
 		Action: Kill
 	Mobile:
 		Locomotor: wheeled
-		TurnSpeed: 5
+		TurnSpeed: 20
 	SelectionDecorations:
 	WithSpriteControlGroupDecoration:
 	Selectable:
@@ -400,7 +400,7 @@
 	Inherits: ^Vehicle
 	Mobile:
 		Locomotor: tracked
-		TurnSpeed: 5
+		TurnSpeed: 20
 	Tooltip:
 		GenericName: Tank
 
@@ -437,7 +437,7 @@
 		VTOL: true
 		LandableTerrainTypes: Clear, Rough, Road, Beach, Tiberium, BlueTiberium
 		Crushes: crate, teleporter, flag
-		InitialFacing: 224
+		InitialFacing: 896
 		CanSlide: True
 	HiddenUnderFog:
 		Type: GroundPosition
@@ -542,10 +542,10 @@
 		DeathType: TiberiumDeath
 		RequiresLobbyCreeps: true
 	Guardable:
-	SelfHealing@HOSPITAL:
+	ChangesHealth@HOSPITAL:
 		Step: 500
 		Delay: 100
-		HealIfBelow: 100
+		StartIfBelow: 100
 		DamageCooldown: 125
 		RequiresCondition: hospitalheal
 	GrantConditionOnPrerequisite@HOSPITAL:
@@ -1177,9 +1177,6 @@
 	Inherits: ^CommonHuskDefaults
 	Husk:
 		AllowedTerrain: Clear, Rough, Road, Tiberium, BlueTiberium, Beach
-	Burns:
-		Damage: 100
-		Interval: 6
 	Targetable:
 		RequiresForceFire: true
 		TargetTypes: Ground, Husk
@@ -1197,6 +1194,14 @@
 	Explodes:
 		Weapon: UnitExplodeSmall
 		EmptyWeapon: UnitExplodeSmall
+	WithIdleOverlay@Burns:
+		Image: fire
+		Sequence: 1
+		IsDecoration: True
+	ChangesHealth:
+		Step: -100
+		StartIfBelow: 101
+		Delay: 6
 
 ^LightHusk:
 	Inherits: ^Husk
