@@ -18,7 +18,7 @@ end
 
 OnCircle = function(player, circle)
 	Trigger.AfterDelay(0, function()
-		if not player.Unit.IsDead and player.Unit.Flag ~= nil then
+		if not player.Unit.IsDead and player.Unit.Flag ~= nil and not player.Unit.Flag.IsDead then
 			if circle.Owner == player or (circle.Owner.Team ~= 0 and circle.Owner.Team == player.Team) then
 				if player.Unit.Location == circle.Location then
 					local flagOnMap = true
