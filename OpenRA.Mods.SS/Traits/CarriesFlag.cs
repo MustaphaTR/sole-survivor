@@ -34,7 +34,6 @@ namespace OpenRA.Mods.SS.Traits
 		readonly CarriesFlagInfo info;
 		readonly SpawnSSUnit spawner;
 		readonly SSMultiplierManager multiplierManager;
-		readonly BuildingInfluence bi;
 
 		public Actor Flag;
 		IActorPreview[] flagPreviews;
@@ -48,7 +47,6 @@ namespace OpenRA.Mods.SS.Traits
 
 			spawner = self.World.WorldActor.Trait<SpawnSSUnit>();
 			multiplierManager = self.TraitOrDefault<SSMultiplierManager>();
-			bi = self.World.WorldActor.Trait<BuildingInfluence>();
 		}
 
 		void ITick.Tick(Actor self)
@@ -87,7 +85,7 @@ namespace OpenRA.Mods.SS.Traits
 		{
 			self.World.Add(Flag);
 			var positionable = Flag.Trait<IPositionable>();
-			if (positionable.CanExistInCell(self.Location) && bi.GetBuildingAt(self.Location) == null)
+			if (positionable.CanExistInCell(self.Location) && !self.World.ActorMap.GetActorsAt(self.Location).Where(a => a.Info.HasTraitInfo<BuildingInfo>()).Any())
 				positionable.SetPosition(Flag, self.Location);
 			else
 			{

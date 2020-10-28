@@ -721,8 +721,13 @@ GUN:
 	Turreted:
 		TurnSpeed: 48
 		InitialFacing: 224
-	-WithSpriteBody:
-	WithEmbeddedTurretSpriteBody:
+		RealignDelay: -1
+		RequiresCondition: !build-incomplete
+	WithSpriteTurret:
+		RequiresCondition: !build-incomplete
+		Recoils: false
+	WithTurretAttackAnimation:
+		Sequence: recoil
 	Armament:
 		Weapon: TurretGun
 		LocalOffset: 512,0,112

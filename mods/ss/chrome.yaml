@@ -248,10 +248,10 @@ scrollpanel-decorations:
 		up: 304, 32, 16, 16
 		up-pressed: 304, 32, 16, 16
 		up-disabled: 304, 48, 16, 16
-		right-arrow: 320, 48, 16, 16
+		right: 320, 48, 16, 16
 		right-pressed: 320, 48, 16, 16
 		right-disabled: 336, 48, 16, 16
-		left-arrow: 352, 48, 16, 16
+		left: 352, 48, 16, 16
 		left-pressed: 352, 48, 16, 16
 		left-disabled: 368, 48, 16, 16
 
