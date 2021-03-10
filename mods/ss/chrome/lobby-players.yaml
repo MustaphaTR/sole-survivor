@@ -142,6 +142,12 @@ Container@LOBBY_PLAYER_BIN:
 							Width: 50
 							Height: 25
 							Font: Regular
+						DropDownButton@HANDICAP_DROPDOWN:
+							X: WINDOW_RIGHT - 5
+							Width: 1
+							Height: 1
+							Font: Regular
+							Visible: false
 						DropDownButton@SPAWN_DROPDOWN:
 							X: 471
 							Width: 50
@@ -256,6 +262,12 @@ Container@LOBBY_PLAYER_BIN:
 							X: 416
 							Width: 50
 							Height: 25
+							Font: Regular
+							Visible: false
+						DropDownButton@HANDICAP_DROPDOWN:
+							X: WINDOW_RIGHT - 5
+							Width: 1
+							Height: 1
 							Font: Regular
 							Visible: false
 						DropDownButton@SPAWN_DROPDOWN:

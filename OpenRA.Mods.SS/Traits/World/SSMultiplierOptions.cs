@@ -18,11 +18,9 @@ namespace OpenRA.Mods.Common.Traits
 	[Desc("Controls the game speed, tech level, and short game lobby options.")]
 	public class SSMultiplierOptionsInfo : TraitInfo, ILobbyOptions
 	{
-		[Translate]
 		[Desc("Descriptive label for the maximum multiplier option in the lobby.")]
 		public readonly string MaxMultiplierDropdownLabel = "Max. Bonus M.";
 
-		[Translate]
 		[Desc("Tooltip description for the maximum multiplier option in the lobby.")]
 		public readonly string MaxMultiplierDropdownDescription = "Maximum percentage of stat bonus you can get by collecting crates";
 
@@ -41,11 +39,9 @@ namespace OpenRA.Mods.Common.Traits
 		[Desc("Display order for the maximum multiplier option in the lobby.")]
 		public readonly int MaxMultiplierDropdownDisplayOrder = 0;
 
-		[Translate]
 		[Desc("Tooltip description for the game speed option in the lobby.")]
 		public readonly string StandardMultiplierDropdownLabel = "Def. Bonus M.";
 
-		[Translate]
 		[Desc("Description of the game speed option in the lobby.")]
 		public readonly string StandardMultiplierDropdownDescription = "Percentage amount of bonus you get from each upgrade from brown crates";
 

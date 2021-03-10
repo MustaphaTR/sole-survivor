@@ -386,7 +386,7 @@
 	WithSSNameTagDecoration:
 		Margin: 0, -12
 		Position: Top
-		ValidStances: Ally, Neutral, Enemy
+		ValidRelationships: Ally, Neutral, Enemy
 		UsePlayerColor: true
 	Demolishable:
 	MustBeDestroyed:
@@ -455,7 +455,7 @@
 	WithSSNameTagDecoration:
 		Margin: 0, -12
 		Position: Top
-		ValidStances: Ally, Neutral, Enemy
+		ValidRelationships: Ally, Neutral, Enemy
 		UsePlayerColor: true
 	WithFacingSpriteBody:
 	WithShadow:
@@ -598,7 +598,7 @@
 	WithSSNameTagDecoration:
 		Margin: 0, -12
 		Position: Top
-		ValidStances: Ally, Neutral, Enemy
+		ValidRelationships: Ally, Neutral, Enemy
 		UsePlayerColor: true
 	Guard:
 	TakeCover:
@@ -674,7 +674,7 @@
 	WithSSNameTagDecoration:
 		Margin: 0, -12
 		Position: Top
-		ValidStances: Ally, Neutral, Enemy
+		ValidRelationships: Ally, Neutral, Enemy
 		UsePlayerColor: true
 	RevealsShroud:
 		Range: 6c0
@@ -757,7 +757,7 @@
 	WithSSNameTagDecoration:
 		Margin: 0, -12
 		Position: Top
-		ValidStances: Ally, Neutral, Enemy
+		ValidRelationships: Ally, Neutral, Enemy
 		UsePlayerColor: true
 	Armament:
 		Weapon: Chemspray
@@ -797,7 +797,7 @@
 		UseLocation: true
 	HiddenUnderFog:
 		Type: GroundPosition
-		AlwaysVisibleStances: None
+		AlwaysVisibleRelationships: None
 	ActorLostNotification:
 	AttackMove:
 	WithShadow:
@@ -861,7 +861,7 @@
 		Dimensions: 1,1
 		Footprint: x
 	ActorPreviewPlaceBuildingPreview:
-		OverridePalette: placebuilding
+		PreviewAlpha: 0.65
 	SoundOnDamageTransition:
 		DamagedSounds: xplos.aud
 		DestroyedSounds: crumble.aud
@@ -1030,7 +1030,7 @@
 		BuildSounds: hvydoor1.aud
 		TerrainTypes: Clear,Road
 	FootprintPlaceBuildingPreview:
-		LineBuildSegmentPalette: placelinesegment
+		LineBuildFootprintAlpha: 0.65
 	RequiresBuildableArea:
 		AreaTypes: building
 		Adjacent: 1
@@ -1183,13 +1183,13 @@
 	CaptureManager:
 	Capturable:
 		Types: husk
-		ValidStances: Enemy, Neutral, Ally
+		ValidRelationships: Enemy, Neutral, Ally
 	TransformOnCapture:
 		ForceHealthPercentage: 25
 	Tooltip:
 		GenericName: Destroyed Vehicle
 	WithColoredOverlay@IDISABLE:
-		Palette: disabled
+		Color: 000000B4
 	ScriptTriggers:
 	Explodes:
 		Weapon: UnitExplodeSmall
@@ -1298,4 +1298,4 @@
 		ValidPowerStates: Low, Critical
 	WithColoredOverlay@IDISABLE:
 		RequiresCondition: lowpower
-		Palette: disabled
+		Color: 000000B4

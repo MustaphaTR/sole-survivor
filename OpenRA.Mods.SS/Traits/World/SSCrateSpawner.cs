@@ -22,11 +22,9 @@ namespace OpenRA.Mods.SS.Traits
 {
 	public class SSCrateSpawnerInfo : ConditionalTraitInfo, ILobbyOptions
 	{
-		[Translate]
 		[Desc("Descriptive label for the crates checkbox in the lobby.")]
 		public readonly string DropdownLabel = "Crate Amount";
 
-		[Translate]
 		[Desc("Tooltip description for the crates checkbox in the lobby.")]
 		public readonly string DropdownDescription = "Amount of crates to spawn";
 
@@ -67,11 +65,9 @@ namespace OpenRA.Mods.SS.Traits
 		[Desc("Chance of each crate actor spawning.")]
 		public readonly int[] CrateActorShares = { 10 };
 
-		[Translate]
 		[Desc("Descriptive label for the wacky mode checkbox in the lobby.")]
 		public readonly string WackyModeCheckboxLabel = "Wacky Mode";
 
-		[Translate]
 		[Desc("Tooltip description for the wacky mode checkbox in the lobby.")]
 		public readonly string WackyModeCheckboxDescription = "All the crates are replaced with Orange Wacky Crates";
 

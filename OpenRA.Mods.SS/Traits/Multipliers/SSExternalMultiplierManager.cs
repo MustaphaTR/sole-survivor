@@ -35,7 +35,7 @@ namespace OpenRA.Mods.SS.Traits
 			this.self = self;
 
 			var mainPair = self.World.ActorsWithTrait<SSMultiplierManager>().Where(a => a.Actor.Owner == self.Owner).FirstOrDefault();
-			if (mainPair != null)
+			if (mainPair.Actor != null)
 			{
 				main = mainPair.Actor;
 				mainManager = mainPair.Trait;

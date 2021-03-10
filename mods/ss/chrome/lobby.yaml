@@ -1,5 +1,5 @@
 Container@SERVER_LOBBY:
-	Logic: LobbyLogic
+	Logic: LobbySSLogic
 	X: (WINDOW_RIGHT - WIDTH) / 2
 	Y: (WINDOW_BOTTOM - 560) / 2
 	Width: 800

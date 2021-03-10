@@ -23,11 +23,9 @@ namespace OpenRA.Mods.SS.Traits
 	[Desc("Spawns the initial unit for a Sole Survivor game. Handles different spawning logics.")]
 	public class SpawnSSUnitInfo : TraitInfo, ILobbyOptions
 	{
-		[Translate]
 		[Desc("Descriptive label for the team spawns checkbox in the lobby.")]
 		public readonly string TeamSpawnsCheckboxLabel = "Team Spawns";
 
-		[Translate]
 		[Desc("Tooltip description for the team spawns checkbox in the lobby.")]
 		public readonly string TeamSpawnsCheckboxDescription = "Players with the same team spawn next to each other";
 
@@ -52,11 +50,9 @@ namespace OpenRA.Mods.SS.Traits
 		[Desc("Initial facing of the units.")]
 		public readonly WAngle? UnitFacing = null;
 
-		[Translate]
 		[Desc("Descriptive label for the base size option in the lobby.")]
 		public readonly string BaseSizeDropdownLabel = "Base Size";
 
-		[Translate]
 		[Desc("Tooltip description for the base size option in the lobby.")]
 		public readonly string BaseSizeDropdownDescription = "Amount of towers to spawn around your spawnpoint";
 

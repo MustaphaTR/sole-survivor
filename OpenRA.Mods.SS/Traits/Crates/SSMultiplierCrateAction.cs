@@ -51,9 +51,9 @@ namespace OpenRA.Mods.SS.Traits
 			this.info = info;
 			options = self.World.WorldActor.TraitOrDefault<SSMultiplierOptions>();
 
-			max = options != null ? options.MaxMultiplier : 200;
+			max = options?.MaxMultiplier ?? 200;
 			min = 100 / (max / 100);
-			standard = options != null ? options.StandardMultiplier / 10 : 1;
+			standard = options?.StandardMultiplier / 10 ?? 1;
 		}
 
 		public override int GetSelectionShares(Actor collector)
@@ -120,7 +120,7 @@ namespace OpenRA.Mods.SS.Traits
 					foreach (var player in players.Where(p => p != collector.Owner && spawner.Teams[p] == spawner.Teams[collector.Owner]))
 					{
 						var actor = collector.World.ActorsWithTrait<SSMultiplierManager>().Where(a => a.Actor.Owner == player).FirstOrDefault();
-						if (actor != null)
+						if (actor.Actor != null)
 							ApplyBonus(actor.Trait, info.TeamBonus * standard);
 					}
 				}

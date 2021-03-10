@@ -203,7 +203,7 @@ E6:
 		CancelledAudio: Cancelled
 	ProximityExternalCondition@REMOVE:
 		Range: 1c512
-		ValidStances: Ally
+		ValidRelationships: Ally
 		Condition: removeable
 	UnitStatValues:
 		Damage: 3000
@@ -242,8 +242,8 @@ RMBO:
 		ScanRadius: 8
 	Demolition:
 		DetonationDelay: 45
-		TargetStances: None
-		ForceTargetStances: Enemy, Neutral
+		TargetRelationships: None
+		ForceTargetRelationships: Enemy, Neutral
 		Voice: Demolish
 	Armament:
 		Weapon: Sniper

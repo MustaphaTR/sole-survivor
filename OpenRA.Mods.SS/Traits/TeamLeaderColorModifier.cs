@@ -46,7 +46,7 @@ namespace OpenRA.Mods.SS.Traits
 				return r;
 
 			var palette = wr.Palette(info.Palette + leader.InternalName);
-			return r.Select(a => a.IsDecoration ? a : a.WithPalette(palette));
+			return r.Select(a => !a.IsDecoration && a is IPalettedRenderable ? ((IPalettedRenderable)a).WithPalette(palette) : a);
 		}
 
 		IEnumerable<Rectangle> IRenderModifier.ModifyScreenBounds(Actor self, WorldRenderer wr, IEnumerable<Rectangle> bounds)

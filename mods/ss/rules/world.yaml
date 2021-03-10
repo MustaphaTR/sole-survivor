@@ -368,16 +368,22 @@ World:
 	PlayerCommands:
 	HelpCommand:
 	ScreenShaker:
+	BuildingInfluence:
 	ProductionQueueFromSelection:
 		ProductionTabsWidget: PRODUCTION_TABS
 	DomainIndex:
 	SmudgeLayer@SCORCH:
 		Type: Scorch
 		Sequence: scorches
-		SmokePercentage: 50
+		SmokeChance: 50
+		SmokeImage: smoke_m
+		SmokeSequences: idle
 	SmudgeLayer@CRATER:
 		Type: Crater
 		Sequence: craters
+		SmokeChance: 25
+		SmokeImage: smoke_m
+		SmokeSequences: idle
 	ResourceLayer:
 	ResourceClaimLayer:
 	WarheadDebugOverlay:
@@ -385,7 +391,7 @@ World:
 	MapCreeps:
 		CheckboxVisible: False
 	SpawnMapActors:
-	CreateMPPlayers:
+	CreateMapPlayers:
 	SpawnSSUnit:
 		UnitFacing: 0
 		TeamSpawnsCheckboxDisplayOrder: 3
