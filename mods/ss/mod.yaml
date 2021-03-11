@@ -127,6 +127,11 @@ ChromeLayout:
 	ss|chrome/ingame-debuginfo.yaml
 	ss|chrome/music.yaml
 	ss|chrome/settings.yaml
+	ss|chrome/settings-display.yaml
+	ss|chrome/settings-audio.yaml
+	ss|chrome/settings-input.yaml
+	ss|chrome/settings-hotkeys.yaml
+	ss|chrome/settings-advanced.yaml
 	ss|chrome/credits.yaml
 	ss|chrome/dialogs.yaml
 	ss|chrome/tooltips.yaml
