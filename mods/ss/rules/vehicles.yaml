@@ -150,8 +150,6 @@ APC:
 		Types: Infantry
 		MaxWeight: 5
 		LoadingCondition: notmobile
-	RenderSprites:
-		Palette: terrain
 	UnitStatValues:
 		Damage: 2000
 
