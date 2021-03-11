@@ -1280,12 +1280,14 @@
 	GrantConditionOnDeploy@REMOVE:
 		DeployedCondition: deployed
 		SkipMakeAnimation: true
-		DeploySounds: cashturn.aud
-		PauseOnCondition: deployed
+		PauseOnCondition: deployed || build-incomplete || being-demolished
 		RequiresCondition: removeable
-	KillsSelf@REMOVE:
-		Delay: 50
-		RemoveInstead: true
+	WithMakeAnimation:
+		Condition: build-incomplete
+	Sellable:
+		RequiresCondition: !build-incomplete && !being-demolished
+		SellSounds: cashturn.aud
+	AutoSell@REMOVE:
 		RequiresCondition: deployed
 	ExternalCondition@REMOVE:
 		Condition: removeable

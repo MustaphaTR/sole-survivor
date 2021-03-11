@@ -472,6 +472,9 @@ gun.husk:
 		Start: 64
 		Facings: 32
 		UseClassicFacings: True
+	make: gunmake
+		Length: *
+		Tick: 80
 	bib: mbGUN
 		UseTilesetExtension: true
 		TilesetOverrides:
@@ -556,6 +559,14 @@ gtwr:
 gtwr.husk:
 	idle: gtwr
 		Start: 2
+	make:
+		Combine:
+			gtwrmake:
+				Length: 17
+			gtwrmake:
+				Start: 19
+		Length: 18
+		Tick: 200
 	bib: mbGTWR
 		UseTilesetExtension: true
 		TilesetOverrides:
