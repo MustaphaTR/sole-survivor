@@ -24,12 +24,36 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		[ObjectCreator.UseCtor]
 		public IngameScoreScreenLogic(Widget widget, World world, OrderManager orderManager, WorldRenderer worldRenderer)
 		{
+			var closeButton = widget.Get<ButtonWidget>("CLOSE_STATS");
+			var openButton = widget.Get<ButtonWidget>("OPEN_STATS");
+			var stats = widget.Get<ContainerWidget>("STATS_HEADERS");
+
 			var player = world.RenderPlayer ?? world.LocalPlayer;
 			var playerPanel = widget.Get<ScrollPanelWidget>("PLAYER_LIST");
 
 			var teamTemplate = playerPanel.Get<ScrollItemWidget>("TEAM_TEMPLATE");
 			var playerTemplate = playerPanel.Get("PLAYER_TEMPLATE");
 			playerPanel.RemoveChildren();
+
+			closeButton.OnClick = () =>
+			{
+				stats.Visible = false;
+				playerPanel.Visible = false;
+				teamTemplate.Visible = false;
+				playerTemplate.Visible = false;
+				closeButton.Visible = false;
+				openButton.Visible = true;
+			};
+
+			openButton.OnClick = () =>
+			{
+				stats.Visible = true;
+				playerPanel.Visible = true;
+				teamTemplate.Visible = true;
+				playerTemplate.Visible = true;
+				closeButton.Visible = true;
+				openButton.Visible = false;
+			};
 
 			var teams = world.Players.Where(p => !p.NonCombatant && p.Playable)
 				.Select(p => (Player: p, PlayerStatistics: p.PlayerActor.TraitOrDefault<PlayerStatistics>()))

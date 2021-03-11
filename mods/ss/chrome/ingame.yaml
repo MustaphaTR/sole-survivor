@@ -652,11 +652,36 @@ Container@PLAYER_WIDGETS:
 									Height: 5
 									Bar: progressbar-thumb-green
 				Container@SKIRMISH_STATS:
+					Logic: IngameScoreScreenLogic
 					Y: 260
 					Height: WINDOW_BOTTOM - 438
 					Width: 194
-					Logic: IngameScoreScreenLogic
 					Children:
+						Button@CLOSE_STATS:
+							X: 0 - 16
+							Y: 105
+							Height: 25
+							Width: 16
+							Children:
+								Image@ARROW_RIGHT:
+									Y: 5
+									Width: 16
+									Height: 16
+									ImageCollection: scrollpanel-decorations
+									ImageName: right
+						Button@OPEN_STATS:
+							X: PARENT_RIGHT - 6
+							Y: 105
+							Height: 25
+							Width: 16
+							Visible: false
+							Children:
+								Image@ARROW_LEFT:
+									Y: 5
+									Width: 16
+									Height: 16
+									ImageCollection: scrollpanel-decorations
+									ImageName: left
 						Container@STATS_HEADERS:
 							Y: 80
 							Width: 194
