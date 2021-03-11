@@ -47,7 +47,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			health.GetText = () =>
 			{
 				var renderPlayer = world.RenderPlayer;
-				var unit = renderPlayer != null && renderPlayer.ClientIndex != 0 ? spawner.Units[renderPlayer] : selection.Actors.FirstOrDefault();
+				var unit = renderPlayer != null && renderPlayer.ClientIndex != 0 ? spawner.Units[renderPlayer] : selection.Actors.FirstOrDefault(a => a.Info.HasTraitInfo<UnitStatValuesInfo>());
 				if (unit != null && !unit.IsDead)
 				{
 					var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
@@ -83,7 +83,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			healthBar.GetPercentage = () =>
 			{
 				var renderPlayer = world.RenderPlayer;
-				var unit = renderPlayer != null && renderPlayer.ClientIndex != 0 ? spawner.Units[renderPlayer] : selection.Actors.FirstOrDefault();
+				var unit = renderPlayer != null && renderPlayer.ClientIndex != 0 ? spawner.Units[renderPlayer] : selection.Actors.FirstOrDefault(a => a.Info.HasTraitInfo<UnitStatValuesInfo>());
 				if (unit != null && !unit.IsDead)
 				{
 					var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
@@ -120,7 +120,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			sight.GetText = () =>
 			{
 				var renderPlayer = world.RenderPlayer;
-				var unit = renderPlayer != null && renderPlayer.ClientIndex != 0 ? spawner.Units[renderPlayer] : selection.Actors.FirstOrDefault();
+				var unit = renderPlayer != null && renderPlayer.ClientIndex != 0 ? spawner.Units[renderPlayer] : selection.Actors.FirstOrDefault(a => a.Info.HasTraitInfo<UnitStatValuesInfo>());
 				if (unit != null && !unit.IsDead)
 				{
 					var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
@@ -156,7 +156,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			sightBar.GetPercentage = () =>
 			{
 				var renderPlayer = world.RenderPlayer;
-				var unit = renderPlayer != null && renderPlayer.ClientIndex != 0 ? spawner.Units[renderPlayer] : selection.Actors.FirstOrDefault();
+				var unit = renderPlayer != null && renderPlayer.ClientIndex != 0 ? spawner.Units[renderPlayer] : selection.Actors.FirstOrDefault(a => a.Info.HasTraitInfo<UnitStatValuesInfo>());
 				if (unit != null && !unit.IsDead)
 				{
 					var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
@@ -193,7 +193,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			damage.GetText = () =>
 			{
 				var renderPlayer = world.RenderPlayer;
-				var unit = renderPlayer != null && renderPlayer.ClientIndex != 0 ? spawner.Units[renderPlayer] : selection.Actors.FirstOrDefault();
+				var unit = renderPlayer != null && renderPlayer.ClientIndex != 0 ? spawner.Units[renderPlayer] : selection.Actors.FirstOrDefault(a => a.Info.HasTraitInfo<UnitStatValuesInfo>());
 				if (unit != null && !unit.IsDead)
 				{
 					var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
@@ -215,7 +215,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			damageBar.GetPercentage = () =>
 			{
 				var renderPlayer = world.RenderPlayer;
-				var unit = renderPlayer != null && renderPlayer.ClientIndex != 0 ? spawner.Units[renderPlayer] : selection.Actors.FirstOrDefault();
+				var unit = renderPlayer != null && renderPlayer.ClientIndex != 0 ? spawner.Units[renderPlayer] : selection.Actors.FirstOrDefault(a => a.Info.HasTraitInfo<UnitStatValuesInfo>());
 				if (unit != null && !unit.IsDead)
 				{
 					var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
@@ -238,7 +238,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			rof.GetText = () =>
 			{
 				var renderPlayer = world.RenderPlayer;
-				var unit = renderPlayer != null && renderPlayer.ClientIndex != 0 ? spawner.Units[renderPlayer] : selection.Actors.FirstOrDefault();
+				var unit = renderPlayer != null && renderPlayer.ClientIndex != 0 ? spawner.Units[renderPlayer] : selection.Actors.FirstOrDefault(a => a.Info.HasTraitInfo<UnitStatValuesInfo>());
 				if (unit != null && !unit.IsDead)
 				{
 					var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
@@ -274,7 +274,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			rofBar.GetPercentage = () =>
 			{
 				var renderPlayer = world.RenderPlayer;
-				var unit = renderPlayer != null && renderPlayer.ClientIndex != 0 ? spawner.Units[renderPlayer] : selection.Actors.FirstOrDefault();
+				var unit = renderPlayer != null && renderPlayer.ClientIndex != 0 ? spawner.Units[renderPlayer] : selection.Actors.FirstOrDefault(a => a.Info.HasTraitInfo<UnitStatValuesInfo>());
 				if (unit != null && !unit.IsDead)
 				{
 					var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
@@ -311,7 +311,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			range.GetText = () =>
 			{
 				var renderPlayer = world.RenderPlayer;
-				var unit = renderPlayer != null && renderPlayer.ClientIndex != 0 ? spawner.Units[renderPlayer] : selection.Actors.FirstOrDefault();
+				var unit = renderPlayer != null && renderPlayer.ClientIndex != 0 ? spawner.Units[renderPlayer] : selection.Actors.FirstOrDefault(a => a.Info.HasTraitInfo<UnitStatValuesInfo>());
 				if (unit != null && !unit.IsDead)
 				{
 					var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
@@ -344,7 +344,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			rangeBar.GetPercentage = () =>
 			{
 				var renderPlayer = world.RenderPlayer;
-				var unit = renderPlayer != null && renderPlayer.ClientIndex != 0 ? spawner.Units[renderPlayer] : selection.Actors.FirstOrDefault();
+				var unit = renderPlayer != null && renderPlayer.ClientIndex != 0 ? spawner.Units[renderPlayer] : selection.Actors.FirstOrDefault(a => a.Info.HasTraitInfo<UnitStatValuesInfo>());
 				if (unit != null && !unit.IsDead)
 				{
 					var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
@@ -381,7 +381,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			speed.GetText = () =>
 			{
 				var renderPlayer = world.RenderPlayer;
-				var unit = renderPlayer != null && renderPlayer.ClientIndex != 0 ? spawner.Units[renderPlayer] : selection.Actors.FirstOrDefault();
+				var unit = renderPlayer != null && renderPlayer.ClientIndex != 0 ? spawner.Units[renderPlayer] : selection.Actors.FirstOrDefault(a => a.Info.HasTraitInfo<UnitStatValuesInfo>());
 				if (unit != null && !unit.IsDead)
 				{
 					var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
@@ -427,7 +427,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			speedBar.GetPercentage = () =>
 			{
 				var renderPlayer = world.RenderPlayer;
-				var unit = renderPlayer != null && renderPlayer.ClientIndex != 0 ? spawner.Units[renderPlayer] : selection.Actors.FirstOrDefault();
+				var unit = renderPlayer != null && renderPlayer.ClientIndex != 0 ? spawner.Units[renderPlayer] : selection.Actors.FirstOrDefault(a => a.Info.HasTraitInfo<UnitStatValuesInfo>());
 				if (unit != null && !unit.IsDead)
 				{
 					var usv = unit.Info.TraitInfoOrDefault<UnitStatValuesInfo>();
