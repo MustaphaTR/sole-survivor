@@ -83,6 +83,13 @@ Player:
 		Enabled: False
 		DisplayOrder: 12
 		Prerequisites: global-emptydrop
+	LobbyPrerequisiteCheckbox@RESHROUDONDEATH:
+		ID: reshroudondeath
+		Label: Reshroud On Death
+		Description: Reshroud the map when your unit respawns
+		Enabled: True
+		DisplayOrder: 13
+		Prerequisites: global-reshroudondeath
 	GrantConditionOnPrerequisite@RADAR:
 		Condition: radar
 		Prerequisites: global-radar

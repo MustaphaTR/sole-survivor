@@ -41,6 +41,10 @@ Respawn = function(player)
 			TickTimer(player, RespawnDelay[RespawnOption])
 			Trigger.AfterDelay(RespawnDelay[RespawnOption], function()
 				if not player.IsObjectiveFailed(0) and not player.IsObjectiveCompleted(0) then
+					if ReshroudOnDeath and not player.ExploreMapEnabled then
+						player.ReshroudMap()
+					end
+
 					local unitType = player.Unit.Type
 
 					local location = SpawnPoints[player.InternalName]
@@ -163,6 +167,7 @@ RespawnWorldLoaded = function()
 	neutral = Player.GetPlayer("Neutral")
 
 	RandomRespawn = neutral.HasPrerequisites({ "global-randomrespawn" })
+	ReshroudOnDeath = neutral.HasPrerequisites({ "global-reshroudondeath" })
 
 	SetupObjectives()
 	for _,player in pairs(players) do
