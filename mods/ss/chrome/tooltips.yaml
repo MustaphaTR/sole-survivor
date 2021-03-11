@@ -119,7 +119,7 @@ Background@BUTTON_WITH_DESC_HIGHLIGHT_TOOLTIP_FACTIONSUFFIX:
 			VAlign: Top
 
 Background@WORLD_TOOLTIP:
-	Logic: WorldTooltipLogic
+	Logic: WorldTooltipSSLogic
 	Background: panel-black
 	Children:
 		Container@SINGLE_HEIGHT:
@@ -149,7 +149,7 @@ Background@WORLD_TOOLTIP:
 			Font: Bold
 
 Background@WORLD_TOOLTIP_FACTIONSUFFIX:
-	Logic: WorldTooltipLogic, AddFactionSuffixLogic
+	Logic: WorldTooltipSSLogic, AddFactionSuffixLogic
 	Background: panel-black
 	Children:
 		Container@SINGLE_HEIGHT:
