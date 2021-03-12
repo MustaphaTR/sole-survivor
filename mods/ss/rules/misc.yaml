@@ -320,6 +320,188 @@ fact.colorpicker:
 		Image: fact
 		Palette: colorpicker
 
+e1.colorpicker:
+	Inherits: E1
+	-MapEditorData:
+	RenderSprites:
+		Image: e1
+		Palette: colorpicker
+
+e2.colorpicker:
+	Inherits: E2
+	-MapEditorData:
+	RenderSprites:
+		Image: e2
+		Palette: colorpicker
+
+e3.colorpicker:
+	Inherits: E3
+	-MapEditorData:
+	RenderSprites:
+		Image: e3
+		Palette: colorpicker
+
+e4.colorpicker:
+	Inherits: E4
+	-MapEditorData:
+	RenderSprites:
+		Image: e4
+		Palette: colorpicker
+
+e5.colorpicker:
+	Inherits: E5
+	-MapEditorData:
+	RenderSprites:
+		Image: e5
+		Palette: colorpicker
+
+e6.colorpicker:
+	Inherits: E6
+	-MapEditorData:
+	RenderSprites:
+		Image: e6
+		Palette: colorpicker
+
+rmbo.colorpicker:
+	Inherits: RMBO
+	-MapEditorData:
+	RenderSprites:
+		Image: rmbo
+		Palette: colorpicker
+
+harv.colorpicker:
+	Inherits: HARV
+	-MapEditorData:
+	RenderSprites:
+		Image: harv
+		Palette: colorpicker
+
+jeep.colorpicker:
+	Inherits: JEEP
+	-MapEditorData:
+	RenderSprites:
+		Image: jeep
+		Palette: colorpicker
+
+bggy.colorpicker:
+	Inherits: BGGY
+	-MapEditorData:
+	RenderSprites:
+		Image: bggy
+		Palette: colorpicker
+
+apc.colorpicker:
+	Inherits: APC
+	-MapEditorData:
+	RenderSprites:
+		Image: apc
+		Palette: colorpicker
+
+bike.colorpicker:
+	Inherits: BIKE
+	-MapEditorData:
+	RenderSprites:
+		Image: bike
+		Palette: colorpicker
+
+ltnk.colorpicker:
+	Inherits: LTNK
+	-MapEditorData:
+	RenderSprites:
+		Image: ltnk
+		Palette: colorpicker
+
+mtnk.colorpicker:
+	Inherits: MTNK
+	-MapEditorData:
+	RenderSprites:
+		Image: mtnk
+		Palette: colorpicker
+
+ftnk.colorpicker:
+	Inherits: FTNK
+	-MapEditorData:
+	RenderSprites:
+		Image: ftnk
+		Palette: colorpicker
+
+mcv.colorpicker:
+	Inherits: MCV
+	-MapEditorData:
+	RenderSprites:
+		Image: mcv
+		Palette: colorpicker
+
+mhq.colorpicker:
+	Inherits: MHQ
+	-MapEditorData:
+	RenderSprites:
+		Image: mhq
+		Palette: colorpicker
+
+arty.colorpicker:
+	Inherits: ARTY
+	-MapEditorData:
+	RenderSprites:
+		Image: arty
+		Palette: colorpicker
+
+msam.colorpicker:
+	Inherits: MSAM
+	-MapEditorData:
+	RenderSprites:
+		Image: msam
+		Palette: colorpicker
+
+mlrs.colorpicker:
+	Inherits: MLRS
+	-MapEditorData:
+	RenderSprites:
+		Image: mlrs
+		Palette: colorpicker
+
+htnk.colorpicker:
+	Inherits: HTNK
+	-MapEditorData:
+	RenderSprites:
+		Image: htnk
+		Palette: colorpicker
+
+stnk.colorpicker:
+	Inherits: STNK
+	-MapEditorData:
+	RenderSprites:
+		Image: stnk
+		Palette: colorpicker
+
+tran.colorpicker:
+	Inherits: TRAN
+	-MapEditorData:
+	RenderSprites:
+		Image: tran
+		Palette: colorpicker
+
+orca.colorpicker:
+	Inherits: ORCA
+	-MapEditorData:
+	RenderSprites:
+		Image: orca
+		Palette: colorpicker
+
+heli.colorpicker:
+	Inherits: HELI
+	-MapEditorData:
+	RenderSprites:
+		Image: heli
+		Palette: colorpicker
+
+pvice.colorpicker:
+	Inherits: PVICE
+	-MapEditorData:
+	RenderSprites:
+		Image: pvice
+		Palette: colorpicker
+
 proxy.cloak-detector:
 	Inherits: CAMERA
 	-Immobile:

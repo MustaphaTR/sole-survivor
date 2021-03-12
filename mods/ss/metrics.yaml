@@ -5,6 +5,40 @@ Metrics:
 	ButtonFont: Bold
 	CheckboxPressedState: true
 	ColorPickerActorType: fact.colorpicker
+	ColorPickerActorType-Infantry: e1.colorpicker
+	ColorPickerActorType-Vehicle: harv.colorpicker
+	ColorPickerActorType-Aircraft: tran.colorpicker
+	ColorPickerActorType-Original: htnk.colorpicker
+	ColorPickerActorType-New: mhq.colorpicker
+	ColorPickerActorType-AI: ltnk.colorpicker
+	ColorPickerActorType-GDI: mtnk.colorpicker
+	ColorPickerActorType-Nod: ftnk.colorpicker
+	ColorPickerActorType-e1: e1.colorpicker
+	ColorPickerActorType-e2: e2.colorpicker
+	ColorPickerActorType-e3: e3.colorpicker
+	ColorPickerActorType-e4: e4.colorpicker
+	ColorPickerActorType-e5: e5.colorpicker
+	ColorPickerActorType-e6: e6.colorpicker
+	ColorPickerActorType-rmbo: rmbo.colorpicker
+	ColorPickerActorType-harv: harv.colorpicker
+	ColorPickerActorType-jeep: jeep.colorpicker
+	ColorPickerActorType-bggy: bggy.colorpicker
+	ColorPickerActorType-apc: apc.colorpicker
+	ColorPickerActorType-bike: bike.colorpicker
+	ColorPickerActorType-ltnk: ltnk.colorpicker
+	ColorPickerActorType-mtnk: mtnk.colorpicker
+	ColorPickerActorType-ftnk: ftnk.colorpicker
+	ColorPickerActorType-mcv: mcv.colorpicker
+	ColorPickerActorType-mhq: mhq.colorpicker
+	ColorPickerActorType-arty: arty.colorpicker
+	ColorPickerActorType-msam: msam.colorpicker
+	ColorPickerActorType-mlrs: mlrs.colorpicker
+	ColorPickerActorType-htnk: htnk.colorpicker
+	ColorPickerActorType-stnk: stnk.colorpicker
+	ColorPickerActorType-tran: tran.colorpicker
+	ColorPickerActorType-orca: orca.colorpicker
+	ColorPickerActorType-heli: heli.colorpicker
+	ColorPickerActorType-pvice: pvice.colorpicker
 	ColorPickerRemapIndices: 176, 178, 180, 182, 184, 186, 189, 191, 177, 179, 181, 183, 185, 187, 188, 190
 	TextfieldColorHighlight: 800000
 	ChatLineSound: ChatLine
