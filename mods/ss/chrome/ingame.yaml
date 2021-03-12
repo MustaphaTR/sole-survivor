@@ -85,6 +85,7 @@ Container@INGAME_ROOT:
 							Contrast: true
 				Container@PLAYER_ROOT:
 		Container@MENU_ROOT:
+		Container@CLASS_DROPDOWN_PANEL_ROOT:
 		TooltipContainer@TOOLTIP_CONTAINER:
 		MouseAttachment@MOUSE_ATTATCHMENT:
 
@@ -595,7 +596,6 @@ Container@PLAYER_WIDGETS:
 							Y: 5
 							ImageCollection: stance-icons
 							ImageName: hold-fire
-		Container@FACTION_DROPDOWN_PANEL_ROOT:
 		Background@SIDEBAR_BACKGROUND:
 			Logic: MenuButtonsChromeLogic
 			X: WINDOW_RIGHT - 204
@@ -695,7 +695,7 @@ Container@PLAYER_WIDGETS:
 							Font: Regular
 							IgnoreChildMouseOver: true
 							TooltipContainer: TOOLTIP_CONTAINER
-							PanelRoot: FACTION_DROPDOWN_PANEL_ROOT
+							PanelRoot: CLASS_DROPDOWN_PANEL_ROOT
 							Visible: false
 							Children:
 								Image@FACTIONFLAG:
