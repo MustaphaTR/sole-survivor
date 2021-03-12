@@ -53,10 +53,6 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 								var unit = spawner.Units[player];
 								if (unit != null && !unit.IsDead)
 									unit.Kill(unit);
-
-								var others = world.ActorsWithTrait<SSExternalMultiplierManager>().Where(a => a.Actor.Owner == player);
-								foreach (var a in others)
-									a.Actor.Dispose();
 							}
 						}
 					});

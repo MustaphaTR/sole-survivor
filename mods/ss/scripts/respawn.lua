@@ -40,20 +40,18 @@ Respawn = function(player)
 
 			TickTimer(player, RespawnDelay[RespawnOption])
 
-			if not player.QuickClassChange then
-				if player.Class ~= "e6" then
-					local others = player.GetActorsByTypes( { "gtwr", "gun" } )
+			if player.Class ~= "e6" then
+				local others = player.GetActorsByTypes( { "gtwr", "gun" } )
 
-					Utils.Do(others, function(other)
-						other.Destroy()
-					end)
-				elseif player.Class ~= "mhq" then
-					local others = player.GetActorsByTypes( { "u2", "a10" } )
+				Utils.Do(others, function(other)
+					other.Destroy()
+				end)
+			elseif player.Class ~= "mhq" then
+				local others = player.GetActorsByTypes( { "u2", "a10" } )
 
-					Utils.Do(others, function(other)
-						other.Destroy()
-					end)
-				end
+				Utils.Do(others, function(other)
+					other.Destroy()
+				end)
 			end
 
 			Trigger.AfterDelay(RespawnDelay[RespawnOption], function()
