@@ -395,6 +395,7 @@ World:
 	SpawnSSUnit:
 		UnitFacing: 0
 		TeamSpawnsCheckboxDisplayOrder: 3
+		QuickClassChangeCheckboxDisplayOrder: 12
 		BaseSizeDropdownDisplayOrder: 8
 	MapOptions:
 		ShortGameCheckboxEnabled: false

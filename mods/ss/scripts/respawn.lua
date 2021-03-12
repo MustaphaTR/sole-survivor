@@ -39,13 +39,30 @@ Respawn = function(player)
 			player.Experience = player.Experience - Penalty[PenaltyOption]
 
 			TickTimer(player, RespawnDelay[RespawnOption])
+
+			if not player.QuickClassChange then
+				if player.Class ~= "e6" then
+					local others = player.GetActorsByTypes( { "gtwr", "gun" } )
+
+					Utils.Do(others, function(other)
+						other.Destroy()
+					end)
+				elseif player.Class ~= "mhq" then
+					local others = player.GetActorsByTypes( { "u2", "a10" } )
+
+					Utils.Do(others, function(other)
+						other.Destroy()
+					end)
+				end
+			end
+
 			Trigger.AfterDelay(RespawnDelay[RespawnOption], function()
 				if not player.IsObjectiveFailed(0) and not player.IsObjectiveCompleted(0) then
 					if ReshroudOnDeath and not player.ExploreMapEnabled then
 						player.ReshroudMap()
 					end
 
-					local unitType = player.Unit.Type
+					local unitType = player.Class
 
 					local location = SpawnPoints[player.InternalName]
 					if RandomRespawn then
@@ -176,6 +193,7 @@ RespawnWorldLoaded = function()
 
 			SpawnPoints[player.InternalName] = player.SpawnCellPosition
 		else
+			player.ClassChanging = false
 			Trigger.OnKilled(player.Unit, function()
 				player.MarkFailedObjective(0)
 			end)

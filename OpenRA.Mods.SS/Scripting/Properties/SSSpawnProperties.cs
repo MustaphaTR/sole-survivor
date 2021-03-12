@@ -46,11 +46,37 @@ namespace OpenRA.Mods.SS.Scripting
 			get { return spawnSSUnit.TeamLeaders[player]; }
 		}
 
-		[Desc("Returns to or sets the player's.")]
+		[Desc("Returns to value of Team Spawns lobby option.")]
+		public bool TeamSpawns
+		{
+			get { return spawnSSUnit.TeamSpawns; }
+		}
+
+		[Desc("Returns to value of Quick Class Change lobby option.")]
+		public bool QuickClassChange
+		{
+			get { return spawnSSUnit.QuickClassChange; }
+		}
+
+		[Desc("Returns to or sets the player's class.")]
+		public string Class
+		{
+			get { return spawnSSUnit.Classes[player]; }
+			set { spawnSSUnit.Classes[player] = value; }
+		}
+
+		[Desc("Returns to or sets the player's unit.")]
 		public Actor Unit
 		{
 			get { return spawnSSUnit.Units[player]; }
 			set { spawnSSUnit.Units[player] = value; }
+		}
+
+		[Desc("Returns to or sets if player is allowed to change its class.")]
+		public bool ClassChanging
+		{
+			get { return spawnSSUnit.ClassChanging; }
+			set { spawnSSUnit.ClassChanging = value; }
 		}
 	}
 }

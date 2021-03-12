@@ -201,10 +201,6 @@ E6:
 		LimitedAudio: BuildingInProgress
 		OnHoldAudio: OnHold
 		CancelledAudio: Cancelled
-	ProximityExternalCondition@REMOVE:
-		Range: 1c512
-		ValidRelationships: Ally
-		Condition: removeable
 	UnitStatValues:
 		Damage: 3000
 		Range: 6c0

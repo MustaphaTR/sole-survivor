@@ -608,6 +608,10 @@
 	WithInfantryBody:
 		IdleSequences: idle1, idle2
 		StandSequences: stand, stand2
+	ProximityExternalCondition@REMOVE:
+		Range: 1c512
+		ValidRelationships: Ally
+		Condition: removeable
 
 ^CivInfantry:
 	Inherits: ^Infantry

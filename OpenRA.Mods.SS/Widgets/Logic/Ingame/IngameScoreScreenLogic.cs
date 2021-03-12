@@ -12,6 +12,7 @@
 using System.Linq;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Mods.SS.Traits;
 using OpenRA.Network;
 using OpenRA.Primitives;
 using OpenRA.Traits;
@@ -24,6 +25,8 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		[ObjectCreator.UseCtor]
 		public IngameScoreScreenLogic(Widget widget, World world, OrderManager orderManager, WorldRenderer worldRenderer)
 		{
+			var spawner = world.WorldActor.Trait<SpawnSSUnit>();
+
 			var closeButton = widget.Get<ButtonWidget>("CLOSE_STATS");
 			var openButton = widget.Get<ButtonWidget>("OPEN_STATS");
 			var stats = widget.Get<ContainerWidget>("STATS_HEADERS");
@@ -112,7 +115,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					flag.GetImageCollection = () => "flags";
 					if (player == null || player.RelationshipWith(pp) == PlayerRelationship.Ally || player.WinState != WinState.Undefined)
 					{
-						flag.GetImageName = () => pp.Faction.InternalName;
+						flag.GetImageName = () => spawner.Classes[pp];
 					}
 					else
 					{

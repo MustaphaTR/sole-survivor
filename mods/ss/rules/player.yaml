@@ -76,13 +76,6 @@ Player:
 		Enabled: True
 		DisplayOrder: 11
 		Prerequisites: global-randomrespawn
-	LobbyPrerequisiteCheckbox@EMPTYDROP:
-		ID: emptydrop
-		Label: Empty Pole Drop
-		Description: Allow dropping enemy flag, even if we don't have our own flag at the pole
-		Enabled: False
-		DisplayOrder: 12
-		Prerequisites: global-emptydrop
 	LobbyPrerequisiteCheckbox@RESHROUDONDEATH:
 		ID: reshroudondeath
 		Label: Reshroud On Death
@@ -90,6 +83,13 @@ Player:
 		Enabled: True
 		DisplayOrder: 13
 		Prerequisites: global-reshroudondeath
+	LobbyPrerequisiteCheckbox@EMPTYDROP:
+		ID: emptydrop
+		Label: Empty Pole Drop
+		Description: Allow dropping enemy flag, even if we don't have our own flag at the pole
+		Enabled: False
+		DisplayOrder: 14
+		Prerequisites: global-emptydrop
 	GrantConditionOnPrerequisite@RADAR:
 		Condition: radar
 		Prerequisites: global-radar

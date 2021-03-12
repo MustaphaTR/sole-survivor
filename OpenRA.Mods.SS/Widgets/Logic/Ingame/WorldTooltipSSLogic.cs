@@ -104,7 +104,7 @@ namespace OpenRA.Mods.SS.Widgets.Logic
 
 				if (showOwner)
 				{
-					flagFaction = o.Faction.InternalName;
+					flagFaction = spawner.Classes[o] ?? o.Faction.InternalName;
 					ownerName = o.PlayerName;
 					ownerColor = spawner.TeamLeaders[o].Color;
 					widget.Bounds.Height = doubleHeight;

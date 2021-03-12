@@ -595,6 +595,7 @@ Container@PLAYER_WIDGETS:
 							Y: 5
 							ImageCollection: stance-icons
 							ImageName: hold-fire
+		Container@FACTION_DROPDOWN_PANEL_ROOT:
 		Background@SIDEBAR_BACKGROUND:
 			Logic: MenuButtonsChromeLogic
 			X: WINDOW_RIGHT - 204
@@ -659,6 +660,54 @@ Container@PLAYER_WIDGETS:
 							Height: PARENT_BOTTOM - 2
 							Skippable: false
 				Container@PRODUCTION_TYPES:
+				Container@CLASS_SELECTOR:
+					Logic: IngameClassSelectorLogic
+					X: 0 - 200
+					Height: 25
+					Width: 200
+					Children:
+						Button@CLOSE_CLASS:
+							X: 0 - 16
+							Height: 25
+							Width: 16
+							Visible: false
+							Children:
+								Image@ARROW_RIGHT:
+									Y: 5
+									Width: 16
+									Height: 16
+									ImageCollection: scrollpanel-decorations
+									ImageName: right
+						Button@OPEN_CLASS:
+							X: PARENT_RIGHT - 16
+							Height: 25
+							Width: 16
+							Children:
+								Image@ARROW_LEFT:
+									Y: 5
+									Width: 16
+									Height: 16
+									ImageCollection: scrollpanel-decorations
+									ImageName: left
+						DropDownButton@CLASS_DROPDOWN:
+							Height: 25
+							Width: 200
+							Font: Regular
+							IgnoreChildMouseOver: true
+							TooltipContainer: TOOLTIP_CONTAINER
+							PanelRoot: FACTION_DROPDOWN_PANEL_ROOT
+							Visible: false
+							Children:
+								Image@FACTIONFLAG:
+									X: 4
+									Y: 4
+									Width: 32
+									Height: 16
+								Label@FACTIONNAME:
+									X: 40
+									Width: 60
+									Height: 25
+									Text: Faction
 				Background@STATS:
 					Logic: IngameUnitStatsLogic
 					X: 13

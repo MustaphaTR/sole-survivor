@@ -50,6 +50,24 @@ namespace OpenRA.Mods.SS.Traits
 		[Desc("Initial facing of the units.")]
 		public readonly WAngle? UnitFacing = null;
 
+		[Desc("Descriptive label for the quick class change checkbox in the lobby.")]
+		public readonly string QuickClassChangeCheckboxLabel = "Quick Class Change";
+
+		[Desc("Tooltip description for the quick class change checkbox in the lobby.")]
+		public readonly string QuickClassChangeCheckboxDescription = "When enabled changing class kills you, otherwise you have to wait till you are killed to actually change";
+
+		[Desc("Default value of the quick class change checkbox in the lobby.")]
+		public readonly bool QuickClassChangeCheckboxEnabled = false;
+
+		[Desc("Prevent the quick class change state from being changed in the lobby.")]
+		public readonly bool QuickClassChangeCheckboxLocked = false;
+
+		[Desc("Whether to display the quick class change checkbox in the lobby.")]
+		public readonly bool QuickClassChangeCheckboxVisible = true;
+
+		[Desc("Display order for the quick class change checkbox in the lobby.")]
+		public readonly int QuickClassChangeCheckboxDisplayOrder = 0;
+
 		[Desc("Descriptive label for the base size option in the lobby.")]
 		public readonly string BaseSizeDropdownLabel = "Base Size";
 
@@ -91,6 +109,15 @@ namespace OpenRA.Mods.SS.Traits
 				TeamSpawnsCheckboxEnabled,
 				TeamSpawnsCheckboxLocked);
 
+			yield return new LobbyBooleanOption(
+				"quickclasschange",
+				QuickClassChangeCheckboxLabel,
+				QuickClassChangeCheckboxDescription,
+				QuickClassChangeCheckboxVisible,
+				QuickClassChangeCheckboxDisplayOrder,
+				QuickClassChangeCheckboxEnabled,
+				QuickClassChangeCheckboxLocked);
+
 			var baseSizes = BaseSizes.ToDictionary(bs => bs.ToString(), bs => bs.ToString());
 
 			yield return new LobbyOption("basesize", BaseSizeDropdownLabel, BaseSizeDropdownDescription, BaseSizeDropdownVisible, BaseSizeDropdownDisplayOrder,
@@ -108,9 +135,12 @@ namespace OpenRA.Mods.SS.Traits
 		int baseSize;
 
 		public bool TeamSpawns;
+		public bool QuickClassChange;
+		public bool ClassChanging = true;
 		public Dictionary<Player, CPos> PlayerSpawnPoints = new Dictionary<Player, CPos>();
 		public Dictionary<Player, Player> TeamLeaders = new Dictionary<Player, Player>();
 		public Dictionary<Player, int> Teams = new Dictionary<Player, int>();
+		public Dictionary<Player, string> Classes = new Dictionary<Player, string>();
 		public Dictionary<Player, Actor> Units = new Dictionary<Player, Actor>();
 		Dictionary<CPos, bool> spawnPointOccupation = new Dictionary<CPos, bool>();
 
@@ -125,6 +155,9 @@ namespace OpenRA.Mods.SS.Traits
 
 			TeamSpawns = world.LobbyInfo.GlobalSettings
 				.OptionOrDefault("teamspawns", info.TeamSpawnsCheckboxEnabled);
+
+			QuickClassChange = world.LobbyInfo.GlobalSettings
+				.OptionOrDefault("quickclasschange", info.QuickClassChangeCheckboxEnabled);
 
 			int.TryParse(world.LobbyInfo.GlobalSettings
 				.OptionOrDefault("basesize", info.BaseSize.ToString()), out baseSize);
@@ -213,6 +246,7 @@ namespace OpenRA.Mods.SS.Traits
 		void SpawnUnitForPlayer(World w, Player p, CPos sp)
 		{
 			var facing = info.UnitFacing.HasValue ? info.UnitFacing.Value : new WAngle(w.SharedRandom.Next(1024));
+			Classes[p] = p.Faction.InternalName.ToLowerInvariant();
 			Units[p] = w.CreateActor(p.Faction.InternalName.ToLowerInvariant(), new TypeDictionary
 			{
 				new LocationInit(sp),
