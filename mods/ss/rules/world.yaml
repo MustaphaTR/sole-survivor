@@ -513,6 +513,45 @@ World:
 	RadarPings:
 	LoadWidgetAtGameStart:
 		ShellmapRoot: MENU_BACKGROUND
+	ColorPickerManager:
+		PreviewActor: fact.colorpicker
+		PresetHues: 0, 0.055, 0.11, 0.165, 0.22, 0.275, 0.33, 0.385, 0.44, 0, 0.055, 0.11, 0.165, 0.22, 0.275, 0.33, 0.385, 0.44, 0, 0.055, 0.11, 0.165, 0.22, 0.275, 0.33, 0.385, 0.44, 0.495, 0.55, 0.605, 0.66, 0.715, 0.77, 0.825, 0.88, 0.935, 0.495, 0.55, 0.605, 0.66, 0.715, 0.77, 0.825, 0.88, 0.935, 0.495, 0.55, 0.605, 0.66, 0.715, 0.77, 0.825, 0.88, 0.935
+		PresetSaturations: 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.65, 0.65, 0.65, 0.65, 0.65, 0.65, 0.65, 0.65, 0.65, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.65, 0.65, 0.65, 0.65, 0.65, 0.65, 0.65, 0.65, 0.65, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4
+		FactionPreviewActors:
+			Infantry: e1.colorpicker
+			Vehicle: harv.colorpicker
+			Aircraft: tran.colorpicker
+			Original: htnk.colorpicker
+			New: mhq.colorpicker
+			AI: ltnk.colorpicker
+			GDI: mtnk.colorpicker
+			Nod: ftnk.colorpicker
+			e1: e1.colorpicker
+			e2: e2.colorpicker
+			e3: e3.colorpicker
+			e4: e4.colorpicker
+			e5: e5.colorpicker
+			e6: e6.colorpicker
+			rmbo: rmbo.colorpicker
+			harv: harv.colorpicker
+			jeep: jeep.colorpicker
+			bggy: bggy.colorpicker
+			apc: apc.colorpicker
+			bike: bike.colorpicker
+			ltnk: ltnk.colorpicker
+			mtnk: mtnk.colorpicker
+			ftnk: ftnk.colorpicker
+			mcv: mcv.colorpicker
+			mhq: mhq.colorpicker
+			arty: arty.colorpicker
+			msam: msam.colorpicker
+			mlrs: mlrs.colorpicker
+			htnk: htnk.colorpicker
+			stnk: stnk.colorpicker
+			tran: tran.colorpicker
+			orca: orca.colorpicker
+			heli: heli.colorpicker
+			pvice: pvice.colorpicker
 
 EditorWorld:
 	Inherits: ^BaseWorld

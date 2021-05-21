@@ -1,6 +1,6 @@
 Metadata:
 	Title: Sole Survivor
-	Version: e2a6b55
+	Version: 872adbe
 	Website: https://www.openra.net
 	WebIcon32: https://raw.githubusercontent.com/MustaphaTR/sole-survivor/master/mods/ss/icon.png
 
@@ -36,7 +36,7 @@ Packages:
 
 MapFolders:
 	ss|maps: System
-	~^maps/cnc/e2a6b55: User
+	~^maps/cnc/872adbe: User
 
 Rules:
 	ss|rules/misc.yaml
@@ -238,33 +238,32 @@ AssetBrowser:
 	SupportedExtensions: .shp, .tem, .des, .sno, .jun, .vqa
 
 GameSpeeds:
-	slowest:
-		Name: Slowest
-		Timestep: 80
-		OrderLatency: 2
-	slower:
-		Name: Slower
-		Timestep: 50
-		OrderLatency: 3
-	default:
-		Name: Normal
-		Timestep: 40
-		OrderLatency: 3
-	fast:
-		Name: Fast
-		Timestep: 35
-		OrderLatency: 4
-	faster:
-		Name: Faster
-		Timestep: 30
-		OrderLatency: 4
-	fastest:
-		Name: Fastest
-		Timestep: 20
-		OrderLatency: 6
-
-ColorValidator:
-	TeamColorPresets: c4b060, 4494e4, ec0000, 00c400, fc8800, 44907c, ff40c4, a0ff00, dae096, 707070, 625830, 224a72, 760000, 006200, 7e4400, 22483e, 802061, 518000, 6d704b, 383838, ffdd00, 0000e0, ed7777, 408040, 702c24, 00e0e0, 9c00cc, e07040, 96e0bd, fefefe, 806e00, 000070, 753b3b, 204020, 381612, 007070, 4e0066, 703821, 4b705e, 000000
+	DefaultSpeed: default
+	Speeds:
+		slowest:
+			Name: Slowest
+			Timestep: 80
+			OrderLatency: 2
+		slower:
+			Name: Slower
+			Timestep: 50
+			OrderLatency: 3
+		default:
+			Name: Normal
+			Timestep: 40
+			OrderLatency: 3
+		fast:
+			Name: Fast
+			Timestep: 35
+			OrderLatency: 4
+		faster:
+			Name: Faster
+			Timestep: 30
+			OrderLatency: 4
+		fastest:
+			Name: Fastest
+			Timestep: 20
+			OrderLatency: 6
 
 ModContent:
 	InstallPromptMessage: Sole Survivor requires artwork and audio from the original game.\n\nQuick Install will automatically download this content (without music\nor videos) from a mirror of the 2007 C&C Gold freeware release.\n\nAdvanced Install includes options for downloading the music and for\ncopying the videos and other content from an original game disc.

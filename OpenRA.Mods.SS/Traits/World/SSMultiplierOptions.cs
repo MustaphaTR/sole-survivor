@@ -60,19 +60,19 @@ namespace OpenRA.Mods.Common.Traits
 		[Desc("Display order for the game speed option in the lobby.")]
 		public readonly int StandardMultiplierDropdownDisplayOrder = 0;
 
-		IEnumerable<LobbyOption> ILobbyOptions.LobbyOptions(Ruleset rules)
+		IEnumerable<LobbyOption> ILobbyOptions.LobbyOptions(MapPreview map)
 		{
 			var maxMultipliers = SelectableMaxMultiplier.ToDictionary(c => c.ToString(), c => c.ToString() + "%");
 
 			if (maxMultipliers.Any())
 				yield return new LobbyOption("maxmultiplier", MaxMultiplierDropdownLabel, MaxMultiplierDropdownDescription, MaxMultiplierDropdownVisible, MaxMultiplierDropdownDisplayOrder,
-					new ReadOnlyDictionary<string, string>(maxMultipliers),	MaxMultiplier.ToString(), MaxMultiplierDropdownLocked);
+					maxMultipliers, MaxMultiplier.ToString(), MaxMultiplierDropdownLocked);
 
 			var standardMultipliers = SelectableStandardMultiplier.ToDictionary(c => c.ToString(), c => c.ToString() + "%");
 
 			if (standardMultipliers.Any())
 				yield return new LobbyOption("standardmultiplier", StandardMultiplierDropdownLabel, StandardMultiplierDropdownDescription, StandardMultiplierDropdownVisible, StandardMultiplierDropdownDisplayOrder,
-					new ReadOnlyDictionary<string, string>(standardMultipliers), StandardMultiplier.ToString(), StandardMultiplierDropdownLocked);
+					standardMultipliers, StandardMultiplier.ToString(), StandardMultiplierDropdownLocked);
 		}
 
 		public override object Create(ActorInitializer init) { return new SSMultiplierOptions(this); }

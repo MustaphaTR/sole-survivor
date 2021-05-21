@@ -362,7 +362,7 @@
 	SelectionDecorations:
 	WithSpriteControlGroupDecoration:
 	Selectable:
-		Bounds: 24,24
+		Bounds: 1024, 1024
 	Targetable:
 		TargetTypes: Ground, Vehicle
 	Repairable:
@@ -428,7 +428,7 @@
 	SelectionDecorations:
 	WithSpriteControlGroupDecoration:
 	Selectable:
-		Bounds: 24,24
+		Bounds: 1024, 1024
 	Aircraft:
 		AirborneCondition: airborne
 		CruisingCondition: cruising
@@ -490,8 +490,8 @@
 	SelectionDecorations:
 	WithSpriteControlGroupDecoration:
 	Selectable:
-		Bounds: 18,18,0,-6
-		DecorationBounds: 12,17,0,-6
+		Bounds: 768, 768, 0, -256
+		DecorationBounds: 512, 725, 0, -256
 	Targetable:
 		TargetTypes: Ground, Infantry
 	QuantizeFacingsFromSequence:
@@ -689,7 +689,7 @@
 	SelectionDecorations:
 	WithSpriteControlGroupDecoration:
 	Selectable:
-		Bounds: 24,24
+		Bounds: 1024, 1024
 	Targetable:
 		TargetTypes: Ground, Creep
 	HiddenUnderFog:
@@ -744,7 +744,7 @@
 	SelectionDecorations:
 	WithSpriteControlGroupDecoration:
 	Selectable:
-		Bounds: 24,24
+		Bounds: 1024, 1024
 	Targetable:
 		TargetTypes: Ground, Creep
 	AutoTarget:
@@ -1023,7 +1023,7 @@
 	Inherits@1: ^SpriteActor
 	Inherits@shape: ^1x1Shape
 	Interactable:
-		Bounds: 24,24
+		Bounds: 1024, 1024
 	CombatDebugOverlay:
 	AppearsOnRadar:
 	OwnerLostAction:

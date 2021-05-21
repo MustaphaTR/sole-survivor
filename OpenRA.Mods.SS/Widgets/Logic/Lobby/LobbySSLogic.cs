@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using OpenRA.Graphics;
+using OpenRA.Mods.Common.Traits;
 using OpenRA.Network;
 using OpenRA.Primitives;
 using OpenRA.Traits;
@@ -32,7 +33,6 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		readonly WorldRenderer worldRenderer;
 		readonly bool skirmishMode;
 		readonly Ruleset modRules;
-		readonly World shellmapWorld;
 		readonly WebServices services;
 
 		enum PanelType { Players, Options, Music, Servers, Kick, ForceStart }
@@ -53,11 +53,13 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 		readonly Dictionary<string, LobbyFaction> factions = new Dictionary<string, LobbyFaction>();
 
-		readonly ColorPreviewManagerWidget colorPreview;
+		readonly ColorPickerManagerInfo colorManager;
 
 		readonly TabCompletionLogic tabCompletion = new TabCompletionLogic();
 
 		MapPreview map;
+		Session.MapStatus mapStatus;
+
 		bool addBotOnMapLoad;
 		bool disableTeamChat;
 		bool teamChat;
@@ -65,6 +67,8 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		Dictionary<int, SpawnOccupant> spawnOccupants = new Dictionary<int, SpawnOccupant>();
 
 		readonly string chatLineSound = ChromeMetrics.Get<string>("ChatLineSound");
+
+		bool MapIsPlayable => (mapStatus & Session.MapStatus.Playable) == Session.MapStatus.Playable;
 
 		// Listen for connection failures
 		void ConnectionStateChanged(OrderManager om)
@@ -111,7 +115,6 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 			// TODO: This needs to be reworked to support per-map tech levels, bots, etc.
 			modRules = modData.DefaultRules;
-			shellmapWorld = worldRenderer.World;
 
 			services = modData.Manifest.Get<WebServices>();
 
@@ -130,7 +133,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			var mapContainer = Ui.LoadWidget("MAP_PREVIEW", lobby.Get("MAP_PREVIEW_ROOT"), new WidgetArgs
 			{
 				{ "orderManager", orderManager },
-				{ "getMap", (Func<MapPreview>)(() => map) },
+				{ "getMap", (Func<(MapPreview, Session.MapStatus)>)(() => (map, mapStatus)) },
 				{
 					"onMouseDown", (Action<MapPreviewWidget, MapPreview, MouseInput>)((preview, mapPreview, mi) =>
 						LobbyUtils.SelectSpawnPoint(orderManager, preview, mapPreview, mi))
@@ -154,16 +157,15 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			editableSpectatorTemplate = players.Get("TEMPLATE_EDITABLE_SPECTATOR");
 			nonEditableSpectatorTemplate = players.Get("TEMPLATE_NONEDITABLE_SPECTATOR");
 			newSpectatorTemplate = players.Get("TEMPLATE_NEW_SPECTATOR");
-			colorPreview = lobby.Get<ColorPreviewManagerWidget>("COLOR_MANAGER");
-			colorPreview.Color = Game.Settings.Player.Color;
+			colorManager = modRules.Actors[SystemActors.World].TraitInfo<ColorPickerManagerInfo>();
+			colorManager.Color = Game.Settings.Player.Color;
 
-			foreach (var f in modRules.Actors["world"].TraitInfos<FactionInfo>())
+			foreach (var f in modRules.Actors[SystemActors.World].TraitInfos<FactionInfo>())
 				factions.Add(f.InternalName, new LobbyFaction { Selectable = f.Selectable, Name = f.Name, Side = f.Side, Description = f.Description });
 
 			var gameStarting = false;
 			Func<bool> configurationDisabled = () => !Game.IsHost || gameStarting ||
-				panel == PanelType.Kick || panel == PanelType.ForceStart ||
-				!map.RulesLoaded || map.InvalidCustomRules ||
+				panel == PanelType.Kick || panel == PanelType.ForceStart || !MapIsPlayable ||
 				orderManager.LocalClient == null || orderManager.LocalClient.IsReady;
 
 			var mapButton = lobby.GetOrNull<ButtonWidget>("CHANGEMAP_BUTTON");
@@ -206,7 +208,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 				slotsButton.OnMouseDown = _ =>
 				{
-					var botTypes = map.Rules.Actors["player"].TraitInfos<IBotInfo>().Select(t => t.Type);
+					var botTypes = map.PlayerActorInfo.TraitInfos<IBotInfo>().Select(t => t.Type);
 					var options = new Dictionary<string, IEnumerable<DropDownOptionSS>>();
 
 					var botController = orderManager.LobbyInfo.Clients.FirstOrDefault(c => c.IsAdmin);
@@ -225,7 +227,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 										var bot = botTypes.Random(Game.CosmeticRandom);
 										var c = orderManager.LobbyInfo.ClientInSlot(slot.Key);
 										if (slot.Value.AllowBots == true && (c == null || c.Bot != null))
-											orderManager.IssueOrder(Order.Command("slot_bot {0} {1} {2}".F(slot.Key, botController.Index, bot)));
+											orderManager.IssueOrder(Order.Command($"slot_bot {slot.Key} {botController.Index} {bot}"));
 									}
 								}
 							}
@@ -257,9 +259,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					{
 						var teamOptions = Enumerable.Range(2, teamCount - 1).Reverse().Select(d => new DropDownOptionSS
 						{
-							Title = "{0} Teams".F(d),
+							Title = $"{d} Teams",
 							IsSelected = () => false,
-							OnClick = () => orderManager.IssueOrder(Order.Command("assignteams {0}".F(d.ToString())))
+							OnClick = () => orderManager.IssueOrder(Order.Command($"assignteams {d.ToString()}"))
 						}).ToList();
 
 						if (orderManager.LobbyInfo.Slots.Any(s => s.Value.AllowBots))
@@ -329,7 +331,6 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			optionsTab.IsHighlighted = () => panel == PanelType.Options;
 			optionsTab.IsDisabled = OptionsTabDisabled;
 			optionsTab.OnClick = () => panel = PanelType.Options;
-			optionsTab.GetText = () => !map.RulesLoaded ? "Loading..." : optionsTab.Text;
 
 			var playersTab = tabContainer.Get<ButtonWidget>("PLAYERS_TAB");
 			playersTab.IsHighlighted = () => panel == PanelType.Players;
@@ -474,7 +475,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 		bool OptionsTabDisabled()
 		{
-			return !map.RulesLoaded || map.InvalidCustomRules || panel == PanelType.Kick || panel == PanelType.ForceStart;
+			return !MapIsPlayable || panel == PanelType.Kick || panel == PanelType.ForceStart;
 		}
 
 		public override void Tick()
@@ -503,14 +504,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			return true;
 		}
 
-		void LoadMapPreviewRules(MapPreview map)
-		{
-			// Force map rules to be loaded on this background thread
-			new Task(map.PreloadRules).Start();
-		}
-
 		void UpdateCurrentMap()
 		{
+			mapStatus = orderManager.LobbyInfo.GlobalSettings.MapStatus;
 			var uid = orderManager.LobbyInfo.GlobalSettings.Map;
 			if (map.Uid == uid)
 				return;
@@ -518,39 +514,22 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			map = modData.MapCache[uid];
 			if (map.Status == MapStatus.Available)
 			{
-				// Maps need to be validated and pre-loaded before they can be accessed
-				var currentMap = map;
-				new Task(() =>
+				// Tell the server that we have the map
+				orderManager.IssueOrder(Order.Command($"state {Session.ClientState.NotReady}"));
+
+				if (addBotOnMapLoad)
 				{
-					// Force map rules to be loaded on this background thread
-					currentMap.PreloadRules();
-					Game.RunAfterTick(() =>
-					{
-						// Map may have changed in the meantime
-						if (currentMap != map)
-							return;
+					var slot = orderManager.LobbyInfo.FirstEmptyBotSlot();
+					var bot = map.PlayerActorInfo.TraitInfos<IBotInfo>().Select(t => t.Type).FirstOrDefault();
+					var botController = orderManager.LobbyInfo.Clients.FirstOrDefault(c => c.IsAdmin);
+					if (slot != null && bot != null)
+						orderManager.IssueOrder(Order.Command($"slot_bot {slot} {botController.Index} {bot}"));
 
-						// Tell the server that we have the map
-						if (!currentMap.InvalidCustomRules)
-							orderManager.IssueOrder(Order.Command("state {0}".F(Session.ClientState.NotReady)));
-
-						if (addBotOnMapLoad)
-						{
-							var slot = orderManager.LobbyInfo.FirstEmptyBotSlot();
-							var bot = currentMap.Rules.Actors["player"].TraitInfos<IBotInfo>().Select(t => t.Type).FirstOrDefault();
-							var botController = orderManager.LobbyInfo.Clients.FirstOrDefault(c => c.IsAdmin);
-							if (slot != null && bot != null)
-								orderManager.IssueOrder(Order.Command("slot_bot {0} {1} {2}".F(slot, botController.Index, bot)));
-
-							addBotOnMapLoad = false;
-						}
-					});
-				}).Start();
+					addBotOnMapLoad = false;
+				}
 			}
-			else if (map.Status == MapStatus.DownloadAvailable)
-				LoadMapPreviewRules(map);
-			else if (Game.Settings.Game.AllowDownloading)
-				modData.MapCache.QueryRemoteMapDetails(services.MapRepository, new[] { uid }, LoadMapPreviewRules);
+			else if (map.Status != MapStatus.DownloadAvailable && Game.Settings.Game.AllowDownloading)
+				modData.MapCache.QueryRemoteMapDetails(services.MapRepository, new[] { uid });
 		}
 
 		void UpdatePlayerList()
@@ -617,12 +596,12 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					else
 						LobbyUtils.SetupEditableNameWidget(template, slot, client, orderManager, worldRenderer);
 
-					LobbyUtils.SetupEditableColorWidget(template, slot, client, orderManager, shellmapWorld, colorPreview);
+					LobbyUtils.SetupEditableColorWidget(template, slot, client, orderManager, worldRenderer, colorManager);
 					LobbyUtils.SetupEditableFactionWidget(template, slot, client, orderManager, factions);
 					LobbyUtils.SetupEditableTeamWidget(template, slot, client, orderManager, map);
 					LobbyUtils.SetupEditableHandicapWidget(template, slot, client, orderManager, map);
 					LobbyUtils.SetupEditableSpawnWidget(template, slot, client, orderManager, map);
-					LobbyUtils.SetupEditableReadyWidget(template, slot, client, orderManager, map);
+					LobbyUtils.SetupEditableReadyWidget(template, slot, client, orderManager, map, MapIsPlayable);
 				}
 				else
 				{
@@ -682,7 +661,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					LobbyUtils.SetupEditableNameWidget(template, null, c, orderManager, worldRenderer);
 
 					if (client.IsAdmin)
-						LobbyUtils.SetupEditableReadyWidget(template, null, client, orderManager, map);
+						LobbyUtils.SetupEditableReadyWidget(template, null, client, orderManager, map, MapIsPlayable);
 					else
 						LobbyUtils.HideReadyWidgets(template);
 				}

@@ -98,7 +98,7 @@ namespace OpenRA.Mods.SS.Traits
 		[Desc("Outer radius for spawning base buildings")]
 		public readonly int OuterBaseRadius = 3;
 
-		IEnumerable<LobbyOption> ILobbyOptions.LobbyOptions(Ruleset rules)
+		IEnumerable<LobbyOption> ILobbyOptions.LobbyOptions(MapPreview map)
 		{
 			yield return new LobbyBooleanOption(
 				"teamspawns",
@@ -121,7 +121,7 @@ namespace OpenRA.Mods.SS.Traits
 			var baseSizes = BaseSizes.ToDictionary(bs => bs.ToString(), bs => bs.ToString());
 
 			yield return new LobbyOption("basesize", BaseSizeDropdownLabel, BaseSizeDropdownDescription, BaseSizeDropdownVisible, BaseSizeDropdownDisplayOrder,
-				new ReadOnlyDictionary<string, string>(baseSizes), BaseSize.ToString(), BaseSizeDropdownLocked);
+				baseSizes, BaseSize.ToString(), BaseSizeDropdownLocked);
 		}
 
 		public override object Create(ActorInitializer init) { return new SpawnSSUnit(this); }

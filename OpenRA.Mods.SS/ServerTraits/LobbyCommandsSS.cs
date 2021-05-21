@@ -80,7 +80,7 @@ namespace OpenRA.Mods.Common.Server
 
 				if (server.State == ServerState.GameStarted)
 				{
-					server.SendOrderTo(conn, "Message", "Cannot change state when game started. ({0})".F(cmd));
+					server.SendOrderTo(conn, "Message", $"Cannot change state when game started. ({cmd})");
 					return false;
 				}
 				else if (client.State == Session.ClientState.Ready && !(cmd.StartsWith("state") || cmd == "startgame"))
@@ -348,7 +348,7 @@ namespace OpenRA.Mods.Common.Server
 				}
 
 				var botType = parts[2];
-				var botInfo = server.Map.Rules.Actors["player"].TraitInfos<IBotInfo>()
+				var botInfo = server.Map.PlayerActorInfo.TraitInfos<IBotInfo>()
 					.FirstOrDefault(b => b.Type == botType);
 
 				if (botInfo == null)
@@ -376,11 +376,11 @@ namespace OpenRA.Mods.Common.Server
 					};
 
 					// Pick a random color for the bot
-					var validator = server.ModData.Manifest.Get<ColorValidator>();
-					var terrainColors = server.Map.Rules.TerrainInfo.RestrictedPlayerColors;
+					var colorManager = server.ModData.DefaultRules.Actors[SystemActors.World].TraitInfo<ColorPickerManagerInfo>();
+					var terrainColors = server.ModData.DefaultTerrainInfo[server.Map.TileSet].RestrictedPlayerColors;
 					var playerColors = server.LobbyInfo.Clients.Select(c => c.Color)
 						.Concat(server.Map.Players.Players.Values.Select(p => p.Color));
-					bot.Color = bot.PreferredColor = validator.RandomPresetColor(server.Random, terrainColors, playerColors);
+					bot.Color = bot.PreferredColor = colorManager.RandomPresetColor(server.Random, terrainColors, playerColors);
 
 					server.LobbyInfo.Clients.Add(bot);
 				}
@@ -422,16 +422,17 @@ namespace OpenRA.Mods.Common.Server
 
 						var oldSlots = server.LobbyInfo.Slots.Keys.ToArray();
 						server.Map = server.ModData.MapCache[server.LobbyInfo.GlobalSettings.Map];
+						server.LobbyInfo.GlobalSettings.MapStatus = server.MapStatusCache[server.Map];
 
 						server.LobbyInfo.Slots = server.Map.Players.Players
 							.Select(p => MakeSlotFromPlayerReference(p.Value))
 							.Where(ss => ss != null)
 							.ToDictionary(ss => ss.PlayerReference, ss => ss);
 
-						LoadMapSettings(server, server.LobbyInfo.GlobalSettings, server.Map.Rules);
+						LoadMapSettings(server, server.LobbyInfo.GlobalSettings, server.Map);
 
 						// Reset client states
-						var selectableFactions = server.Map.Rules.Actors["world"].TraitInfos<FactionInfo>()
+						var selectableFactions = server.Map.WorldActorInfo.TraitInfos<FactionInfo>()
 							.Where(f => f.Selectable)
 							.Select(f => f.InternalName)
 							.ToList();
@@ -448,7 +449,7 @@ namespace OpenRA.Mods.Common.Server
 						//  - Players who now lack a slot are made observers
 						//  - Bots who now lack a slot are dropped
 						//  - Bots who are not defined in the map rules are dropped
-						var botTypes = server.Map.Rules.Actors["player"].TraitInfos<IBotInfo>().Select(t => t.Type);
+						var botTypes = server.Map.PlayerActorInfo.TraitInfos<IBotInfo>().Select(t => t.Type);
 						var slots = server.LobbyInfo.Slots.Keys.ToArray();
 						var i = 0;
 						foreach (var os in oldSlots)
@@ -481,9 +482,9 @@ namespace OpenRA.Mods.Common.Server
 
 						server.SyncLobbyInfo();
 
-						server.SendMessage("{0} changed the map to {1}.".F(client.Name, server.Map.Title));
+						server.SendMessage($"{client.Name} changed the map to {server.Map.Title}.");
 
-						if (server.Map.DefinesUnsafeCustomRules)
+						if ((server.LobbyInfo.GlobalSettings.MapStatus & Session.MapStatus.UnsafeCustomRules) != 0)
 							server.SendMessage("This map contains custom rules. Game experience may change.");
 
 						if (!server.LobbyInfo.GlobalSettings.EnableSingleplayer)
@@ -506,7 +507,14 @@ namespace OpenRA.Mods.Common.Server
 				{
 					server.SendOrderTo(conn, "Message", "Searching for map on the Resource Center...");
 					var mapRepository = server.ModData.Manifest.Get<WebServices>().MapRepository;
-					server.ModData.MapCache.QueryRemoteMapDetails(mapRepository, new[] { s }, selectMap, queryFailed);
+					var reported = false;
+					server.ModData.MapCache.QueryRemoteMapDetails(mapRepository, new[] { s }, selectMap, _ =>
+					{
+						if (!reported)
+							queryFailed();
+
+						reported = true;
+					});
 				}
 				else
 					queryFailed();
@@ -525,9 +533,9 @@ namespace OpenRA.Mods.Common.Server
 					return true;
 				}
 
-				var allOptions = server.Map.Rules.Actors["player"].TraitInfos<ILobbyOptions>()
-					.Concat(server.Map.Rules.Actors["world"].TraitInfos<ILobbyOptions>())
-					.SelectMany(t => t.LobbyOptions(server.Map.Rules));
+				var allOptions = server.Map.PlayerActorInfo.TraitInfos<ILobbyOptions>()
+					.Concat(server.Map.WorldActorInfo.TraitInfos<ILobbyOptions>())
+					.SelectMany(t => t.LobbyOptions(server.Map));
 
 				// Overwrite keys with duplicate ids
 				var options = new Dictionary<string, LobbyOption>();
@@ -544,7 +552,7 @@ namespace OpenRA.Mods.Common.Server
 
 				if (option.IsLocked)
 				{
-					server.SendOrderTo(conn, "Message", "{0} cannot be changed.".F(option.Name));
+					server.SendOrderTo(conn, "Message", $"{option.Name} cannot be changed.");
 					return true;
 				}
 
@@ -553,13 +561,6 @@ namespace OpenRA.Mods.Common.Server
 					return true;
 
 				oo.Value = oo.PreferredValue = split[1];
-
-				if (option.Id == "gamespeed")
-				{
-					var speed = server.ModData.Manifest.Get<GameSpeeds>().Speeds[oo.Value];
-					server.LobbyInfo.GlobalSettings.Timestep = speed.Timestep;
-					server.LobbyInfo.GlobalSettings.OrderLatency = speed.OrderLatency;
-				}
 
 				server.SyncLobbyGlobalSettings();
 				server.SendMessage(option.ValueChangedMessage(client.Name, split[1]));
@@ -585,7 +586,7 @@ namespace OpenRA.Mods.Common.Server
 
 				if (!Exts.TryParseIntegerInvariant(s, out var teamCount))
 				{
-					server.SendOrderTo(conn, "Message", "Number of teams could not be parsed: {0}".F(s));
+					server.SendOrderTo(conn, "Message", $"Number of teams could not be parsed: {s}");
 					return true;
 				}
 
@@ -650,7 +651,7 @@ namespace OpenRA.Mods.Common.Server
 				}
 
 				Log.Write("server", "Kicking client {0}.", kickClientID);
-				server.SendMessage("{0} kicked {1} from the server.".F(client.Name, kickClient.Name));
+				server.SendMessage($"{client.Name} kicked {kickClient.Name} from the server.");
 				server.SendOrderTo(kickConn, "ServerError", "You have been kicked from the server.");
 				server.DropClient(kickConn);
 
@@ -658,7 +659,7 @@ namespace OpenRA.Mods.Common.Server
 				if (tempBan)
 				{
 					Log.Write("server", "Temporarily banning client {0} ({1}).", kickClientID, kickClient.IPAddress);
-					server.SendMessage("{0} temporarily banned {1} from the server.".F(client.Name, kickClient.Name));
+					server.SendMessage($"{client.Name} temporarily banned {kickClient.Name} from the server.");
 					server.TempBans.Add(kickClient.IPAddress);
 				}
 
@@ -698,8 +699,8 @@ namespace OpenRA.Mods.Common.Server
 				foreach (var b in bots)
 					b.BotControllerClientIndex = newAdminId;
 
-				server.SendMessage("{0} is now the admin.".F(newAdminClient.Name));
-				Log.Write("server", "{0} is now the admin.".F(newAdminClient.Name));
+				server.SendMessage($"{newAdminClient.Name} is now the admin.");
+				Log.Write("server", $"{newAdminClient.Name} is now the admin.");
 				server.SyncLobbyClients();
 
 				return true;
@@ -732,8 +733,8 @@ namespace OpenRA.Mods.Common.Server
 				targetClient.Handicap = 0;
 				targetClient.Color = Color.White;
 				targetClient.State = Session.ClientState.NotReady;
-				server.SendMessage("{0} moved {1} to spectators.".F(client.Name, targetClient.Name));
-				Log.Write("server", "{0} moved {1} to spectators.".F(client.Name, targetClient.Name));
+				server.SendMessage($"{client.Name} moved {targetClient.Name} to spectators.");
+				Log.Write("server", $"{client.Name} moved {targetClient.Name} to spectators.");
 				server.SyncLobbyClients();
 				CheckAutoStart(server);
 
@@ -750,7 +751,7 @@ namespace OpenRA.Mods.Common.Server
 					return true;
 
 				Log.Write("server", "Player@{0} is now known as {1}.", conn.Socket.RemoteEndPoint, sanitizedName);
-				server.SendMessage("{0} is now known as {1}.".F(client.Name, sanitizedName));
+				server.SendMessage($"{client.Name} is now known as {sanitizedName}.");
 				client.Name = sanitizedName;
 				server.SyncLobbyClients();
 
@@ -773,13 +774,13 @@ namespace OpenRA.Mods.Common.Server
 				if (server.LobbyInfo.Slots[targetClient.Slot].LockFaction)
 					return true;
 
-				var factions = server.Map.Rules.Actors["world"].TraitInfos<FactionInfo>()
+				var factions = server.Map.WorldActorInfo.TraitInfos<FactionInfo>()
 					.Where(f => f.Selectable).Select(f => f.InternalName);
 
 				if (!factions.Contains(parts[1]))
 				{
-					server.SendOrderTo(conn, "Message", "Invalid faction selected: {0}".F(parts[1]));
-					server.SendOrderTo(conn, "Message", "Supported values: {0}".F(factions.JoinWith(", ")));
+					server.SendOrderTo(conn, "Message", $"Invalid faction selected: {parts[1]}");
+					server.SendOrderTo(conn, "Message", $"Supported values: {factions.JoinWith(", ")}");
 					return true;
 				}
 
@@ -913,7 +914,7 @@ namespace OpenRA.Mods.Common.Server
 					return true;
 
 				if (!Exts.TryParseIntegerInvariant(parts[1], out var spawnPoint)
-				    || spawnPoint < 0 || spawnPoint > server.Map.SpawnPoints.Length)
+					|| spawnPoint < 0 || spawnPoint > server.Map.SpawnPoints.Length)
 				{
 					Log.Write("server", "Invalid spawn point: {0}", parts[1]);
 					return true;
@@ -1009,14 +1010,14 @@ namespace OpenRA.Mods.Common.Server
 				var uid = server.LobbyInfo.GlobalSettings.Map;
 				server.Map = server.ModData.MapCache[uid];
 				if (server.Map.Status != MapStatus.Available)
-					throw new InvalidOperationException("Map {0} not found".F(uid));
+					throw new InvalidOperationException($"Map {uid} not found");
 
 				server.LobbyInfo.Slots = server.Map.Players.Players
 					.Select(p => MakeSlotFromPlayerReference(p.Value))
 					.Where(s => s != null)
 					.ToDictionary(s => s.PlayerReference, s => s);
 
-				LoadMapSettings(server, server.LobbyInfo.GlobalSettings, server.Map.Rules);
+				LoadMapSettings(server, server.LobbyInfo.GlobalSettings, server.Map);
 			}
 		}
 
@@ -1039,13 +1040,13 @@ namespace OpenRA.Mods.Common.Server
 			};
 		}
 
-		public static void LoadMapSettings(S server, Session.Global gs, Ruleset rules)
+		public static void LoadMapSettings(S server, Session.Global gs, MapPreview map)
 		{
 			lock (server.LobbyInfo)
 			{
-				var options = rules.Actors["player"].TraitInfos<ILobbyOptions>()
-					.Concat(rules.Actors["world"].TraitInfos<ILobbyOptions>())
-					.SelectMany(t => t.LobbyOptions(rules));
+				var options = map.PlayerActorInfo.TraitInfos<ILobbyOptions>()
+					.Concat(map.WorldActorInfo.TraitInfos<ILobbyOptions>())
+					.SelectMany(t => t.LobbyOptions(map));
 
 				foreach (var o in options)
 				{
@@ -1071,13 +1072,6 @@ namespace OpenRA.Mods.Common.Server
 					state.Value = value;
 					state.PreferredValue = preferredValue;
 					gs.LobbyOptions[o.Id] = state;
-
-					if (o.Id == "gamespeed")
-					{
-						var speed = server.ModData.Manifest.Get<GameSpeeds>().Speeds[value];
-						gs.Timestep = speed.Timestep;
-						gs.OrderLatency = speed.OrderLatency;
-					}
 				}
 			}
 		}
@@ -1086,7 +1080,7 @@ namespace OpenRA.Mods.Common.Server
 		{
 			lock (server.LobbyInfo)
 			{
-				var validator = server.ModData.Manifest.Get<ColorValidator>();
+				var colorManager = server.ModData.DefaultRules.Actors[SystemActors.World].TraitInfo<ColorPickerManagerInfo>();
 				var askColor = askedColor;
 
 				Action<string> onError = message =>
@@ -1095,17 +1089,17 @@ namespace OpenRA.Mods.Common.Server
 						server.SendOrderTo(connectionToEcho, "Message", message);
 				};
 
-				var terrainColors = server.Map.Rules.TerrainInfo.RestrictedPlayerColors;
+				var terrainColors = server.ModData.DefaultTerrainInfo[server.Map.TileSet].RestrictedPlayerColors;
 				var playerColors = server.LobbyInfo.Clients.Where(c => c.Index != playerIndex).Select(c => c.Color)
 					.Concat(server.Map.Players.Players.Values.Select(p => p.Color)).ToList();
 
-				return validator.MakeValid(askColor, server.Random, terrainColors, playerColors, onError);
+				return colorManager.MakeValid(askColor, server.Random, terrainColors, playerColors, onError);
 			}
 		}
 
 		static string MissionBriefingOrDefault(S server)
 		{
-			var missionData = server.Map.Rules.Actors["world"].TraitInfoOrDefault<MissionDataInfo>();
+			var missionData = server.Map.WorldActorInfo.TraitInfoOrDefault<MissionDataInfo>();
 			if (missionData != null && !string.IsNullOrEmpty(missionData.Briefing))
 				return missionData.Briefing.Replace("\\n", "\n");
 

@@ -44,7 +44,7 @@ namespace OpenRA.Mods.Common.Traits
 		[Desc("Prerequisites to grant when this checkbox is enabled.")]
 		public readonly string Condition = null;
 
-		IEnumerable<LobbyOption> ILobbyOptions.LobbyOptions(Ruleset rules)
+		IEnumerable<LobbyOption> ILobbyOptions.LobbyOptions(MapPreview map)
 		{
 			yield return new LobbyBooleanOption(ID, Label, Description,
 				Visible, DisplayOrder, Enabled, Locked);

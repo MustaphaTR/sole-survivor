@@ -100,13 +100,13 @@ namespace OpenRA.Mods.SS.Traits
 		[Desc("Spawn and remove the plane this far outside the map.")]
 		public readonly WDist Cordon = new WDist(5120);
 
-		IEnumerable<LobbyOption> ILobbyOptions.LobbyOptions(Ruleset rules)
+		IEnumerable<LobbyOption> ILobbyOptions.LobbyOptions(MapPreview map)
 		{
 			var crateAmount = SelectableAmount.ToDictionary(c => c.ToString(), c => c.ToString());
 
 			if (crateAmount.Any())
 				yield return new LobbyOption("crateamount", DropdownLabel, DropdownDescription, DropdownVisible, DropdownDisplayOrder,
-					new ReadOnlyDictionary<string, string>(crateAmount), DefaultAmount.ToString(), DropdownLocked);
+					crateAmount, DefaultAmount.ToString(), DropdownLocked);
 
 			yield return new LobbyBooleanOption("wackymode", WackyModeCheckboxLabel, WackyModeCheckboxDescription,
 				WackyModeCheckboxVisible, WackyModeCheckboxDisplayOrder, WackyModeCheckboxEnabled, WackyModeCheckboxLocked);

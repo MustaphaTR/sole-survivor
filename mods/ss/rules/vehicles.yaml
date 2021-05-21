@@ -15,7 +15,7 @@ MCV:
 		Description: Deploys into another Construction Yard.\n  Unarmed
 	Selectable:
 		Priority: 4
-		DecorationBounds: 36,36
+		DecorationBounds: 1536, 1536
 	Mobile:
 		Speed: 71
 		Locomotor: heavywheeled
@@ -60,7 +60,7 @@ HARV:
 		Description: Collects Tiberium for processing.\n  Unarmed
 	Selectable:
 		Priority: 7
-		DecorationBounds: 36,36
+		DecorationBounds: 1536, 1536
 	Mobile:
 		Speed: 91
 	Armament:
@@ -468,7 +468,7 @@ MTNK:
 	WithSpriteTurret:
 	SelectionDecorations:
 	Selectable:
-		DecorationBounds: 28,28
+		DecorationBounds: 1194, 1194
 	UnitStatValues:
 		Damage: 4000
 
@@ -520,7 +520,7 @@ HTNK:
 	WithMuzzleOverlay:
 	SelectionDecorations:
 	Selectable:
-		DecorationBounds: 34,34,0,-3
+		DecorationBounds: 1450, 1450, 0, -128
 	UnitStatValues:
 		Damage: 4000
 
