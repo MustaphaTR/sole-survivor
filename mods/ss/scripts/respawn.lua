@@ -1,5 +1,5 @@
 --[[
-   Copyright 2007-2019 The OpenRA Developers (see AUTHORS)
+   Copyright 2007-2021 The OpenRA Developers (see AUTHORS)
    This file is part of OpenRA, which is free software. It is made
    available to you under the terms of the GNU General Public License
    as published by the Free Software Foundation, either version 3 of
@@ -29,6 +29,17 @@ Penalty =
 	five = 5,
 	ten = 10,
 	twenty = 20
+}
+
+ClassChangingOption = Map.LobbyOption("class-changing")
+ClassChangingInterval =
+{
+	fifteen = DateTime.Seconds(15),
+	thirty = DateTime.Seconds(30),
+	forthfive = DateTime.Seconds(45),
+	sixty = DateTime.Seconds(60),
+	hundredtwenty = DateTime.Seconds(120),
+	threehundred = DateTime.Seconds(300)
 }
 
 SpawnPoints = { }
@@ -65,6 +76,12 @@ Respawn = function(player)
 					local location = SpawnPoints[player.InternalName]
 					if RandomRespawn then
 						location = Utils.Random(SpawnPoints)
+					end
+
+					if player.Unit.Type ~= unitType then
+						player.ClassChangingPaused = true
+
+						TickClassChangingTimer(player, ClassChangingInterval[ClassChangingOption])
 					end
 
 					player.Unit = Actor.Create(unitType, true, { Owner = player, Location = location })
@@ -191,7 +208,6 @@ RespawnWorldLoaded = function()
 
 			SpawnPoints[player.InternalName] = player.SpawnCellPosition
 		else
-			player.ClassChanging = false
 			Trigger.OnKilled(player.Unit, function()
 				player.MarkFailedObjective(0)
 			end)

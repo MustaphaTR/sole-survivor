@@ -72,11 +72,18 @@ namespace OpenRA.Mods.SS.Scripting
 			set { spawnSSUnit.Units[player] = value; }
 		}
 
-		[Desc("Returns to or sets if player is allowed to change its class.")]
+		[Desc("Returns to or sets if player is allowed to change its class at all.")]
 		public bool ClassChanging
 		{
 			get { return spawnSSUnit.ClassChanging; }
 			set { spawnSSUnit.ClassChanging = value; }
+		}
+
+		[Desc("Returns to or sets if player is currently allowed to change its class.")]
+		public bool ClassChangingPaused
+		{
+			get { return spawnSSUnit.ClassChangingPaused; }
+			set { spawnSSUnit.ClassChangingPaused = value; }
 		}
 	}
 }

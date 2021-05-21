@@ -503,8 +503,22 @@ World:
 			twenty: 20
 		Default: disabled
 		DisplayOrder: 6
+	ScriptLobbyDropdown@class-changing:
+		ID: class-changing
+		Label: Class Changing
+		Description: How often can a player change their class
+		Values:
+			disabled: Disabled
+			fifteen: 15 Seconds
+			thirty: 30 Seconds
+			fourtyfive: 45 Seconds
+			sixty: 1 Minute
+			hundredtwenty: 2 Minutes
+			threehundred: 5 Minutes
+		Default: thirty
+		DisplayOrder: 8
 	LuaScript:
-		Scripts: cloak-invuln.lua, ai-scripts.lua, time-limit.lua, respawn.lua, capture-the-flag.lua, world-tick.lua
+		Scripts: cloak-invuln.lua, ai-scripts.lua, time-limit.lua, class-changing.lua, respawn.lua, capture-the-flag.lua, world-tick.lua
 	PathFinder:
 	ValidateOrder:
 	DebugPauseState:

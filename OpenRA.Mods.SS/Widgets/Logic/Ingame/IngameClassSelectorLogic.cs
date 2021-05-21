@@ -103,7 +103,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			};
 
 			openButton.IsDisabled = () => !spawner.ClassChanging;
-			classDropdown.IsDisabled = () => !spawner.ClassChanging;
+			classDropdown.IsDisabled = () => !spawner.ClassChanging || spawner.ClassChangingPaused;
 			classDropdown.OnMouseDown = _ => ShowFactionDropDown(world, spawner, classDropdown, factions);
 
 			classDropdown.GetTooltipText = () => SplitOnFirstToken(factions[spawner.Classes[player]].Description).First;

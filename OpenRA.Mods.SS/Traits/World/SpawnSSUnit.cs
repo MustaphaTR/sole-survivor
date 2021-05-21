@@ -137,6 +137,7 @@ namespace OpenRA.Mods.SS.Traits
 		public bool TeamSpawns;
 		public bool QuickClassChange;
 		public bool ClassChanging = true;
+		public bool ClassChangingPaused = false;
 		public Dictionary<Player, CPos> PlayerSpawnPoints = new Dictionary<Player, CPos>();
 		public Dictionary<Player, Player> TeamLeaders = new Dictionary<Player, Player>();
 		public Dictionary<Player, int> Teams = new Dictionary<Player, int>();
