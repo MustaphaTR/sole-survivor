@@ -43,7 +43,8 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			{
 				var item = ScrollItemWidget.Setup(itemTemplate,
 					() => spawner.Classes[player] == factionId,
-					() => {
+					() =>
+					{
 						if (spawner.Classes[player] != factionId)
 						{
 							spawner.Classes[player] = factionId;
