@@ -472,7 +472,6 @@ HPAD:
 
 HQ:
 	Inherits: ^BaseBuilding
-	Inherits@IDISABLE: ^DisabledOverlay
 	HitShape:
 		TargetableOffsets: 0,0,0, 0,512,0, 420,-598,256
 		Type: Rectangle
@@ -573,7 +572,6 @@ FIX:
 
 EYE:
 	Inherits: ^BaseBuilding
-	Inherits@IDISABLE: ^DisabledOverlay
 	HitShape:
 		TargetableOffsets: 0,0,0, 0,512,128, 420,-598,213
 		Type: Rectangle
@@ -630,7 +628,6 @@ EYE:
 
 TMPL:
 	Inherits: ^BaseBuilding
-	Inherits@IDISABLE: ^DisabledOverlay
 	Inherits@shape: ^3x2Shape
 	HitShape:
 		UseTargetableCellsOffsets: false
@@ -764,7 +761,6 @@ GUN.husk:
 
 SAM:
 	Inherits: ^Defense
-	Inherits@IDISABLE: ^DisabledOverlay
 	Inherits@AUTOTARGET: ^AutoTargetAir
 	Inherits@shape: ^2x1Shape
 	Selectable:
