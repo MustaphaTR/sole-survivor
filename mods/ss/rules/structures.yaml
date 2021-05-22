@@ -748,6 +748,8 @@ GUN.husk:
 		GenericStancePrefix: true
 		ShowOwnerRow: true
 	ProvidesPrerequisite@buildingname:
+	GrantConditionOnDeploy@REMOVE:
+		PauseOnCondition: deployed || build-incomplete
 	Sellable:
 		RequiresCondition: !build-incomplete
 
@@ -907,6 +909,8 @@ GTWR.husk:
 		GenericStancePrefix: true
 		ShowOwnerRow: true
 	ProvidesPrerequisite@buildingname:
+	GrantConditionOnDeploy@REMOVE:
+		PauseOnCondition: deployed || build-incomplete
 	Sellable:
 		RequiresCondition: !build-incomplete
 
