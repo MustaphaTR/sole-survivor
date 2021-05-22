@@ -497,20 +497,16 @@ HQ:
 		DecorationBounds: 2048, 2261, 0, -170
 	SelectionDecorations:
 	WithSpriteBody:
-		PauseOnCondition: lowpower
 	Health:
 		HP: 80000
 	RevealsShroud:
 		Range: 10c0
 	WithBuildingBib:
 	ProvidesRadar:
-		RequiresCondition: !lowpower
 	RenderDetectionCircle:
 	DetectCloaked:
 		Range: 5c0
-		RequiresCondition: !lowpower
 	AirstrikePower:
-		PauseOnCondition: lowpower
 		Icon: airstrike
 		ChargeInterval: 6000
 		SquadSize: 3
@@ -597,20 +593,16 @@ EYE:
 		DecorationBounds: 2048, 2261, 0, -170
 	SelectionDecorations:
 	WithSpriteBody:
-		PauseOnCondition: lowpower
 	Health:
 		HP: 130000
 	RevealsShroud:
 		Range: 10c0
 	WithBuildingBib:
 	ProvidesRadar:
-		RequiresCondition: !lowpower
 	RenderDetectionCircle:
 	DetectCloaked:
 		Range: 5c0
-		RequiresCondition: !lowpower
 	IonCannonPower:
-		PauseOnCondition: lowpower
 		Icon: ioncannon
 		Cursor: ioncannon
 		ChargeInterval: 6750
@@ -659,9 +651,7 @@ TMPL:
 	RenderDetectionCircle:
 	DetectCloaked:
 		Range: 5c0
-		RequiresCondition: !lowpower
 	NukePower:
-		PauseOnCondition: lowpower
 		Icon: abomb
 		Cursor: nuke
 		ChargeInterval: 9000
@@ -758,6 +748,8 @@ GUN.husk:
 		GenericStancePrefix: true
 		ShowOwnerRow: true
 	ProvidesPrerequisite@buildingname:
+	Sellable:
+		RequiresCondition: !build-incomplete
 
 SAM:
 	Inherits: ^Defense
@@ -799,7 +791,6 @@ SAM:
 		Weapon: Dragon
 		MuzzleSequence: muzzle
 	AttackPopupTurreted:
-		PauseOnCondition: lowpower
 	WithMuzzleOverlay:
 	-ActorPreviewPlaceBuildingPreview:
 	SequencePlaceBuildingPreview:
@@ -916,6 +907,8 @@ GTWR.husk:
 		GenericStancePrefix: true
 		ShowOwnerRow: true
 	ProvidesPrerequisite@buildingname:
+	Sellable:
+		RequiresCondition: !build-incomplete
 
 ATWR:
 	Inherits: ^Defense
