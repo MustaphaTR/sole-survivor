@@ -122,9 +122,9 @@ namespace OpenRA.Mods.SS.Traits
 			if (carriesFlag != null)
 			{
 				if (self.Owner == crusher.Owner || (flagTeam != 0 && flagTeam == crusherTeam))
-					Game.AddSystemLine("Battlefield Control", crusher.Owner.PlayerName + " has taken their flag.");
+					TextNotificationsManager.AddSystemLine("Battlefield Control", crusher.Owner.PlayerName + " has taken their flag.");
 				else
-					Game.AddSystemLine("Battlefield Control", crusher.Owner.PlayerName + " has taken flag of " + (flagTeam == 0 || !spawner.TeamSpawns ? self.Owner.PlayerName : "Team " + flagTeam) + ".");
+					TextNotificationsManager.AddSystemLine("Battlefield Control", crusher.Owner.PlayerName + " has taken flag of " + (flagTeam == 0 || !spawner.TeamSpawns ? self.Owner.PlayerName : "Team " + flagTeam) + ".");
 
 				carriesFlag.GrantCondition(crusher);
 				carriesFlag.TakeFlag(crusher, self);

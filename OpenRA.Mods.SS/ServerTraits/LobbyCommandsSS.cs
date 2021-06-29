@@ -141,7 +141,7 @@ namespace OpenRA.Mods.Common.Server
 				}
 
 				client.State = state;
-				Log.Write("server", "Player @{0} is {1}", conn.Socket.RemoteEndPoint, client.State);
+				Log.Write("server", "Player @{0} is {1}", conn.EndPoint, client.State);
 
 				server.SyncLobbyClients();
 				CheckAutoStart(server);
@@ -636,7 +636,7 @@ namespace OpenRA.Mods.Common.Server
 
 				Exts.TryParseIntegerInvariant(split[0], out var kickClientID);
 
-				var kickConn = server.Conns.SingleOrDefault(c => server.GetClient(c) != null && server.GetClient(c).Index == kickClientID);
+				var kickConn = server.Conns.SingleOrDefault(c => server.GetClient(c)?.Index == kickClientID);
 				if (kickConn == null)
 				{
 					server.SendOrderTo(conn, "Message", "No-one in that slot.");
@@ -681,7 +681,7 @@ namespace OpenRA.Mods.Common.Server
 				}
 
 				Exts.TryParseIntegerInvariant(s, out var newAdminId);
-				var newAdminConn = server.Conns.SingleOrDefault(c => server.GetClient(c) != null && server.GetClient(c).Index == newAdminId);
+				var newAdminConn = server.Conns.SingleOrDefault(c => server.GetClient(c)?.Index == newAdminId);
 
 				if (newAdminConn == null)
 				{
@@ -718,7 +718,7 @@ namespace OpenRA.Mods.Common.Server
 				}
 
 				Exts.TryParseIntegerInvariant(s, out var targetId);
-				var targetConn = server.Conns.SingleOrDefault(c => server.GetClient(c) != null && server.GetClient(c).Index == targetId);
+				var targetConn = server.Conns.SingleOrDefault(c => server.GetClient(c)?.Index == targetId);
 
 				if (targetConn == null)
 				{
@@ -750,7 +750,7 @@ namespace OpenRA.Mods.Common.Server
 				if (sanitizedName == client.Name)
 					return true;
 
-				Log.Write("server", "Player@{0} is now known as {1}.", conn.Socket.RemoteEndPoint, sanitizedName);
+				Log.Write("server", "Player@{0} is now known as {1}.", conn.EndPoint, sanitizedName);
 				server.SendMessage($"{client.Name} is now known as {sanitizedName}.");
 				client.Name = sanitizedName;
 				server.SyncLobbyClients();
