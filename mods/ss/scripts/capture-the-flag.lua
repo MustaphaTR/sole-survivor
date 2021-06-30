@@ -32,7 +32,7 @@ OnCircle = function(player, circle)
 					end
 
 					if player.Unit.Flag.Owner.Team == 0 or player.Unit.Flag.Owner.Team ~= circle.Owner.Team or player.Unit.Flag.Owner == circle.Owner then
-						if EmptyDrop or (flagOnMap and Flags[circle.Owner.InternalName].Location == FlagCircles[circle.Owner.InternalName].Location) or player.Unit.Flag == Flags[circle.Owner.InternalName] then
+						if EmptyDrop or (flagOnMap and not Flags[circle.Owner.InternalName].IsDead and Flags[circle.Owner.InternalName].Location == FlagCircles[circle.Owner.InternalName].Location) or player.Unit.Flag == Flags[circle.Owner.InternalName] then
 							local flag = player.Unit.DropFlag()
 							if flag.Owner ~= circle.Owner then
 								player.Experience = player.Experience + 40
