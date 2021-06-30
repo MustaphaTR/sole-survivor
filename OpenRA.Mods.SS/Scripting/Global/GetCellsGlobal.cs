@@ -29,6 +29,12 @@ namespace OpenRA.Mods.SS.Scripting
         public CPos[] FindTilesInAnnulus(CPos cell, int inner, int outer)
         {
             return world.Map.FindTilesInAnnulus(cell, inner, outer).ToArray();
-        }
-    }
+		}
+
+		[Desc("Gets if a cell is in the playable are of the map.")]
+		public bool TileIsInMap(CPos cell)
+		{
+			return world.Map.Contains(cell);
+		}
+	}
 }

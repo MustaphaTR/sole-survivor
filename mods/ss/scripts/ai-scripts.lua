@@ -40,7 +40,7 @@ BuildEngiStuff = function(engi)
 		engiLoc + CVec.New( 1, 1)
 	}
 
-	local buildableLocations = Utils.Where(locations, function(l) return (Map.TerrainType(l) == "Clear" or Map.TerrainType(l) == "Road") and #Map.ActorsInBox(Map.CenterOfCell(l) + WVec.New(-512, -512, 0), Map.CenterOfCell(l) + WVec.New(512, 512, 0)) == 0 end)
+	local buildableLocations = Utils.Where(locations, function(l) return GetCells.TileIsInMap(l) and (Map.TerrainType(l) == "Clear" or Map.TerrainType(l) == "Road") and #Map.ActorsInBox(Map.CenterOfCell(l) + WVec.New(-512, -512, 0), Map.CenterOfCell(l) + WVec.New(512, 512, 0)) == 0 end)
 
 	if #buildableLocations > 0 then
 		local towerLocation = Utils.Random(buildableLocations)
