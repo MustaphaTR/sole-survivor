@@ -11,7 +11,7 @@ Packages:
 	~^SupportDir|Content/ss
 	^EngineDir
 	$ss: ss
-	./mods/common: common
+	^EngineDir|mods/common: common
 	~speech.mix
 	~conquer.mix
 	~sounds.mix
