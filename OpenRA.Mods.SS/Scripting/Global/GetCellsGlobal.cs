@@ -14,21 +14,21 @@ using OpenRA.Scripting;
 
 namespace OpenRA.Mods.SS.Scripting
 {
-    [ScriptGlobal("GetCells")]
-    public class GetCellsGlobal : ScriptGlobal
-    {
-        readonly World world;
+	[ScriptGlobal("GetCells")]
+	public class GetCellsGlobal : ScriptGlobal
+	{
+		readonly World world;
 
-        public GetCellsGlobal(ScriptContext context)
-            : base(context)
-        {
-            world = context.World;
-        }
+		public GetCellsGlobal(ScriptContext context)
+			: base(context)
+		{
+			world = context.World;
+		}
 
-        [Desc("Gets cells in an annulus around a cell.")]
-        public CPos[] FindTilesInAnnulus(CPos cell, int inner, int outer)
-        {
-            return world.Map.FindTilesInAnnulus(cell, inner, outer).ToArray();
+		[Desc("Gets cells in an annulus around a cell.")]
+		public CPos[] FindTilesInAnnulus(CPos cell, int inner, int outer)
+		{
+			return world.Map.FindTilesInAnnulus(cell, inner, outer).ToArray();
 		}
 
 		[Desc("Gets if a cell is in the playable are of the map.")]
