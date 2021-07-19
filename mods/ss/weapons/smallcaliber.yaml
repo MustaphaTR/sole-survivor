@@ -10,6 +10,7 @@ Sniper:
 		Damage: 10000
 		Versus:
 			None: 100
+			Wood: 10
 			Light: 5
 			Heavy: 5
 		InvalidTargets: Structure, Wall, Trees
