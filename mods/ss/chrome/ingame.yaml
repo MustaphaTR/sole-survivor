@@ -93,8 +93,8 @@ Container@PERF_WIDGETS:
 	Logic: PerfDebugLogic
 	Children:
 		Label@PERF_TEXT:
-			X: WINDOW_RIGHT - 200
-			Y: WINDOW_BOTTOM - 70
+			X: WINDOW_RIGHT - 400
+			Y: WINDOW_BOTTOM - 100
 			Width: 170
 			Height: 40
 			Contrast: true
