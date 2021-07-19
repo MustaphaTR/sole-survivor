@@ -4,6 +4,8 @@ Container@CHAT_PANEL:
 	Width: 550
 	Height: 194
 	Logic: IngameChatLogic
+		OpenTeamChatKey: OpenTeamChat
+		OpenGeneralChatKey: OpenGeneralChat
 	Children:
 		Container@CHAT_OVERLAY:
 			Width: PARENT_RIGHT - 24
@@ -19,12 +21,16 @@ Container@CHAT_PANEL:
 			Width: PARENT_RIGHT
 			Height: PARENT_BOTTOM
 			Children:
-				Button@CHAT_MODE:
+				WorldButton@CHAT_MODE:
 					Y: PARENT_BOTTOM - HEIGHT
 					Width: 50
 					Height: 25
 					Text: Team
 					Font: Bold
+					Key: Tab SHIFT
+					TooltipText: Toggle chat mode
+					TooltipTemplate: BUTTON_TOOLTIP_FACTIONSUFFIX
+					TooltipContainer: TOOLTIP_CONTAINER
 				TextField@CHAT_TEXTFIELD:
 					X: 55
 					Y: PARENT_BOTTOM - HEIGHT

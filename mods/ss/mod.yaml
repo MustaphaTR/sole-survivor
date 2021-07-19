@@ -1,6 +1,6 @@
 Metadata:
 	Title: Sole Survivor
-	Version: 5a7a09a
+	Version: f8ed768
 	Website: https://www.openra.net
 	WebIcon32: https://raw.githubusercontent.com/MustaphaTR/sole-survivor/master/mods/ss/icon.png
 
@@ -36,7 +36,7 @@ Packages:
 
 MapFolders:
 	ss|maps: System
-	~^maps/cnc/5a7a09a: User
+	~^maps/cnc/f8ed768: User
 
 Rules:
 	ss|rules/misc.yaml
@@ -158,6 +158,7 @@ Hotkeys:
 	common|hotkeys/production-peractor.yaml
 	common|hotkeys/supportpowers.yaml
 	common|hotkeys/viewport.yaml
+	common|hotkeys/chat.yaml
 	ss|hotkeys.yaml
 
 LoadScreen: CncLoadScreen

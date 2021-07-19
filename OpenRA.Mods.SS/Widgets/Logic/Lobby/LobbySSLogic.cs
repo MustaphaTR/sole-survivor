@@ -1,6 +1,6 @@
 #region Copyright & License Information
 /*
- * Copyright 2007-2020 The OpenRA Developers (see AUTHORS)
+ * Copyright 2007-2021 The OpenRA Developers (see AUTHORS)
  * This file is part of OpenRA, which is free software. It is made
  * available to you under the terms of the GNU General Public License
  * as published by the Free Software Foundation, either version 3 of
@@ -120,7 +120,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 			services = modData.Manifest.Get<WebServices>();
 
-			orderManager.AddChatLine += AddChatLine;
+			orderManager.AddTextNotification += AddChatLine;
 			Game.LobbyInfoChanged += UpdateCurrentMap;
 			Game.LobbyInfoChanged += UpdatePlayerList;
 			Game.LobbyInfoChanged += UpdateDiscordStatus;
@@ -404,7 +404,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			chatTextField.MaxLength = UnitOrders.ChatMessageMaxLength;
 
 			chatTextField.TakeKeyboardFocus();
-			chatTextField.OnEnterKey = () =>
+			chatTextField.OnEnterKey = _ =>
 			{
 				if (chatTextField.Text.Length == 0)
 					return true;
@@ -421,19 +421,20 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				return true;
 			};
 
-			chatTextField.OnTabKey = () =>
+			chatTextField.OnTabKey = e =>
 			{
-				var previousText = chatTextField.Text;
-				chatTextField.Text = tabCompletion.Complete(chatTextField.Text);
-				chatTextField.CursorPosition = chatTextField.Text.Length;
-
-				if (chatTextField.Text == previousText)
-					return SwitchTeamChat();
+				if (!chatMode.Key.IsActivatedBy(e) || chatMode.IsDisabled())
+				{
+					chatTextField.Text = tabCompletion.Complete(chatTextField.Text);
+					chatTextField.CursorPosition = chatTextField.Text.Length;
+				}
 				else
-					return true;
+					chatMode.OnKeyPress(e);
+
+				return true;
 			};
 
-			chatTextField.OnEscKey = () => { chatTextField.Text = ""; return true; };
+			chatTextField.OnEscKey = _ => chatTextField.YieldKeyboardFocus();
 
 			lobbyChatPanel = lobby.Get<ScrollPanelWidget>("CHAT_DISPLAY");
 			chatTemplate = lobbyChatPanel.Get("CHAT_TEMPLATE");
@@ -463,7 +464,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			if (disposing && !disposed)
 			{
 				disposed = true;
-				orderManager.AddChatLine -= AddChatLine;
+				orderManager.AddTextNotification -= AddChatLine;
 				Game.LobbyInfoChanged -= UpdateCurrentMap;
 				Game.LobbyInfoChanged -= UpdatePlayerList;
 				Game.LobbyInfoChanged -= UpdateDiscordStatus;
@@ -486,10 +487,10 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				panel = PanelType.Players;
 		}
 
-		void AddChatLine(string name, Color nameColor, string text, Color textColor)
+		void AddChatLine(TextNotification chatLine)
 		{
 			var template = (ContainerWidget)chatTemplate.Clone();
-			LobbyUtils.SetupChatLine(template, DateTime.Now, name, nameColor, text, textColor);
+			LobbyUtils.SetupChatLine(template, DateTime.Now, chatLine);
 
 			var scrolledToBottom = lobbyChatPanel.ScrolledToBottom;
 			lobbyChatPanel.AddChild(template);
@@ -497,13 +498,6 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				lobbyChatPanel.ScrollToBottom(smooth: true);
 
 			Game.Sound.PlayNotification(modRules, null, "Sounds", chatLineSound, null);
-		}
-
-		bool SwitchTeamChat()
-		{
-			if (!disableTeamChat)
-				teamChat ^= true;
-			return true;
 		}
 
 		void UpdateCurrentMap()
