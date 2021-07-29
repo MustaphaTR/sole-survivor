@@ -1,6 +1,6 @@
 Metadata:
 	Title: Sole Survivor
-	Version: f8ed768
+	Version: e201e41
 	Website: https://www.openra.net
 	WebIcon32: https://raw.githubusercontent.com/MustaphaTR/sole-survivor/master/mods/ss/icon.png
 
@@ -36,7 +36,7 @@ Packages:
 
 MapFolders:
 	ss|maps: System
-	~^maps/cnc/f8ed768: User
+	~^maps/cnc/e201e41: User
 
 Rules:
 	ss|rules/misc.yaml
