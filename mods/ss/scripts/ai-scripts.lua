@@ -122,8 +122,15 @@ TickAI = function(bots, i)
 							BuildEngiStuff(unit)
 						end
 					end)
-				elseif unit.Type == "tran" then
-					unit.Move(unit.Location) -- Take off.
+				elseif unit.Type == "tran" then -- IdleHunt crashes with Chinook, use direct attack.
+					local enemies = GetNearbyEnemies(unit, 8)
+
+					if #enemies > 0 then
+						unit.Stop()
+						Utils.Do(enemies, function(enemy)
+							unit.Attack(enemy)
+						end)
+					end
 				else
 					IdleHunt(unit)
 				end
