@@ -1,8 +1,9 @@
 Metadata:
 	Title: Sole Survivor
-	Version: 5bf4dad
+	Version: {DEV_VERSION}
 	Website: https://www.openra.net
 	WebIcon32: https://raw.githubusercontent.com/MustaphaTR/sole-survivor/master/mods/ss/icon.png
+	WindowTitle: OpenRA - Sole Survivor
 
 PackageFormats: Mix
 
@@ -36,7 +37,7 @@ Packages:
 
 MapFolders:
 	ss|maps: System
-	~^maps/cnc/5bf4dad: User
+	~^maps/cnc/{DEV_VERSION}: User
 
 Rules:
 	ss|rules/misc.yaml
