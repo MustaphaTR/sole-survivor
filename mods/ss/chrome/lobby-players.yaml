@@ -253,6 +253,11 @@ Container@LOBBY_PLAYER_BIN:
 							Width: 25
 							Height: 25
 							Align: Center
+						Label@HANDICAP:
+							X: WINDOW_RIGHT - 5
+							Width: 1
+							Height: 1
+							Align: Center
 						Label@SPAWN:
 							X: 571
 							Width: 25
