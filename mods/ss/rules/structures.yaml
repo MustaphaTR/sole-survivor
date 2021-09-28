@@ -752,6 +752,14 @@ GUN.husk:
 		PauseOnCondition: deployed || build-incomplete
 	Sellable:
 		RequiresCondition: !build-incomplete
+	GrantConditionOnBotOwner@bot:
+		Condition: bot
+		Bots: hunter
+	GrantConditionAfterDelay:
+		Delay: 1500
+		Condition: deployed
+		ShowSelectionBar: false
+		RequiresCondition: bot
 
 SAM:
 	Inherits: ^Defense
@@ -913,6 +921,14 @@ GTWR.husk:
 		PauseOnCondition: deployed || build-incomplete
 	Sellable:
 		RequiresCondition: !build-incomplete
+	GrantConditionOnBotOwner@bot:
+		Condition: bot
+		Bots: hunter
+	GrantConditionAfterDelay:
+		Delay: 1500
+		Condition: deployed
+		ShowSelectionBar: false
+		RequiresCondition: bot
 
 ATWR:
 	Inherits: ^Defense
