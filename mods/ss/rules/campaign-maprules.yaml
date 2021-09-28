@@ -5,29 +5,40 @@ World:
 	ObjectivesPanel:
 		PanelName: MISSION_OBJECTIVES
 	MapCreeps:
+		CheckboxVisible: False
 		CheckboxLocked: True
 		CheckboxEnabled: False
 	MapBuildRadius:
+		AllyBuildRadiusCheckboxVisible: False
 		AllyBuildRadiusCheckboxLocked: True
 		AllyBuildRadiusCheckboxEnabled: False
+		BuildRadiusCheckboxVisible: False
 		BuildRadiusCheckboxLocked: True
 		BuildRadiusCheckboxEnabled: True
 	MapOptions:
+		ShortGameCheckboxVisible: False
 		ShortGameCheckboxLocked: True
 		ShortGameCheckboxEnabled: False
+		TechLevelDropdownVisible: False
+		TechLevelDropdownLocked: True
 
 Player:
 	-ConquestVictoryConditions:
 	MissionObjectives:
 		EarlyGameOver: true
 	Shroud:
+		FogCheckboxVisible: False
 		FogCheckboxLocked: True
 		FogCheckboxEnabled: True
+		ExploredMapCheckboxVisible: False
 		ExploredMapCheckboxLocked: True
 		ExploredMapCheckboxEnabled: False
 	PlayerResources:
+		DefaultCashDropdownVisible: False
 		DefaultCashDropdownLocked: True
 		DefaultCash: 5000
+	DeveloperMode:
+		CheckboxVisible: False
 
 airstrike.proxy:
 	AlwaysVisible:
