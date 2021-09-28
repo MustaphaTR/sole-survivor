@@ -263,6 +263,7 @@ ARMAGEDDONCRATE:
 	ArmageddonCrateAction@ARMAGEDDON:
 		SelectionShares: 1
 		Sequence: redskull
+		DeathTypes: DefaultDeath
 		Notification: Armageddon
 	RenderSprites:
 		Image: crate-red
