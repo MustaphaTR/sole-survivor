@@ -32,7 +32,7 @@ TickClassChangingTimer = function(player, timer)
 end
 
 SetupTimers = function()
-	for _,player in pairs(humanPlayers) do -- AI doesn't know how to change classes, let's not waste performace checking them.
+	for _,player in pairs(humanPlayers) do -- AI doesn't know how to change classes, let's not waste performance checking them.
 		player.ClassChangingPaused = true
 
 		TickClassChangingTimer(player, ClassChangingInterval[ClassChangingOption])

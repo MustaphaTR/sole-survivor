@@ -47,7 +47,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		readonly Widget newSpectatorTemplate;
 
 		readonly ScrollPanelWidget lobbyChatPanel;
-		readonly Widget chatTemplate;
+		readonly Dictionary<TextNotificationPool, Widget> chatTemplates = new Dictionary<TextNotificationPool, Widget>();
+		readonly TextFieldWidget chatTextField;
+		readonly CachedTransform<int, string> chatDisabledLabel;
 
 		readonly ScrollPanelWidget players;
 
@@ -60,6 +62,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		MapPreview map;
 		Session.MapStatus mapStatus;
 
+		bool chatEnabled;
 		bool addBotOnMapLoad;
 		bool disableTeamChat;
 		bool teamChat;
@@ -395,15 +398,24 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			if (skirmishMode)
 				disconnectButton.Text = "Back";
 
+			if (logicArgs.TryGetValue("ChatTemplates", out var templateIds))
+			{
+				foreach (var item in templateIds.Nodes)
+				{
+					var key = FieldLoader.GetValue<TextNotificationPool>("key", item.Key);
+					chatTemplates[key] = Ui.LoadWidget(item.Value.Value, null, new WidgetArgs());
+				}
+			}
+
 			var chatMode = lobby.Get<ButtonWidget>("CHAT_MODE");
 			chatMode.GetText = () => teamChat ? "Team" : "All";
 			chatMode.OnClick = () => teamChat ^= true;
-			chatMode.IsDisabled = () => disableTeamChat;
+			chatMode.IsDisabled = () => disableTeamChat || !chatEnabled;
 
-			var chatTextField = lobby.Get<TextFieldWidget>("CHAT_TEXTFIELD");
+			chatTextField = lobby.Get<TextFieldWidget>("CHAT_TEXTFIELD");
+			chatTextField.IsDisabled = () => !chatEnabled;
 			chatTextField.MaxLength = UnitOrders.ChatMessageMaxLength;
 
-			chatTextField.TakeKeyboardFocus();
 			chatTextField.OnEnterKey = _ =>
 			{
 				if (chatTextField.Text.Length == 0)
@@ -436,8 +448,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 			chatTextField.OnEscKey = _ => chatTextField.YieldKeyboardFocus();
 
+			chatDisabledLabel = new CachedTransform<int, string>(x => x > 0 ? $"Chat available in {x} seconds..." : "Chat Disabled");
+
 			lobbyChatPanel = lobby.Get<ScrollPanelWidget>("CHAT_DISPLAY");
-			chatTemplate = lobbyChatPanel.Get("CHAT_TEMPLATE");
 			lobbyChatPanel.RemoveChildren();
 
 			var settingsButton = lobby.GetOrNull<ButtonWidget>("SETTINGS_BUTTON");
@@ -485,15 +498,33 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		{
 			if (panel == PanelType.Options && OptionsTabDisabled())
 				panel = PanelType.Players;
+
+			var chatWasEnabled = chatEnabled;
+			chatEnabled = Game.RunTime >= TextNotificationsManager.ChatDisabledUntil && TextNotificationsManager.ChatDisabledUntil != uint.MaxValue;
+
+			if (chatEnabled && !chatWasEnabled)
+			{
+				chatTextField.Text = "";
+				if (Ui.KeyboardFocusWidget == null)
+					chatTextField.TakeKeyboardFocus();
+			}
+			else if (!chatEnabled)
+			{
+				var remaining = 0;
+				if (TextNotificationsManager.ChatDisabledUntil != uint.MaxValue)
+					remaining = (int)(TextNotificationsManager.ChatDisabledUntil - Game.RunTime + 999) / 1000;
+
+				chatTextField.Text = chatDisabledLabel.Update(remaining);
+			}
 		}
 
-		void AddChatLine(TextNotification chatLine)
+		void AddChatLine(TextNotification notification)
 		{
-			var template = (ContainerWidget)chatTemplate.Clone();
-			LobbyUtils.SetupChatLine(template, DateTime.Now, chatLine);
+			var chatLine = chatTemplates[notification.Pool].Clone();
+			WidgetUtils.SetupTextNotification(chatLine, notification, lobbyChatPanel.Bounds.Width - lobbyChatPanel.ScrollbarWidth, true);
 
 			var scrolledToBottom = lobbyChatPanel.ScrolledToBottom;
-			lobbyChatPanel.AddChild(template);
+			lobbyChatPanel.AddChild(chatLine);
 			if (scrolledToBottom)
 				lobbyChatPanel.ScrollToBottom(smooth: true);
 

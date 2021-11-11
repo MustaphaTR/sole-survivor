@@ -99,7 +99,7 @@ Container@PERF_WIDGETS:
 			VAlign: Top
 		Background@GRAPH_BG:
 			X: 5
-			Y: WINDOW_BOTTOM - HEIGHT - 45
+			Y: WINDOW_BOTTOM - HEIGHT - 156
 			Width: 220
 			Height: 220
 			Background: panel-black

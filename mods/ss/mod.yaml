@@ -117,6 +117,7 @@ ChromeLayout:
 	ss|chrome/gamesave-loading.yaml
 	ss|chrome/ingame.yaml
 	ss|chrome/ingame-chat.yaml
+	common|chrome/ingame-transients.yaml
 	ss|chrome/ingame-menu.yaml
 	ss|chrome/ingame-debug.yaml
 	ss|chrome/ingame-infochat.yaml
@@ -140,6 +141,7 @@ ChromeLayout:
 	ss|chrome/assetbrowser.yaml
 	ss|chrome/missionbrowser.yaml
 	ss|chrome/editor.yaml
+	common|chrome/text-notifications.yaml
 
 Voices:
 	ss|audio/voices.yaml
