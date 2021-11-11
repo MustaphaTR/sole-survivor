@@ -224,9 +224,6 @@ RMBO:
 		Description: Elite sniper infantry unit.\n  Strong vs Infantry, Buildings\n  Weak vs Vehicles
 	Mobile:
 		Speed: 56
-		Voice: Move
-	Guard:
-		Voice: Move
 	Health:
 		HP: 15000
 	Passenger:
@@ -244,9 +241,6 @@ RMBO:
 	Armament:
 		Weapon: Sniper
 	AttackFrontal:
-		Voice: Attack
-	AttackMove:
-		Voice: Attack
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
 		IdleSequences: idle1,idle2,idle3

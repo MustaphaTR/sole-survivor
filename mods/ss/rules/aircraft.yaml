@@ -1,5 +1,6 @@
 TRAN:
 	Inherits: ^Helicopter
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@TRANSPORT: ^Transport
 	Valued:
@@ -38,7 +39,10 @@ TRAN:
 		Offset: -597,0,171
 		Sequence: slow-rotor2
 		RequiresCondition: !airborne
+	AttackMove:
+		Voice: Attack
 	AttackAircraft:
+		Voice: Attack
 		AttackType: Hover
 		FacingTolerance: 20
 		RequiresCondition: !loaded
@@ -58,12 +62,15 @@ TRAN:
 	Cargo:
 		Types: Infantry, Vehicle
 		MaxWeight: 10
+		UnloadVoice: Unload
+		AfterUnloadDelay: 40
 		LoadedCondition: loaded
 	AttackGarrisoned:
 		Armaments: garrisoned
 		PortOffsets: 384,0,128, 224,-341,128, -224,-341,128, -384,0,128, -224,341,128, 224,341,128
 		PortYaws: 0, 176, 341, 512, 682, 853
 		PortCones: 88, 88, 88, 88, 88, 88
+		Voice: Attack
 		RequiresCondition: loaded
 	UnitStatValues:
 		Damage: 1000
@@ -109,7 +116,10 @@ HELI:
 		PauseOnCondition: !ammo
 	AutoTarget:
 		ScanRadius: 4
+	AttackMove:
+		Voice: Attack
 	AttackAircraft:
+		Voice: Attack
 		AttackType: Hover
 		FacingTolerance: 20
 	AmmoPool:
@@ -174,7 +184,10 @@ ORCA:
 		PauseOnCondition: !ammo
 	AutoTarget:
 		ScanRadius: 5
+	AttackMove:
+		Voice: Attack
 	AttackAircraft:
+		Voice: Attack
 		AttackType: Hover
 		FacingTolerance: 20
 	AmmoPool:

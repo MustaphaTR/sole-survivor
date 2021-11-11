@@ -21,7 +21,10 @@ BOAT:
 	Armament:
 		Weapon: BoatMissile
 		LocalOffset: 85,-85,0, 85,85,0
+	AttackMove:
+		Voice: Attack
 	AttackTDGunboatTurreted:
+		Voice: Attack
 	-QuantizeFacingsFromSequence:
 	BodyOrientation:
 		QuantizedFacings: 2
@@ -77,6 +80,7 @@ LST:
 	Cargo:
 		Types: disabled
 		MaxWeight: 5
+		UnloadVoice: Unload
 		PassengerFacing: 0
 		LoadingCondition: notmobile
 	RejectsOrders:
