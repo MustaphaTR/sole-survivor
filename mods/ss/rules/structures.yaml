@@ -720,7 +720,8 @@ GUN:
 		LocalOffset: 512,0,112
 		MuzzleSequence: muzzle
 	AttackTurreted:
-		RequiresCondition: !build-incomplete && !deployed
+		PauseOnCondition: build-incomplete
+		RequiresCondition: !deployed
 	WithMuzzleOverlay:
 	-WithDeathAnimation:
 	SpawnActorOnDeath@HUSK:
@@ -801,6 +802,7 @@ SAM:
 		Weapon: Dragon
 		MuzzleSequence: muzzle
 	AttackPopupTurreted:
+		PauseOnCondition: build-incomplete
 	WithMuzzleOverlay:
 	-ActorPreviewPlaceBuildingPreview:
 	SequencePlaceBuildingPreview:
@@ -841,7 +843,7 @@ OBLI:
 		Weapon: Laser
 		LocalOffset: 0,-85,1280
 	AttackCharges:
-		RequiresCondition: !build-incomplete
+		PauseOnCondition: build-incomplete
 		ChargeLevel: 50
 		ChargingCondition: charging
 	AmbientSound:
@@ -888,7 +890,8 @@ GTWR:
 		Condition: antiair
 		Prerequisites: global-moreaa
 	AttackTurreted:
-		RequiresCondition: !build-incomplete && !deployed
+		PauseOnCondition: build-incomplete
+		RequiresCondition: !deployed
 	-WithDeathAnimation:
 	BodyOrientation:
 		QuantizedFacings: 8
@@ -969,6 +972,7 @@ ATWR:
 		LocalOffset: 256,128,0, 256,-128,0
 		LocalYaw: -100,100
 	AttackTurreted:
+		PauseOnCondition: build-incomplete
 	BodyOrientation:
 		QuantizedFacings: 8
 
