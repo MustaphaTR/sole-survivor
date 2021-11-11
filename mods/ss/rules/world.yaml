@@ -566,6 +566,10 @@ World:
 			orca: orca.colorpicker
 			heli: heli.colorpicker
 			pvice: pvice.colorpicker
+	OrderEffects:
+		TerrainFlashImage: moveflsh
+		TerrainFlashSequence: idle
+		TerrainFlashPalette: moveflash
 
 EditorWorld:
 	Inherits: ^BaseWorld
