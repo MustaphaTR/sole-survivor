@@ -3,7 +3,7 @@ CRATE:
 	WithCrateBody:
 		XmasImages: xcrateb
 	SSCrate:
-		Lifetime: 250
+		Duration: 6000
 	Tooltip:
 		Name: Regular Crate
 	RevealMapCrateAction:
@@ -141,7 +141,7 @@ UPGRADECRATE:
 	WithCrateBody:
 		XmasImages: xcrates
 	SSCrate:
-		Lifetime: 250
+		Duration: 6000
 	Tooltip:
 		Name: Upgrade Crate
 	SSMultiplierCrateAction@armor:
@@ -196,7 +196,7 @@ HEALCRATE:
 	WithCrateBody:
 		XmasImages: xcrateg
 	SSCrate:
-		Lifetime: 250
+		Duration: 6000
 	Tooltip:
 		Name: Heal Crate
 	SSHealCrateAction:
@@ -214,7 +214,7 @@ EXPERIENCECRATE:
 	WithCrateBody:
 		XmasImages: xcrated
 	SSCrate:
-		Lifetime: 250
+		Duration: 6000
 	Tooltip:
 		Name: Experience Crate
 	LevelUpCrateAction:
@@ -233,7 +233,7 @@ WACKYCRATE:
 	WithCrateBody:
 		XmasImages: xcrateo
 	SSCrate:
-		Lifetime: 250
+		Duration: 6000
 	Tooltip:
 		Name: Wacky Crate
 	WackyCrateAction@WACKY:
