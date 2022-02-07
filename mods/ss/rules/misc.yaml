@@ -5,7 +5,7 @@ CRATE:
 	SSCrate:
 		Duration: 6000
 	Tooltip:
-		Name: Regular Crate
+		Name: Wooden Crate
 	RevealMapCrateAction:
 		SelectionShares: 2
 		Sequence: reveal-map
@@ -143,7 +143,7 @@ UPGRADECRATE:
 	SSCrate:
 		Duration: 6000
 	Tooltip:
-		Name: Upgrade Crate
+		Name: Silver Crate
 	SSMultiplierCrateAction@armor:
 		SelectionShares: 50
 		Sequence: armorup
@@ -198,7 +198,7 @@ HEALCRATE:
 	SSCrate:
 		Duration: 6000
 	Tooltip:
-		Name: Heal Crate
+		Name: Health Crate
 	SSHealCrateAction:
 		Weapon: Atomic
 		Sequence: heal
@@ -216,7 +216,7 @@ EXPERIENCECRATE:
 	SSCrate:
 		Duration: 6000
 	Tooltip:
-		Name: Experience Crate
+		Name: Score Crate
 	LevelUpCrateAction:
 		Levels: 1
 		SelectionShares: 1
