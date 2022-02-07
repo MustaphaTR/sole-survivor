@@ -3,11 +3,11 @@
 # to compile, run:
 #   make
 #
-# to compile using Mono (version 6.4 or greater) instead of .NET 5, run:
+# to compile using Mono (version 6.4 or greater) instead of .NET 6, run:
 #   make RUNTIME=mono
 #
 # to compile using system libraries for native dependencies, run:
-#   make [RUNTIME=dotnet] TARGETPLATFORM=unix-generic
+#   make [RUNTIME=net6] TARGETPLATFORM=unix-generic
 #
 # to remove the files created by compiling, run:
 #   make clean
@@ -19,10 +19,10 @@
 #   make check-scripts
 #
 # to check the engine and your mod dlls for StyleCop violations, run:
-#   make [RUNTIME=dotnet] check
+#   make [RUNTIME=net6] check
 #
 # to check your mod yaml for errors, run:
-#   make [RUNTIME=dotnet] test
+#   make [RUNTIME=net6] test
 #
 # the following are internal sdk helpers that are not intended to be run directly:
 #   make check-variables
@@ -53,7 +53,7 @@ MOD_SOLUTION_FILES = $(shell find . -maxdepth 1 -iname '*.sln' 2> /dev/null)
 MSBUILD = msbuild -verbosity:m -nologo
 DOTNET = dotnet
 
-RUNTIME ?= dotnet
+RUNTIME ?= net6
 
 ifndef TARGETPLATFORM
 UNAME_S := $(shell uname -s)

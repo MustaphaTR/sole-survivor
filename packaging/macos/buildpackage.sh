@@ -63,6 +63,7 @@ if [ ! -f "${TEMPLATE_ROOT}/${ENGINE_DIRECTORY}/Makefile" ]; then
 fi
 
 . "${TEMPLATE_ROOT}/${ENGINE_DIRECTORY}/packaging/functions.sh"
+. "${TEMPLATE_ROOT}/packaging/functions.sh"
 
 # Import code signing certificate
 if [ -n "${MACOS_DEVELOPER_CERTIFICATE_BASE64}" ] && [ -n "${MACOS_DEVELOPER_CERTIFICATE_PASSWORD}" ] && [ -n "${MACOS_DEVELOPER_IDENTITY}" ]; then
@@ -134,11 +135,12 @@ build_platform() {
 	fi
 
 	echo "Building core files"
+	RUNTIME="net6"
 	if [ "${PLATFORM}" = "compat" ]; then
-		install_assemblies_mono "${TEMPLATE_ROOT}/${ENGINE_DIRECTORY}" "${LAUNCHER_ASSEMBLY_DIR}" "osx-x64" "True" "${PACKAGING_COPY_CNC_DLL}" "${PACKAGING_COPY_D2K_DLL}"
-	else
-		install_assemblies "${TEMPLATE_ROOT}/${ENGINE_DIRECTORY}" "${LAUNCHER_ASSEMBLY_DIR}" "osx-x64" "True" "${PACKAGING_COPY_CNC_DLL}" "${PACKAGING_COPY_D2K_DLL}"
+		RUNTIME="mono"
 	fi
+
+	install_assemblies "${TEMPLATE_ROOT}/${ENGINE_DIRECTORY}" "${LAUNCHER_ASSEMBLY_DIR}" "osx-x64" "${RUNTIME}" "True" "${PACKAGING_COPY_CNC_DLL}" "${PACKAGING_COPY_D2K_DLL}"
 	install_data "${TEMPLATE_ROOT}/${ENGINE_DIRECTORY}" "${LAUNCHER_RESOURCES_DIR}"
 
 	for f in ${PACKAGING_COPY_ENGINE_FILES}; do
@@ -147,16 +149,9 @@ build_platform() {
 	done
 
 	echo "Building mod files"
-	pushd "${TEMPLATE_ROOT}" > /dev/null
-	make all
-	popd > /dev/null
+	install_mod_assemblies "${TEMPLATE_ROOT}" "${LAUNCHER_ASSEMBLY_DIR}" "osx-x64" "${RUNTIME}" "${TEMPLATE_ROOT}/${ENGINE_DIRECTORY}"
 
 	cp -LR "${TEMPLATE_ROOT}mods/"* "${LAUNCHER_RESOURCES_DIR}/mods"
-
-	for f in ${PACKAGING_COPY_MOD_BINARIES}; do
-		mkdir -p "${LAUNCHER_RESOURCES_DIR}/$(dirname "${f}")"
-		cp "${TEMPLATE_ROOT}/${ENGINE_DIRECTORY}/bin/${f}" "${LAUNCHER_ASSEMBLY_DIR}/${f}"
-	done
 
 	set_engine_version "${ENGINE_VERSION}" "${LAUNCHER_RESOURCES_DIR}"
 	if [ "${PACKAGING_OVERWRITE_MOD_VERSION}" == "True" ]; then

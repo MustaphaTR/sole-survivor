@@ -152,9 +152,6 @@ Notifications:
 Music:
 	ss|audio/music.yaml
 
-Translations:
-	ss|languages/english.yaml
-
 Hotkeys:
 	common|hotkeys/game.yaml
 	common|hotkeys/observer.yaml
@@ -163,6 +160,7 @@ Hotkeys:
 	common|hotkeys/supportpowers.yaml
 	common|hotkeys/viewport.yaml
 	common|hotkeys/chat.yaml
+	common|hotkeys/control-groups.yaml
 	ss|hotkeys.yaml
 
 LoadScreen: CncLoadScreen
@@ -225,7 +223,7 @@ SoundFormats: Aud, Wav
 
 SpriteFormats: ShpTD, TmpTD, ShpTS, TmpRA
 
-VideoFormats: Vqa
+VideoFormats: Vqa, Wsa
 
 TerrainFormat: DefaultTerrain
 
@@ -240,7 +238,9 @@ SpriteSequenceFormat: TilesetSpecificSpriteSequence
 ModelSequenceFormat: PlaceholderModelSequence
 
 AssetBrowser:
-	SupportedExtensions: .shp, .tem, .des, .sno, .jun, .vqa
+	SpriteExtensions: .shp, .tem, .des, .sno, .jun
+	AudioExtensions: .aud, .wav
+	VideoExtensions: .vqa, .wsa
 
 GameSpeeds:
 	DefaultSpeed: default

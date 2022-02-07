@@ -107,6 +107,10 @@ scrollitem-selected:
 	Inherits: ^Chrome
 	PanelRegion: 64, 192, 2, 2, 60, 60, 2, 2
 
+scrollitem-nohover:
+
+scrollitem-nohover-hover:
+
 slider:
 	Inherits: ^Chrome
 	Regions:
@@ -408,6 +412,9 @@ dropdown-separators:
 		separator-hover: 0, 129, 1, 19
 		separator-pressed: 64, 193, 1, 19
 		separator-disabled: 64, 129, 1, 19
+
+separator:
+	Inherits: button
 
 command-button:
 	Inherits: ^Chrome

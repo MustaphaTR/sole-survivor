@@ -4,6 +4,7 @@
 	ScreenMap:
 	ActorMap:
 	SSSelection:
+	ControlGroups:
 	MusicPlaylist:
 		VictoryMusic: win1
 		DefeatMusic: nod_map1
@@ -394,12 +395,12 @@ World:
 		UnitFacing: 0
 		TeamSpawnsCheckboxDisplayOrder: 3
 		QuickClassChangeCheckboxDisplayOrder: 12
-		BaseSizeDropdownDisplayOrder: 8
+		BaseSizeDropdownDisplayOrder: 7
 	MapOptions:
 		ShortGameCheckboxEnabled: false
 		ShortGameCheckboxVisible: false
 		TechLevelDropdownVisible: false
-		GameSpeedDropdownDisplayOrder: 7
+		GameSpeedDropdownDisplayOrder: 8
 	# SSMultiplierOptions:
 	#	MaxMultiplierDropdownDisplayOrder: 8
 	#	StandardMultiplierDropdownDisplayOrder: 9
@@ -436,34 +437,6 @@ World:
 			sixty: 1 Hour
 		Default: fifteen
 		DisplayOrder: 1
-	ScriptLobbyDropdown@starting-cloak:
-		ID: starting-cloak
-		Label: Starting Cloak
-		Description: How long does the initial cloak lasts
-		Values:
-			disabled: Disabled
-			ten: 10 Seconds
-			fifteen: 15 Seconds
-			twenty: 20 Seconds
-			thirty: 30 Seconds
-			fortyfive: 45 Seconds
-			sixty: 1 Minute
-		Default: thirty
-		DisplayOrder: 2
-	ScriptLobbyDropdown@starting-invuln:
-		ID: starting-invuln
-		Label: Starting Invuln.
-		Description: How long does the initial invulnerability lasts
-		Values:
-			disabled: Disabled
-			ten: 10 Seconds
-			fifteen: 15 Seconds
-			twenty: 20 Seconds
-			thirty: 30 Seconds
-			fortyfive: 45 Seconds
-			sixty: 1 Minute
-		Default: thirty
-		DisplayOrder: 4
 	ScriptLobbyDropdown@respawn-delay:
 		ID: respawn-delay
 		Label: Respawn Delay
@@ -481,7 +454,35 @@ World:
 			fortyfive: 45 Seconds
 			sixty: 1 Minute
 		Default: three
+		DisplayOrder: 2
+	ScriptLobbyDropdown@starting-cloak:
+		ID: starting-cloak
+		Label: Starting Cloak
+		Description: How long does the initial cloak lasts
+		Values:
+			disabled: Disabled
+			ten: 10 Seconds
+			fifteen: 15 Seconds
+			twenty: 20 Seconds
+			thirty: 30 Seconds
+			fortyfive: 45 Seconds
+			sixty: 1 Minute
+		Default: thirty
 		DisplayOrder: 3
+	ScriptLobbyDropdown@starting-invuln:
+		ID: starting-invuln
+		Label: Starting Invulnerability
+		Description: How long does the initial invulnerability lasts
+		Values:
+			disabled: Disabled
+			ten: 10 Seconds
+			fifteen: 15 Seconds
+			twenty: 20 Seconds
+			thirty: 30 Seconds
+			fortyfive: 45 Seconds
+			sixty: 1 Minute
+		Default: thirty
+		DisplayOrder: 4
 	ScriptLobbyDropdown@ctf-mode:
 		ID: ctf-mode
 		Label: CtF Mode

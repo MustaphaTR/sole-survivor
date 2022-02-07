@@ -10,14 +10,15 @@ Container@INGAME_ROOT:
 				TakeScreenshotKey: TakeScreenshot
 				MuteAudioKey: ToggleMute
 		LogicKeyListener@WORLD_KEYHANDLER:
-			Logic: JumpToLastEventHotkeyLogic, JumpToSelectedActorsHotkeyLogic, ResetZoomHotkeyLogic, TogglePlayerStanceColorHotkeyLogic, CycleStatusBarsHotkeyLogic, PauseHotkeyLogic, RemoveFromControlGroupHotkeyLogic
-				RemoveFromControlGroupKey: RemoveFromControlGroup
+			Logic: JumpToLastEventHotkeyLogic, JumpToSelectedActorsHotkeyLogic, ResetZoomHotkeyLogic, TogglePlayerStanceColorHotkeyLogic, CycleStatusBarsHotkeyLogic, PauseHotkeyLogic, SelectUnitsByTypeHotkeyLogic, SelectAllUnitsHotkeyLogic
 				JumpToLastEventKey: ToLastEvent
 				JumpToSelectedActorsKey: ToSelection
 				ResetZoomKey: ResetZoom
 				TogglePlayerStanceColorKey: TogglePlayerStanceColor
 				CycleStatusBarsKey: CycleStatusBars
 				PauseKey: Pause
+				SelectAllUnitsKey: SelectAllUnits
+				SelectUnitsByTypeKey: SelectUnitsByType
 		Container@WORLD_ROOT:
 			Children:
 				LogicTicker@DISCONNECT_WATCHER:
@@ -44,8 +45,6 @@ Container@INGAME_ROOT:
 				WorldInteractionController@INTERACTION_CONTROLLER:
 					Width: WINDOW_RIGHT
 					Height: WINDOW_BOTTOM
-					SelectAllKey: SelectAllUnits
-					SelectSameTypeKey: SelectUnitsByType
 				ViewportController:
 					Width: WINDOW_RIGHT
 					Height: WINDOW_BOTTOM
@@ -347,8 +346,15 @@ Container@PLAYER_WIDGETS:
 	Children:
 		Container@CHAT_ROOT:
 		Container@PERF_ROOT:
-		LogicKeyListener@CONTROLGROUP_KEYHANDLER:
-			Logic: ControlGroupLogic
+		LogicKeyListener@PLAYER_KEYHANDLER:
+			Logic: RemoveFromControlGroupHotkeyLogic
+				RemoveFromControlGroupKey: RemoveFromControlGroup
+		ControlGroups@CONTROLGROUPS:
+			SelectGroupKeyPrefix: ControlGroupSelect
+			CreateGroupKeyPrefix: ControlGroupCreate
+			AddToGroupKeyPrefix: ControlGroupAddTo
+			CombineWithGroupKeyPrefix: ControlGroupCombineWith
+			JumpToGroupKeyPrefix: ControlGroupJumpTo
 		LogicTicker@SIDEBAR_TICKER:
 		Container@SUPPORT_POWERS:
 			Logic: SupportPowerBinLogic

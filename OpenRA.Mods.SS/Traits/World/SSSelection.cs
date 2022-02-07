@@ -1,6 +1,6 @@
 #region Copyright & License Information
 /*
- * Copyright 2007-2019 The OpenRA Developers (see AUTHORS)
+ * Copyright 2007-2022 The OpenRA Developers (see AUTHORS)
  * This file is part of OpenRA, which is free software. It is made
  * available to you under the terms of the GNU General Public License
  * as published by the Free Software Foundation, either version 3 of
@@ -11,35 +11,34 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits;
-using OpenRA.Primitives;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.SS.Traits
 {
 	public class SSSelectionInfo : TraitInfo
 	{
-		public override object Create(ActorInitializer init) { return new SSSelection(this); }
+		public override object Create(ActorInitializer init) { return new SSSelection(); }
 	}
 
+	[TraitLocation(SystemActors.World | SystemActors.EditorWorld)]
 	public class SSSelection : ISelection, INotifyCreated, INotifyOwnerChanged, ITick, IGameSaveTraitData
 	{
 		public int Hash { get; private set; }
-		public IEnumerable<Actor> Actors { get { return actors; } }
+		public IEnumerable<Actor> Actors => actors;
 		public SpawnSSUnit Spawner { get; private set; }
 
 		readonly HashSet<Actor> actors = new HashSet<Actor>();
-		IEnumerable<Actor> rolloverActors;
+		readonly List<Actor> rolloverActors = new List<Actor>();
+		World world;
 
 		INotifySelection[] worldNotifySelection;
-
-		public SSSelection(SSSelectionInfo info) { }
 
 		void INotifyCreated.Created(Actor self)
 		{
 			Spawner = self.TraitOrDefault<SpawnSSUnit>();
 			worldNotifySelection = self.TraitsImplementing<INotifySelection>().ToArray();
+			world = self.World;
 		}
 
 		void UpdateHash()
@@ -58,6 +57,7 @@ namespace OpenRA.Mods.SS.Traits
 			foreach (var sel in a.TraitsImplementing<INotifySelected>())
 				sel.Selected(a);
 
+			Sync.RunUnsynced(world, () => world.OrderGenerator.SelectionChanged(world, actors));
 			foreach (var ns in worldNotifySelection)
 				ns.SelectionChanged();
 		}
@@ -67,6 +67,7 @@ namespace OpenRA.Mods.SS.Traits
 			if (actors.Remove(a))
 			{
 				UpdateHash();
+				Sync.RunUnsynced(world, () => world.OrderGenerator.SelectionChanged(world, actors));
 				foreach (var ns in worldNotifySelection)
 					ns.SelectionChanged();
 			}
@@ -79,7 +80,7 @@ namespace OpenRA.Mods.SS.Traits
 
 			// Remove the actor from the original owners selection
 			// Call UpdateHash directly for everyone else so watchers can account for the owner change if needed
-			if (oldOwner == a.World.LocalPlayer)
+			if (oldOwner == world.LocalPlayer)
 				Remove(a);
 			else
 				UpdateHash();
@@ -94,7 +95,8 @@ namespace OpenRA.Mods.SS.Traits
 		{
 			if (isClick)
 			{
-				var adjNewSelection = newSelection.Take(1); // TODO: select BEST, not FIRST
+				// TODO: select BEST, not FIRST
+				var adjNewSelection = newSelection.Take(1);
 				if (isCombine)
 					actors.SymmetricExceptWith(adjNewSelection);
 				else
@@ -120,6 +122,7 @@ namespace OpenRA.Mods.SS.Traits
 				foreach (var sel in a.TraitsImplementing<INotifySelected>())
 					sel.Selected(a);
 
+			Sync.RunUnsynced(world, () => world.OrderGenerator.SelectionChanged(world, actors));
 			foreach (var ns in worldNotifySelection)
 				ns.SelectionChanged();
 
@@ -128,13 +131,12 @@ namespace OpenRA.Mods.SS.Traits
 
 			// Play the selection voice from one of the selected actors
 			// TODO: This probably should only be considering the newly selected actors
-			// TODO: Ship this into an INotifySelection trait to remove the engine dependency on Selectable
 			foreach (var actor in actors)
 			{
 				if (actor.Owner != world.LocalPlayer || !actor.IsInWorld)
 					continue;
 
-				var selectable = actor.Info.TraitInfoOrDefault<SelectableInfo>();
+				var selectable = actor.Info.TraitInfoOrDefault<ISelectableInfo>();
 				if (selectable == null || !actor.HasVoice(selectable.Voice))
 					continue;
 
@@ -147,16 +149,20 @@ namespace OpenRA.Mods.SS.Traits
 		{
 			actors.Clear();
 			UpdateHash();
+			Sync.RunUnsynced(world, () => world.OrderGenerator.SelectionChanged(world, actors));
+			foreach (var ns in worldNotifySelection)
+				ns.SelectionChanged(); 
 		}
 
 		public void SetRollover(IEnumerable<Actor> rollover)
 		{
-			rolloverActors = rollover;
+			rolloverActors.Clear();
+			rolloverActors.AddRange(rollover);
 		}
 
 		public bool RolloverContains(Actor a)
 		{
-			return rolloverActors != null && rolloverActors.Contains(a);
+			return rolloverActors.Contains(a);
 		}
 
 		void ITick.Tick(Actor self)
@@ -168,80 +174,21 @@ namespace OpenRA.Mods.SS.Traits
 					Add(unit);
 			}
 
-			var removed = actors.RemoveWhere(a => !a.IsInWorld || (!a.Owner.IsAlliedWith(self.World.RenderPlayer) && self.World.FogObscures(a)));
+			var removed = actors.RemoveWhere(a => !a.IsInWorld || (!a.Owner.IsAlliedWith(world.RenderPlayer) && world.FogObscures(a)));
 			if (removed > 0)
+			{
 				UpdateHash();
-
-			foreach (var cg in controlGroups.Values)
-			{
-				// note: NOT `!a.IsInWorld`, since that would remove things that are in transports.
-				cg.RemoveAll(a => a.Disposed || a.Owner != self.World.LocalPlayer);
+				Sync.RunUnsynced(world, () => world.OrderGenerator.SelectionChanged(world, actors));
+				foreach (var ns in worldNotifySelection)
+					ns.SelectionChanged();
 			}
-		}
-
-		Cache<int, List<Actor>> controlGroups = new Cache<int, List<Actor>>(_ => new List<Actor>());
-
-		public void DoControlGroup(World world, WorldRenderer worldRenderer, int group, Modifiers mods, int multiTapCount)
-		{
-			var addModifier = Platform.CurrentPlatform == PlatformType.OSX ? Modifiers.Meta : Modifiers.Ctrl;
-			if (mods.HasModifier(addModifier))
-			{
-				if (actors.Count == 0)
-					return;
-
-				if (!mods.HasModifier(Modifiers.Shift))
-					controlGroups[group].Clear();
-
-				for (var i = 0; i < 10; i++) // all control groups
-					controlGroups[i].RemoveAll(a => actors.Contains(a));
-
-				controlGroups[group].AddRange(actors.Where(a => a.Owner == world.LocalPlayer));
-				return;
-			}
-
-			var groupActors = controlGroups[group].Where(a => !a.IsDead);
-
-			if (mods.HasModifier(Modifiers.Alt) || multiTapCount >= 2)
-			{
-				worldRenderer.Viewport.Center(groupActors);
-				return;
-			}
-
-			Combine(world, groupActors, mods.HasModifier(Modifiers.Shift), false);
-		}
-
-		public void AddToControlGroup(Actor a, int group)
-		{
-			if (!controlGroups[group].Contains(a))
-				controlGroups[group].Add(a);
-		}
-
-		public void RemoveFromControlGroup(Actor a)
-		{
-			var group = GetControlGroupForActor(a);
-			if (group.HasValue)
-				controlGroups[group.Value].Remove(a);
-		}
-
-		public int? GetControlGroupForActor(Actor a)
-		{
-			return controlGroups.Where(g => g.Value.Contains(a))
-				.Select(g => (int?)g.Key)
-				.FirstOrDefault();
 		}
 
 		List<MiniYamlNode> IGameSaveTraitData.IssueTraitData(Actor self)
 		{
-			var groups = controlGroups
-				.Where(cg => cg.Value.Any())
-				.Select(cg => new MiniYamlNode(cg.Key.ToString(),
-					FieldSaver.FormatValue(cg.Value.Select(a => a.ActorID).ToArray())))
-				.ToList();
-
 			return new List<MiniYamlNode>()
 			{
-				new MiniYamlNode("Selection", FieldSaver.FormatValue(Actors.Select(a => a.ActorID).ToArray())),
-				new MiniYamlNode("Groups", new MiniYaml("", groups))
+				new MiniYamlNode("Selection", FieldSaver.FormatValue(Actors.Select(a => a.ActorID).ToArray()))
 			};
 		}
 
@@ -251,19 +198,8 @@ namespace OpenRA.Mods.SS.Traits
 			if (selectionNode != null)
 			{
 				var selected = FieldLoader.GetValue<uint[]>("Selection", selectionNode.Value.Value)
-					.Select(a => self.World.GetActorById(a));
+					.Select(a => self.World.GetActorById(a)).Where(a => a != null);
 				Combine(self.World, selected, false, false);
-			}
-
-			var groupsNode = data.FirstOrDefault(n => n.Key == "Groups");
-			if (groupsNode != null)
-			{
-				foreach (var n in groupsNode.Value.Nodes)
-				{
-					var group = FieldLoader.GetValue<uint[]>(n.Key, n.Value.Value)
-						.Select(a => self.World.GetActorById(a));
-					controlGroups[int.Parse(n.Key)].AddRange(group);
-				}
 			}
 		}
 	}
