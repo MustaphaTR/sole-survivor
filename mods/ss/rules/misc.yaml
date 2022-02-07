@@ -247,9 +247,6 @@ ARMAGEDDONCRATE:
 	Inherits: ^Crate
 	WithCrateBody:
 		XmasImages: xcrater
-	-SSCrate:
-	Crate:
-		TerrainTypes: Clear, Rough, Road, Tiberium, BlueTiberium, Beach
 	Tooltip:
 		Name: Armageddon Crate
 	ArmageddonCrateAction@ARMAGEDDON:
