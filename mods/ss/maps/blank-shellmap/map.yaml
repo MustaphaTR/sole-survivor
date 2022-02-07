@@ -30,7 +30,12 @@ Rules:
 		-SSSelection:
 		Selection:
 		-SpawnSSUnit:
-		-SSCrateSpawner:
+		-SSCrateSpawner@wood:
+		-SSCrateSpawner@steel:
+		-SSCrateSpawner@health:
+		-SSCrateSpawner@score:
+		-SSCrateSpawner@wacky:
+		-SSCrateSpawner@armageddon:
 		-LuaScript:
 		MusicPlaylist:
 			BackgroundMusic: map1
