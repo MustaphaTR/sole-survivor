@@ -734,8 +734,8 @@ MHQ:
 		OrderName: SpyPlane
 		Icon: spyplane
 		ChargeInterval: 500
-		Description: Spy Plane
-		LongDesc: Reveals an area of the map\nand cloaked enemy units.
+		Name: Spy Plane
+		Description: Reveals an area of the map\nand cloaked enemy units.
 		SelectTargetSpeechNotification: SelectTarget
 		EndChargeSpeechNotification: AirstrikeReady
 		CameraActor: CAMERA.spyplane
@@ -753,8 +753,8 @@ MHQ:
 		Icon: airstrike
 		ChargeInterval: 500
 		QuantizedFacings: 8
-		Description: Air Strike
-		LongDesc: Deploy an aerial napalm strike.
+		Name: Air Strike
+		Description: Deploy an aerial napalm strike.
 		EndChargeSpeechNotification: AirstrikeReady
 		SelectTargetSpeechNotification: SelectTarget
 		UnitType: a10
