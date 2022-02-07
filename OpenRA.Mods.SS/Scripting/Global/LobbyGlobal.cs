@@ -46,14 +46,6 @@ namespace OpenRA.Mods.SS.Scripting
 			return shroud.FogEnabled;
 		}
 
-		[Desc("Returns the value of Wacky Mode lobby option.")]
-		public bool Wacky()
-		{
-			var sscs = world.WorldActor.Trait<SSCrateSpawner>();
-
-			return sscs.Wacky;
-		}
-
 		[Desc("Returns the value of Team Spawns lobby option.")]
 		public bool TeamSpawns()
 		{

@@ -1,6 +1,6 @@
 #region Copyright & License Information
 /*
- * Copyright 2007-2019 The OpenRA Developers (see AUTHORS)
+ * Copyright 2007-2022 The OpenRA Developers (see AUTHORS)
  * This file is part of OpenRA, which is free software. It is made
  * available to you under the terms of the GNU General Public License
  * as published by the Free Software Foundation, either version 3 of
@@ -22,6 +22,9 @@ namespace OpenRA.Mods.SS.Traits
 {
 	public class SSCrateSpawnerInfo : ConditionalTraitInfo, ILobbyOptions
 	{
+		[Desc("Internal id for this option.")]
+		public readonly string DropdownID = "crateamount";
+
 		[Desc("Descriptive label for the crates checkbox in the lobby.")]
 		public readonly string DropdownLabel = "Crate Amount";
 
@@ -65,31 +68,6 @@ namespace OpenRA.Mods.SS.Traits
 		[Desc("Chance of each crate actor spawning.")]
 		public readonly int[] CrateActorShares = { 10 };
 
-		[Desc("Descriptive label for the wacky mode checkbox in the lobby.")]
-		public readonly string WackyModeCheckboxLabel = "Wacky Mode";
-
-		[Desc("Tooltip description for the wacky mode checkbox in the lobby.")]
-		public readonly string WackyModeCheckboxDescription = "All the crates are replaced with Orange Wacky Crates";
-
-		[Desc("Default value of the wacky mode checkbox in the lobby.")]
-		public readonly bool WackyModeCheckboxEnabled = false;
-
-		[Desc("Prevent the wacky mode enabled state from being changed in the lobby.")]
-		public readonly bool WackyModeCheckboxLocked = false;
-
-		[Desc("Whether to display the wacky mode checkbox in the lobby.")]
-		public readonly bool WackyModeCheckboxVisible = true;
-
-		[Desc("Display order for the wacky mode checkbox in the lobby.")]
-		public readonly int WackyModeCheckboxDisplayOrder = 0;
-
-		[ActorReference]
-		[Desc("Crate actors to drop on wacky mode.")]
-		public readonly string[] WackyCrateActors = { "wackycrate" };
-
-		[Desc("Chance of each crate actor spawning on wacky mode.")]
-		public readonly int[] WackyCrateActorShares = { 10 };
-
 		[ActorReference]
 		[Desc("If a DeliveryAircraft: is specified, then this actor will deliver crates.")]
 		public readonly string DeliveryAircraft = null;
@@ -105,11 +83,8 @@ namespace OpenRA.Mods.SS.Traits
 			var crateAmount = SelectableAmount.ToDictionary(c => c.ToString(), c => c.ToString());
 
 			if (crateAmount.Any())
-				yield return new LobbyOption("crateamount", DropdownLabel, DropdownDescription, DropdownVisible, DropdownDisplayOrder,
+				yield return new LobbyOption(DropdownID, DropdownLabel, DropdownDescription, DropdownVisible, DropdownDisplayOrder,
 					crateAmount, DefaultAmount.ToString(), DropdownLocked);
-
-			yield return new LobbyBooleanOption("wackymode", WackyModeCheckboxLabel, WackyModeCheckboxDescription,
-				WackyModeCheckboxVisible, WackyModeCheckboxDisplayOrder, WackyModeCheckboxEnabled, WackyModeCheckboxLocked);
 		}
 
 		public override object Create(ActorInitializer init) { return new SSCrateSpawner(init.Self, this); }
@@ -123,8 +98,6 @@ namespace OpenRA.Mods.SS.Traits
 		int crates;
 		int ticks;
 
-		public bool Wacky { get; private set; }
-
 		public SSCrateSpawner(Actor self, SSCrateSpawnerInfo info)
 			: base(info)
 		{
@@ -134,13 +107,10 @@ namespace OpenRA.Mods.SS.Traits
 			ticks = info.InitialSpawnDelay;
 
 			var crateAmount = self.World.LobbyInfo.GlobalSettings
-				.OptionOrDefault("crateamount", info.DefaultAmount.ToString());
+				.OptionOrDefault(info.DropdownID, info.DefaultAmount.ToString());
 
 			if (!int.TryParse(crateAmount, out amount))
 				amount = info.DefaultAmount;
-
-			Wacky = self.World.LobbyInfo.GlobalSettings
-				.OptionOrDefault("wackymode", info.WackyModeCheckboxEnabled);
 		}
 
 		void ITick.Tick(Actor self)
@@ -174,7 +144,7 @@ namespace OpenRA.Mods.SS.Traits
 			{
 				if (info.DeliveryAircraft != null)
 				{
-					var crate = w.CreateActor(false, crateActor, new TypeDictionary { new OwnerInit(w.WorldActor.Owner) });
+					var crate = w.CreateActor(false, crateActor, new TypeDictionary { new OwnerInit(w.WorldActor.Owner), new CrateSpawnerTraitInit(this) });
 					var dropFacing = new WAngle(1024 * self.World.SharedRandom.Next(info.QuantizedFacings) / info.QuantizedFacings);
 					var delta = new WVec(0, -1024, 0).Rotate(WRot.FromYaw(dropFacing));
 
@@ -199,7 +169,7 @@ namespace OpenRA.Mods.SS.Traits
 					plane.QueueActivity(new RemoveSelf());
 				}
 				else
-					w.CreateActor(crateActor, new TypeDictionary { new OwnerInit(w.WorldActor.Owner), new LocationInit(p) });
+					w.CreateActor(crateActor, new TypeDictionary { new OwnerInit(w.WorldActor.Owner), new LocationInit(p), new CrateSpawnerTraitInit(this) });
 			});
 		}
 
@@ -226,7 +196,7 @@ namespace OpenRA.Mods.SS.Traits
 
 		string ChooseCrateActor()
 		{
-			var crateShares = Wacky ? info.WackyCrateActorShares : info.CrateActorShares;
+			var crateShares = info.CrateActorShares;
 			var n = self.World.SharedRandom.Next(crateShares.Sum());
 
 			var cumulativeShares = 0;
@@ -234,7 +204,7 @@ namespace OpenRA.Mods.SS.Traits
 			{
 				cumulativeShares += crateShares[i];
 				if (n <= cumulativeShares)
-					return (Wacky ? info.WackyCrateActors : info.CrateActors)[i];
+					return Info.CrateActors[i];
 			}
 
 			return null;
@@ -249,5 +219,11 @@ namespace OpenRA.Mods.SS.Traits
 		{
 			crates--;
 		}
+	}
+
+	public class CrateSpawnerTraitInit : ValueActorInit<SSCrateSpawner>
+	{
+		public CrateSpawnerTraitInit(SSCrateSpawner value)
+			: base(value) { }
 	}
 }

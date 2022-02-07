@@ -59,40 +59,33 @@ Player:
 		Enabled: True
 		DisplayOrder: 6
 		Prerequisites: global-teambonus
-	LobbyPrerequisiteCheckbox@SCORECRATES:
-		ID: scorecrates
-		Label: Score Crates
-		Description: Crates can provide score bonuses
-		Enabled: True
-		DisplayOrder: 9
-		Prerequisites: global-scorecrates
 	LobbyPrerequisiteCheckbox@MOREAA:
 		ID: moreaa
 		Label: More Anti-Air
 		Description: More units, compared to Tiberian Dawn, can attack air units
 		Enabled: True
-		DisplayOrder: 10
+		DisplayOrder: 7
 		Prerequisites: global-moreaa
 	LobbyPrerequisiteCheckbox@RANDOMRESPAWN:
 		ID: randomrespawn
 		Label: Random Respawn
 		Description: Players respawn at a random spawn point instead of having a set one
 		Enabled: True
-		DisplayOrder: 11
+		DisplayOrder: 9
 		Prerequisites: global-randomrespawn
 	LobbyPrerequisiteCheckbox@RESHROUDONDEATH:
 		ID: reshroudondeath
 		Label: Reshroud On Death
 		Description: Reshroud the map when your unit respawns
 		Enabled: True
-		DisplayOrder: 13
+		DisplayOrder: 10
 		Prerequisites: global-reshroudondeath
 	LobbyPrerequisiteCheckbox@EMPTYDROP:
 		ID: emptydrop
 		Label: Empty Pole Drop
 		Description: Allow dropping enemy flag, even if we don't have our own flag at the pole
 		Enabled: False
-		DisplayOrder: 14
+		DisplayOrder: 11
 		Prerequisites: global-emptydrop
 	GrantConditionOnPrerequisite@RADAR:
 		Condition: radar
