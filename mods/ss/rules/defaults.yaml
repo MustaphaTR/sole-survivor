@@ -646,6 +646,7 @@
 	Armament:
 		Weapon: Pistol
 	AttackFrontal:
+		FacingTolerance: 0
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
 
@@ -708,6 +709,7 @@
 		Voice: Attack
 	AttackFrontal:
 		Voice: Attack
+		FacingTolerance: 0
 	DrawLineToTarget:
 	DeathSounds:
 	Voiced:
@@ -769,6 +771,7 @@
 		MuzzleSequence: muzzle
 	AttackFrontal:
 		Voice: Attack
+		FacingTolerance: 0
 	BodyOrientation:
 		QuantizedFacings: 8
 	WithSpriteBody:

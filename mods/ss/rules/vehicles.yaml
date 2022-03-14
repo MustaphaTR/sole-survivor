@@ -70,6 +70,7 @@ HARV:
 		Voice: Attack
 	AttackFrontal:
 		Voice: Attack
+		FacingTolerance: 0
 	WithAttackAnimation:
 		Sequence: harvest
 	Health:
@@ -196,6 +197,7 @@ ARTY:
 		Voice: Attack
 	AttackFrontal:
 		Voice: Attack
+		FacingTolerance: 0
 	WithMuzzleOverlay:
 	AutoTarget:
 		InitialStanceAI: Defend
@@ -241,6 +243,7 @@ FTNK:
 		Voice: Attack
 	AttackFrontal:
 		Voice: Attack
+		FacingTolerance: 0
 	WithMuzzleOverlay:
 	Explodes:
 		Weapon: FlametankExplode
@@ -335,6 +338,7 @@ BIKE:
 		Voice: Attack
 	AttackFrontal:
 		Voice: Attack
+		FacingTolerance: 0
 	UnitStatValues:
 		Damage: 2500
 
@@ -597,6 +601,7 @@ MSAM:
 		Voice: Attack
 	AttackFrontal:
 		Voice: Attack
+		FacingTolerance: 0
 	WithSpriteTurret:
 	WithTurretAimAnimation:
 		Sequence: aim
@@ -705,6 +710,7 @@ STNK:
 		Voice: Attack
 	AttackFrontal:
 		Voice: Attack
+		FacingTolerance: 0
 	AutoTarget:
 		InitialStance: HoldFire
 		InitialStanceAI: ReturnFire

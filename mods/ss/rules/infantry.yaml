@@ -27,6 +27,7 @@ E1:
 		Condition: antiair
 		Prerequisites: global-moreaa
 	AttackFrontal:
+		FacingTolerance: 0
 	WithInfantryBody:
 		IdleSequences: idle1,idle2,idle3,idle4
 		DefaultAttackSequence: shoot
@@ -60,6 +61,7 @@ E2:
 	TakeCover:
 		ProneOffset: 300,0,-227
 	AttackFrontal:
+		FacingTolerance: 0
 	WithInfantryBody:
 		DefaultAttackSequence: throw
 	Explodes:
@@ -96,6 +98,7 @@ E3:
 	TakeCover:
 		ProneOffset: 180,0,-200
 	AttackFrontal:
+		FacingTolerance: 0
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
 	UnitStatValues:
@@ -129,6 +132,7 @@ E4:
 	TakeCover:
 		ProneOffset: 190,0,-198
 	AttackFrontal:
+		FacingTolerance: 0
 	WithMuzzleOverlay:
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
@@ -164,6 +168,7 @@ E5:
 	TakeCover:
 		ProneOffset: 190,0,-190
 	AttackFrontal:
+		FacingTolerance: 0
 	WithMuzzleOverlay:
 	-DamagedByTerrain:
 	WithInfantryBody:
@@ -240,6 +245,7 @@ RMBO:
 	Armament:
 		Weapon: Sniper
 	AttackFrontal:
+		FacingTolerance: 0
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
 		IdleSequences: idle1,idle2,idle3
