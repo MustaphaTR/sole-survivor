@@ -261,6 +261,7 @@ A10:
 		Repulsable: False
 	AttackBomber:
 		Armaments: gun, bombs
+		FacingTolerance: 8
 	Armament@GUNS:
 		Name: gun
 		Weapon: Vulcan
@@ -293,6 +294,7 @@ U2:
 		Repulsable: False
 		MaximumPitch: 56
 	AttackBomber:
+		FacingTolerance: 8
 	Contrail@1:
 		Offset: -725,683,0
 	Contrail@2:
