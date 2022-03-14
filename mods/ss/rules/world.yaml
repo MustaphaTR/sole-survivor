@@ -395,12 +395,11 @@ World:
 		UnitFacing: 0
 		TeamSpawnsCheckboxDisplayOrder: 3
 		QuickClassChangeCheckboxDisplayOrder: 8
-		BaseSizeDropdownDisplayOrder: 15
 	MapOptions:
 		ShortGameCheckboxEnabled: false
 		ShortGameCheckboxVisible: false
 		TechLevelDropdownVisible: false
-		GameSpeedDropdownDisplayOrder: 14
+		GameSpeedDropdownDisplayOrder: 17
 	# SSMultiplierOptions:
 	#	MaxMultiplierDropdownDisplayOrder: 8
 	#	StandardMultiplierDropdownDisplayOrder: 9
@@ -500,24 +499,6 @@ World:
 			sixty: 1 Minute
 		Default: ten
 		DisplayOrder: 7
-	ScriptLobbyDropdown@respawn-delay:
-		ID: respawn-delay
-		Label: Respawn Delay
-		Description: Time it takes to respawn when you die
-		Values:
-			disabled: Disabled
-			zero: Instant
-			one: 1 Second
-			two: 2 Seconds
-			three: 3 Seconds
-			five: 5 Seconds
-			ten: 10 Seconds
-			fifteen: 15 Seconds
-			thirty: 30 Seconds
-			fortyfive: 45 Seconds
-			sixty: 1 Minute
-		Default: three
-		DisplayOrder: 8
 	ScriptLobbyDropdown@starting-invuln:
 		ID: starting-invuln
 		Label: Starting Invulnerability
@@ -548,6 +529,24 @@ World:
 			sixty: 1 Minute
 		Default: ten
 		DisplayOrder: 10
+	ScriptLobbyDropdown@respawn-delay:
+		ID: respawn-delay
+		Label: Respawn Delay
+		Description: Time it takes to respawn when you die
+		Values:
+			disabled: Disabled
+			zero: Instant
+			one: 1 Second
+			two: 2 Seconds
+			three: 3 Seconds
+			five: 5 Seconds
+			ten: 10 Seconds
+			fifteen: 15 Seconds
+			thirty: 30 Seconds
+			fortyfive: 45 Seconds
+			sixty: 1 Minute
+		Default: three
+		DisplayOrder: 12
 	ScriptLobbyDropdown@time-limit:
 		ID: time-limit
 		Label: Time Limit
@@ -563,7 +562,7 @@ World:
 			fortyfive: 45 Minutes
 			sixty: 1 Hour
 		Default: fifteen
-		DisplayOrder: 11
+		DisplayOrder: 13
 	ScriptLobbyDropdown@ctf-mode:
 		ID: ctf-mode
 		Label: CtF Mode
@@ -573,7 +572,7 @@ World:
 			score: Score
 			victory: Victory Condition
 		Default: disabled
-		DisplayOrder: 12
+		DisplayOrder: 14
 	ScriptLobbyDropdown@class-changing:
 		ID: class-changing
 		Label: Class Changing
@@ -587,7 +586,7 @@ World:
 			hundredtwenty: 2 Minutes
 			threehundred: 5 Minutes
 		Default: thirty
-		DisplayOrder: 13
+		DisplayOrder: 15
 	ScriptLobbyDropdown@death-penalty:
 		ID: death-penalty
 		Label: Death Penalty
@@ -599,6 +598,18 @@ World:
 			twenty: 20
 		Default: disabled
 		DisplayOrder: 16
+	BaseSizeLobbyDropdown@base-obelisk:
+		ID: base-obelisk
+		Label: Base Obelisks
+		Description: Amount of Obelisks of Light to spawn around your spawnpoint
+		BaseBuildings: obli
+		DisplayOrder: 8
+	BaseSizeLobbyDropdown@base-agt:
+		ID: base-agt
+		Label: Base AGTs
+		Description: Amount of Advanced Guard Towers to spawn around your spawnpoint
+		BaseBuildings: atwr
+		DisplayOrder: 11
 	LuaScript:
 		Scripts: cloak-invuln.lua, ai-scripts.lua, time-limit.lua, class-changing.lua, respawn.lua, capture-the-flag.lua, world-tick.lua
 	PathFinder:

@@ -1,6 +1,6 @@
 #region Copyright & License Information
 /*
- * Copyright 2007-2019 The OpenRA Developers (see AUTHORS)
+ * Copyright 2007-2022 The OpenRA Developers (see AUTHORS)
  * This file is part of OpenRA, which is free software. It is made
  * available to you under the terms of the GNU General Public License
  * as published by the Free Software Foundation, either version 3 of
@@ -21,6 +21,7 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.SS.Traits
 {
 	[Desc("Spawns the initial unit for a Sole Survivor game. Handles different spawning logics.")]
+	[TraitLocation(SystemActors.World)]
 	public class SpawnSSUnitInfo : TraitInfo, ILobbyOptions
 	{
 		[Desc("Descriptive label for the team spawns checkbox in the lobby.")]
@@ -68,36 +69,6 @@ namespace OpenRA.Mods.SS.Traits
 		[Desc("Display order for the quick class change checkbox in the lobby.")]
 		public readonly int QuickClassChangeCheckboxDisplayOrder = 0;
 
-		[Desc("Descriptive label for the base size option in the lobby.")]
-		public readonly string BaseSizeDropdownLabel = "Base Size";
-
-		[Desc("Tooltip description for the base size option in the lobby.")]
-		public readonly string BaseSizeDropdownDescription = "Amount of towers to spawn around your spawnpoint";
-
-		[Desc("Default base size.")]
-		public readonly int BaseSize = 0;
-
-		[Desc("Possible base sizes to select.")]
-		public readonly int[] BaseSizes = { 0, 1, 2, 4, 5, 6, 8, 10, 12, 16 };
-
-		[Desc("Base buildings to spawn.")]
-		public readonly string[] BaseBuildings = { "atwr", "obli" };
-
-		[Desc("Prevent the base size from being changed in the lobby.")]
-		public readonly bool BaseSizeDropdownLocked = false;
-
-		[Desc("Display the base size option in the lobby.")]
-		public readonly bool BaseSizeDropdownVisible = true;
-
-		[Desc("Display order for the base size option in the lobby.")]
-		public readonly int BaseSizeDropdownDisplayOrder = 0;
-
-		[Desc("Inner radius for spawning base buildings")]
-		public readonly int InnerBaseRadius = 1;
-
-		[Desc("Outer radius for spawning base buildings")]
-		public readonly int OuterBaseRadius = 3;
-
 		IEnumerable<LobbyOption> ILobbyOptions.LobbyOptions(MapPreview map)
 		{
 			yield return new LobbyBooleanOption(
@@ -117,11 +88,6 @@ namespace OpenRA.Mods.SS.Traits
 				QuickClassChangeCheckboxDisplayOrder,
 				QuickClassChangeCheckboxEnabled,
 				QuickClassChangeCheckboxLocked);
-
-			var baseSizes = BaseSizes.ToDictionary(bs => bs.ToString(), bs => bs.ToString());
-
-			yield return new LobbyOption("basesize", BaseSizeDropdownLabel, BaseSizeDropdownDescription, BaseSizeDropdownVisible, BaseSizeDropdownDisplayOrder,
-				baseSizes, BaseSize.ToString(), BaseSizeDropdownLocked);
 		}
 
 		public override object Create(ActorInitializer init) { return new SpawnSSUnit(this); }
@@ -132,7 +98,7 @@ namespace OpenRA.Mods.SS.Traits
 		readonly SpawnSSUnitInfo info;
 
 		WorldRenderer wr;
-		int baseSize;
+		HashSet<(string[] Actors, int Amount, int Inner, int Outer)> bases = new HashSet<(string[] actors, int amount, int inner, int outer)>();
 
 		public bool TeamSpawns;
 		public bool QuickClassChange;
@@ -160,8 +126,15 @@ namespace OpenRA.Mods.SS.Traits
 			QuickClassChange = world.LobbyInfo.GlobalSettings
 				.OptionOrDefault("quickclasschange", info.QuickClassChangeCheckboxEnabled);
 
-			int.TryParse(world.LobbyInfo.GlobalSettings
-				.OptionOrDefault("basesize", info.BaseSize.ToString()), out baseSize);
+			var baseSizeDropdowns = world.Map.Rules.Actors[SystemActors.World].TraitInfos<BaseSizeLobbyDropdownInfo>();
+			foreach (var dropdown in baseSizeDropdowns)
+			{
+				var value = 0;
+				int.TryParse(world.LobbyInfo.GlobalSettings
+					.OptionOrDefault(dropdown.ID, dropdown.Default.ToString()), out value);
+
+				bases.Add((dropdown.BaseBuildings, value, dropdown.InnerBaseRadius, dropdown.OuterBaseRadius));
+			}
 
 			spawnPointOccupation = world.Actors.Where(a => a.Info.Name == "mpspawn")
 				.Select(a => a.Location)
@@ -265,18 +238,21 @@ namespace OpenRA.Mods.SS.Traits
 
 		void SpawnBuildingsForPlayer(World w, Player p, CPos sp)
 		{
-			var buildings = info.BaseBuildings;
-			var buildingSpawnCells = w.Map.FindTilesInAnnulus(sp, info.InnerBaseRadius + 1, info.OuterBaseRadius).ToArray();
-			for (int i = 0; i < baseSize - (baseSize % buildings.Count()); i++)
+			foreach (var b in bases)
 			{
-				var actor = buildings[i % buildings.Count()];
-				SpawnBuildingForPlayer(w, p, buildingSpawnCells, actor);
-			}
+				var buildings = b.Actors;
+				var buildingSpawnCells = w.Map.FindTilesInAnnulus(sp, b.Inner + 1, b.Outer).ToArray();
+				for (int i = 0; i < b.Amount - (b.Amount % buildings.Count()); i++)
+				{
+					var actor = buildings[i % buildings.Count()];
+					SpawnBuildingForPlayer(w, p, buildingSpawnCells, actor);
+				}
 
-			for (int i = 0; i < baseSize % buildings.Count(); i++)
-			{
-				var actor = buildings.Random(w.SharedRandom);
-				SpawnBuildingForPlayer(w, p, buildingSpawnCells, actor);
+				for (int i = 0; i < b.Amount % buildings.Count(); i++)
+				{
+					var actor = buildings.Random(w.SharedRandom);
+					SpawnBuildingForPlayer(w, p, buildingSpawnCells, actor);
+				}
 			}
 		}
 
