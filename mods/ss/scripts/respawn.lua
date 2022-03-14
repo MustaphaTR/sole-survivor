@@ -1,5 +1,5 @@
 --[[
-   Copyright 2007-2021 The OpenRA Developers (see AUTHORS)
+   Copyright 2007-2022 The OpenRA Developers (see AUTHORS)
    This file is part of OpenRA, which is free software. It is made
    available to you under the terms of the GNU General Public License
    as published by the Free Software Foundation, either version 3 of
@@ -40,6 +40,33 @@ ClassChangingInterval =
 	sixty = DateTime.Seconds(60),
 	hundredtwenty = DateTime.Seconds(120),
 	threehundred = DateTime.Seconds(300)
+}
+
+
+RespawnCloakOption = Map.LobbyOption("respawn-cloak")
+RespawnCloakDuration =
+{
+	disabled = 0,
+	five = DateTime.Seconds(5),
+	ten = DateTime.Seconds(10),
+	fifteen = DateTime.Seconds(15),
+	twenty = DateTime.Seconds(20),
+	thirty = DateTime.Seconds(30),
+	fortyfive = DateTime.Seconds(45),
+	sixty = DateTime.Minutes(1)
+}
+
+RespawnInvulnOption = Map.LobbyOption("respawn-invuln")
+RespawnInvulnDuration =
+{
+	disabled = 0,
+	five = DateTime.Seconds(5),
+	ten = DateTime.Seconds(10),
+	fifteen = DateTime.Seconds(15),
+	twenty = DateTime.Seconds(20),
+	thirty = DateTime.Seconds(30),
+	fortyfive = DateTime.Seconds(45),
+	sixty = DateTime.Minutes(1)
 }
 
 SpawnPoints = { }
@@ -85,6 +112,12 @@ Respawn = function(player)
 					end
 
 					player.Unit = Actor.Create(unitType, true, { Owner = player, Location = location })
+					if RespawnCloakOption ~= "disabled" then
+						player.Unit.GrantCondition("starting-cloak", CloakDuration[RespawnCloakOption])
+					end
+					if RespawnInvulnOption ~= "disabled" then
+						player.Unit.GrantCondition("invulnerability", InvulnDuration[RespawnInvulnOption])
+					end
 					if player.IsLocalPlayer then
 						Camera.Position = Map.CenterOfCell(location)
 					end
