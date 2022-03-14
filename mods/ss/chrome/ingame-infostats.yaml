@@ -31,7 +31,7 @@ Container@SKIRMISH_STATS:
 		Container@STATS_HEADERS:
 			X: 17
 			Y: 80
-			Width: 393
+			Width: 493
 			Children:
 				Label@NAME:
 					X: 10
@@ -41,14 +41,14 @@ Container@SKIRMISH_STATS:
 					Text: Player
 					Font: Bold
 				Label@FACTION:
-					X: 230
+					X: 280
 					Y: 1
-					Width: 120
+					Width: 270
 					Height: 25
 					Text: Class
 					Font: Bold
 				Label@SCORE:
-					X: 360
+					X: 560
 					Y: 1
 					Width: 75
 					Height: 25
@@ -58,7 +58,7 @@ Container@SKIRMISH_STATS:
 		ScrollPanel@PLAYER_LIST:
 			X: 15
 			Y: 105
-			Width: 482
+			Width: 682
 			Height: 255
 			ItemSpacing: 5
 			Children:
@@ -75,7 +75,7 @@ Container@SKIRMISH_STATS:
 							Height: 20
 							Font: Bold
 						Label@TEAM_SCORE:
-							X: 360
+							X: 560
 							Y: 0
 							Width: 75
 							Height: 20
@@ -105,17 +105,17 @@ Container@SKIRMISH_STATS:
 							Height: 25
 							Shadow: True
 						Image@FACTIONFLAG:
-							X: 230
+							X: 280
 							Y: 4
 							Width: 32
 							Height: 16
 						Label@FACTION:
-							X: 264
-							Width: 86
+							X: 314
+							Width: 136
 							Height: 25
 							Shadow: True
 						Label@SCORE:
-							X: 360
+							X: 560
 							Width: 75
 							Height: 25
 							Align: Right

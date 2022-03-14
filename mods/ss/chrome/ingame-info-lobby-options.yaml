@@ -6,7 +6,7 @@ Container@LOBBY_OPTIONS_PANEL:
 			Logic: LobbyOptionsLogic
 			X: 15
 			Y: 15
-			Width: 482
+			Width: 682
 			Height: 375
 			Children:
 				Container@LOBBY_OPTIONS:
@@ -19,14 +19,21 @@ Container@LOBBY_OPTIONS_PANEL:
 							Children:
 								Checkbox@A:
 									X: 10
-									Width: PARENT_RIGHT / 2 - 20
+									Width: PARENT_RIGHT / 3 - 20
 									Height: 20
 									Font: Regular
 									Visible: False
 									TooltipContainer: TOOLTIP_CONTAINER
 								Checkbox@B:
-									X: PARENT_RIGHT / 2 + 10
-									Width: PARENT_RIGHT / 2 - 20
+									X: PARENT_RIGHT / 3 + 10
+									Width: PARENT_RIGHT / 3 - 20
+									Height: 20
+									Font: Regular
+									Visible: False
+									TooltipContainer: TOOLTIP_CONTAINER
+								Checkbox@C:
+									X: (PARENT_RIGHT / 3) * 2 + 10
+									Width: PARENT_RIGHT / 3 - 20
 									Height: 20
 									Font: Regular
 									Visible: False
@@ -37,26 +44,39 @@ Container@LOBBY_OPTIONS_PANEL:
 							Children:
 								Label@A_DESC:
 									X: 10
-									Width: PARENT_RIGHT / 2 - 20
+									Width: PARENT_RIGHT / 3 - 20
 									Height: 20
 									Visible: False
 								DropDownButton@A:
 									X: 10
+									Width: PARENT_RIGHT / 3 - 20
 									Y: 25
-									Width: PARENT_RIGHT / 2 - 20
 									Height: 25
 									Font: Regular
 									Visible: False
 									TooltipContainer: TOOLTIP_CONTAINER
 								Label@B_DESC:
-									X: PARENT_RIGHT / 2 + 10
-									Width: PARENT_RIGHT / 2 - 20
+									X: PARENT_RIGHT / 3 + 10
+									Width: PARENT_RIGHT / 3 - 20
 									Height: 20
 									Visible: False
 								DropDownButton@B:
-									X: PARENT_RIGHT / 2 + 10
+									X: PARENT_RIGHT / 3 + 10
+									Width: PARENT_RIGHT / 3 - 20
 									Y: 25
-									Width: PARENT_RIGHT / 2 - 20
+									Height: 25
+									Font: Regular
+									Visible: False
+									TooltipContainer: TOOLTIP_CONTAINER
+								Label@C_DESC:
+									X: (PARENT_RIGHT / 3) * 2 + 10
+									Width: PARENT_RIGHT / 3 - 20
+									Height: 20
+									Visible: False
+								DropDownButton@C:
+									X: (PARENT_RIGHT / 3) * 2 + 10
+									Width: PARENT_RIGHT / 3 - 20
+									Y: 25
 									Height: 25
 									Font: Regular
 									Visible: False
