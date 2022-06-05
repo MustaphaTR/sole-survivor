@@ -262,6 +262,7 @@ PVICE:
 		Description: Mutated abomination that spits liquid Tiberium.\n  Strong vs Infantry, Buildings\n  Weak vs Aircraft
 	Tooltip:
 	ActorLostNotification:
+		TextNotification: Unit lost.
 	UnitStatValues:
 		Damage: 8000
 

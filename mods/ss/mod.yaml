@@ -11,6 +11,7 @@ Packages:
 	~^SupportDir|Content/cnc
 	~^SupportDir|Content/ss
 	^EngineDir
+	$cnc: cnc
 	$ss: ss
 	^EngineDir|mods/common: common
 	~speech.mix
@@ -96,25 +97,25 @@ Assemblies:
 
 ChromeLayout:
 	ss|chrome/mainmenu.yaml
-	ss|chrome/mainmenu-prompts.yaml
-	ss|chrome/playerprofile.yaml
-	ss|chrome/multiplayer-browser.yaml
-	ss|chrome/multiplayer-browserpanels.yaml
-	ss|chrome/multiplayer-createserver.yaml
-	ss|chrome/multiplayer-directconnect.yaml
+	cnc|chrome/mainmenu-prompts.yaml
+	cnc|chrome/playerprofile.yaml
+	cnc|chrome/multiplayer-browser.yaml
+	cnc|chrome/multiplayer-browserpanels.yaml
+	cnc|chrome/multiplayer-createserver.yaml
+	cnc|chrome/multiplayer-directconnect.yaml
 	ss|chrome/lobby.yaml
-	ss|chrome/lobby-mappreview.yaml
+	cnc|chrome/lobby-mappreview.yaml
 	ss|chrome/lobby-players.yaml
-	ss|chrome/lobby-options.yaml
-	ss|chrome/lobby-music.yaml
-	ss|chrome/lobby-servers.yaml
-	ss|chrome/lobby-kickdialogs.yaml
-	ss|chrome/connection.yaml
+	cnc|chrome/lobby-options.yaml
+	cnc|chrome/lobby-music.yaml
+	cnc|chrome/lobby-servers.yaml
+	cnc|chrome/lobby-kickdialogs.yaml
+	cnc|chrome/connection.yaml
 	ss|chrome/color-picker.yaml
 	ss|chrome/mapchooser.yaml
-	ss|chrome/replaybrowser.yaml
-	ss|chrome/gamesave-browser.yaml
-	ss|chrome/gamesave-loading.yaml
+	cnc|chrome/replaybrowser.yaml
+	cnc|chrome/gamesave-browser.yaml
+	cnc|chrome/gamesave-loading.yaml
 	ss|chrome/ingame.yaml
 	ss|chrome/ingame-chat.yaml
 	common|chrome/ingame-transients.yaml
@@ -128,20 +129,23 @@ ChromeLayout:
 	ss|chrome/ingame-infostats.yaml
 	ss|chrome/ingame-info-lobby-options.yaml
 	ss|chrome/ingame-debuginfo.yaml
-	ss|chrome/music.yaml
-	ss|chrome/settings.yaml
-	ss|chrome/settings-display.yaml
-	ss|chrome/settings-audio.yaml
-	ss|chrome/settings-input.yaml
-	ss|chrome/settings-hotkeys.yaml
-	ss|chrome/settings-advanced.yaml
-	ss|chrome/credits.yaml
-	ss|chrome/dialogs.yaml
+	cnc|chrome/music.yaml
+	cnc|chrome/settings.yaml
+	cnc|chrome/settings-display.yaml
+	cnc|chrome/settings-audio.yaml
+	cnc|chrome/settings-input.yaml
+	cnc|chrome/settings-hotkeys.yaml
+	cnc|chrome/settings-advanced.yaml
+	cnc|chrome/credits.yaml
+	cnc|chrome/dialogs.yaml
 	ss|chrome/tooltips.yaml
-	ss|chrome/assetbrowser.yaml
-	ss|chrome/missionbrowser.yaml
-	ss|chrome/editor.yaml
+	cnc|chrome/assetbrowser.yaml
+	cnc|chrome/missionbrowser.yaml
+	cnc|chrome/editor.yaml
 	common|chrome/text-notifications.yaml
+
+Translations:
+	common|languages/en.ftl
 
 Voices:
 	ss|audio/voices.yaml

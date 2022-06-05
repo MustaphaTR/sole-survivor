@@ -48,6 +48,7 @@
 	GainsExperience:
 		ExperienceModifier: 1
 		LevelUpNotification: LevelUp
+		LevelUpTextNotification: Unit promoted.
 		Conditions:
 			40: rank-veteran
 			100: rank-veteran
@@ -370,6 +371,7 @@
 	Passenger:
 		CargoType: Vehicle
 	ActorLostNotification:
+		TextNotification: Unit lost.
 	HiddenUnderFog:
 	AttackMove:
 	DrawLineToTarget:
@@ -442,6 +444,7 @@
 	HiddenUnderFog:
 		Type: GroundPosition
 	ActorLostNotification:
+		TextNotification: Unit lost.
 	Explodes:
 		Weapon: HeliExplode
 		EmptyWeapon: HeliExplode
@@ -534,6 +537,7 @@
 		Margin: 5, 6
 		RequiresCondition: hazmatsuits
 	ActorLostNotification:
+		TextNotification: Unit lost.
 	SpawnActorOnDeath:
 		Probability: 5
 		Actor: vice
@@ -628,9 +632,6 @@
 		Range: 2c0
 	Passenger:
 		CustomPipType: gray
-	ActorLostNotification:
-		Notification: CivilianKilled
-		NotifyAll: true
 	ScaredyCat:
 	Crushable:
 		CrushSound: squish2.aud
@@ -806,6 +807,7 @@
 		Type: GroundPosition
 		AlwaysVisibleRelationships: None
 	ActorLostNotification:
+		TextNotification: Unit lost.
 	AttackMove:
 	WithShadow:
 		Offset: 43, 128, 0
@@ -831,6 +833,7 @@
 		TargetTypes: Ground, Water
 	HiddenUnderFog:
 	ActorLostNotification:
+		TextNotification: Unit lost.
 	AttackMove:
 	DrawLineToTarget:
 	WithDamageOverlay:
@@ -879,9 +882,11 @@
 		EmptyWeapon: BuildingExplode
 	CaptureNotification:
 		Notification: BuildingCaptured
+		TextNotification: Building captured.
 		NewOwnerVoice: false
 	ActorLostNotification:
 		Notification: BuildingLost
+		TextNotification: Structure lost.
 	ShakeOnDeath:
 	Guardable:
 		Range: 3c0
@@ -970,6 +975,7 @@
 		Types: building
 	CaptureNotification:
 		Notification: CivilianBuildingCaptured
+		TextNotification: Civilian building captured.
 	RepairableBuilding:
 		RepairPercent: 40
 		RepairStep: 1400

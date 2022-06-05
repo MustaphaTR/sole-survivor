@@ -11,21 +11,25 @@ CRATE:
 		Sequence: reveal-map
 		Sound: crunshrd.aud
 		Notification: MapReveal
+		TextNotification: Map revealed.
 	HideMapToAllCrateAction:
 		SelectionShares: 1
 		Sequence: hide-map
 		Sound: crshroud.aud
 		Notification: GlobalDarkness
+		TextNotification: Global darkness.
 	HideMapCrateAction:
 		SelectionShares: 2
 		Sequence: hide-map
 		Sound: crshroud.aud
 		Notification: GlobalDarkness
+		TextNotification: Global darkness.
 	HealActorsCrateAction:
 		SelectionShares: 8
 		Sequence: heal
 		Sound: crheal.aud
 		Notification: HealthUpgraded
+		TextNotification: Health upgraded.
 	SwitchConditionCrateAction@radar:
 		Condition: crate-radar
 		Prerequisites: !global-radar
@@ -33,7 +37,9 @@ CRATE:
 		Sequence: reveal-map
 		RevokeSequence: hide-map
 		Notification: RadarActivated
+		TextNotification: Radar activated.
 		RevokeNotification: RadarDeactivated
+		RevokeTextNotification: Radar deactivated.
 	SwitchConditionCrateAction@noradar:
 		Condition: crate-no-radar
 		Prerequisites: !global-radar
@@ -41,53 +47,66 @@ CRATE:
 		Sequence: hide-map
 		RevokeSequence: reveal-map
 		Notification: RadarDeactivated
+		TextNotification: Radar deactivated.
 		RevokeNotification: RadarActivated
+		RevokeTextNotification: Radar activated.
 	GiveUnitCrateAction@cloak-detector:
 		Units: proxy.cloak-detector
 		SelectionShares: 8
 		Sequence: hide-map
 		Notification: GlobalStealthDeactivated
+		TextNotification: Global stealth deactivated.
 	GiveUnitCrateAction@cloak-remover:
 		Units: proxy.cloak-remover
 		SelectionShares: 4
 		Sequence: hide-map
 		Notification: GlobalStealthDeactivated
+		TextNotification: Global stealth deactivated.
 	SwitchConditionCrateAction@cloak:
 		SelectionShares: 10
 		Sequence: cloak
 		RevokeSequence: hide-map
 		Condition: cloak-crate-collected
 		Notification: StealthMode
+		TextNotification: Stealth mode.
 		RevokeNotification: StealthDeactivated
+		RevokeTextNotification: Stealth deactivated.
 	SwitchConditionCrateAction@cloak-reverse:
 		SelectionShares: 10
 		Sequence: hide-map
 		RevokeSequence: cloak
 		Condition: decloak-crate-collected
+		TextNotification: Stealth deactivated.
 		Notification: StealthDeactivated
 		RevokeNotification: StealthMode
+		RevokeTextNotification: Stealth mode.
 	SwitchConditionCrateAction@auto-repair:
 		SelectionShares: 10
 		Sequence: repair
 		RevokeSequence: norepair
 		Condition: auto-repair-crate-collected
 		Sound: fixit1.aud
-		# Notification: StealthMode
-		# RevokeNotification: StealthDeactivated
+		# Notification: SelfRepairActivated
+		TextNotification: Self-repair activated.
+		# RevokeNotification: SelfRepairDeactivated
+		RevokeTextNotification: Self-repair deactivated.
 	SwitchConditionCrateAction@auto-repair-reverse:
 		SelectionShares: 10
 		Sequence: norepair
 		RevokeSequence: repair
 		Condition: no-auto-repair-crate-collected
 		Sound: fixit1.aud
-		# Notification: StealthDeactivated
-		# RevokeNotification: StealthMode
+		# Notification: SelfRepairDeactivated
+		TextNotification: Self-repair activated.
+		# RevokeNotification: SelfRepairActivated
+		RevokeTextNotification: Self-repair activated.
 	SSMultiplierCrateAction@armor:
 		SelectionShares: 50
 		Sequence: armorup
 		Type: Armor
 		Sound: crarmor.aud
 		Notification: ArmorUpgraded
+		TextNotification: Armor upgraded.
 		Amount: 5
 		TeamBonus: 1
 	SSMultiplierCrateAction@firepower:
@@ -96,24 +115,28 @@ CRATE:
 		Type: Damage
 		Sound: crweapon.aud
 		Notification: WeaponUpgraded
+		TextNotification: Weapon upgraded.
 	SSMultiplierCrateAction@speed:
 		SelectionShares: 50
 		Sequence: speedup
 		Type: Speed
 		Sound: crspeed.aud
 		Notification: SpeedUpgraded
+		TextNotification: Speed upgraded.
 	SSMultiplierCrateAction@range:
 		SelectionShares: 50
 		Sequence: airstrike
 		Type: Range
 		Sound: crrange.aud
 		Notification: RangeUpgraded
+		TextNotification: Range upgraded.
 	SSMultiplierCrateAction@reload:
 		SelectionShares: 50
 		Sequence: rateoffireup
 		Type: Reload
 		Sound: crreload.aud
 		Notification: RapidReload
+		TextNotification: Rapid reload.
 		Amount: 5
 		TeamBonus: 1
 	SSMultiplierCrateAction@sight:
@@ -122,6 +145,7 @@ CRATE:
 		Type: Sight
 		Sound: radarup.aud
 		Notification: RangeUpgraded
+		TextNotification: Sight upgraded.
 	PlayerExperienceCrateAction:
 		Experience: 5
 		SelectionShares: 1
@@ -133,6 +157,7 @@ CRATE:
 		SelectionShares: 5
 		Sound: teleport.aud
 		Notification: TeleportActivated
+		TextNotification: Teleport activated.
 	RenderSprites:
 		Image: crate-brown
 
@@ -150,12 +175,14 @@ UPGRADECRATE:
 		Type: Armor
 		Sound: crarmor.aud
 		Notification: MegaArmor
+		TextNotification: Mega armor.
 	SSMultiplierCrateAction@damage:
 		SelectionShares: 50
 		Sequence: firepowerup
 		Type: Damage
 		Sound: crweapon.aud
 		Notification: MegaWeapon
+		TextNotification: Mega weapon.
 		Amount: 20
 		TeamBonus: 4
 	SSMultiplierCrateAction@speed:
@@ -164,6 +191,7 @@ UPGRADECRATE:
 		Type: Speed
 		Sound: crspeed.aud
 		Notification: MegaSpeed
+		TextNotification: Mega speed.
 		Amount: 20
 		TeamBonus: 4
 	SSMultiplierCrateAction@range:
@@ -172,6 +200,7 @@ UPGRADECRATE:
 		Type: Range
 		Sound: crrange.aud
 		Notification: MegaRange
+		TextNotification: Mega range.
 		Amount: 20
 		TeamBonus: 4
 	SSMultiplierCrateAction@reload:
@@ -180,12 +209,14 @@ UPGRADECRATE:
 		Type: Reload
 		Sound: crreload.aud
 		Notification: MegaReload
+		TextNotification: Mega rapid reload.
 	SSMultiplierCrateAction@sight:
 		SelectionShares: 50
 		Sequence: reveal-map
 		Type: Sight
 		Sound: radarup.aud
 		Notification: MegaRange
+		TextNotification: Mega sight.
 		Amount: 20
 		TeamBonus: 4
 	RenderSprites:
@@ -205,7 +236,9 @@ HEALCRATE:
 		Sound: crheal.aud
 		SelectionShares: 30
 		Notification: HealthUpgraded
+		TextNotification: Health upgraded.
 		WeaponNotification: NuclearBomb
+		WeaponTextNotification: Nuclear bomb.
 	RenderSprites:
 		Image: crate-green
 
@@ -254,6 +287,7 @@ ARMAGEDDONCRATE:
 		Sequence: redskull
 		DeathTypes: DefaultDeath
 		Notification: Armageddon
+		TextNotification: Armageddon.
 	RenderSprites:
 		Image: crate-red
 
@@ -272,6 +306,7 @@ TELEPORTER:
 		Sequence: teleport
 		Sound: teleport.aud
 		Notification: TeleportActivated
+		TextNotification: Teleport activated.
 	RenderSprites:
 		Image: crate-white
 

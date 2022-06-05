@@ -1,6 +1,6 @@
 #region Copyright & License Information
 /*
- * Copyright 2007-2018 The OpenRA Developers (see AUTHORS)
+ * Copyright 2007-2022 The OpenRA Developers (see AUTHORS)
  * This file is part of OpenRA, which is free software. It is made
  * available to you under the terms of the GNU General Public License
  * as published by the Free Software Foundation, either version 3 of
@@ -12,7 +12,6 @@
 using System.Linq;
 using OpenRA.Mods.Common.Effects;
 using OpenRA.Mods.Common.Traits;
-using OpenRA.Traits;
 
 namespace OpenRA.Mods.SS.Traits
 {
@@ -35,6 +34,9 @@ namespace OpenRA.Mods.SS.Traits
 		[NotificationReference("Speech")]
 		[Desc("Notification to play when the condition is revoked.")]
 		public readonly string RevokeNotification = null;
+
+		[Desc("Text notification to display when the condition is revoked.")]
+		public readonly string RevokeTextNotification = null;
 
 		public override object Create(ActorInitializer init) { return new SwitchConditionCrateAction(init.Self, this); }
 	}
@@ -87,23 +89,20 @@ namespace OpenRA.Mods.SS.Traits
 						{
 							switchCondition.GrantCondition(a);
 
-							if (!string.IsNullOrEmpty(Info.Notification))
-								Game.Sound.PlayNotification(self.World.Map.Rules, collector.Owner, "Speech",
-									Info.Notification, collector.Owner.Faction.InternalName);
-
-							Game.Sound.Play(SoundType.World, info.Sound, self.CenterPosition);
-							if (Info.Image != null && Info.Sequence != null)
-								collector.World.AddFrameEndTask(world => world.Add(new SpriteEffect(collector, world, Info.Image, Info.Sequence, Info.Palette)));
+							base.Activate(collector);
 						}
 						else
 						{
 							switchCondition.RevokeCondition(a);
 
+							Game.Sound.Play(SoundType.World, info.Sound, self.CenterPosition);
+
 							if (!string.IsNullOrEmpty(info.RevokeNotification))
 								Game.Sound.PlayNotification(self.World.Map.Rules, collector.Owner, "Speech",
 									info.RevokeNotification, collector.Owner.Faction.InternalName);
 
-							Game.Sound.Play(SoundType.World, info.Sound, self.CenterPosition);
+							TextNotificationsManager.AddTransientLine(info.RevokeTextNotification, collector.Owner);
+
 							if (Info.Image != null && info.RevokeSequence != null)
 								collector.World.AddFrameEndTask(world => world.Add(new SpriteEffect(collector, world, Info.Image, info.RevokeSequence, info.Palette)));
 						}

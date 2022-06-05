@@ -1,6 +1,6 @@
 #region Copyright & License Information
 /*
- * Copyright 2007-2018 The OpenRA Developers (see AUTHORS)
+ * Copyright 2007-2022 The OpenRA Developers (see AUTHORS)
  * This file is part of OpenRA, which is free software. It is made
  * available to you under the terms of the GNU General Public License
  * as published by the Free Software Foundation, either version 3 of
@@ -9,8 +9,6 @@
  */
 #endregion
 
-using System.Linq;
-using OpenRA.Mods.Common.Effects;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.Common.Traits
@@ -26,6 +24,9 @@ namespace OpenRA.Mods.Common.Traits
 		[NotificationReference("Speech")]
 		[Desc("Notification to play when the crate is collected and weapon fires.")]
 		public readonly string WeaponNotification = null;
+
+		[Desc("Text notification to display when the crate is collected and weapon fires.")]
+		public readonly string WeaponTextNotification = null;
 
 		public override object Create(ActorInitializer init) { return new SSHealCrateAction(init.Self, this); }
 	}
@@ -53,18 +54,14 @@ namespace OpenRA.Mods.Common.Traits
 				if (!string.IsNullOrEmpty(info.WeaponNotification))
 					Game.Sound.PlayNotification(self.World.Map.Rules, collector.Owner, "Speech",
 						info.WeaponNotification, collector.Owner.Faction.InternalName);
+
+				TextNotificationsManager.AddTransientLine(info.WeaponTextNotification, collector.Owner);
 			}
 			else
 			{
 				health.InflictDamage(collector, collector, new Damage(-(health.MaxHP - health.HP)), true);
 
-				if (!string.IsNullOrEmpty(Info.Notification))
-					Game.Sound.PlayNotification(self.World.Map.Rules, collector.Owner, "Speech",
-						Info.Notification, collector.Owner.Faction.InternalName);
-
-				Game.Sound.Play(SoundType.World, info.Sound, self.CenterPosition);
-				if (Info.Image != null && Info.Sequence != null)
-					collector.World.AddFrameEndTask(w => w.Add(new SpriteEffect(collector, w, Info.Image, Info.Sequence, Info.Palette)));
+				base.Activate(collector);
 			}
 		}
 	}

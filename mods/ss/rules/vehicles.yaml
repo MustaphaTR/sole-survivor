@@ -34,6 +34,7 @@ MCV:
 		Facing: 432
 		TransformSounds: constru2.aud, hvydoor1.aud
 		NoTransformNotification: BuildingCannotPlaceAudio
+		NoTransformTextNotification: Cannot deploy here.
 		Voice: Unload
 	MustBeDestroyed:
 		RequiredForShortGame: true
@@ -744,6 +745,8 @@ MHQ:
 		Description: Reveals an area of the map\nand cloaked enemy units.
 		SelectTargetSpeechNotification: SelectTarget
 		EndChargeSpeechNotification: AirstrikeReady
+		SelectTargetTextNotification: Select target.
+		EndChargeTextNotification: Airstrike ready.
 		CameraActor: CAMERA.spyplane
 		CameraRemoveDelay: 150
 		UnitType: u2
@@ -763,6 +766,8 @@ MHQ:
 		Description: Deploy an aerial napalm strike.
 		EndChargeSpeechNotification: AirstrikeReady
 		SelectTargetSpeechNotification: SelectTarget
+		EndChargeTextNotification: Airstrike ready.
+		SelectTargetTextNotification: Select target.
 		UnitType: a10
 		DisplayBeacon: True
 		BeaconPoster: airstrike

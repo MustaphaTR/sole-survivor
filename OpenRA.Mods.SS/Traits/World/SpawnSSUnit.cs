@@ -22,7 +22,7 @@ namespace OpenRA.Mods.SS.Traits
 {
 	[Desc("Spawns the initial unit for a Sole Survivor game. Handles different spawning logics.")]
 	[TraitLocation(SystemActors.World)]
-	public class SpawnSSUnitInfo : TraitInfo, ILobbyOptions
+	public class SpawnSSUnitInfo : TraitInfo, NotBefore<LocomotorInfo>, ILobbyOptions
 	{
 		[Desc("Descriptive label for the team spawns checkbox in the lobby.")]
 		public readonly string TeamSpawnsCheckboxLabel = "Team Spawns";
