@@ -352,13 +352,14 @@ World:
 	ChatCommands:
 	DevCommands:
 	DebugVisualizationCommands:
+	PathFinderOverlay:
+	HierarchicalPathFinderOverlay:
 	PlayerCommands:
 	HelpCommand:
 	ScreenShaker:
 	BuildingInfluence:
 	ProductionQueueFromSelection:
 		ProductionTabsWidget: PRODUCTION_TABS
-	DomainIndex:
 	SmudgeLayer@SCORCH:
 		Type: Scorch
 		Sequence: scorches

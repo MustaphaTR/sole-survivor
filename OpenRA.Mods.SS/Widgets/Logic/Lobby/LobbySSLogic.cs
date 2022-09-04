@@ -20,7 +20,7 @@ using OpenRA.Widgets;
 
 namespace OpenRA.Mods.Common.Widgets.Logic
 {
-	public class LobbySSLogic : ChromeLogic
+	public class LobbySSLogic : ChromeLogic, INotificationHandler<TextNotification>
 	{
 		static readonly Action DoNothing = () => { };
 
@@ -47,7 +47,8 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		readonly ScrollPanelWidget lobbyChatPanel;
 		readonly Dictionary<TextNotificationPool, Widget> chatTemplates = new Dictionary<TextNotificationPool, Widget>();
 		readonly TextFieldWidget chatTextField;
-		readonly CachedTransform<int, string> chatDisabledLabel;
+		readonly CachedTransform<int, string> chatAvailableIn;
+		readonly string chatDisabled;
 
 		readonly ScrollPanelWidget players;
 
@@ -59,9 +60,8 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 		MapPreview map;
 		Session.MapStatus mapStatus;
-		string oldMapUid;
-		string newMapUid;
-		string lastUpdatedUid;
+
+		string lastUpdatedMap = null;
 
 		bool chatEnabled;
 		bool addBotOnMapLoad;
@@ -73,6 +73,42 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		readonly string chatLineSound = ChromeMetrics.Get<string>("ChatLineSound");
 
 		bool MapIsPlayable => (mapStatus & Session.MapStatus.Playable) == Session.MapStatus.Playable;
+
+		[TranslationReference]
+		static readonly string Add = "add";
+
+		[TranslationReference]
+		static readonly string Remove = "remove";
+
+		[TranslationReference]
+		static readonly string ConfigureBots = "configure-bots";
+
+		[TranslationReference("count")]
+		static readonly string NumberTeams = "n-teams";
+
+		[TranslationReference]
+		static readonly string HumanVsBots = "humans-vs-bots";
+
+		[TranslationReference]
+		static readonly string FreeForAll = "free-for-all";
+
+		[TranslationReference]
+		static readonly string ConfigureTeams = "configure-teams";
+
+		[TranslationReference]
+		static readonly string Back = "back";
+
+		[TranslationReference]
+		static readonly string Team = "team";
+
+		[TranslationReference]
+		static readonly string All = "all";
+
+		[TranslationReference("seconds")]
+		static readonly string ChatAvailability = "chat-availability";
+
+		[TranslationReference]
+		static readonly string ChatDisabled = "chat-disabled";
 
 		// Listen for connection failures
 		void ConnectionStateChanged(OrderManager om, string password, NetworkConnection connection)
@@ -124,14 +160,12 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 			services = modData.Manifest.Get<WebServices>();
 
-			orderManager.AddTextNotification += AddChatLine;
 			Game.LobbyInfoChanged += UpdateCurrentMap;
 			Game.LobbyInfoChanged += UpdatePlayerList;
 			Game.LobbyInfoChanged += UpdateDiscordStatus;
 			Game.LobbyInfoChanged += UpdateSpawnOccupants;
 			Game.BeforeGameStart += OnGameStart;
 			Game.ConnectionStateChanged += ConnectionStateChanged;
-			modData.MapCache.MapUpdated += TrackRelevantMapUpdates;
 
 			var name = lobby.GetOrNull<LabelWidget>("SERVER_NAME");
 			if (name != null)
@@ -186,15 +220,12 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					var onSelect = new Action<string>(uid =>
 					{
 						// Don't select the same map again, and handle map becoming unavailable
-						if (uid == map.Uid && modData.MapCache[uid].Status != MapStatus.Available)
+						if (uid == map.Uid || modData.MapCache[uid].Status != MapStatus.Available)
 							return;
 
 						orderManager.IssueOrder(Order.Command("map " + uid));
 						Game.Settings.Server.Map = uid;
 						Game.Settings.Save();
-						newMapUid = null;
-						oldMapUid = null;
-						lastUpdatedUid = null;
 					});
 
 					// Check for updated maps, if the user has edited a map we'll preselect it for them
@@ -202,7 +233,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 					Ui.OpenWindow("MAPCHOOSER_PANEL", new WidgetArgs()
 					{
-						{ "initialMap", lastUpdatedUid ?? map.Uid },
+						{ "initialMap", SelectRecentMap(map.Uid) },
 						{ "initialTab", MapClassification.System },
 						{ "onExit", Game.IsHost ? (Action)UpdateSelectedMap : modData.MapCache.UpdateMaps },
 						{ "onSelect", Game.IsHost ? onSelect : null },
@@ -217,7 +248,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				slotsButton.IsVisible = () => panel != PanelType.Servers;
 				slotsButton.IsDisabled = () => configurationDisabled() || panel != PanelType.Players ||
 					(orderManager.LobbyInfo.Slots.Values.All(s => !s.AllowBots) &&
-					orderManager.LobbyInfo.Slots.Count(s => !s.Value.LockTeam && orderManager.LobbyInfo.ClientInSlot(s.Key) != null) == 0);
+					!orderManager.LobbyInfo.Slots.Any(s => !s.Value.LockTeam && orderManager.LobbyInfo.ClientInSlot(s.Key) != null));
 
 				slotsButton.OnMouseDown = _ =>
 				{
@@ -231,7 +262,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						{
 							new DropDownOptionSS()
 							{
-								Title = "Add",
+								Title = modData.Translation.GetString(Add),
 								IsSelected = () => false,
 								OnClick = () =>
 								{
@@ -250,7 +281,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						{
 							botOptions.Add(new DropDownOptionSS()
 							{
-								Title = "Remove",
+								Title = modData.Translation.GetString(Remove),
 								IsSelected = () => false,
 								OnClick = () =>
 								{
@@ -264,7 +295,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 							});
 						}
 
-						options.Add("Configure Bots", botOptions);
+						options.Add(modData.Translation.GetString(ConfigureBots), botOptions);
 					}
 
 					var teamCount = (orderManager.LobbyInfo.Slots.Count(s => !s.Value.LockTeam && orderManager.LobbyInfo.ClientInSlot(s.Key) != null) + 1) / 2;
@@ -272,16 +303,16 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					{
 						var teamOptions = Enumerable.Range(2, teamCount - 1).Reverse().Select(d => new DropDownOptionSS
 						{
-							Title = $"{d} Teams",
+							Title = modData.Translation.GetString(NumberTeams, Translation.Arguments("count", d)),
 							IsSelected = () => false,
-							OnClick = () => orderManager.IssueOrder(Order.Command($"assignteams {d.ToString()}"))
+							OnClick = () => orderManager.IssueOrder(Order.Command($"assignteams {d}"))
 						}).ToList();
 
 						if (orderManager.LobbyInfo.Slots.Any(s => s.Value.AllowBots))
 						{
 							teamOptions.Add(new DropDownOptionSS
 							{
-								Title = "Humans vs Bots",
+								Title = modData.Translation.GetString(HumanVsBots),
 								IsSelected = () => false,
 								OnClick = () => orderManager.IssueOrder(Order.Command("assignteams 1"))
 							});
@@ -289,12 +320,12 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 						teamOptions.Add(new DropDownOptionSS
 						{
-							Title = "Free for all",
+							Title = modData.Translation.GetString(FreeForAll),
 							IsSelected = () => false,
 							OnClick = () => orderManager.IssueOrder(Order.Command("assignteams 0"))
 						});
 
-						options.Add("Configure Teams", teamOptions);
+						options.Add(modData.Translation.GetString(ConfigureTeams), teamOptions);
 					}
 
 					Func<DropDownOptionSS, ScrollItemWidget, ScrollItemWidget> setupItem = (option, template) =>
@@ -388,6 +419,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			{
 				startGameButton.IsDisabled = () => configurationDisabled() || map.Status != MapStatus.Available ||
 					orderManager.LobbyInfo.Slots.Any(sl => sl.Value.Required && orderManager.LobbyInfo.ClientInSlot(sl.Key) == null) ||
+					orderManager.LobbyInfo.Slots.All(sl => orderManager.LobbyInfo.ClientInSlot(sl.Key) == null) ||
 					(!orderManager.LobbyInfo.GlobalSettings.EnableSingleplayer && orderManager.LobbyInfo.NonBotPlayers.Count() < 2);
 
 				startGameButton.OnClick = () =>
@@ -410,7 +442,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			disconnectButton.OnClick = () => { Ui.CloseWindow(); onExit(); };
 
 			if (skirmishMode)
-				disconnectButton.Text = "Back";
+				disconnectButton.Text = modData.Translation.GetString(Back);
 
 			if (logicArgs.TryGetValue("ChatTemplates", out var templateIds))
 			{
@@ -422,7 +454,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			}
 
 			var chatMode = lobby.Get<ButtonWidget>("CHAT_MODE");
-			chatMode.GetText = () => teamChat ? "Team" : "All";
+			var team = modData.Translation.GetString(Team);
+			var all = modData.Translation.GetString(All);
+			chatMode.GetText = () => teamChat ? team : all;
 			chatMode.OnClick = () => teamChat ^= true;
 			chatMode.IsDisabled = () => disableTeamChat || !chatEnabled;
 
@@ -462,7 +496,8 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 			chatTextField.OnEscKey = _ => chatTextField.YieldKeyboardFocus();
 
-			chatDisabledLabel = new CachedTransform<int, string>(x => x > 0 ? $"Chat available in {x} seconds..." : "Chat Disabled");
+			chatAvailableIn = new CachedTransform<int, string>(x => modData.Translation.GetString(ChatAvailability, Translation.Arguments("seconds", x)));
+			chatDisabled = modData.Translation.GetString(ChatDisabled);
 
 			lobbyChatPanel = lobby.Get<ScrollPanelWidget>("CHAT_DISPLAY");
 			lobbyChatPanel.RemoveChildren();
@@ -491,14 +526,12 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			if (disposing && !disposed)
 			{
 				disposed = true;
-				orderManager.AddTextNotification -= AddChatLine;
 				Game.LobbyInfoChanged -= UpdateCurrentMap;
 				Game.LobbyInfoChanged -= UpdatePlayerList;
 				Game.LobbyInfoChanged -= UpdateDiscordStatus;
 				Game.LobbyInfoChanged -= UpdateSpawnOccupants;
 				Game.BeforeGameStart -= OnGameStart;
 				Game.ConnectionStateChanged -= ConnectionStateChanged;
-				modData.MapCache.MapUpdated -= TrackRelevantMapUpdates;
 			}
 
 			base.Dispose(disposing);
@@ -529,11 +562,11 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				if (TextNotificationsManager.ChatDisabledUntil != uint.MaxValue)
 					remaining = (int)(TextNotificationsManager.ChatDisabledUntil - Game.RunTime + 999) / 1000;
 
-				chatTextField.Text = chatDisabledLabel.Update(remaining);
+				chatTextField.Text = remaining == 0 ? chatDisabled : chatAvailableIn.Update(remaining);
 			}
 		}
 
-		void AddChatLine(TextNotification notification)
+		void INotificationHandler<TextNotification>.Handle(TextNotification notification)
 		{
 			var chatLine = chatTemplates[notification.Pool].Clone();
 			WidgetUtils.SetupTextNotification(chatLine, notification, lobbyChatPanel.Bounds.Width - lobbyChatPanel.ScrollbarWidth, true);
@@ -615,9 +648,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						template = emptySlotTemplate.Clone();
 
 					if (isHost)
-						LobbyUtils.SetupEditableSlotWidget(template, slot, client, orderManager, map);
+						LobbyUtils.SetupEditableSlotWidget(template, slot, client, orderManager, map, modData);
 					else
-						LobbyUtils.SetupSlotWidget(template, slot, client);
+						LobbyUtils.SetupSlotWidget(template, modData, slot, client);
 
 					var join = template.Get<ButtonWidget>("JOIN");
 					join.IsVisible = () => !slot.Closed;
@@ -634,7 +667,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					LobbyUtils.SetupLatencyWidget(template, client, orderManager);
 
 					if (client.Bot != null)
-						LobbyUtils.SetupEditableSlotWidget(template, slot, client, orderManager, map);
+						LobbyUtils.SetupEditableSlotWidget(template, slot, client, orderManager, map, modData);
 					else
 						LobbyUtils.SetupEditableNameWidget(template, client, orderManager, worldRenderer);
 
@@ -836,34 +869,29 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			onStart();
 		}
 
-		void TrackRelevantMapUpdates(string oldUid, string newUid)
-		{
-			// We need to handle map being updated multiple times without a refresh
-			if (map.Uid == oldUid || oldUid == newMapUid)
-			{
-				if (oldMapUid == null)
-					oldMapUid = oldUid;
-				newMapUid = newUid;
-			}
-
-			if (newUid != null)
-				lastUpdatedUid = newUid;
-		}
-
 		void UpdateSelectedMap()
 		{
 			if (modData.MapCache[map.Uid].Status == MapStatus.Available)
 				return;
 
-			if (oldMapUid == map.Uid && modData.MapCache[newMapUid].Status == MapStatus.Available)
+			var uid = modData.MapCache.GetUpdatedMap(map.Uid);
+			if (uid != null)
 			{
-				orderManager.IssueOrder(Order.Command("map " + newMapUid));
-				Game.Settings.Server.Map = newMapUid;
+				orderManager.IssueOrder(Order.Command("map " + uid));
+				Game.Settings.Server.Map = uid;
 				Game.Settings.Save();
-				newMapUid = null;
-				oldMapUid = null;
-				lastUpdatedUid = null;
 			}
+		}
+
+		string SelectRecentMap(string currentUid)
+		{
+			if (lastUpdatedMap != modData.MapCache.LastModifiedMap)
+			{
+				lastUpdatedMap = modData.MapCache.LastModifiedMap;
+				return lastUpdatedMap;
+			}
+
+			return currentUid;
 		}
 	}
 

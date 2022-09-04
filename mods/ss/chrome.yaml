@@ -97,19 +97,23 @@ scrollpanel-button-pressed:
 	Inherits: ^Chrome
 	PanelRegion: 64, 192, 2, 2, 60, 60, 2, 2
 
-# A copy of button-hover
-scrollitem-hover:
-	Inherits: ^Chrome
-	PanelRegion: 0, 128, 2, 2, 60, 60, 2, 2
+scrollitem:
 
-# A copy of button-pressed
-scrollitem-selected:
-	Inherits: ^Chrome
-	PanelRegion: 64, 192, 2, 2, 60, 60, 2, 2
+scrollitem-hover:
+	Inherits: button
+
+scrollitem-highlighted:
+	Inherits: button-pressed
 
 scrollitem-nohover:
 
-scrollitem-nohover-hover:
+scrollitem-nohover-highlighted:
+
+scrollheader:
+	Inherits: button
+
+scrollheader-highlighted:
+	Inherits: button
 
 slider:
 	Inherits: ^Chrome
@@ -137,31 +141,46 @@ slider-thumb-pressed:
 	Inherits: ^Chrome
 	PanelRegion: 64, 192, 2, 2, 60, 60, 2, 2
 	Regions:
-		
-# A copy of button
+
 checkbox:
-	Inherits: ^Chrome
-	PanelRegion: 0, 192, 2, 2, 60, 60, 2, 2
+	Inherits: button
 
-# A copy of button-hover
 checkbox-hover:
-	Inherits: ^Chrome
-	PanelRegion: 0, 128, 2, 2, 60, 60, 2, 2
+	Inherits: button-hover
 
-# A copy of button-disabled
 checkbox-disabled:
-	Inherits: ^Chrome
-	PanelRegion: 64, 128, 2, 2, 60, 60, 2, 2
+	Inherits: button-disabled
 
-# A copy of button-pressed
 checkbox-pressed:
-	Inherits: ^Chrome
-	PanelRegion: 64, 192, 2, 2, 60, 60, 2, 2
+	Inherits: button-pressed
 
-# A copy of button-highlighted-pressed
 checkbox-highlighted:
-	Inherits: ^Chrome
-	PanelRegion: 256, 160, 1, 1, 30, 30, 1, 1
+	Inherits: button-highlighted-pressed
+
+checkbox-highlighted-hover:
+	Inherits: button-highlighted-hover
+
+checkbox-highlighted-disabled:
+	Inherits: button-highlighted-disabled
+
+checkbox-highlighted-pressed:
+	Inherits: button-highlighted-pressed
+
+checkbox-toggle:
+
+checkbox-toggle-hover:
+	Inherits: checkbox
+
+checkbox-toggle-pressed:
+	Inherits: checkbox-pressed
+
+checkbox-toggle-highlighted:
+
+checkbox-toggle-highlighted-hover:
+	Inherits: checkbox-highlighted
+
+checkbox-toggle-highlighted-pressed:
+	Inherits: checkbox-highlighted-pressed
 
 panel-black:
 	Inherits: ^Chrome
@@ -235,13 +254,40 @@ reload-icon:
 		disabled-10: 432, 192, 16, 16
 		disabled-11: 448, 192, 16, 16
 
-checkbox-bits:
+checkmark-tick:
 	Inherits: ^Chrome
 	Regions:
 		checked: 272, 32, 16, 16
+		checked-pressed: 989, 17, 16, 16
 		checked-disabled: 272, 48, 16, 16
-		crossed: 288, 32, 16, 16
-		crossed-disabled: 288, 48, 16, 16
+		unchecked: 0, 0, 0, 0
+		unchecked-pressed: 989, 17, 16, 16
+
+checkmark-highlighted-tick:
+	Inherits: checkmark-tick
+
+checkmark-cross:
+	Inherits: ^Chrome
+	Regions:
+		checked: 972, 0, 16, 16
+		checked-pressed: 989, 0, 16, 16
+		checked-disabled: 989, 0, 16, 16
+		unchecked: 0, 0, 0, 0
+		unchecked-pressed: 989, 0, 16, 16
+
+checkmark-highlighted-cross:
+	Inherits: checkmark-cross
+
+checkmark-mute:
+	Inherits: ^Chrome
+	Regions:
+		unchecked: 478, 239, 16, 16
+		unchecked-pressed: 495, 239, 16, 16
+		checked: 495, 239, 16, 16
+		checked-pressed: 478, 239, 16, 16
+
+checkmark-highlighted-mute:
+	Inherits: checkmark-mute
 
 scrollpanel-decorations:
 	Inherits: ^Chrome

@@ -137,7 +137,7 @@ ChromeLayout:
 	cnc|chrome/settings-hotkeys.yaml
 	cnc|chrome/settings-advanced.yaml
 	cnc|chrome/credits.yaml
-	cnc|chrome/dialogs.yaml
+	ss|chrome/dialogs.yaml
 	ss|chrome/tooltips.yaml
 	cnc|chrome/assetbrowser.yaml
 	cnc|chrome/missionbrowser.yaml
@@ -164,6 +164,7 @@ Hotkeys:
 	common|hotkeys/supportpowers.yaml
 	common|hotkeys/viewport.yaml
 	common|hotkeys/chat.yaml
+	common|hotkeys/editor.yaml
 	common|hotkeys/control-groups.yaml
 	ss|hotkeys.yaml
 
@@ -220,6 +221,8 @@ Missions:
 MapGrid:
 	TileSize: 24,24
 	Type: Rectangular
+
+DefaultOrderGenerator: UnitOrderGenerator
 
 SupportsMapsFrom: cnc
 

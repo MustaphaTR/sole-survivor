@@ -1089,29 +1089,21 @@ BARRACKS:
 	Interactable:
 	Tooltip:
 		Name: Infantry Production
-	Buildable:
-		Description: Infantry Production
 
 VEHICLEPRODUCTION:
 	AlwaysVisible:
 	Interactable:
 	Tooltip:
 		Name: Vehicle Production
-	Buildable:
-		Description: Vehicle Production
 
 ANYPOWER:
 	AlwaysVisible:
 	Interactable:
 	Tooltip:
-		Name: Power Plant
-	Buildable:
-		Description: Power Plant
+		Name: Any Power Generation
 
 ANYHQ:
 	AlwaysVisible:
 	Interactable:
 	Tooltip:
-		Name: a communications center
-	Buildable:
-		Description: a communications center
+		Name: A Communications Center

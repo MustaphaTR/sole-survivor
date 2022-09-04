@@ -67,4 +67,5 @@ a10:
 u2:
 	idle:
 		Facings: 16
+		InterpolatedFacings: 64
 	icon: u2icon

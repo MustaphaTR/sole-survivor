@@ -134,7 +134,7 @@ Container@LOBBY_PLAYER_BIN:
 									Height: 16
 								Label@FACTIONNAME:
 									X: 40
-									Width: 60
+									Width: 137
 									Height: 25
 									Text: Faction
 						DropDownButton@TEAM_DROPDOWN:
@@ -158,7 +158,7 @@ Container@LOBBY_PLAYER_BIN:
 							Y: 4
 							Width: 20
 							Height: 20
-							ImageCollection: checkbox-bits
+							ImageCollection: checkmark-tick
 							ImageName: checked
 							Visible: false
 						Checkbox@STATUS_CHECKBOX:
@@ -245,7 +245,7 @@ Container@LOBBY_PLAYER_BIN:
 									Height: 15
 								Label@FACTIONNAME:
 									X: 40
-									Width: 60
+									Width: 137
 									Height: 25
 									Text: Faction
 						Label@TEAM:
@@ -286,7 +286,7 @@ Container@LOBBY_PLAYER_BIN:
 							Y: 4
 							Width: 20
 							Height: 20
-							ImageCollection: checkbox-bits
+							ImageCollection: checkmark-tick
 							ImageName: checked
 							Visible: false
 				Container@TEMPLATE_EMPTY:
@@ -369,7 +369,7 @@ Container@LOBBY_PLAYER_BIN:
 							Y: 4
 							Width: 20
 							Height: 20
-							ImageCollection: checkbox-bits
+							ImageCollection: checkmark-tick
 							ImageName: checked
 							Visible: false
 						Checkbox@STATUS_CHECKBOX:
@@ -451,7 +451,7 @@ Container@LOBBY_PLAYER_BIN:
 							Y: 4
 							Width: 20
 							Height: 20
-							ImageCollection: checkbox-bits
+							ImageCollection: checkmark-tick
 							ImageName: checked
 							Visible: false
 				Container@TEMPLATE_NEW_SPECTATOR:

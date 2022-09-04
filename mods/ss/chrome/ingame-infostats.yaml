@@ -31,7 +31,7 @@ Container@SKIRMISH_STATS:
 		Container@STATS_HEADERS:
 			X: 17
 			Y: 80
-			Width: 493
+			Width: PARENT_RIGHT - 34
 			Children:
 				Label@NAME:
 					X: 10
@@ -41,24 +41,30 @@ Container@SKIRMISH_STATS:
 					Text: Player
 					Font: Bold
 				Label@FACTION:
-					X: 280
+					X: 250
 					Y: 1
 					Width: 270
 					Height: 25
 					Text: Class
 					Font: Bold
 				Label@SCORE:
-					X: 560
+					X: 500
 					Y: 1
 					Width: 75
 					Height: 25
 					Text: Score
 					Font: Bold
 					Align: Right
+				Label@ACTIONS:
+					X: 600
+					Width: 20
+					Height: 25
+					Text: Actions
+					Font: Bold
 		ScrollPanel@PLAYER_LIST:
 			X: 15
 			Y: 105
-			Width: 682
+			Width: PARENT_RIGHT - 30
 			Height: 255
 			ItemSpacing: 5
 			Children:
@@ -75,7 +81,7 @@ Container@SKIRMISH_STATS:
 							Height: 20
 							Font: Bold
 						Label@TEAM_SCORE:
-							X: 560
+							X: 500
 							Y: 0
 							Width: 75
 							Height: 20
@@ -105,21 +111,30 @@ Container@SKIRMISH_STATS:
 							Height: 25
 							Shadow: True
 						Image@FACTIONFLAG:
-							X: 280
+							X: 250
 							Y: 4
 							Width: 32
 							Height: 16
-						Label@FACTION:
-							X: 314
-							Width: 136
+						LabelWithTooltip@FACTION:
+							X: 284
+							Width: 236
 							Height: 25
 							Shadow: True
+							TooltipContainer: TOOLTIP_CONTAINER
+							TooltipTemplate: SIMPLE_TOOLTIP
 						Label@SCORE:
-							X: 560
+							X: 500
 							Width: 75
 							Height: 25
 							Align: Right
 							Shadow: True
+						Checkbox@MUTE:
+							X: 600
+							Width: 25
+							Height: 25
+							Checkmark: mute
+							Background: checkbox-toggle
+							TooltipContainer: TOOLTIP_CONTAINER
 				Container@SPECTATOR_TEMPLATE:
 					Width: PARENT_RIGHT - 27
 					Height: 25
@@ -143,13 +158,23 @@ Container@SKIRMISH_STATS:
 							Width: 166
 							Height: 25
 							Shadow: True
-						Button@KICK:
-							X: 195
-							Width: 24
+						Checkbox@MUTE:
+							X: 600
+							Width: 25
 							Height: 25
+							Checkmark: mute
+							Background: checkbox-toggle
+							TooltipContainer: TOOLTIP_CONTAINER
+						Button@KICK:
+							X: 628
+							Width: 25
+							Height: 25
+							Background: checkbox-toggle
+							TooltipContainer: TOOLTIP_CONTAINER
+							TooltipText: Kick this player
 							Children:
 								Image:
 									ImageCollection: lobby-bits
 									ImageName: kick
-									X: 6
-									Y: 8
+									X: 7
+									Y: 7
