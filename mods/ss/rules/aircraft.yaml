@@ -233,15 +233,19 @@ C17:
 	Contrail@1:
 		Offset: -261,-650,0
 		TrailLength: 15
+		StartColorAlpha: 128
 	Contrail@2:
 		Offset: -85,-384,0
 		TrailLength: 16
+		StartColorAlpha: 128
 	Contrail@3:
 		Offset: -85,384,0
 		TrailLength: 16
+		StartColorAlpha: 128
 	Contrail@4:
 		Offset: -261,650,0
 		TrailLength: 15
+		StartColorAlpha: 128
 	Buildable:
 		Description: Drops vehicle reinforcements on Airstrips
 
@@ -274,9 +278,11 @@ A10:
 	Contrail@1:
 		Offset: -640,171,0
 		TrailLength: 15
+		StartColorAlpha: 128
 	Contrail@2:
 		Offset: -640,-171,0
 		TrailLength: 15
+		StartColorAlpha: 128
 	Buildable:
 		Description: Used to deliver air strikes.
 
@@ -297,8 +303,10 @@ U2:
 		FacingTolerance: 8
 	Contrail@1:
 		Offset: -725,683,0
+		StartColorAlpha: 128
 	Contrail@2:
 		Offset: -725,-683,0
+		StartColorAlpha: 128
 	RejectsOrders:
 	Interactable:
 

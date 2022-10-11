@@ -69,6 +69,7 @@ Container@SKIRMISH_STATS:
 			ItemSpacing: 5
 			Children:
 				ScrollItem@TEAM_TEMPLATE:
+					Background: scrollheader
 					Width: PARENT_RIGHT - 27
 					Height: 20
 					X: 2
