@@ -213,7 +213,7 @@ PYLE:
 		Queue: Building.GDI
 		Description: Trains infantry
 	Building:
-		Footprint: xx xx ==
+		Footprint: xx ++ ==
 		Dimensions: 2,3
 		LocalCenterOffset: 0,-512,0
 	Health:
@@ -222,6 +222,8 @@ PYLE:
 		Range: 5c0
 	WithBuildingBib:
 	RallyPoint:
+	CommandBarBlacklist:
+		DisableStop: false
 	Exit@1:
 		SpawnOffset: -426,85,0
 		ExitCell: 0,1
@@ -276,7 +278,8 @@ HAND:
 		Range: 5c0
 	WithBuildingBib:
 	RallyPoint:
-		Path: 1,2
+	CommandBarBlacklist:
+		DisableStop: false
 	Exit@1:
 		SpawnOffset: 512,1024,0
 		ExitCell: 1,2
@@ -335,7 +338,8 @@ AFLD:
 	WithIdleOverlay@DISH:
 		Sequence: idle-dish
 	RallyPoint:
-		Path: 4,2
+	CommandBarBlacklist:
+		DisableStop: false
 	Exit@1:
 		SpawnOffset: -1024,0,0
 		ExitCell: 3,1
@@ -394,7 +398,8 @@ WEAP:
 	WithProductionDoorOverlay:
 		Sequence: build-top
 	RallyPoint:
-		Path: 0,2
+	CommandBarBlacklist:
+		DisableStop: false
 	Exit@1:
 		SpawnOffset: -512,-512,0
 		ExitCell: 0,1
@@ -453,11 +458,13 @@ HPAD:
 	Reservable:
 	RepairsUnits:
 		HpPerStep: 1000
-		PlayerExperience: 25
+		PlayerExperience: 5
 		StartRepairingNotification: Repairing
 		StartRepairingTextNotification: Repairing.
 	WithResupplyAnimation:
 	RallyPoint:
+	CommandBarBlacklist:
+		DisableStop: false
 	ProductionQueue@GDI:
 		Type: Aircraft.GDI
 		Factions: gdi
@@ -586,10 +593,12 @@ FIX:
 	RepairsUnits:
 		HpPerStep: 1000
 		Interval: 15
-		PlayerExperience: 25
+		PlayerExperience: 5
 		StartRepairingNotification: Repairing
 		StartRepairingTextNotification: Repairing.
 	RallyPoint:
+	CommandBarBlacklist:
+		DisableStop: false
 	WithResupplyAnimation:
 	ProvidesPrerequisite@buildingname:
 

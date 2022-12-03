@@ -46,14 +46,13 @@
 
 ^GainsExperience:
 	GainsExperience:
-		ExperienceModifier: 1
 		LevelUpNotification: LevelUp
 		LevelUpTextNotification: Unit promoted.
 		Conditions:
-			40: rank-veteran
-			100: rank-veteran
-			180: rank-veteran
-			280: rank-veteran
+			250: rank-veteran
+			500: rank-veteran
+			700: rank-veteran
+		LevelUpImage: crate-effects
 	GrantConditionOnPrerequisite@VETERANCY:
 		Condition: veterancy
 		Prerequisites: global-veterancy
@@ -61,71 +60,36 @@
 		Modifier: 0
 		RequiresCondition: !veterancy
 	GrantCondition@RANK-ELITE:
-		RequiresCondition: rank-veteran >= 4
+		RequiresCondition: rank-veteran >= 3
 		Condition: rank-elite
-	DamageMultiplier@RANK-1:
-		RequiresCondition: rank-veteran == 1
-		Modifier: 95
-	DamageMultiplier@RANK-2:
-		RequiresCondition: rank-veteran == 2
-		Modifier: 90
-	DamageMultiplier@RANK-3:
-		RequiresCondition: rank-veteran == 3
-		Modifier: 85
-	DamageMultiplier@RANK-ELITE:
-		RequiresCondition: rank-elite
-		Modifier: 80
 	FirepowerMultiplier@RANK-1:
 		RequiresCondition: rank-veteran == 1
-		Modifier: 105
+		Modifier: 125
 	FirepowerMultiplier@RANK-2:
 		RequiresCondition: rank-veteran == 2
-		Modifier: 110
-	FirepowerMultiplier@RANK-3:
-		RequiresCondition: rank-veteran == 3
-		Modifier: 115
+		Modifier: 125
 	FirepowerMultiplier@RANK-ELITE:
 		RequiresCondition: rank-elite
-		Modifier: 120
-	SpeedMultiplier@RANK-1:
-		RequiresCondition: rank-veteran == 1
-		Modifier: 105
-	SpeedMultiplier@RANK-2:
+		Modifier: 150
+	DamageMultiplier@RANK-2:
 		RequiresCondition: rank-veteran == 2
-		Modifier: 110
-	SpeedMultiplier@RANK-3:
-		RequiresCondition: rank-veteran == 3
-		Modifier: 115
+		Modifier: 80
+	DamageMultiplier@RANK-ELITE:
+		RequiresCondition: rank-elite
+		Modifier: 65
 	SpeedMultiplier@RANK-ELITE:
 		RequiresCondition: rank-elite
-		Modifier: 120
-	ReloadDelayMultiplier@RANK-1:
-		RequiresCondition: rank-veteran == 1
-		Modifier: 95
-	ReloadDelayMultiplier@RANK-2:
-		RequiresCondition: rank-veteran == 2
-		Modifier: 90
-	ReloadDelayMultiplier@RANK-3:
-		RequiresCondition: rank-veteran == 3
-		Modifier: 85
-	ReloadDelayMultiplier@RANK-ELITE:
+		Modifier: 125
+	RangeMultiplier@RANK-ELITE:
 		RequiresCondition: rank-elite
-		Modifier: 80
-	InaccuracyMultiplier@RANK-1:
-		RequiresCondition: rank-veteran == 1
-		Modifier: 90
-	InaccuracyMultiplier@RANK-2:
-		RequiresCondition: rank-veteran == 2
-		Modifier: 80
-	InaccuracyMultiplier@RANK-3:
-		RequiresCondition: rank-veteran == 3
-		Modifier: 70
-	InaccuracyMultiplier@RANK-ELITE:
+		Modifier: 125
+	RevealsShroudMultiplier@RANK-ELITE:
 		RequiresCondition: rank-elite
-		Modifier: 60
+		Modifier: 125
 	ChangesHealth@ELITE:
-		Step: 200
-		Delay: 100
+		Step: 0
+		PercentageStep: 5
+		Delay: 75
 		StartIfBelow: 100
 		DamageCooldown: 125
 		RequiresCondition: rank-elite
@@ -135,6 +99,7 @@
 		Palette: effect
 		Position: BottomRight
 		Margin: 5, 6
+		ValidRelationships: Ally, Enemy, Neutral
 		RequiresCondition: rank-veteran == 1
 	WithDecoration@RANK-2:
 		Image: rank
@@ -142,20 +107,15 @@
 		Palette: effect
 		Position: BottomRight
 		Margin: 5, 6
+		ValidRelationships: Ally, Enemy, Neutral
 		RequiresCondition: rank-veteran == 2
-	WithDecoration@RANK-3:
-		Image: rank
-		Sequence: rank-veteran-3
-		Palette: effect
-		Position: BottomRight
-		Margin: 5, 6
-		RequiresCondition: rank-veteran == 3
 	WithDecoration@RANK-ELITE:
 		Image: rank
 		Sequence: rank-elite
 		Palette: effect
 		Position: BottomRight
 		Margin: 5, 6
+		ValidRelationships: Ally, Enemy, Neutral
 		RequiresCondition: rank-elite
 
 ^InfantryExperienceHospitalHazmatOverrides:
@@ -165,11 +125,6 @@
 			hospitalheal && hazmatsuits: On, Off, Off
 			hospitalheal || hazmatsuits: On, Off
 	WithDecoration@RANK-2:
-		BlinkInterval: 32
-		BlinkPatterns:
-			hospitalheal && hazmatsuits: On, Off, Off
-			hospitalheal || hazmatsuits: On, Off
-	WithDecoration@RANK-3:
 		BlinkInterval: 32
 		BlinkPatterns:
 			hospitalheal && hazmatsuits: On, Off, Off
@@ -912,7 +867,7 @@
 	RepairableBuilding:
 		RepairPercent: 40
 		RepairStep: 1400
-		PlayerExperience: 15
+		PlayerExperience: 5
 		RepairingNotification: Repairing
 	WithDeathAnimation:
 		DeathSequence: dead
@@ -979,7 +934,7 @@
 	RepairableBuilding:
 		RepairPercent: 40
 		RepairStep: 1400
-		PlayerExperience: 15
+		PlayerExperience: 5
 		RepairingNotification: Repairing
 	EngineerRepairable:
 	RevealsShroud:

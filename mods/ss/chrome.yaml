@@ -233,6 +233,7 @@ lobby-bits:
 	Regions:
 		spawn-claimed: 458, 55, 19, 19
 		spawn-unclaimed: 435, 55, 19, 19
+		spawn-disabled: 513, 492, 19, 19
 		admin: 340, 39, 7, 5
 		colorpicker: 257, 33, 14, 14
 		huepicker: 388, 96, 7, 15
@@ -437,21 +438,37 @@ command-icons:
 		queue-orders: 488, 128, 24, 24
 		queue-orders-disabled: 488, 152, 24, 24
 
+command-icons-highlighted:
+	Inherits: command-icons
+	Regions:
+		attack-move: 768, 296, 24, 24
+		force-move: 793, 296, 24, 24
+		force-attack: 818, 296, 24, 24
+		guard: 843, 296, 24, 24
+		deploy: 868, 296, 24, 24
+		scatter: 893, 296, 24, 24
+		stop: 918, 296, 24, 24
+		queue-orders: 943, 296, 24, 24
+
 stance-icons:
 	Inherits: ^Chrome
 	Regions:
 		attack-anything: 320, 176, 16, 16
 		attack-anything-disabled: 336, 176, 16, 16
-		attack-anything-active: 352, 176, 16, 16
 		defend: 368, 176, 16, 16
 		defend-disabled: 384, 176, 16, 16
-		defend-active: 400, 176, 16, 16
 		return-fire: 416, 176, 16, 16
 		return-fire-disabled: 432, 176, 16, 16
-		return-fire-active: 448, 176, 16, 16
 		hold-fire: 464, 176, 16, 16
 		hold-fire-disabled: 480, 176, 16, 16
-		hold-fire-active: 496, 176, 16, 16
+
+stance-icons-highlighted:
+	Inherits: stance-icons
+	Regions:
+		attack-anything: 352, 176, 16, 16
+		defend: 400, 176, 16, 16
+		return-fire: 448, 176, 16, 16
+		hold-fire: 496, 176, 16, 16
 
 dropdown-decorations:
 	Inherits: ^Chrome

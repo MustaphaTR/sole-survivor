@@ -217,7 +217,7 @@ RMBO:
 	Inherits@DECORATIONS: ^InfantryExperienceHospitalHazmatOverrides
 	Inherits@EXPERIENCE: ^GainsExperience
 	Valued:
-		Cost: 2000
+		Cost: 1500
 	Tooltip:
 		Name: Commando
 	Buildable:
