@@ -1,6 +1,6 @@
 Metadata:
 	Title: Sole Survivor
-	Version: {DEV_VERSION}
+	Version: release-20230410
 	Website: https://www.openra.net
 	WebIcon32: https://raw.githubusercontent.com/MustaphaTR/sole-survivor/master/mods/ss/icon.png
 	WindowTitle: OpenRA - Sole Survivor
@@ -38,7 +38,7 @@ Packages:
 
 MapFolders:
 	ss|maps: System
-	~^maps/cnc/{DEV_VERSION}: User
+	~^maps/cnc/release-20230410: User
 
 Rules:
 	ss|rules/misc.yaml
