@@ -704,6 +704,7 @@ TMPL:
 		LaunchTextNotification: Nuclear weapon launched.
 		IncomingTextNotification: Nuclear warhead approaching.
 		MissileWeapon: atomic
+		MissileImage: atomic
 		MissileDelay: 11
 		SpawnOffset: 3c0,0,-1c512
 		DisplayBeacon: True

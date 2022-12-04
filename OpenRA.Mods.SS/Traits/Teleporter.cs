@@ -41,6 +41,9 @@ namespace OpenRA.Mods.SS.Traits
 		[Desc("Notification to play when an actor is teleported.")]
 		public readonly string Notification = null;
 
+		[Desc("Text notification to display when an actor is teleported.")]
+		public readonly string TextNotification = null;
+
 		[Desc("The maxiumum distance unit can be teleported to.")]
 		public readonly int MaxDistance = 50;
 
@@ -125,6 +128,8 @@ namespace OpenRA.Mods.SS.Traits
 			if (!string.IsNullOrEmpty(info.Notification))
 				Game.Sound.PlayNotification(self.World.Map.Rules, crusher.Owner, "Speech",
 					info.Notification, crusher.Owner.Faction.InternalName);
+
+			TextNotificationsManager.AddTransientLine(info.TextNotification, crusher.Owner);
 
 			if (info.Image != null && info.Sequence != null)
 				crusher.World.AddFrameEndTask(w => w.Add(new SpriteEffect(crusher, w, info.Image, info.Sequence, info.Palette)));
