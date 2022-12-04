@@ -151,7 +151,7 @@ namespace OpenRA.Mods.SS.Traits
 			UpdateHash();
 			Sync.RunUnsynced(world, () => world.OrderGenerator.SelectionChanged(world, actors));
 			foreach (var ns in worldNotifySelection)
-				ns.SelectionChanged(); 
+				ns.SelectionChanged();
 		}
 
 		public void SetRollover(IEnumerable<Actor> rollover)
