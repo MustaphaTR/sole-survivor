@@ -406,8 +406,8 @@ World:
 	#	StandardMultiplierDropdownDisplayOrder: 9
 	SSCrateSpawner@wood:
 		DropdownID: woodencrateamount
-		DropdownLabel: Wooden Crate Amount
-		DropdownDescription: Amount of wooden crates to spawn
+		DropdownLabel: dropdown-wooden-crate-amount.label
+		DropdownDescription: dropdown-wooden-crate-amount.description
 		CrateActors: crate
 		SelectableAmount: 0, 25, 50, 84, 100, 150, 200, 250, 500, 750, 840, 1000
 		DefaultAmount: 84
@@ -417,8 +417,8 @@ World:
 		DropdownDisplayOrder: 0
 	SSCrateSpawner@steel:
 		DropdownID: steelcrateamount
-		DropdownLabel: Steel Crate Amount
-		DropdownDescription: Amount of steel crates to spawn
+		DropdownLabel: dropdown-steel-crate-amount.label
+		DropdownDescription: dropdown-steel-crate-amount.description
 		CrateActors: upgradecrate
 		SelectableAmount: 0, 2, 5, 10, 25, 50, 100, 150, 200, 250, 500
 		DefaultAmount: 5
@@ -428,8 +428,8 @@ World:
 		DropdownDisplayOrder: 1
 	SSCrateSpawner@health:
 		DropdownID: healthcrateamount
-		DropdownLabel: Health Crate Amount
-		DropdownDescription: Amount of health crates to spawn
+		DropdownLabel: dropdown-health-crate-amount.label
+		DropdownDescription: dropdown-health-crate-amount.description
 		CrateActors: healcrate
 		SelectableAmount: 0, 5, 9, 10, 25, 50, 90, 100, 150, 200, 250, 500
 		DefaultAmount: 9
@@ -439,8 +439,8 @@ World:
 		DropdownDisplayOrder: 2
 	SSCrateSpawner@score:
 		DropdownID: scorecrateamount
-		DropdownLabel: Score Crate Amount
-		DropdownDescription: Amount of score crates to spawn
+		DropdownLabel: dropdown-score-crate-amount.label
+		DropdownDescription: dropdown-score-crate-amount.description
 		CrateActors: experiencecrate
 		SelectableAmount: 0, 1, 2, 5, 10, 25, 50, 90, 100, 150, 200, 250, 500
 		DefaultAmount: 1
@@ -450,8 +450,8 @@ World:
 		DropdownDisplayOrder: 3
 	SSCrateSpawner@wacky:
 		DropdownID: wackycrateamount
-		DropdownLabel: Wacky Crate Amount
-		DropdownDescription: Amount of wacky crates to spawn
+		DropdownLabel: dropdown-wacky-crate-amount.label
+		DropdownDescription: dropdown-wacky-crate-amount.description
 		CrateActors: wackycrate
 		SelectableAmount: 0, 1, 2, 5, 10, 25, 50, 90, 100, 150, 200, 250, 500, 750, 1000
 		DefaultAmount: 1
@@ -461,8 +461,8 @@ World:
 		DropdownDisplayOrder: 4
 	SSCrateSpawner@armageddon:
 		DropdownID: armageddoncrateamount
-		DropdownLabel: Armageddon Crate Amount
-		DropdownDescription: Amount of armageddon crates to spawn
+		DropdownLabel: dropdown-armageddon-crate-amount.label
+		DropdownDescription: dropdown-armageddon-crate-amount.description
 		CrateActors: armageddoncrate
 		SelectableAmount: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 		DefaultAmount: 0
@@ -601,14 +601,14 @@ World:
 		DisplayOrder: 16
 	BaseSizeLobbyDropdown@base-obelisk:
 		ID: base-obelisk
-		Label: Base Obelisks
-		Description: Amount of Obelisks of Light to spawn around your spawnpoint
+		Label: dropdown-base-obelisk.label
+		Description: dropdown-base-obelisk.description
 		BaseBuildings: obli
 		DisplayOrder: 8
 	BaseSizeLobbyDropdown@base-agt:
 		ID: base-agt
-		Label: Base AGTs
-		Description: Amount of Advanced Guard Towers to spawn around your spawnpoint
+		Label: dropdown-base-agt.label
+		Description: dropdown-base-agt.description
 		BaseBuildings: atwr
 		DisplayOrder: 11
 	LuaScript:

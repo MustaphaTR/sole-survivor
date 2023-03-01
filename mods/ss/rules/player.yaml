@@ -44,50 +44,50 @@ Player:
 	PlayerExperience:
 	LobbyPrerequisiteCheckbox@GLOBALVETERANCY:
 		ID: veterancy
-		Label: Veterancy
-		Description: Units get veterancy by killing others
+		Label: checkbox-veterancy.label
+		Description: checkbox-veterancy.description
 		Enabled: False
 		DisplayOrder: 4
 		Prerequisites: global-veterancy
 	LobbyPrerequisiteCheckbox@GLOBALRADAR:
 		ID: radar
-		Label: Free Radar
-		Description: Players start with radar active
+		Label: checkbox-free-radar.label
+		Description: checkbox-free-radar.description
 		Enabled: False
 		DisplayOrder: 5
 		Prerequisites: global-radar
 	LobbyPrerequisiteCheckbox@TEAMBONUS:
 		ID: teambonus
-		Label: Team Bonus
-		Description: Crate power ups apply a smaller buff to all teammates
+		Label: checkbox-team-bonus.label
+		Description: checkbox-team-bonus.description
 		Enabled: True
 		DisplayOrder: 6
 		Prerequisites: global-teambonus
 	LobbyPrerequisiteCheckbox@MOREAA:
 		ID: moreaa
-		Label: More Anti-Air
-		Description: More units, compared to Tiberian Dawn, can attack air units
+		Label: checkbox-more-aa.label
+		Description: checkbox-more-aa.description
 		Enabled: True
 		DisplayOrder: 7
 		Prerequisites: global-moreaa
 	LobbyPrerequisiteCheckbox@RANDOMRESPAWN:
 		ID: randomrespawn
-		Label: Random Respawn
-		Description: Players respawn at a random spawn point instead of having a set one
+		Label: checkbox-random-respawn.label
+		Description: checkbox-random-respawn.description
 		Enabled: True
 		DisplayOrder: 9
 		Prerequisites: global-randomrespawn
 	LobbyPrerequisiteCheckbox@RESHROUDONDEATH:
 		ID: reshroudondeath
-		Label: Reshroud On Death
-		Description: Reshroud the map when your unit respawns
+		Label: checkbox-reshroud-on-death.label
+		Description: checkbox-reshroud-on-death.description
 		Enabled: True
 		DisplayOrder: 10
 		Prerequisites: global-reshroudondeath
 	LobbyPrerequisiteCheckbox@EMPTYDROP:
 		ID: emptydrop
-		Label: Empty Pole Drop
-		Description: Allow dropping enemy flag, even if we don't have our own flag at the pole
+		Label: checkbox-empty-pole-drop.label
+		Description: checkbox-empty-pole-drop.description
 		Enabled: False
 		DisplayOrder: 11
 		Prerequisites: global-emptydrop

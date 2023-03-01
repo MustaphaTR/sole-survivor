@@ -876,7 +876,8 @@
 		AreaTypes: building
 	SpawnActorsOnSell:
 		ActorTypes: e6,e1,e1,e1
-	EngineerRepairable:
+		GuaranteedActorTypes: e1
+	InstantlyRepairable:
 	Demolishable:
 		Condition: being-demolished
 	Sellable:
@@ -936,7 +937,7 @@
 		RepairStep: 1400
 		PlayerExperience: 5
 		RepairingNotification: Repairing
-	EngineerRepairable:
+	InstantlyRepairable:
 	RevealsShroud:
 		Range: 3c0
 	Tooltip:

@@ -1,6 +1,6 @@
 #region Copyright & License Information
 /*
- * Copyright 2007-2022 The OpenRA Developers (see AUTHORS)
+ * Copyright (c) The OpenRA Developers and Contributors
  * This file is part of OpenRA, which is free software. It is made
  * available to you under the terms of the GNU General Public License
  * as published by the Free Software Foundation, either version 3 of
@@ -26,10 +26,10 @@ namespace OpenRA.Mods.SS.Traits
 		public readonly string DropdownID = "crateamount";
 
 		[Desc("Descriptive label for the crates checkbox in the lobby.")]
-		public readonly string DropdownLabel = "Crate Amount";
+		public readonly string DropdownLabel = "dropdown-crate-amount.label";
 
 		[Desc("Tooltip description for the crates checkbox in the lobby.")]
-		public readonly string DropdownDescription = "Amount of crates to spawn";
+		public readonly string DropdownDescription = "dropdown-crate-amount.description";
 
 		[Desc("Default value of the crate amount dropbox in the lobby.")]
 		public readonly int DefaultAmount = 100;

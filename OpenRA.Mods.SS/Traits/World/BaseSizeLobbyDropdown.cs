@@ -1,6 +1,6 @@
 #region Copyright & License Information
 /*
- * Copyright 2007-2022 The OpenRA Developers (see AUTHORS)
+ * Copyright (c) The OpenRA Developers and Contributors
  * This file is part of OpenRA, which is free software. It is made
  * available to you under the terms of the GNU General Public License
  * as published by the Free Software Foundation, either version 3 of
@@ -24,10 +24,10 @@ namespace OpenRA.Mods.SS.Traits
 		public readonly string ID = "base-size";
 
 		[Desc("Descriptive label for this option.")]
-		public readonly string Label = "Base Size";
+		public readonly string Label = "dropdown-base-size.label";
 
 		[Desc("Tooltip description for this option.")]
-		public readonly string Description = "Amount of towers to spawn around your spawnpoint";
+		public readonly string Description = "dropdown-base-size.description";
 
 		[Desc("Default base size.")]
 		public readonly int Default = 0;

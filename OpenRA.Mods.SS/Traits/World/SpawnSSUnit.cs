@@ -1,6 +1,6 @@
 #region Copyright & License Information
 /*
- * Copyright 2007-2022 The OpenRA Developers (see AUTHORS)
+ * Copyright (c) The OpenRA Developers and Contributors
  * This file is part of OpenRA, which is free software. It is made
  * available to you under the terms of the GNU General Public License
  * as published by the Free Software Foundation, either version 3 of
@@ -25,10 +25,10 @@ namespace OpenRA.Mods.SS.Traits
 	public class SpawnSSUnitInfo : TraitInfo, NotBefore<LocomotorInfo>, ILobbyOptions
 	{
 		[Desc("Descriptive label for the team spawns checkbox in the lobby.")]
-		public readonly string TeamSpawnsCheckboxLabel = "Team Spawns";
+		public readonly string TeamSpawnsCheckboxLabel = "checkbox-team-spawns.label";
 
 		[Desc("Tooltip description for the team spawns checkbox in the lobby.")]
-		public readonly string TeamSpawnsCheckboxDescription = "Players with the same team spawn next to each other";
+		public readonly string TeamSpawnsCheckboxDescription = "checkbox-team-spawns.description";
 
 		[Desc("Default value of the team spawns checkbox in the lobby.")]
 		public readonly bool TeamSpawnsCheckboxEnabled = true;
@@ -52,10 +52,10 @@ namespace OpenRA.Mods.SS.Traits
 		public readonly WAngle? UnitFacing = null;
 
 		[Desc("Descriptive label for the quick class change checkbox in the lobby.")]
-		public readonly string QuickClassChangeCheckboxLabel = "Quick Class Change";
+		public readonly string QuickClassChangeCheckboxLabel = "checkbox-quick-class-change.label";
 
 		[Desc("Tooltip description for the quick class change checkbox in the lobby.")]
-		public readonly string QuickClassChangeCheckboxDescription = "When enabled changing class kills you, otherwise you have to wait till you are killed to actually change";
+		public readonly string QuickClassChangeCheckboxDescription = "checkbox-quick-class-change.description";
 
 		[Desc("Default value of the quick class change checkbox in the lobby.")]
 		public readonly bool QuickClassChangeCheckboxEnabled = false;

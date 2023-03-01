@@ -766,6 +766,7 @@ GUN:
 		RequiresCondition: !deployed
 	WithMuzzleOverlay:
 	-WithDeathAnimation:
+	-SpawnActorsOnSell:
 	SpawnActorOnDeath@HUSK:
 		Actor: GUN.husk
 
@@ -935,6 +936,7 @@ GTWR:
 		PauseOnCondition: build-incomplete
 		RequiresCondition: !deployed
 	-WithDeathAnimation:
+	-SpawnActorsOnSell:
 	BodyOrientation:
 		QuantizedFacings: 8
 	WithMuzzleOverlay:

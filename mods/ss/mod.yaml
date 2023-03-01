@@ -121,6 +121,7 @@ ChromeLayout:
 	common|chrome/ingame-transients.yaml
 	ss|chrome/ingame-menu.yaml
 	ss|chrome/ingame-debug.yaml
+	common|chrome/ingame-debug-hpf.yaml
 	ss|chrome/ingame-infochat.yaml
 	ss|chrome/ingame-info.yaml
 	ss|chrome/ingame-infobriefing.yaml
@@ -146,6 +147,8 @@ ChromeLayout:
 
 Translations:
 	common|languages/en.ftl
+	cnc|languages/rules/en.ftl
+	ss|languages/rules/en.ftl
 
 Voices:
 	ss|audio/voices.yaml
@@ -235,12 +238,6 @@ VideoFormats: Vqa, Wsa
 TerrainFormat: DefaultTerrain
 
 SpriteSequenceFormat: TilesetSpecificSpriteSequence
-	TilesetExtensions:
-		TEMPERAT: .tem
-		WINTER: .win
-		SNOW: .sno
-		DESERT: .des
-		JUNGLE: .jun
 
 ModelSequenceFormat: PlaceholderModelSequence
 
@@ -253,27 +250,27 @@ GameSpeeds:
 	DefaultSpeed: default
 	Speeds:
 		slowest:
-			Name: slowest
+			Name: options-game-speed.slowest
 			Timestep: 80
 			OrderLatency: 2
 		slower:
-			Name: slower
+			Name: options-game-speed.slower
 			Timestep: 50
 			OrderLatency: 3
 		default:
-			Name: normal
+			Name: options-game-speed.normal
 			Timestep: 40
 			OrderLatency: 3
 		fast:
-			Name: fast
+			Name: options-game-speed.fast
 			Timestep: 35
 			OrderLatency: 4
 		faster:
-			Name: faster
+			Name: options-game-speed.faster
 			Timestep: 30
 			OrderLatency: 4
 		fastest:
-			Name: fastest
+			Name: options-game-speed.fastest
 			Timestep: 20
 			OrderLatency: 6
 
@@ -304,14 +301,14 @@ ModContent:
 			TestFiles: ^SupportDir|Content/ss/scores-ss.mix
 			Sources: ss-music
 	Downloads:
-		ss|installer/downloads.yaml
+		cnc|installer/downloads.yaml
 	Sources:
-		ss|installer/covertops.yaml
-		ss|installer/firstdecade.yaml
-		ss|installer/gdi95.yaml
-		ss|installer/nod95.yaml
-		ss|installer/origin.yaml
-		ss|installer/steam.yaml
+		cnc|installer/covertops.yaml
+		cnc|installer/firstdecade.yaml
+		cnc|installer/gdi95.yaml
+		cnc|installer/nod95.yaml
+		cnc|installer/origin.yaml
+		cnc|installer/steam.yaml
 		ss|installer/ss-music.yaml
 
 DiscordService:

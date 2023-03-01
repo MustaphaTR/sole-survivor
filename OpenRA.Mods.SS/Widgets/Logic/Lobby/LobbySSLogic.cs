@@ -1,6 +1,6 @@
 #region Copyright & License Information
 /*
- * Copyright 2007-2022 The OpenRA Developers (see AUTHORS)
+ * Copyright (c) The OpenRA Developers and Contributors
  * This file is part of OpenRA, which is free software. It is made
  * available to you under the terms of the GNU General Public License
  * as published by the Free Software Foundation, either version 3 of
@@ -22,6 +22,42 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 {
 	public class LobbySSLogic : ChromeLogic, INotificationHandler<TextNotification>
 	{
+		[TranslationReference]
+		const string Add = "options-slot-admin.add-bots";
+
+		[TranslationReference]
+		const string Remove = "options-slot-admin.remove-bots";
+
+		[TranslationReference]
+		const string ConfigureBots = "options-slot-admin.configure-bots";
+
+		[TranslationReference("count")]
+		const string NumberTeams = "options-slot-admin.teams-count";
+
+		[TranslationReference]
+		const string HumanVsBots = "options-slot-admin.humans-vs-bots";
+
+		[TranslationReference]
+		const string FreeForAll = "options-slot-admin.free-for-all";
+
+		[TranslationReference]
+		const string ConfigureTeams = "options-slot-admin.configure-teams";
+
+		[TranslationReference]
+		const string Back = "button-back";
+
+		[TranslationReference]
+		const string TeamChat = "button-team-chat";
+
+		[TranslationReference]
+		const string GeneralChat = "button-general-chat";
+
+		[TranslationReference("seconds")]
+		const string ChatAvailability = "label-chat-availability";
+
+		[TranslationReference]
+		const string ChatDisabled = "label-chat-disabled";
+
 		static readonly Action DoNothing = () => { };
 
 		readonly ModData modData;
@@ -73,42 +109,6 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		readonly string chatLineSound = ChromeMetrics.Get<string>("ChatLineSound");
 
 		bool MapIsPlayable => (mapStatus & Session.MapStatus.Playable) == Session.MapStatus.Playable;
-
-		[TranslationReference]
-		static readonly string Add = "add";
-
-		[TranslationReference]
-		static readonly string Remove = "remove";
-
-		[TranslationReference]
-		static readonly string ConfigureBots = "configure-bots";
-
-		[TranslationReference("count")]
-		static readonly string NumberTeams = "n-teams";
-
-		[TranslationReference]
-		static readonly string HumanVsBots = "humans-vs-bots";
-
-		[TranslationReference]
-		static readonly string FreeForAll = "free-for-all";
-
-		[TranslationReference]
-		static readonly string ConfigureTeams = "configure-teams";
-
-		[TranslationReference]
-		static readonly string Back = "back";
-
-		[TranslationReference]
-		static readonly string Team = "team";
-
-		[TranslationReference]
-		static readonly string All = "all";
-
-		[TranslationReference("seconds")]
-		static readonly string ChatAvailability = "chat-availability";
-
-		[TranslationReference]
-		static readonly string ChatDisabled = "chat-disabled";
 
 		// Listen for connection failures
 		void ConnectionStateChanged(OrderManager om, string password, NetworkConnection connection)
@@ -454,8 +454,8 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			}
 
 			var chatMode = lobby.Get<ButtonWidget>("CHAT_MODE");
-			var team = modData.Translation.GetString(Team);
-			var all = modData.Translation.GetString(All);
+			var team = modData.Translation.GetString(TeamChat);
+			var all = modData.Translation.GetString(GeneralChat);
 			chatMode.GetText = () => teamChat ? team : all;
 			chatMode.OnClick = () => teamChat ^= true;
 			chatMode.IsDisabled = () => disableTeamChat || !chatEnabled;
