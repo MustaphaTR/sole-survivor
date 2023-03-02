@@ -588,6 +588,16 @@ World:
 			threehundred: 5 Minutes
 		Default: thirty
 		DisplayOrder: 15
+	ScriptLobbyDropdown@team-score-victory:
+		ID: team-score-victory
+		Label: Team Score Victory
+		Description: How to calculate the winner from score in team games
+		Values:
+			player: Player
+			team: Team
+			average: Average
+		Default: team
+		DisplayOrder: 16
 	ScriptLobbyDropdown@death-penalty:
 		ID: death-penalty
 		Label: Death Penalty
@@ -598,7 +608,7 @@ World:
 			ten: 10
 			twenty: 20
 		Default: disabled
-		DisplayOrder: 16
+		DisplayOrder: 18
 	BaseSizeLobbyDropdown@base-obelisk:
 		ID: base-obelisk
 		Label: dropdown-base-obelisk.label
