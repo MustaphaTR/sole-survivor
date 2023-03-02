@@ -268,10 +268,10 @@ checkmark-tick:
 	Inherits: ^Chrome
 	Regions:
 		checked: 272, 32, 16, 16
-		checked-pressed: 989, 17, 16, 16
+		checked-pressed: 272, 48, 16, 16
 		checked-disabled: 272, 48, 16, 16
 		unchecked: 0, 0, 0, 0
-		unchecked-pressed: 989, 17, 16, 16
+		unchecked-pressed: 272, 48, 16, 16
 
 checkmark-tick-highlighted:
 	Inherits: checkmark-tick
@@ -279,11 +279,11 @@ checkmark-tick-highlighted:
 checkmark-cross:
 	Inherits: ^Chrome
 	Regions:
-		checked: 972, 0, 16, 16
-		checked-pressed: 989, 0, 16, 16
-		checked-disabled: 989, 0, 16, 16
+		checked: 288, 32, 16, 16
+		checked-pressed: 288, 48, 16, 16
+		checked-disabled: 288, 48, 16, 16
 		unchecked: 0, 0, 0, 0
-		unchecked-pressed: 989, 0, 16, 16
+		unchecked-pressed: 288, 48, 16, 16
 
 checkmark-cross-highlighted:
 	Inherits: checkmark-cross
