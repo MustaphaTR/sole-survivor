@@ -3,5 +3,9 @@ ss-music: Sole Survivor Disc
 	IDFiles:
 		SCORES.MIX: 81539a98dfd78d79464f81d54d0bc508f7baec3a
 	Install:
-		Copy: .
-			^Content/ss/scores-ss.mix: SCORES.MIX
+		# Sole Surivivor music (optional):
+		ContentPackage:
+			Name: music-ss
+			Actions:
+				Copy: .
+					^Content/ss/scores-ss.mix: SCORES.MIX
