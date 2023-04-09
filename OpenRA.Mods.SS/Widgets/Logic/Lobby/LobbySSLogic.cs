@@ -81,30 +81,28 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		readonly Widget newSpectatorTemplate;
 
 		readonly ScrollPanelWidget lobbyChatPanel;
-		readonly Dictionary<TextNotificationPool, Widget> chatTemplates = new Dictionary<TextNotificationPool, Widget>();
+		readonly Dictionary<TextNotificationPool, Widget> chatTemplates = new();
 		readonly TextFieldWidget chatTextField;
 		readonly CachedTransform<int, string> chatAvailableIn;
 		readonly string chatDisabled;
 
 		readonly ScrollPanelWidget players;
 
-		readonly Dictionary<string, LobbyFaction> factions = new Dictionary<string, LobbyFaction>();
+		readonly Dictionary<string, LobbyFaction> factions = new();
 
-		readonly ColorPickerManagerInfo colorManager;
+		readonly IColorPickerManagerInfo colorManager;
 
-		readonly TabCompletionLogic tabCompletion = new TabCompletionLogic();
+		readonly TabCompletionLogic tabCompletion = new();
 
 		MapPreview map;
 		Session.MapStatus mapStatus;
-
-		string lastUpdatedMap = null;
 
 		bool chatEnabled;
 		bool addBotOnMapLoad;
 		bool disableTeamChat;
 		bool teamChat;
 		bool updateDiscordStatus = true;
-		Dictionary<int, SpawnOccupant> spawnOccupants = new Dictionary<int, SpawnOccupant>();
+		Dictionary<int, SpawnOccupant> spawnOccupants = new();
 
 		readonly string chatLineSound = ChromeMetrics.Get<string>("ChatLineSound");
 
@@ -118,7 +116,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				// Show connection failed dialog
 				Ui.CloseWindow();
 
-				Action onConnect = () =>
+				void OnConnect()
 				{
 					Game.OpenWindow("SERVER_LOBBY", new WidgetArgs()
 					{
@@ -126,9 +124,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						{ "onStart", onStart },
 						{ "skirmishMode", false }
 					});
-				};
+				}
 
-				Action<string> onRetry = pass => ConnectionLogic.Connect(connection.Target, pass, onConnect, onExit);
+				Action<string> onRetry = pass => ConnectionLogic.Connect(connection.Target, pass, OnConnect, onExit);
 
 				var switchPanel = CurrentServerSettings.ServerExternalMod != null ? "CONNECTION_SWITCHMOD_PANEL" : "CONNECTIONFAILED_PANEL";
 				Ui.OpenWindow(switchPanel, new WidgetArgs()
@@ -137,6 +135,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					{ "connection", connection },
 					{ "password", password },
 					{ "onAbort", onExit },
+					{ "onQuit", null },
 					{ "onRetry", onRetry }
 				});
 			}
@@ -198,8 +197,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			editableSpectatorTemplate = players.Get("TEMPLATE_EDITABLE_SPECTATOR");
 			nonEditableSpectatorTemplate = players.Get("TEMPLATE_NONEDITABLE_SPECTATOR");
 			newSpectatorTemplate = players.Get("TEMPLATE_NEW_SPECTATOR");
-			colorManager = modRules.Actors[SystemActors.World].TraitInfo<ColorPickerManagerInfo>();
-			colorManager.Color = Game.Settings.Player.Color;
+			colorManager = modRules.Actors[SystemActors.World].TraitInfo<IColorPickerManagerInfo>();
 
 			foreach (var f in modRules.Actors[SystemActors.World].TraitInfos<FactionInfo>())
 				factions.Add(f.InternalName, new LobbyFaction { Selectable = f.Selectable, Name = f.Name, Side = f.Side, Description = f.Description });
@@ -233,9 +231,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 					Ui.OpenWindow("MAPCHOOSER_PANEL", new WidgetArgs()
 					{
-						{ "initialMap", SelectRecentMap(map.Uid) },
+						{ "initialMap", modData.MapCache.PickLastModifiedMap(MapVisibility.Lobby) ?? map.Uid },
 						{ "initialTab", MapClassification.System },
-						{ "onExit", Game.IsHost ? (Action)UpdateSelectedMap : modData.MapCache.UpdateMaps },
+						{ "onExit", Game.IsHost ? UpdateSelectedMap : modData.MapCache.UpdateMaps },
 						{ "onSelect", Game.IsHost ? onSelect : null },
 						{ "filter", MapVisibility.Lobby },
 					});
@@ -270,7 +268,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 									{
 										var bot = botTypes.Random(Game.CosmeticRandom);
 										var c = orderManager.LobbyInfo.ClientInSlot(slot.Key);
-										if (slot.Value.AllowBots == true && (c == null || c.Bot != null))
+										if (slot.Value.AllowBots && (c == null || c.Bot != null))
 											orderManager.IssueOrder(Order.Command($"slot_bot {slot.Key} {botController.Index} {bot}"));
 									}
 								}
@@ -328,13 +326,14 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						options.Add(modData.Translation.GetString(ConfigureTeams), teamOptions);
 					}
 
-					Func<DropDownOptionSS, ScrollItemWidget, ScrollItemWidget> setupItem = (option, template) =>
+					ScrollItemWidget SetupItem(DropDownOptionSS option, ScrollItemWidget template)
 					{
 						var item = ScrollItemWidget.Setup(template, option.IsSelected, option.OnClick);
 						item.Get<LabelWidget>("LABEL").GetText = () => option.Title;
 						return item;
-					};
-					slotsButton.ShowDropDown("LABEL_DROPDOWN_TEMPLATE", 175, options, setupItem);
+					}
+
+					slotsButton.ShowDropDown("LABEL_DROPDOWN_TEMPLATE", 175, options, SetupItem);
 				};
 			}
 
@@ -402,7 +401,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			}
 
 			// Force start panel
-			Action startGame = () =>
+			void StartGame()
 			{
 				// Refresh MapCache and check if the selected map is available before attempting to start the game
 				if (modData.MapCache[map.Uid].Status == MapStatus.Available)
@@ -412,7 +411,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				}
 				else
 					UpdateSelectedMap();
-			};
+			}
 
 			var startGameButton = lobby.GetOrNull<ButtonWidget>("START_GAME_BUTTON");
 			if (startGameButton != null)
@@ -428,14 +427,14 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					if (orderManager.LobbyInfo.Clients.Any(c => c.Slot != null && !c.IsAdmin && c.Bot == null && !c.IsReady))
 						panel = PanelType.ForceStart;
 					else
-						startGame();
+						StartGame();
 				};
 			}
 
 			var forceStartBin = Ui.LoadWidget("FORCE_START_DIALOG", lobby.Get("TOP_PANELS_ROOT"), new WidgetArgs());
 			forceStartBin.IsVisible = () => panel == PanelType.ForceStart;
 			forceStartBin.Get("KICK_WARNING").IsVisible = () => orderManager.LobbyInfo.Clients.Any(c => c.IsInvalid);
-			forceStartBin.Get<ButtonWidget>("OK_BUTTON").OnClick = startGame;
+			forceStartBin.Get<ButtonWidget>("OK_BUTTON").OnClick = StartGame;
 			forceStartBin.Get<ButtonWidget>("CANCEL_BUTTON").OnClick = () => panel = PanelType.Players;
 
 			var disconnectButton = lobby.Get<ButtonWidget>("DISCONNECT_BUTTON");
@@ -548,7 +547,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				panel = PanelType.Players;
 
 			var chatWasEnabled = chatEnabled;
-			chatEnabled = Game.RunTime >= TextNotificationsManager.ChatDisabledUntil && TextNotificationsManager.ChatDisabledUntil != uint.MaxValue;
+			chatEnabled = worldRenderer.World.IsReplay || (Game.RunTime >= TextNotificationsManager.ChatDisabledUntil && TextNotificationsManager.ChatDisabledUntil != uint.MaxValue);
 
 			if (chatEnabled && !chatWasEnabled)
 			{
@@ -881,17 +880,6 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				Game.Settings.Server.Map = uid;
 				Game.Settings.Save();
 			}
-		}
-
-		string SelectRecentMap(string currentUid)
-		{
-			if (lastUpdatedMap != modData.MapCache.LastModifiedMap)
-			{
-				lastUpdatedMap = modData.MapCache.LastModifiedMap;
-				return lastUpdatedMap;
-			}
-
-			return currentUid;
 		}
 	}
 

@@ -49,6 +49,9 @@ namespace OpenRA.Mods.Common.Server
 		const string KickNone = "notification-kick-none";
 
 		[TranslationReference]
+		const string NoKickSelf = "notification-kick-self";
+
+		[TranslationReference]
 		const string NoKickGameStarted = "notification-no-kick-game-started";
 
 		[TranslationReference("admin", "player")]
@@ -255,6 +258,26 @@ namespace OpenRA.Mods.Common.Server
 				if (server.LobbyInfo.Slots.Any(sl => sl.Value.Required && server.LobbyInfo.ClientInSlot(sl.Key) == null))
 					return;
 
+				// Don't start without any players
+				if (server.LobbyInfo.Slots.All(sl => server.LobbyInfo.ClientInSlot(sl.Key) == null))
+					return;
+
+				// Does the host have the map installed?
+				if (server.Type != ServerType.Dedicated && server.ModData.MapCache[server.Map.Uid].Status != MapStatus.Available)
+				{
+					// Client 0 will always be the Host
+					// In some cases client 0 doesn't exist, so we untick all players
+					var host = server.LobbyInfo.Clients.FirstOrDefault(c => c.Index == 0);
+					if (host != null)
+						host.State = Session.ClientState.NotReady;
+					else
+						foreach (var client in server.LobbyInfo.Clients)
+							client.State = Session.ClientState.NotReady;
+
+					server.SyncLobbyClients();
+					return;
+				}
+
 				server.StartGame();
 			}
 		}
@@ -286,20 +309,25 @@ namespace OpenRA.Mods.Common.Server
 			{
 				if (!client.IsAdmin)
 				{
-					server.SendOrderTo(conn, "Message", OnlyHostStartGame);
+					server.SendLocalizedMessageTo(conn, OnlyHostStartGame);
 					return true;
 				}
 
-				if (server.LobbyInfo.Slots.Any(sl => sl.Value.Required &&
-													 server.LobbyInfo.ClientInSlot(sl.Key) == null))
+				if (server.LobbyInfo.Slots.Any(sl => sl.Value.Required && server.LobbyInfo.ClientInSlot(sl.Key) == null))
 				{
-					server.SendOrderTo(conn, "Message", NoStartUntilRequiredSlotsFull);
+					server.SendLocalizedMessageTo(conn, NoStartUntilRequiredSlotsFull);
+					return true;
+				}
+
+				if (server.LobbyInfo.Slots.All(sl => server.LobbyInfo.ClientInSlot(sl.Key) == null))
+				{
+					server.SendOrderTo(conn, "Message", NoStartWithoutPlayers);
 					return true;
 				}
 
 				if (!server.LobbyInfo.GlobalSettings.EnableSingleplayer && server.LobbyInfo.NonBotPlayers.Count() < 2)
 				{
-					server.SendOrderTo(conn, "Message", TwoHumansRequired);
+					server.SendLocalizedMessageTo(conn, TwoHumansRequired);
 					return true;
 				}
 
@@ -492,10 +520,11 @@ namespace OpenRA.Mods.Common.Server
 					};
 
 					// Pick a random color for the bot
-					var colorManager = server.ModData.DefaultRules.Actors[SystemActors.World].TraitInfo<ColorPickerManagerInfo>();
+					var colorManager = server.ModData.DefaultRules.Actors[SystemActors.World].TraitInfo<IColorPickerManagerInfo>();
 					var terrainColors = server.ModData.DefaultTerrainInfo[server.Map.TileSet].RestrictedPlayerColors;
 					var playerColors = server.LobbyInfo.Clients.Select(c => c.Color)
 						.Concat(server.Map.Players.Players.Values.Select(p => p.Color));
+
 					bot.Color = bot.PreferredColor = colorManager.RandomPresetColor(server.Random, terrainColors, playerColors);
 
 					server.LobbyInfo.Clients.Add(bot);
@@ -526,7 +555,7 @@ namespace OpenRA.Mods.Common.Server
 				}
 
 				var lastMap = server.LobbyInfo.GlobalSettings.Map;
-				Action<MapPreview> selectMap = map =>
+				void SelectMap(MapPreview map)
 				{
 					lock (server.LobbyInfo)
 					{
@@ -612,28 +641,28 @@ namespace OpenRA.Mods.Common.Server
 						if (briefing != null)
 							server.SendMessage(briefing);
 					}
-				};
+				}
 
-				Action queryFailed = () => server.SendLocalizedMessageTo(conn, UnknownMap);
+				void QueryFailed() => server.SendLocalizedMessageTo(conn, UnknownMap);
 
 				var m = server.ModData.MapCache[s];
 				if (m.Status == MapStatus.Available || m.Status == MapStatus.DownloadAvailable)
-					selectMap(m);
+					SelectMap(m);
 				else if (server.Settings.QueryMapRepository)
 				{
 					server.SendLocalizedMessageTo(conn, SearchingMap);
 					var mapRepository = server.ModData.Manifest.Get<WebServices>().MapRepository;
 					var reported = false;
-					server.ModData.MapCache.QueryRemoteMapDetails(mapRepository, new[] { s }, selectMap, _ =>
+					server.ModData.MapCache.QueryRemoteMapDetails(mapRepository, new[] { s }, SelectMap, _ =>
 					{
 						if (!reported)
-							queryFailed();
+							QueryFailed();
 
 						reported = true;
 					});
 				}
 				else
-					queryFailed();
+					QueryFailed();
 
 				return true;
 			}
@@ -750,9 +779,9 @@ namespace OpenRA.Mods.Common.Server
 					return true;
 				}
 
-				Exts.TryParseIntegerInvariant(split[0], out var kickClientID);
+				var kickConn = Exts.TryParseIntegerInvariant(split[0], out var kickClientID)
+					? server.Conns.SingleOrDefault(c => server.GetClient(c)?.Index == kickClientID) : null;
 
-				var kickConn = server.Conns.SingleOrDefault(c => server.GetClient(c)?.Index == kickClientID);
 				if (kickConn == null)
 				{
 					server.SendLocalizedMessageTo(conn, KickNone);
@@ -760,21 +789,27 @@ namespace OpenRA.Mods.Common.Server
 				}
 
 				var kickClient = server.GetClient(kickConn);
-				if (server.State == ServerState.GameStarted && !kickClient.IsObserver)
+				if (client == kickClient)
+				{
+					server.SendLocalizedMessageTo(conn, NoKickSelf);
+					return true;
+				}
+
+				if (!server.CanKickClient(kickClient))
 				{
 					server.SendLocalizedMessageTo(conn, NoKickGameStarted);
 					return true;
 				}
 
 				Log.Write("server", $"Kicking client {kickClientID}.");
-				server.SendLocalizedMessage(Kicked, Translation.Arguments("admin", client.Name, "client", kickClient.Name));
+				server.SendLocalizedMessage(Kicked, Translation.Arguments("admin", client.Name, "player", kickClient.Name));
 				server.SendOrderTo(kickConn, "ServerError", YouWereKicked);
 				server.DropClient(kickConn);
 
 				if (bool.TryParse(split[1], out var tempBan) && tempBan)
 				{
 					Log.Write("server", $"Temporarily banning client {kickClientID} ({kickClient.IPAddress}).");
-					server.SendLocalizedMessage(TempBan, Translation.Arguments("admin", client.Name, "client", kickClient.Name));
+					server.SendLocalizedMessage(TempBan, Translation.Arguments("admin", client.Name, "player", kickClient.Name));
 					server.TempBans.Add(kickClient.IPAddress);
 				}
 
@@ -795,8 +830,8 @@ namespace OpenRA.Mods.Common.Server
 					return true;
 				}
 
-				Exts.TryParseIntegerInvariant(s, out var newAdminId);
-				var newAdminConn = server.Conns.SingleOrDefault(c => server.GetClient(c)?.Index == newAdminId);
+				var newAdminConn = Exts.TryParseIntegerInvariant(s, out var newAdminId)
+					? server.Conns.SingleOrDefault(c => server.GetClient(c)?.Index == newAdminId) : null;
 
 				if (newAdminConn == null)
 				{
@@ -832,8 +867,9 @@ namespace OpenRA.Mods.Common.Server
 					return true;
 				}
 
-				Exts.TryParseIntegerInvariant(s, out var targetId);
-				var targetConn = server.Conns.SingleOrDefault(c => server.GetClient(c)?.Index == targetId);
+				var targetConn = Exts.TryParseIntegerInvariant(s, out var targetId)
+					? server.Conns.SingleOrDefault(c => server.GetClient(c)?.Index == targetId) : null;
+
 				if (targetConn == null)
 				{
 					server.SendLocalizedMessageTo(conn, EmptySlot);
@@ -1195,20 +1231,20 @@ namespace OpenRA.Mods.Common.Server
 		{
 			lock (server.LobbyInfo)
 			{
-				var colorManager = server.ModData.DefaultRules.Actors[SystemActors.World].TraitInfo<ColorPickerManagerInfo>();
+				var colorManager = server.ModData.DefaultRules.Actors[SystemActors.World].TraitInfo<IColorPickerManagerInfo>();
 				var askColor = askedColor;
 
-				Action<string> onError = message =>
+				void OnError(string message)
 				{
 					if (connectionToEcho != null && message != null)
 						server.SendLocalizedMessageTo(connectionToEcho, message);
-				};
+				}
 
 				var terrainColors = server.ModData.DefaultTerrainInfo[server.Map.TileSet].RestrictedPlayerColors;
 				var playerColors = server.LobbyInfo.Clients.Where(c => c.Index != playerIndex).Select(c => c.Color)
 					.Concat(server.Map.Players.Players.Values.Select(p => p.Color)).ToList();
 
-				return colorManager.MakeValid(askColor, server.Random, terrainColors, playerColors, onError);
+				return colorManager.MakeValid(askColor, server.Random, terrainColors, playerColors, OnError);
 			}
 		}
 

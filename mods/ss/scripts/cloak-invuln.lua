@@ -40,12 +40,14 @@ end
 CloakInvulnWorldLoaded = function()
 	players = Player.GetPlayers(function(p) return not p.IsNonCombatant end)
 
-	for _,player in pairs(players) do
-		if StartingCloakOption ~= "disabled" then
-			player.Unit.GrantCondition("starting-cloak", CloakDuration[StartingCloakOption])
+	Trigger.AfterDelay(0, function()
+		for _,player in pairs(players) do
+			if StartingCloakOption ~= "disabled" then
+				player.Unit.GrantCondition("starting-cloak", CloakDuration[StartingCloakOption])
+			end
+			if StartingInvulnOption ~= "disabled" then
+				player.Unit.GrantCondition("invulnerability", InvulnDuration[StartingInvulnOption])
+			end
 		end
-		if StartingInvulnOption ~= "disabled" then
-			player.Unit.GrantCondition("invulnerability", InvulnDuration[StartingInvulnOption])
-		end
-	end
+	end)
 end

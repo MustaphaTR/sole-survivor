@@ -98,18 +98,18 @@ namespace OpenRA.Mods.SS.Traits
 		readonly SpawnSSUnitInfo info;
 
 		WorldRenderer wr;
-		HashSet<(string[] Actors, int Amount, int Inner, int Outer)> bases = new HashSet<(string[] actors, int amount, int inner, int outer)>();
+		HashSet<(string[] Actors, int Amount, int Inner, int Outer)> bases = new();
 
 		public bool TeamSpawns;
 		public bool QuickClassChange;
 		public bool ClassChanging = true;
 		public bool ClassChangingPaused = false;
-		public Dictionary<Player, CPos> PlayerSpawnPoints = new Dictionary<Player, CPos>();
-		public Dictionary<Player, Player> TeamLeaders = new Dictionary<Player, Player>();
-		public Dictionary<Player, int> Teams = new Dictionary<Player, int>();
-		public Dictionary<Player, string> Classes = new Dictionary<Player, string>();
-		public Dictionary<Player, Actor> Units = new Dictionary<Player, Actor>();
-		Dictionary<CPos, bool> spawnPointOccupation = new Dictionary<CPos, bool>();
+		public Dictionary<Player, CPos> PlayerSpawnPoints = new();
+		public Dictionary<Player, Player> TeamLeaders = new();
+		public Dictionary<Player, int> Teams = new();
+		public Dictionary<Player, string> Classes = new();
+		public Dictionary<Player, Actor> Units = new();
+		Dictionary<CPos, bool> spawnPointOccupation = new();
 
 		public SpawnSSUnit(SpawnSSUnitInfo info)
 		{

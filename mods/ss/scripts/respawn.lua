@@ -235,15 +235,17 @@ RespawnWorldLoaded = function()
 	ReshroudOnDeath = neutral.HasPrerequisites({ "global-reshroudondeath" })
 
 	SetupObjectives()
-	for _,player in pairs(players) do
-		if RespawnOption ~= "disabled" then
-			Respawn(player)
+	Trigger.AfterDelay(0, function()
+		for _,player in pairs(players) do
+			if RespawnOption ~= "disabled" then
+				Respawn(player)
 
-			SpawnPoints[player.InternalName] = player.SpawnCellPosition
-		else
-			Trigger.OnKilled(player.Unit, function()
-				player.MarkFailedObjective(0)
-			end)
+				SpawnPoints[player.InternalName] = player.SpawnCellPosition
+			else
+				Trigger.OnKilled(player.Unit, function()
+					player.MarkFailedObjective(0)
+				end)
+			end
 		end
-	end
+	end)
 end
