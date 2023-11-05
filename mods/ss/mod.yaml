@@ -11,8 +11,8 @@ Packages:
 	~^SupportDir|Content/cnc
 	~^SupportDir|Content/ss
 	^EngineDir
-	$cnc: cnc
 	$ss: ss
+	^EngineDir|mods/cnc: cnc
 	^EngineDir|mods/common: common
 	~speech.mix
 	~conquer.mix
