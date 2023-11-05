@@ -13,7 +13,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using OpenRA.Mods.Common.Traits;
-using OpenRA.Mods.Common.Widgets.Logic;
 using OpenRA.Network;
 using OpenRA.Primitives;
 using OpenRA.Server;
@@ -22,7 +21,7 @@ using S = OpenRA.Server.Server;
 
 namespace OpenRA.Mods.Common.Server
 {
-	public class LobbyCommandsSS : ServerTrait, IInterpretCommand, INotifyServerStart, INotifyServerEmpty, IClientJoined
+	public class LobbyCommandsSS : ServerTrait, IInterpretCommand, INotifyServerStart, INotifyServerEmpty, IClientJoined, OpenRA.Server.ITick
 	{
 		[TranslationReference]
 		const string CustomRules = "notification-custom-rules";
@@ -39,9 +38,6 @@ namespace OpenRA.Mods.Common.Server
 		[TranslationReference]
 		const string TwoHumansRequired = "notification-two-humans-required";
 
-		[TranslationReference]
-		const string InsufficientEnabledSpawnPoints = "notification-insufficient-enabled-spawn-points";
-
 		[TranslationReference("command")]
 		const string MalformedCommand = "notification-malformed-command";
 
@@ -55,6 +51,9 @@ namespace OpenRA.Mods.Common.Server
 		const string NoKickGameStarted = "notification-no-kick-game-started";
 
 		[TranslationReference("admin", "player")]
+		const string AdminKicked = "notification-admin-kicked";
+
+		[TranslationReference("player")]
 		const string Kicked = "notification-kicked";
 
 		[TranslationReference("admin", "player")]
@@ -156,6 +155,9 @@ namespace OpenRA.Mods.Common.Server
 		[TranslationReference]
 		const string YouWereKicked = "notification-you-were-kicked";
 
+		[TranslationReference]
+		const string VoteKickDisabled = "notification-vote-kick-disabled";
+
 		readonly IDictionary<string, Func<S, Connection, Session.Client, string, bool>> commandHandlers = new Dictionary<string, Func<S, Connection, Session.Client, string, bool>>
 		{
 			{ "state", State },
@@ -170,6 +172,7 @@ namespace OpenRA.Mods.Common.Server
 			{ "option", Option },
 			{ "assignteams", AssignTeams },
 			{ "kick", Kick },
+			{ "vote_kick", VoteKick },
 			{ "make_admin", MakeAdmin },
 			{ "make_spectator", MakeSpectator },
 			{ "name", Name },
@@ -207,7 +210,7 @@ namespace OpenRA.Mods.Common.Server
 			lock (server.LobbyInfo)
 			{
 				// Kick command is always valid for the host
-				if (command.StartsWith("kick "))
+				if (command.StartsWith("kick ", StringComparison.Ordinal) || command.StartsWith("vote_kick ", StringComparison.Ordinal))
 					return true;
 
 				if (server.State == ServerState.GameStarted)
@@ -215,7 +218,7 @@ namespace OpenRA.Mods.Common.Server
 					server.SendLocalizedMessageTo(conn, StateUnchangedGameStarted, Translation.Arguments("command", command));
 					return false;
 				}
-				else if (client.State == Session.ClientState.Ready && !(command.StartsWith("state") || command == "startgame"))
+				else if (client.State == Session.ClientState.Ready && !(command.StartsWith("state", StringComparison.Ordinal) || command == "startgame"))
 				{
 					server.SendLocalizedMessageTo(conn, StateUnchangedReady);
 					return false;
@@ -478,7 +481,7 @@ namespace OpenRA.Mods.Common.Server
 
 				var slot = server.LobbyInfo.Slots[parts[0]];
 				var bot = server.LobbyInfo.ClientInSlot(parts[0]);
-				if (!Exts.TryParseIntegerInvariant(parts[1], out var controllerClientIndex))
+				if (!Exts.TryParseInt32Invariant(parts[1], out var controllerClientIndex))
 				{
 					Log.Write("server", $"Invalid bot controller client index: {parts[1]}");
 					return false;
@@ -521,9 +524,9 @@ namespace OpenRA.Mods.Common.Server
 
 					// Pick a random color for the bot
 					var colorManager = server.ModData.DefaultRules.Actors[SystemActors.World].TraitInfo<IColorPickerManagerInfo>();
-					var terrainColors = server.ModData.DefaultTerrainInfo[server.Map.TileSet].RestrictedPlayerColors;
+					var terrainColors = server.ModData.DefaultTerrainInfo[server.Map.TileSet].RestrictedPlayerColors.ToList();
 					var playerColors = server.LobbyInfo.Clients.Select(c => c.Color)
-						.Concat(server.Map.Players.Players.Values.Select(p => p.Color));
+						.Concat(server.Map.Players.Players.Values.Select(p => p.Color)).ToList();
 
 					bot.Color = bot.PreferredColor = colorManager.RandomPresetColor(server.Random, terrainColors, playerColors);
 
@@ -729,7 +732,7 @@ namespace OpenRA.Mods.Common.Server
 					return true;
 				}
 
-				if (!Exts.TryParseIntegerInvariant(raw, out var teamCount))
+				if (!Exts.TryParseInt32Invariant(raw, out var teamCount))
 				{
 					server.SendLocalizedMessageTo(conn, NumberTeams, Translation.Arguments("raw", raw));
 					return true;
@@ -739,10 +742,11 @@ namespace OpenRA.Mods.Common.Server
 				teamCount = teamCount.Clamp(0, maxTeams);
 				var clients = server.LobbyInfo.Slots
 					.Select(slot => server.LobbyInfo.ClientInSlot(slot.Key))
-					.Where(c => c != null && !server.LobbyInfo.Slots[c.Slot].LockTeam);
+					.Where(c => c != null && !server.LobbyInfo.Slots[c.Slot].LockTeam)
+					.ToList();
 
 				var assigned = 0;
-				var clientCount = clients.Count();
+				var clientCount = clients.Count;
 				foreach (var player in clients)
 				{
 					// Free for all
@@ -779,7 +783,7 @@ namespace OpenRA.Mods.Common.Server
 					return true;
 				}
 
-				var kickConn = Exts.TryParseIntegerInvariant(split[0], out var kickClientID)
+				var kickConn = Exts.TryParseInt32Invariant(split[0], out var kickClientID)
 					? server.Conns.SingleOrDefault(c => server.GetClient(c)?.Index == kickClientID) : null;
 
 				if (kickConn == null)
@@ -795,14 +799,14 @@ namespace OpenRA.Mods.Common.Server
 					return true;
 				}
 
-				if (!server.CanKickClient(kickClient))
+				if (server.State == ServerState.GameStarted && !kickClient.IsObserver && !server.HasClientWonOrLost(kickClient))
 				{
 					server.SendLocalizedMessageTo(conn, NoKickGameStarted);
 					return true;
 				}
 
 				Log.Write("server", $"Kicking client {kickClientID}.");
-				server.SendLocalizedMessage(Kicked, Translation.Arguments("admin", client.Name, "player", kickClient.Name));
+				server.SendLocalizedMessage(AdminKicked, Translation.Arguments("admin", client.Name, "player", kickClient.Name));
 				server.SendOrderTo(kickConn, "ServerError", YouWereKicked);
 				server.DropClient(kickConn);
 
@@ -820,6 +824,62 @@ namespace OpenRA.Mods.Common.Server
 			}
 		}
 
+		static bool VoteKick(S server, Connection conn, Session.Client client, string s)
+		{
+			lock (server.LobbyInfo)
+			{
+				var split = s.Split(' ');
+				if (split.Length != 2)
+				{
+					server.SendLocalizedMessageTo(conn, MalformedCommand, Translation.Arguments("command", "vote_kick"));
+					return true;
+				}
+
+				if (!server.Settings.EnableVoteKick)
+				{
+					server.SendLocalizedMessageTo(conn, VoteKickDisabled);
+					return true;
+				}
+
+				var kickConn = Exts.TryParseInt32Invariant(split[0], out var kickClientID)
+					? server.Conns.SingleOrDefault(c => server.GetClient(c)?.Index == kickClientID) : null;
+
+				if (kickConn == null)
+				{
+					server.SendLocalizedMessageTo(conn, KickNone);
+					return true;
+				}
+
+				var kickClient = server.GetClient(kickConn);
+				if (client == kickClient)
+				{
+					server.SendLocalizedMessageTo(conn, NoKickSelf);
+					return true;
+				}
+
+				if (!bool.TryParse(split[1], out var vote))
+				{
+					server.SendLocalizedMessageTo(conn, MalformedCommand, Translation.Arguments("command", "vote_kick"));
+					return true;
+				}
+
+				if (server.VoteKickTracker.VoteKick(conn, client, kickConn, kickClient, kickClientID, vote))
+				{
+					Log.Write("server", $"Kicking client {kickClientID}.");
+					server.SendLocalizedMessage(Kicked, Translation.Arguments("player", kickClient.Name));
+					server.SendOrderTo(kickConn, "ServerError", YouWereKicked);
+					server.DropClient(kickConn);
+
+					server.SyncLobbyClients();
+					server.SyncLobbySlots();
+				}
+
+				return true;
+			}
+		}
+
+		void OpenRA.Server.ITick.Tick(S server) => server.VoteKickTracker.Tick();
+
 		static bool MakeAdmin(S server, Connection conn, Session.Client client, string s)
 		{
 			lock (server.LobbyInfo)
@@ -830,7 +890,7 @@ namespace OpenRA.Mods.Common.Server
 					return true;
 				}
 
-				var newAdminConn = Exts.TryParseIntegerInvariant(s, out var newAdminId)
+				var newAdminConn = Exts.TryParseInt32Invariant(s, out var newAdminId)
 					? server.Conns.SingleOrDefault(c => server.GetClient(c)?.Index == newAdminId) : null;
 
 				if (newAdminConn == null)
@@ -867,7 +927,7 @@ namespace OpenRA.Mods.Common.Server
 					return true;
 				}
 
-				var targetConn = Exts.TryParseIntegerInvariant(s, out var targetId)
+				var targetConn = Exts.TryParseInt32Invariant(s, out var targetId)
 					? server.Conns.SingleOrDefault(c => server.GetClient(c)?.Index == targetId) : null;
 
 				if (targetConn == null)
@@ -914,7 +974,7 @@ namespace OpenRA.Mods.Common.Server
 			lock (server.LobbyInfo)
 			{
 				var parts = s.Split(' ');
-				var targetClient = server.LobbyInfo.ClientWithIndex(Exts.ParseIntegerInvariant(parts[0]));
+				var targetClient = server.LobbyInfo.ClientWithIndex(Exts.ParseInt32Invariant(parts[0]));
 
 				// Only the host can change other client's info
 				if (targetClient.Index != client.Index && !client.IsAdmin)
@@ -925,7 +985,8 @@ namespace OpenRA.Mods.Common.Server
 					return true;
 
 				var factions = server.Map.WorldActorInfo.TraitInfos<FactionInfo>()
-					.Where(f => f.Selectable).Select(f => f.InternalName);
+					.Where(f => f.Selectable).Select(f => f.InternalName)
+					.ToList();
 
 				var faction = parts[1];
 				if (!factions.Contains(faction))
@@ -947,7 +1008,7 @@ namespace OpenRA.Mods.Common.Server
 			lock (server.LobbyInfo)
 			{
 				var parts = s.Split(' ');
-				var targetClient = server.LobbyInfo.ClientWithIndex(Exts.ParseIntegerInvariant(parts[0]));
+				var targetClient = server.LobbyInfo.ClientWithIndex(Exts.ParseInt32Invariant(parts[0]));
 
 				// Only the host can change other client's info
 				if (targetClient.Index != client.Index && !client.IsAdmin)
@@ -957,9 +1018,9 @@ namespace OpenRA.Mods.Common.Server
 				if (server.LobbyInfo.Slots[targetClient.Slot].LockTeam)
 					return true;
 
-				if (!Exts.TryParseIntegerInvariant(parts[1], out var team))
+				if (!Exts.TryParseInt32Invariant(parts[1], out var team))
 				{
-					Log.Write("server", "Invalid team: {0}", s);
+					Log.Write("server", $"Invalid team: {s}");
 					return false;
 				}
 
@@ -975,7 +1036,7 @@ namespace OpenRA.Mods.Common.Server
 			lock (server.LobbyInfo)
 			{
 				var parts = s.Split(' ');
-				var targetClient = server.LobbyInfo.ClientWithIndex(Exts.ParseIntegerInvariant(parts[0]));
+				var targetClient = server.LobbyInfo.ClientWithIndex(Exts.ParseInt32Invariant(parts[0]));
 
 				// Only the host can change other client's info
 				if (targetClient.Index != client.Index && !client.IsAdmin)
@@ -985,9 +1046,9 @@ namespace OpenRA.Mods.Common.Server
 				if (server.LobbyInfo.Slots[targetClient.Slot].LockHandicap)
 					return true;
 
-				if (!Exts.TryParseIntegerInvariant(parts[1], out var handicap))
+				if (!Exts.TryParseInt32Invariant(parts[1], out var handicap))
 				{
-					Log.Write("server", "Invalid handicap: {0}", s);
+					Log.Write("server", $"Invalid handicap: {s}");
 					return false;
 				}
 
@@ -995,7 +1056,7 @@ namespace OpenRA.Mods.Common.Server
 				var options = Enumerable.Range(0, 20).Select(i => 5 * i);
 				if (!options.Contains(handicap))
 				{
-					Log.Write("server", "Invalid handicap: {0}", s);
+					Log.Write("server", $"Invalid handicap: {s}");
 					return false;
 				}
 
@@ -1008,7 +1069,7 @@ namespace OpenRA.Mods.Common.Server
 
 		static bool ClearPlayerSpawn(S server, Connection conn, Session.Client client, string s)
 		{
-			var spawnPoint = Exts.ParseIntegerInvariant(s);
+			var spawnPoint = Exts.ParseInt32Invariant(s);
 			if (spawnPoint == 0)
 				return true;
 
@@ -1050,7 +1111,7 @@ namespace OpenRA.Mods.Common.Server
 			lock (server.LobbyInfo)
 			{
 				var parts = s.Split(' ');
-				var targetClient = server.LobbyInfo.ClientWithIndex(Exts.ParseIntegerInvariant(parts[0]));
+				var targetClient = server.LobbyInfo.ClientWithIndex(Exts.ParseInt32Invariant(parts[0]));
 
 				// Only the host can change other client's info
 				if (targetClient.Index != client.Index && !client.IsAdmin)
@@ -1064,8 +1125,8 @@ namespace OpenRA.Mods.Common.Server
 				if (server.LobbyInfo.Slots[targetClient.Slot].LockSpawn)
 					return true;
 
-				if (!Exts.TryParseIntegerInvariant(parts[1], out var spawnPoint)
-					|| spawnPoint < 0 || spawnPoint > server.Map.SpawnPoints.Length)
+				if (!Exts.TryParseInt32Invariant(parts[1], out var spawnPoint)
+				    || spawnPoint < 0 || spawnPoint > server.Map.SpawnPoints.Length)
 				{
 					Log.Write("server", $"Invalid spawn point: {parts[1]}");
 					return true;
@@ -1105,7 +1166,7 @@ namespace OpenRA.Mods.Common.Server
 			lock (server.LobbyInfo)
 			{
 				var parts = s.Split(' ');
-				var targetClient = server.LobbyInfo.ClientWithIndex(Exts.ParseIntegerInvariant(parts[0]));
+				var targetClient = server.LobbyInfo.ClientWithIndex(Exts.ParseInt32Invariant(parts[0]));
 
 				// Only the host can change other client's info
 				if (targetClient.Index != client.Index && !client.IsAdmin)
@@ -1240,7 +1301,7 @@ namespace OpenRA.Mods.Common.Server
 						server.SendLocalizedMessageTo(connectionToEcho, message);
 				}
 
-				var terrainColors = server.ModData.DefaultTerrainInfo[server.Map.TileSet].RestrictedPlayerColors;
+				var terrainColors = server.ModData.DefaultTerrainInfo[server.Map.TileSet].RestrictedPlayerColors.ToList();
 				var playerColors = server.LobbyInfo.Clients.Where(c => c.Index != playerIndex).Select(c => c.Color)
 					.Concat(server.Map.Players.Players.Values.Select(p => p.Color)).ToList();
 

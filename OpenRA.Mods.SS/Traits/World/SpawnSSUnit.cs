@@ -72,6 +72,7 @@ namespace OpenRA.Mods.SS.Traits
 		IEnumerable<LobbyOption> ILobbyOptions.LobbyOptions(MapPreview map)
 		{
 			yield return new LobbyBooleanOption(
+				map,
 				"teamspawns",
 				TeamSpawnsCheckboxLabel,
 				TeamSpawnsCheckboxDescription,
@@ -81,6 +82,7 @@ namespace OpenRA.Mods.SS.Traits
 				TeamSpawnsCheckboxLocked);
 
 			yield return new LobbyBooleanOption(
+				map,
 				"quickclasschange",
 				QuickClassChangeCheckboxLabel,
 				QuickClassChangeCheckboxDescription,
@@ -98,7 +100,7 @@ namespace OpenRA.Mods.SS.Traits
 		readonly SpawnSSUnitInfo info;
 
 		WorldRenderer wr;
-		HashSet<(string[] Actors, int Amount, int Inner, int Outer)> bases = new();
+		readonly HashSet<(string[] Actors, int Amount, int Inner, int Outer)> bases = new();
 
 		public bool TeamSpawns;
 		public bool QuickClassChange;
@@ -126,12 +128,10 @@ namespace OpenRA.Mods.SS.Traits
 			QuickClassChange = world.LobbyInfo.GlobalSettings
 				.OptionOrDefault("quickclasschange", info.QuickClassChangeCheckboxEnabled);
 
-			var baseSizeDropdowns = world.Map.Rules.Actors[SystemActors.World].TraitInfos<BaseSizeLobbyDropdownInfo>();
-			foreach (var dropdown in baseSizeDropdowns)
+			foreach (var dropdown in world.Map.Rules.Actors[SystemActors.World].TraitInfos<BaseSizeLobbyDropdownInfo>())
 			{
-				var value = 0;
 				int.TryParse(world.LobbyInfo.GlobalSettings
-					.OptionOrDefault(dropdown.ID, dropdown.Default.ToString()), out value);
+					.OptionOrDefault(dropdown.ID, dropdown.Default.ToString()), out var value);
 
 				bases.Add((dropdown.BaseBuildings, value, dropdown.InnerBaseRadius, dropdown.OuterBaseRadius));
 			}
@@ -219,7 +219,7 @@ namespace OpenRA.Mods.SS.Traits
 
 		void SpawnUnitForPlayer(World w, Player p, CPos sp)
 		{
-			var facing = info.UnitFacing.HasValue ? info.UnitFacing.Value : new WAngle(w.SharedRandom.Next(1024));
+			var facing = info.UnitFacing ?? new WAngle(w.SharedRandom.Next(1024));
 			Classes[p] = p.Faction.InternalName.ToLowerInvariant();
 			Units[p] = w.CreateActor(p.Faction.InternalName.ToLowerInvariant(), new TypeDictionary
 			{
@@ -242,13 +242,13 @@ namespace OpenRA.Mods.SS.Traits
 			{
 				var buildings = b.Actors;
 				var buildingSpawnCells = w.Map.FindTilesInAnnulus(sp, b.Inner + 1, b.Outer).ToArray();
-				for (int i = 0; i < b.Amount - (b.Amount % buildings.Count()); i++)
+				for (var i = 0; i < b.Amount - (b.Amount % buildings.Length); i++)
 				{
-					var actor = buildings[i % buildings.Count()];
+					var actor = buildings[i % buildings.Length];
 					SpawnBuildingForPlayer(w, p, buildingSpawnCells, actor);
 				}
 
-				for (int i = 0; i < b.Amount % buildings.Count(); i++)
+				for (var i = 0; i < b.Amount % buildings.Length; i++)
 				{
 					var actor = buildings.Random(w.SharedRandom);
 					SpawnBuildingForPlayer(w, p, buildingSpawnCells, actor);
@@ -263,13 +263,13 @@ namespace OpenRA.Mods.SS.Traits
 			var validCells = cells.Where(c => w.CanPlaceBuilding(c, actorRules, building, null));
 			if (!validCells.Any())
 			{
-				Log.Write("debug", "No cells available to spawn base building {0} for player {1}".F(actor, p));
+				Log.Write("debug", $"No cells available to spawn base building {actor} for player {p}");
 				return;
 			}
 
 			var cell = validCells.Random(w.SharedRandom);
 
-			var facing = info.UnitFacing.HasValue ? info.UnitFacing.Value : new WAngle(w.SharedRandom.Next(1024));
+			var facing = info.UnitFacing ?? new WAngle(w.SharedRandom.Next(1024));
 			w.CreateActor(actor, new TypeDictionary
 			{
 				new LocationInit(cell),

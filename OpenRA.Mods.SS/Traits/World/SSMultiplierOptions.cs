@@ -64,14 +64,14 @@ namespace OpenRA.Mods.Common.Traits
 		{
 			var maxMultipliers = SelectableMaxMultiplier.ToDictionary(c => c.ToString(), c => c.ToString() + "%");
 
-			if (maxMultipliers.Any())
-				yield return new LobbyOption("maxmultiplier", MaxMultiplierDropdownLabel, MaxMultiplierDropdownDescription, MaxMultiplierDropdownVisible, MaxMultiplierDropdownDisplayOrder,
+			if (maxMultipliers.Count > 0)
+				yield return new LobbyOption(map, "maxmultiplier", MaxMultiplierDropdownLabel, MaxMultiplierDropdownDescription, MaxMultiplierDropdownVisible, MaxMultiplierDropdownDisplayOrder,
 					maxMultipliers, MaxMultiplier.ToString(), MaxMultiplierDropdownLocked);
 
 			var standardMultipliers = SelectableStandardMultiplier.ToDictionary(c => c.ToString(), c => c.ToString() + "%");
 
-			if (standardMultipliers.Any())
-				yield return new LobbyOption("standardmultiplier", StandardMultiplierDropdownLabel, StandardMultiplierDropdownDescription, StandardMultiplierDropdownVisible, StandardMultiplierDropdownDisplayOrder,
+			if (standardMultipliers.Count > 0)
+				yield return new LobbyOption(map, "standardmultiplier", StandardMultiplierDropdownLabel, StandardMultiplierDropdownDescription, StandardMultiplierDropdownVisible, StandardMultiplierDropdownDisplayOrder,
 					standardMultipliers, StandardMultiplier.ToString(), StandardMultiplierDropdownLocked);
 		}
 

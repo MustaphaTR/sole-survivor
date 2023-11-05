@@ -11,7 +11,6 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using OpenRA.Mods.Common.Traits;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.SS.Traits
@@ -57,7 +56,7 @@ namespace OpenRA.Mods.SS.Traits
 		{
 			var values = Values.ToDictionary(bs => bs.ToString(), bs => bs.ToString());
 
-			yield return new LobbyOption(ID, Label, Description, Visible, DisplayOrder,
+			yield return new LobbyOption(map, ID, Label, Description, Visible, DisplayOrder,
 				values, Default.ToString(), Locked);
 		}
 

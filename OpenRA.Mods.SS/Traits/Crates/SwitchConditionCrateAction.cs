@@ -23,7 +23,7 @@ namespace OpenRA.Mods.SS.Traits
 		public readonly string Condition = null;
 
 		[Desc("The range to search for extra collectors in.", "Extra collectors will also be granted the crate action.")]
-		public readonly WDist Range = new WDist(3);
+		public readonly WDist Range = new(3);
 
 		[Desc("The maximum number of extra collectors to grant the crate action to.", "-1 = no limit")]
 		public readonly int MaxExtraCollectors = 4;
@@ -101,7 +101,7 @@ namespace OpenRA.Mods.SS.Traits
 								Game.Sound.PlayNotification(self.World.Map.Rules, collector.Owner, "Speech",
 									info.RevokeNotification, collector.Owner.Faction.InternalName);
 
-							TextNotificationsManager.AddTransientLine(info.RevokeTextNotification, collector.Owner);
+							TextNotificationsManager.AddTransientLine(collector.Owner, info.RevokeTextNotification);
 
 							if (Info.Image != null && info.RevokeSequence != null)
 								collector.World.AddFrameEndTask(world => world.Add(new SpriteEffect(collector, world, Info.Image, info.RevokeSequence, info.Palette)));

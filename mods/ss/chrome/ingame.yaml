@@ -124,6 +124,26 @@ Container@OBSERVER_WIDGETS:
 			X: WINDOW_RIGHT - WIDTH - 270
 			Y: 40
 			Width: 175
+		Container@MUTE_INDICATOR:
+			Logic: MuteIndicatorLogic
+			X: WINDOW_RIGHT - WIDTH - 295
+			Y: 5
+			Width: 200
+			Height: 25
+			Children:
+				Image@ICON:
+					X: PARENT_RIGHT - WIDTH
+					Y: 1
+					Width: 24
+					Height: 24
+					ImageCollection: sidebar-bits
+					ImageName: indicator-muted
+				Label@LABEL:
+					Width: PARENT_RIGHT - 30
+					Height: 25
+					Align: Right
+					Text: label-mute-indicator
+					Contrast: true
 		LogicKeyListener@OBSERVER_KEY_LISTENER:
 		MenuButton@OPTIONS_BUTTON:
 			Key: escape
@@ -131,7 +151,7 @@ Container@OBSERVER_WIDGETS:
 			Y: 5
 			Width: 30
 			Height: 25
-			TooltipText: Menu
+			TooltipText: button-observer-widgets-options-tooltip
 			TooltipContainer: TOOLTIP_CONTAINER
 			DisableWorldSounds: true
 			Children:
@@ -173,7 +193,7 @@ Container@OBSERVER_WIDGETS:
 					Width: 26
 					Height: 26
 					Key: Pause
-					TooltipText: Pause
+					TooltipText: button-replay-player-pause-tooltip
 					TooltipContainer: TOOLTIP_CONTAINER
 					IgnoreChildMouseOver: true
 					Children:
@@ -190,7 +210,7 @@ Container@OBSERVER_WIDGETS:
 					Width: 26
 					Height: 26
 					Key: Pause
-					TooltipText: Play
+					TooltipText: button-replay-player-play-tooltip
 					TooltipContainer: TOOLTIP_CONTAINER
 					IgnoreChildMouseOver: true
 					Children:
@@ -207,10 +227,10 @@ Container@OBSERVER_WIDGETS:
 					Width: 36
 					Height: 20
 					Key: ReplaySpeedSlow
-					TooltipText: Slow speed
+					TooltipText: button-replay-player-slow.tooltip
 					TooltipContainer: TOOLTIP_CONTAINER
 					VisualHeight: 0
-					Text: 50%
+					Text: button-replay-player-slow.label
 					Font: TinyBold
 				Button@BUTTON_REGULAR:
 					X: 57 + 48
@@ -218,10 +238,10 @@ Container@OBSERVER_WIDGETS:
 					Width: 38
 					Height: 20
 					Key: ReplaySpeedRegular
-					TooltipText: Regular speed
+					TooltipText: button-replay-player-regular.tooltip
 					TooltipContainer: TOOLTIP_CONTAINER
 					VisualHeight: 0
-					Text: 100%
+					Text: button-replay-player-regular.label
 					Font: TinyBold
 				Button@BUTTON_FAST:
 					X: 57 + 48 * 2
@@ -229,10 +249,10 @@ Container@OBSERVER_WIDGETS:
 					Width: 38
 					Height: 20
 					Key: ReplaySpeedFast
-					TooltipText: Fast speed
+					TooltipText: button-replay-player-fast.tooltip
 					TooltipContainer: TOOLTIP_CONTAINER
 					VisualHeight: 0
-					Text: 200%
+					Text: button-replay-player-fast.label
 					Font: TinyBold
 				Button@BUTTON_MAXIMUM:
 					X: 57 + 48 * 3
@@ -240,10 +260,10 @@ Container@OBSERVER_WIDGETS:
 					Width: 38
 					Height: 20
 					Key: ReplaySpeedMax
-					TooltipText: Maximum speed
+					TooltipText: button-replay-player-maximum.tooltip
 					TooltipContainer: TOOLTIP_CONTAINER
 					VisualHeight: 0
-					Text: MAX
+					Text: button-replay-player-maximum.label
 					Font: TinyBold
 		DropDownButton@SHROUD_SELECTOR:
 			Logic: ObserverShroudSelectorLogic
@@ -287,7 +307,7 @@ Container@OBSERVER_WIDGETS:
 					Height: 130
 					Children:
 						Label@STAT_HEALTH:
-							Text: Health
+							Text: label-actor-stats-health
 							Children:
 								ProgressBar@STAT_HEALTH_BAR:
 									X: 1
@@ -297,7 +317,7 @@ Container@OBSERVER_WIDGETS:
 									Bar: progressbar-thumb-green
 						Label@STAT_DAMAGE:
 							Y: 25
-							Text: Damage
+							Text: label-actor-stats-damage
 							Children:
 								ProgressBar@STAT_DAMAGE_BAR:
 									X: 1
@@ -307,7 +327,7 @@ Container@OBSERVER_WIDGETS:
 									Bar: progressbar-thumb-green
 						Label@STAT_SIGHT:
 							Y: 50
-							Text: Sight
+							Text: label-actor-stats-sight
 							Children:
 								ProgressBar@STAT_SIGHT_BAR:
 									X: 1
@@ -317,7 +337,7 @@ Container@OBSERVER_WIDGETS:
 									Bar: progressbar-thumb-green
 						Label@STAT_RANGE:
 							Y: 75
-							Text: Range
+							Text: label-actor-stats-range
 							Children:
 								ProgressBar@STAT_RANGE_BAR:
 									X: 1
@@ -327,7 +347,7 @@ Container@OBSERVER_WIDGETS:
 									Bar: progressbar-thumb-green
 						Label@STAT_ROF:
 							Y: 100
-							Text: Reload Delay
+							Text: label-actor-stats-reload-delay
 							Children:
 								ProgressBar@STAT_ROF_BAR:
 									X: 1
@@ -337,7 +357,7 @@ Container@OBSERVER_WIDGETS:
 									Bar: progressbar-thumb-green
 						Label@STAT_SPEED:
 							Y: 125
-							Text: Speed
+							Text: label-actor-stats-speed
 							Children:
 								ProgressBar@STAT_SPEED_BAR:
 									X: 1
@@ -615,6 +635,26 @@ Container@PLAYER_WIDGETS:
 							Y: 5
 							ImageCollection: stance-icons
 							ImageName: hold-fire
+		Container@MUTE_INDICATOR:
+			Logic: MuteIndicatorLogic
+			X: WINDOW_RIGHT - WIDTH - 228
+			Y: 2
+			Width: 200
+			Height: 25
+			Children:
+				Image@ICON:
+					X: PARENT_RIGHT - WIDTH
+					Y: 1
+					Width: 24
+					Height: 24
+					ImageCollection: sidebar-bits
+					ImageName: indicator-muted
+				Label@LABEL:
+					Width: PARENT_RIGHT - 30
+					Height: 25
+					Align: Right
+					Text: label-mute-indicator
+					Contrast: true
 		Background@SIDEBAR_BACKGROUND:
 			Logic: MenuButtonsChromeLogic
 			X: WINDOW_RIGHT - 204
@@ -630,7 +670,7 @@ Container@PLAYER_WIDGETS:
 					Height: 25
 					Font: Bold
 					Key: escape
-					TooltipText: Menu
+					TooltipText: button-top-buttons-options-tooltip
 					TooltipContainer: TOOLTIP_CONTAINER
 					DisableWorldSounds: true
 					Children:
@@ -647,7 +687,7 @@ Container@PLAYER_WIDGETS:
 					Height: 25
 					Font: Bold
 					Key: PlaceBeacon
-					TooltipText: Place Beacon
+					TooltipText: button-top-buttons-beacon-tooltip
 					TooltipContainer: TOOLTIP_CONTAINER
 					Children:
 						Image@ICON:
@@ -726,7 +766,7 @@ Container@PLAYER_WIDGETS:
 									X: 40
 									Width: 60
 									Height: 25
-									Text: Faction
+									Text: label-faction-factionname
 				Background@STATS:
 					Logic: IngameUnitStatsLogic
 					X: 13
@@ -735,7 +775,7 @@ Container@PLAYER_WIDGETS:
 					Height: 130
 					Children:
 						Label@STAT_HEALTH:
-							Text: Health
+							Text: label-actor-stats-health
 							Children:
 								ProgressBar@STAT_HEALTH_BAR:
 									X: 1
@@ -745,7 +785,7 @@ Container@PLAYER_WIDGETS:
 									Bar: progressbar-thumb-green
 						Label@STAT_DAMAGE:
 							Y: 25
-							Text: Damage
+							Text: label-actor-stats-damage
 							Children:
 								ProgressBar@STAT_DAMAGE_BAR:
 									X: 1
@@ -755,7 +795,7 @@ Container@PLAYER_WIDGETS:
 									Bar: progressbar-thumb-green
 						Label@STAT_SIGHT:
 							Y: 50
-							Text: Sight
+							Text: label-actor-stats-sight
 							Children:
 								ProgressBar@STAT_SIGHT_BAR:
 									X: 1
@@ -765,7 +805,7 @@ Container@PLAYER_WIDGETS:
 									Bar: progressbar-thumb-green
 						Label@STAT_RANGE:
 							Y: 75
-							Text: Range
+							Text: label-actor-stats-range
 							Children:
 								ProgressBar@STAT_RANGE_BAR:
 									X: 1
@@ -775,7 +815,7 @@ Container@PLAYER_WIDGETS:
 									Bar: progressbar-thumb-green
 						Label@STAT_ROF:
 							Y: 100
-							Text: Reload Delay
+							Text: label-actor-stats-reload-delay
 							Children:
 								ProgressBar@STAT_ROF_BAR:
 									X: 1
@@ -785,7 +825,7 @@ Container@PLAYER_WIDGETS:
 									Bar: progressbar-thumb-green
 						Label@STAT_SPEED:
 							Y: 125
-							Text: Speed
+							Text: label-actor-statsspeed
 							Children:
 								ProgressBar@STAT_SPEED_BAR:
 									X: 1

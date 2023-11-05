@@ -9,6 +9,7 @@
  */
 #endregion
 
+using System.Globalization;
 using System.Linq;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits;
@@ -20,8 +21,17 @@ using OpenRA.Widgets;
 
 namespace OpenRA.Mods.Common.Widgets.Logic
 {
-	class IngameScoreScreenLogic : ChromeLogic
+	sealed class IngameScoreScreenLogic : ChromeLogic
 	{
+		[TranslationReference("team")]
+		const string TeamNumber = "label-team-name";
+
+		[TranslationReference]
+		const string NoTeam = "label-no-team";
+
+		[TranslationReference]
+		const string Spectators = "label-spectators";
+
 		[ObjectCreator.UseCtor]
 		public IngameScoreScreenLogic(Widget widget, World world, OrderManager orderManager, WorldRenderer worldRenderer)
 		{
@@ -60,18 +70,22 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 			var teams = world.Players.Where(p => !p.NonCombatant && p.Playable)
 				.Select(p => (Player: p, PlayerStatistics: p.PlayerActor.TraitOrDefault<PlayerStatistics>()))
-				.OrderByDescending(p => p.PlayerStatistics != null ? p.PlayerStatistics.Experience : 0)
+				.OrderByDescending(p => p.PlayerStatistics?.Experience ?? 0)
 				.GroupBy(p => (world.LobbyInfo.ClientWithIndex(p.Player.ClientIndex) ?? new Session.Client()).Team)
-				.OrderByDescending(g => g.Sum(gg => gg.PlayerStatistics != null ? gg.PlayerStatistics.Experience : 0));
+				.OrderByDescending(g => g.Sum(gg => gg.PlayerStatistics?.Experience ?? 0))
+				.ToList();
 
 			foreach (var t in teams)
 			{
-				if (teams.Count() > 1)
+				if (teams.Count > 1)
 				{
-					var teamHeader = ScrollItemWidget.Setup(teamTemplate, () => true, () => { });
-					teamHeader.Get<LabelWidget>("TEAM").GetText = () => t.Key == 0 ? "No Team" : "Team {0}".F(t.Key);
+					var teamHeader = ScrollItemWidget.Setup(teamTemplate, () => false, () => { });
+					var team = t.Key > 0
+						? TranslationProvider.GetString(TeamNumber, Translation.Arguments("team", t.Key))
+						: TranslationProvider.GetString(NoTeam);
+					teamHeader.Get<LabelWidget>("TEAM").GetText = () => team;
 					var teamRating = teamHeader.Get<LabelWidget>("TEAM_SCORE");
-					var scoreCache = new CachedTransform<int, string>(s => s.ToString());
+					var scoreCache = new CachedTransform<int, string>(s => s.ToString(NumberFormatInfo.CurrentInfo));
 					var teamMemberScores = t.Select(tt => tt.PlayerStatistics).Where(s => s != null).ToArray().Select(s => s.Experience);
 					teamRating.GetText = () => scoreCache.Update(teamMemberScores.Sum());
 
@@ -123,17 +137,18 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					}
 
 					var scoreCache = new CachedTransform<int, string>(s => s.ToString());
-					item.Get<LabelWidget>("SCORE").GetText = () => scoreCache.Update(p.PlayerStatistics != null ? p.PlayerStatistics.Experience : 0);
+					item.Get<LabelWidget>("SCORE").GetText = () => scoreCache.Update(p.PlayerStatistics?.Experience ?? 0);
 
 					playerPanel.AddChild(item);
 				}
 			}
 
 			var spectators = orderManager.LobbyInfo.Clients.Where(c => c.IsObserver).ToList();
-			if (spectators.Any())
+			if (spectators.Count > 0)
 			{
-				var spectatorHeader = ScrollItemWidget.Setup(teamTemplate, () => true, () => { });
-				spectatorHeader.Get<LabelWidget>("TEAM").GetText = () => "Spectators";
+				var spectatorHeader = ScrollItemWidget.Setup(teamTemplate, () => false, () => { });
+				var spectatorTeam = TranslationProvider.GetString(Spectators);
+				spectatorHeader.Get<LabelWidget>("TEAM").GetText = () => spectatorTeam;
 
 				playerPanel.AddChild(spectatorHeader);
 

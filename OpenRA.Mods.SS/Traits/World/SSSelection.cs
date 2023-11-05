@@ -11,7 +11,6 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using OpenRA.Mods.Common.Traits;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.SS.Traits
@@ -25,11 +24,11 @@ namespace OpenRA.Mods.SS.Traits
 	public class SSSelection : ISelection, INotifyCreated, INotifyOwnerChanged, ITick, IGameSaveTraitData
 	{
 		public int Hash { get; private set; }
-		public IEnumerable<Actor> Actors => actors;
+		public IReadOnlyCollection<Actor> Actors => actors;
 		public SpawnSSUnit Spawner { get; private set; }
 
-		readonly HashSet<Actor> actors = new HashSet<Actor>();
-		readonly List<Actor> rolloverActors = new List<Actor>();
+		readonly HashSet<Actor> actors = new();
+		readonly List<Actor> rolloverActors = new();
 		World world;
 
 		INotifySelection[] worldNotifySelection;
@@ -93,10 +92,13 @@ namespace OpenRA.Mods.SS.Traits
 
 		public virtual void Combine(World world, IEnumerable<Actor> newSelection, bool isCombine, bool isClick)
 		{
+			var newSelectionCollection = newSelection as IReadOnlyCollection<Actor>;
+			newSelectionCollection ??= newSelection.ToList();
+
 			if (isClick)
 			{
 				// TODO: select BEST, not FIRST
-				var adjNewSelection = newSelection.Take(1);
+				var adjNewSelection = newSelectionCollection.Take(1);
 				if (isCombine)
 					actors.SymmetricExceptWith(adjNewSelection);
 				else
@@ -108,17 +110,17 @@ namespace OpenRA.Mods.SS.Traits
 			else
 			{
 				if (isCombine)
-					actors.UnionWith(newSelection);
+					actors.UnionWith(newSelectionCollection);
 				else
 				{
 					actors.Clear();
-					actors.UnionWith(newSelection);
+					actors.UnionWith(newSelectionCollection);
 				}
 			}
 
 			UpdateHash();
 
-			foreach (var a in newSelection)
+			foreach (var a in newSelectionCollection)
 				foreach (var sel in a.TraitsImplementing<INotifySelected>())
 					sel.Selected(a);
 
@@ -167,7 +169,7 @@ namespace OpenRA.Mods.SS.Traits
 
 		void ITick.Tick(Actor self)
 		{
-			if (!actors.Any() && self.World.LocalPlayer != null)
+			if (actors.Count == 0 && self.World.LocalPlayer != null)
 			{
 				var unit = Spawner.Units[self.World.LocalPlayer];
 				if (unit != null && !unit.IsDead)
@@ -192,9 +194,9 @@ namespace OpenRA.Mods.SS.Traits
 			};
 		}
 
-		void IGameSaveTraitData.ResolveTraitData(Actor self, List<MiniYamlNode> data)
+		void IGameSaveTraitData.ResolveTraitData(Actor self, MiniYaml data)
 		{
-			var selectionNode = data.FirstOrDefault(n => n.Key == "Selection");
+			var selectionNode = data.NodeWithKeyOrDefault("Selection");
 			if (selectionNode != null)
 			{
 				var selected = FieldLoader.GetValue<uint[]>("Selection", selectionNode.Value.Value)

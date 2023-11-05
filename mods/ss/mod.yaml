@@ -112,24 +112,24 @@ ChromeLayout:
 	cnc|chrome/lobby-kickdialogs.yaml
 	cnc|chrome/connection.yaml
 	ss|chrome/color-picker.yaml
-	ss|chrome/mapchooser.yaml
+	cnc|chrome/mapchooser.yaml
 	cnc|chrome/replaybrowser.yaml
 	cnc|chrome/gamesave-browser.yaml
 	cnc|chrome/gamesave-loading.yaml
 	ss|chrome/ingame.yaml
 	ss|chrome/ingame-chat.yaml
 	common|chrome/ingame-transients.yaml
-	ss|chrome/ingame-menu.yaml
+	cnc|chrome/ingame-menu.yaml
 	ss|chrome/ingame-debug.yaml
 	common|chrome/ingame-debug-hpf.yaml
 	ss|chrome/ingame-infochat.yaml
 	ss|chrome/ingame-info.yaml
 	ss|chrome/ingame-infobriefing.yaml
-	ss|chrome/ingame-infoscripterror.yaml
+	common|chrome/ingame-infoscripterror.yaml
 	ss|chrome/ingame-infoobjectives.yaml
 	ss|chrome/ingame-infostats.yaml
 	ss|chrome/ingame-info-lobby-options.yaml
-	ss|chrome/ingame-debuginfo.yaml
+	cnc|chrome/ingame-debuginfo.yaml
 	cnc|chrome/music.yaml
 	cnc|chrome/settings.yaml
 	cnc|chrome/settings-display.yaml
@@ -147,7 +147,10 @@ ChromeLayout:
 
 Translations:
 	common|languages/en.ftl
+	common|languages/rules/en.ftl
+	cnc|languages/chrome/en.ftl
 	cnc|languages/rules/en.ftl
+	ss|languages/chrome/en.ftl
 	ss|languages/rules/en.ftl
 
 Voices:
@@ -237,9 +240,7 @@ VideoFormats: Vqa, Wsa
 
 TerrainFormat: DefaultTerrain
 
-SpriteSequenceFormat: TilesetSpecificSpriteSequence
-
-ModelSequenceFormat: PlaceholderModelSequence
+SpriteSequenceFormat: ClassicTilesetSpecificSpriteSequence
 
 AssetBrowser:
 	SpriteExtensions: .shp, .tem, .win, .sno, .des, .jun
@@ -291,7 +292,6 @@ ModContent:
 			Identifier: music
 			TestFiles: ^SupportDir|Content/cnc/scores.mix
 			Sources: gdi95, nod95, tfd, origin, cncr-steam, cncr-origin
-			Download: music
 		ContentPackage@movies-gdi:
 			Title: GDI Campaign Briefings
 			Identifier: movies-gdi

@@ -13,7 +13,6 @@ using System;
 using System.Linq;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.SS.Traits;
-using OpenRA.Primitives;
 using OpenRA.Traits;
 using OpenRA.Widgets;
 
@@ -21,6 +20,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 {
 	public class IngameUnitStatsLogic : ChromeLogic
 	{
+		[TranslationReference]
+		const string Infinite = "label-actor-stats-infinite";
+
 		[ObjectCreator.UseCtor]
 		public IngameUnitStatsLogic(Widget widget, World world)
 		{
@@ -44,6 +46,14 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			var rofBar = widget.Get<ProgressBarWidget>("STAT_ROF_BAR");
 			var speedBar = widget.Get<ProgressBarWidget>("STAT_SPEED_BAR");
 
+			var healthText = TranslationProvider.GetString(health.Text);
+			var sightText = TranslationProvider.GetString(sight.Text);
+			var damageText = TranslationProvider.GetString(damage.Text);
+			var rangeText = TranslationProvider.GetString(range.Text);
+			var rofText = TranslationProvider.GetString(rof.Text);
+			var speedText = TranslationProvider.GetString(speed.Text);
+			var infiniteText = TranslationProvider.GetString(Infinite);
+
 			health.GetText = () =>
 			{
 				var renderPlayer = world.RenderPlayer;
@@ -59,11 +69,11 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 							foreach (var dm in unit.TraitsImplementing<IDamageModifier>().Select(dm => dm.GetDamageModifier(unit, new Damage(usv.Health))).Where(d => d != 0))
 								healthValue = healthValue / dm * 100;
 
-							return health.Text + ": " + healthValue.ToString();
+							return healthText + ": " + healthValue.ToString();
 						}
 						else if (usv.Health < 0)
 						{
-							return health.Text + ": Infinite";
+							return healthText + ": " + infiniteText;
 						}
 					}
 
@@ -74,11 +84,11 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						foreach (var dm in unit.TraitsImplementing<IDamageModifier>().Select(dm => dm.GetDamageModifier(unit, new Damage(healthTrait.MaxHP))).Where(d => d != 0))
 							healthValue = healthValue / dm * 100;
 
-						return health.Text + ": " + healthValue.ToString();
+						return healthText + ": " + healthValue.ToString();
 					}
 				}
 
-				return health.Text + ":";
+				return healthText + ":";
 			};
 			healthBar.GetPercentage = () =>
 			{
@@ -132,11 +142,11 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 							foreach (var rsm in unit.TraitsImplementing<IRevealsShroudModifier>().Select(rsm => rsm.GetRevealsShroudModifier()))
 								revealsShroudValue = revealsShroudValue * rsm / 100;
 
-							return sight.Text + ": " + Math.Round((float)revealsShroudValue.Length / 1024, 2).ToString();
+							return sightText + ": " + Math.Round((float)revealsShroudValue.Length / 1024, 2).ToString();
 						}
 						else if (usv.Sight < WDist.Zero)
 						{
-							return sight.Text + ": Infinite";
+							return sightText + ": Infinite";
 						}
 					}
 
@@ -147,11 +157,11 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						foreach (var rsm in unit.TraitsImplementing<IRevealsShroudModifier>().Select(rsm => rsm.GetRevealsShroudModifier()))
 							revealsShroudValue = revealsShroudValue * rsm / 100;
 
-						return sight.Text + ": " + Math.Round((float)revealsShroudValue.Length / 1024, 2).ToString();
+						return sightText + ": " + Math.Round((float)revealsShroudValue.Length / 1024, 2).ToString();
 					}
 				}
 
-				return sight.Text + ":";
+				return sightText + ":";
 			};
 			sightBar.GetPercentage = () =>
 			{
@@ -200,17 +210,17 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					if (usv != null)
 					{
 						if (usv.Damage < 0)
-							return damage.Text + ": Infinite";
+							return damageText + ": Infinite";
 
 						var damageValue = usv.Damage;
 						foreach (var dm in unit.TraitsImplementing<IFirepowerModifier>().Select(fm => fm.GetFirepowerModifier()))
 							damageValue = damageValue * dm / 100;
 
-						return damage.Text + ": " + damageValue.ToString();
+						return damageText + ": " + damageValue.ToString();
 					}
 				}
 
-				return damage.Text + ":";
+				return damageText + ":";
 			};
 			damageBar.GetPercentage = () =>
 			{
@@ -250,11 +260,11 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 							foreach (var rm in unit.TraitsImplementing<IReloadModifier>().Select(sm => sm.GetReloadModifier()))
 								rofValue = rofValue * rm / 100;
 
-							return rof.Text + ": " + rofValue.ToString();
+							return rofText + ": " + rofValue.ToString();
 						}
 						else if (usv.ReloadDelay < 0)
 						{
-							return rof.Text + ": Infinite";
+							return rofText + ": Infinite";
 						}
 					}
 
@@ -265,11 +275,11 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						foreach (var rm in unit.TraitsImplementing<IReloadModifier>().Select(sm => sm.GetReloadModifier()))
 							rofValue = rofValue * rm / 100;
 
-						return rof.Text + ": " + rofValue.ToString();
+						return rofText + ": " + rofValue.ToString();
 					}
 				}
 
-				return rof.Text + ":";
+				return rofText + ":";
 			};
 			rofBar.GetPercentage = () =>
 			{
@@ -323,11 +333,11 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 							foreach (var rm in unit.TraitsImplementing<IRangeModifier>().Select(rm => rm.GetRangeModifier()))
 								rangeValue = rangeValue * rm / 100;
 
-							return range.Text + ": " + Math.Round((float)rangeValue.Length / 1024, 2).ToString();
+							return rangeText + ": " + Math.Round((float)rangeValue.Length / 1024, 2).ToString();
 						}
 						else if (usv.Range < WDist.Zero)
 						{
-							return range.Text + ": Infinite";
+							return rangeText + ": Infinite";
 						}
 					}
 
@@ -335,11 +345,11 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					if (attackBase.Any())
 					{
 						var rangeValue = attackBase.Max(ab => ab.GetMaximumRange());
-						return range.Text + ": " + Math.Round((float)rangeValue.Length / 1024, 2).ToString();
+						return rangeText + ": " + Math.Round((float)rangeValue.Length / 1024, 2).ToString();
 					}
 				}
 
-				return range.Text + ":";
+				return rangeText + ":";
 			};
 			rangeBar.GetPercentage = () =>
 			{
@@ -393,11 +403,11 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 							foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
 								speedValue = speedValue * sm / 100;
 
-							return speed.Text + ": " + speedValue.ToString();
+							return speedText + ": " + speedValue.ToString();
 						}
 						else if (usv.Speed < 0)
 						{
-							return speed.Text + ": Infinite";
+							return speedText + ": Infinite";
 						}
 					}
 
@@ -408,7 +418,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
 							speedValue = speedValue * sm / 100;
 
-						return speed.Text + ": " + speedValue.ToString();
+						return speedText + ": " + speedValue.ToString();
 					}
 
 					var aircraft = unit.Info.TraitInfoOrDefault<AircraftInfo>();
@@ -418,11 +428,11 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
 							speedValue = speedValue * sm / 100;
 
-						return speed.Text + ": " + speedValue.ToString();
+						return speedText + ": " + speedValue.ToString();
 					}
 				}
 
-				return speed.Text + ":";
+				return speedText + ":";
 			};
 			speedBar.GetPercentage = () =>
 			{

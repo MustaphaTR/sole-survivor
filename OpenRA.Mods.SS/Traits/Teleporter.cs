@@ -129,7 +129,7 @@ namespace OpenRA.Mods.SS.Traits
 				Game.Sound.PlayNotification(self.World.Map.Rules, crusher.Owner, "Speech",
 					info.Notification, crusher.Owner.Faction.InternalName);
 
-			TextNotificationsManager.AddTransientLine(info.TextNotification, crusher.Owner);
+			TextNotificationsManager.AddTransientLine(crusher.Owner, info.TextNotification);
 
 			if (info.Image != null && info.Sequence != null)
 				crusher.World.AddFrameEndTask(w => w.Add(new SpriteEffect(crusher, w, info.Image, info.Sequence, info.Palette)));
@@ -228,7 +228,7 @@ namespace OpenRA.Mods.SS.Traits
 
 		public IEnumerable<IRenderable> Render(Actor self, WorldRenderer wr)
 		{
-			return new IRenderable[] { };
+			return System.Array.Empty<IRenderable>();
 		}
 
 		IEnumerable<Rectangle> IRender.ScreenBounds(Actor self, WorldRenderer wr)

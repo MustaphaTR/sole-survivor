@@ -37,7 +37,7 @@ namespace OpenRA.Mods.SS.Traits.Render
 		public override void RulesetLoaded(Ruleset rules, ActorInfo ai)
 		{
 			if (!Game.ModData.Manifest.Get<Fonts>().FontList.ContainsKey(Font))
-				throw new YamlException("Font '{0}' is not listed in the mod.yaml's Fonts section".F(Font));
+				throw new YamlException($"Font '{Font}' is not listed in the mod.yaml's Fonts section");
 
 			base.RulesetLoaded(rules, ai);
 		}
@@ -46,8 +46,8 @@ namespace OpenRA.Mods.SS.Traits.Render
 	public class WithSSNameTagDecoration : WithDecorationBase<WithSSNameTagDecorationInfo>, INotifyOwnerChanged
 	{
 		readonly SpriteFont font;
-		SpawnSSUnit spawner;
-		Player leader;
+		readonly SpawnSSUnit spawner;
+		readonly Player leader;
 		string name;
 		Color color;
 

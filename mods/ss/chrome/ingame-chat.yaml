@@ -9,7 +9,7 @@ Container@CHAT_PANEL:
 		Templates:
 			Chat: CHAT_LINE_TEMPLATE
 			System: SYSTEM_LINE_TEMPLATE
-			Mission: SYSTEM_LINE_TEMPLATE
+			Mission: CHAT_LINE_TEMPLATE
 	Children:
 		Container@CHAT_OVERLAY:
 			Width: PARENT_RIGHT - 24
@@ -29,10 +29,10 @@ Container@CHAT_PANEL:
 					Y: PARENT_BOTTOM - HEIGHT
 					Width: 50
 					Height: 25
-					Text: Team
+					Text: button-chat-chrome-mode.label
 					Font: Bold
 					Key: ToggleChatMode
-					TooltipText: Toggle chat mode
+					TooltipText: button-chat-chrome-mode.tooltip
 					TooltipTemplate: BUTTON_TOOLTIP_FACTIONSUFFIX
 					TooltipContainer: TOOLTIP_CONTAINER
 				TextField@CHAT_TEXTFIELD:

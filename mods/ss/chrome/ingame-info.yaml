@@ -9,7 +9,7 @@ Container@GAME_INFO_PANEL:
 		Label@TITLE:
 			Width: PARENT_RIGHT
 			Y: 0 - 17
-			Text: Game Information
+			Text: label-game-info-panel-title
 			Align: Center
 			Font: BigBold
 			Contrast: true
@@ -98,11 +98,14 @@ Container@GAME_INFO_PANEL:
 			Background: panel-black
 			Children:
 				Container@STATS_PANEL:
+					Width: PARENT_RIGHT
+					Height: PARENT_BOTTOM
 				Container@MAP_PANEL:
 					Width: PARENT_RIGHT
 					Height: PARENT_BOTTOM
 				Container@OBJECTIVES_PANEL:
 					Width: PARENT_RIGHT
+					Height: PARENT_BOTTOM
 				Container@DEBUG_PANEL:
 					Width: PARENT_RIGHT
 					Height: PARENT_BOTTOM

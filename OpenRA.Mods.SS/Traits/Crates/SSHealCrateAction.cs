@@ -55,7 +55,7 @@ namespace OpenRA.Mods.Common.Traits
 					Game.Sound.PlayNotification(self.World.Map.Rules, collector.Owner, "Speech",
 						info.WeaponNotification, collector.Owner.Faction.InternalName);
 
-				TextNotificationsManager.AddTransientLine(info.WeaponTextNotification, collector.Owner);
+				TextNotificationsManager.AddTransientLine(collector.Owner, info.WeaponTextNotification);
 			}
 			else
 			{
