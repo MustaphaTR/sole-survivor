@@ -472,141 +472,141 @@ World:
 		DropdownDisplayOrder: 5
 	ScriptLobbyDropdown@starting-cloak:
 		ID: starting-cloak
-		Label: Starting Cloak
-		Description: How long does the initial cloak lasts
+		Label: dropdown-starting-cloak.label
+		Description: dropdown-starting-cloak.description
 		Values:
-			disabled: Disabled
-			five: 5 Seconds
-			ten: 10 Seconds
-			fifteen: 15 Seconds
-			twenty: 20 Seconds
-			thirty: 30 Seconds
-			fortyfive: 45 Seconds
-			sixty: 1 Minute
+			disabled: options-cloak-invuln.disabled
+			five: options-cloak-invuln.five
+			ten: options-cloak-invuln.ten
+			fifteen: options-cloak-invuln.fifteen
+			twenty: options-cloak-invuln.twenty
+			thirty: options-cloak-invuln.thirty
+			fortyfive: options-cloak-invuln.fortyfive
+			sixty: options-cloak-invuln.sixty
 		Default: thirty
 		DisplayOrder: 6
 	ScriptLobbyDropdown@respawn-cloak:
 		ID: respawn-cloak
-		Label: Respawn Cloak
-		Description: How long does the cloak after respawning lasts
+		Label: dropdown-respawn-cloak.label
+		Description: dropdown-respawn-cloak.description
 		Values:
-			disabled: Disabled
-			five: 5 Seconds
-			ten: 10 Seconds
-			fifteen: 15 Seconds
-			twenty: 20 Seconds
-			thirty: 30 Seconds
-			fortyfive: 45 Seconds
-			sixty: 1 Minute
+			disabled: options-cloak-invuln.disabled
+			five: options-cloak-invuln.five
+			ten: options-cloak-invuln.ten
+			fifteen: options-cloak-invuln.fifteen
+			twenty: options-cloak-invuln.twenty
+			thirty: options-cloak-invuln.thirty
+			fortyfive: options-cloak-invuln.fortyfive
+			sixty: options-cloak-invuln.sixty
 		Default: ten
 		DisplayOrder: 7
 	ScriptLobbyDropdown@starting-invuln:
 		ID: starting-invuln
-		Label: Starting Invulnerability
-		Description: How long does the initial invulnerability lasts
+		Label: dropdown-starting-invuln.label
+		Description: dropdown-starting-invuln.description
 		Values:
-			disabled: Disabled
-			five: 5 Seconds
-			ten: 10 Seconds
-			fifteen: 15 Seconds
-			twenty: 20 Seconds
-			thirty: 30 Seconds
-			fortyfive: 45 Seconds
-			sixty: 1 Minute
+			disabled: options-cloak-invuln.disabled
+			five: options-cloak-invuln.five
+			ten: options-cloak-invuln.ten
+			fifteen: options-cloak-invuln.fifteen
+			twenty: options-cloak-invuln.twenty
+			thirty: options-cloak-invuln.thirty
+			fortyfive: options-cloak-invuln.fortyfive
+			sixty: options-cloak-invuln.sixty
 		Default: thirty
 		DisplayOrder: 9
 	ScriptLobbyDropdown@respawn-invuln:
 		ID: respawn-invuln
-		Label: Respawn Invulnerability
-		Description: How long does the invulnerability after respawning lasts
+		Label: dropdown-respawn-invuln.label
+		Description: dropdown-respawn-invuln.description
 		Values:
-			disabled: Disabled
-			five: 5 Seconds
-			ten: 10 Seconds
-			fifteen: 15 Seconds
-			twenty: 20 Seconds
-			thirty: 30 Seconds
-			fortyfive: 45 Seconds
-			sixty: 1 Minute
+			disabled: options-cloak-invuln.disabled
+			five: options-cloak-invuln.five
+			ten: options-cloak-invuln.ten
+			fifteen: options-cloak-invuln.fifteen
+			twenty: options-cloak-invuln.twenty
+			thirty: options-cloak-invuln.thirty
+			fortyfive: options-cloak-invuln.fortyfive
+			sixty: options-cloak-invuln.sixty
 		Default: ten
 		DisplayOrder: 10
 	ScriptLobbyDropdown@respawn-delay:
 		ID: respawn-delay
-		Label: Respawn Delay
-		Description: Time it takes to respawn when you die
+		Label: dropdown-respawn-delay.label
+		Description: dropdown-respawn-delay.description
 		Values:
-			disabled: Disabled
-			zero: Instant
-			one: 1 Second
-			two: 2 Seconds
-			three: 3 Seconds
-			five: 5 Seconds
-			ten: 10 Seconds
-			fifteen: 15 Seconds
-			thirty: 30 Seconds
-			fortyfive: 45 Seconds
-			sixty: 1 Minute
+			disabled: options-respawn-delay.disabled
+			zero: options-respawn-delay.zero
+			one: options-respawn-delay.one
+			two: options-respawn-delay.two
+			three: options-respawn-delay.three
+			five: options-respawn-delay.five
+			ten: options-respawn-delay.ten
+			fifteen: options-respawn-delay.fifteen
+			thirty: options-respawn-delay.thirty
+			fortyfive: options-respawn-delay.fortyfive
+			sixty: options-respawn-delay.sixty
 		Default: three
 		DisplayOrder: 12
 	ScriptLobbyDropdown@time-limit:
 		ID: time-limit
-		Label: Time Limit
-		Description: Time it takes for the game to end in a score victory condition
+		Label: dropdown-time-limit.label
+		Description: dropdown-time-limit.description
 		Values:
-			disabled: Disabled
-			two: 2 Minutes
-			five: 5 Minutes
-			ten: 10 Minutes
-			fifteen: 15 Minutes
-			twenty: 20 Minutes
-			thirty: 30 Minutes
-			fortyfive: 45 Minutes
-			sixty: 1 Hour
+			disabled: options-time-limit.disabled
+			two: options-time-limit.two
+			five: options-time-limit.five
+			ten: options-time-limit.ten
+			fifteen: options-time-limit.fifteen
+			twenty: options-time-limit.twenty
+			thirty: options-time-limit.thirty
+			fortyfive: options-time-limit.fortyfive
+			sixty: options-time-limit.sixty
 		Default: fifteen
 		DisplayOrder: 13
 	ScriptLobbyDropdown@ctf-mode:
 		ID: ctf-mode
-		Label: CtF Mode
-		Description: Type of Capture the Flag gameplay
+		Label: dropdown-ctf-mode.label
+		Description: dropdown-ctf-mode.description
 		Values:
-			disabled: Disabled
-			score: Score
-			victory: Victory Condition
+			disabled: options-ctf-mode.disabled
+			score: options-ctf-mode.score
+			victory: options-ctf-mode.victory
 		Default: disabled
 		DisplayOrder: 14
 	ScriptLobbyDropdown@class-changing:
 		ID: class-changing
-		Label: Class Changing
-		Description: How often can a player change their class
+		Label: dropdown-class-changing.label
+		Description: dropdown-class-changing.description
 		Values:
-			disabled: Disabled
-			fifteen: 15 Seconds
-			thirty: 30 Seconds
-			fourtyfive: 45 Seconds
-			sixty: 1 Minute
-			hundredtwenty: 2 Minutes
-			threehundred: 5 Minutes
+			disabled: options-class-changing.disabled
+			fifteen: options-class-changing.fifteen
+			thirty: options-class-changing.thirty
+			fourtyfive: options-class-changing.fourtyfive
+			sixty: options-class-changing.sixty
+			hundredtwenty: options-class-changing.hundredtwenty
+			threehundred: options-class-changing.threehundred
 		Default: thirty
 		DisplayOrder: 15
 	ScriptLobbyDropdown@team-score-victory:
 		ID: team-score-victory
-		Label: Team Score Victory
-		Description: How to calculate the winner from score in team games
+		Label: dropdown-team-score-victory.label
+		Description: dropdown-team-score-victory.description
 		Values:
-			player: Player
-			team: Team
-			average: Average
+			player: options-team-score-victory.player
+			team: options-team-score-victory.team
+			average: options-team-score-victory.average
 		Default: team
 		DisplayOrder: 16
 	ScriptLobbyDropdown@death-penalty:
 		ID: death-penalty
-		Label: Death Penalty
-		Description: Score penalty to apply when a player dies
+		Label: dropdown-death-penalty.label
+		Description: dropdown-death-penalty.description
 		Values:
-			disabled: Disabled
-			five: 5
-			ten: 10
-			twenty: 20
+			disabled: options-death-penalty.disabled
+			five: options-death-penalty.five
+			ten: options-death-penalty.ten
+			twenty: options-death-penalty.twenty
 		Default: disabled
 		DisplayOrder: 18
 	BaseSizeLobbyDropdown@base-obelisk:

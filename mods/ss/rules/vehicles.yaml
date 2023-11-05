@@ -741,6 +741,7 @@ MHQ:
 		CircleSequence: circles
 		UseDirectionalTarget: True
 		DirectionArrowAnimation: airstrikedirection
+		SupportPowerPaletteOrder: 1
 	AirstrikePower@Airstrike:
 		Icon: airstrike
 		ChargeInterval: 500
@@ -761,6 +762,7 @@ MHQ:
 		CircleSequence: circles
 		UseDirectionalTarget: True
 		DirectionArrowAnimation: airstrikedirection
+		SupportPowerPaletteOrder: 2
 	SupportPowerChargeBar:
 	DetectCloaked:
 		Range: 5c0

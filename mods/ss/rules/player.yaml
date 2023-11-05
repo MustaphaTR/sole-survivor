@@ -14,8 +14,8 @@ Player:
 	PlaceBuilding:
 		NewOptionsNotification: NewOptions
 		CannotPlaceNotification: BuildingCannotPlaceAudio
-		NewOptionsTextNotification: New construction options.
-		CannotPlaceTextNotification: Cannot deploy here.
+		NewOptionsTextNotification: notification-new-construction-options
+		CannotPlaceTextNotification: notification-cannot-deploy-here
 	TechTree:
 	SupportPowerManager:
 	ScriptTriggers:
@@ -32,8 +32,8 @@ Player:
 	DeveloperMode:
 		CheckboxDisplayOrder: 2
 	BaseAttackNotifier:
-		TextNotification: Base under attack.
-		AllyTextNotification: Our ally is under attack.
+		TextNotification: notification-base-under-attack
+		AllyTextNotification: notification-ally-under-attack
 	Shroud:
 		FogCheckboxEnabled: false
 		FogCheckboxDisplayOrder: 1

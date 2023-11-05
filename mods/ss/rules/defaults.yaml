@@ -844,7 +844,7 @@
 		EmptyWeapon: BuildingExplode
 	CaptureNotification:
 		Notification: BuildingCaptured
-		TextNotification: notification-building-captured.
+		TextNotification: notification-building-captured
 		NewOwnerVoice: false
 	ActorLostNotification:
 		Notification: BuildingLost
