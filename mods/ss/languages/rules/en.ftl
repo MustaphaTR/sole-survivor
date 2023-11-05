@@ -115,16 +115,15 @@ options-respawn-delay =
     .five = 5 Seconds
     .ten = 10 Seconds
     .fifteen = 15 Seconds
-    .twenty = 20 Seconds
     .thirty = 30 Seconds
     .fortyfive = 45 Seconds
     .sixty = 1 Minute
 
-dropdown-time-limit =
+dropdown-time-limit-ss =
     .label = Time Limit
     .description = Time it takes for the game to end in a score victory condition
 
-options-time-limit =
+options-time-limit-ss =
     .disabled = Disabled
     .two = 2 Minutes
     .five = 5 Minutes

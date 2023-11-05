@@ -9,7 +9,6 @@
  */
 #endregion
 
-using OpenRA.Mods.Common;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.SS.Traits

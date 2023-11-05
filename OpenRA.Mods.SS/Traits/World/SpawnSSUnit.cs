@@ -24,9 +24,11 @@ namespace OpenRA.Mods.SS.Traits
 	[TraitLocation(SystemActors.World)]
 	public class SpawnSSUnitInfo : TraitInfo, NotBefore<LocomotorInfo>, ILobbyOptions
 	{
+		[TranslationReference]
 		[Desc("Descriptive label for the team spawns checkbox in the lobby.")]
 		public readonly string TeamSpawnsCheckboxLabel = "checkbox-team-spawns.label";
 
+		[TranslationReference]
 		[Desc("Tooltip description for the team spawns checkbox in the lobby.")]
 		public readonly string TeamSpawnsCheckboxDescription = "checkbox-team-spawns.description";
 
@@ -51,9 +53,11 @@ namespace OpenRA.Mods.SS.Traits
 		[Desc("Initial facing of the units.")]
 		public readonly WAngle? UnitFacing = null;
 
+		[TranslationReference]
 		[Desc("Descriptive label for the quick class change checkbox in the lobby.")]
 		public readonly string QuickClassChangeCheckboxLabel = "checkbox-quick-class-change.label";
 
+		[TranslationReference]
 		[Desc("Tooltip description for the quick class change checkbox in the lobby.")]
 		public readonly string QuickClassChangeCheckboxDescription = "checkbox-quick-class-change.description";
 

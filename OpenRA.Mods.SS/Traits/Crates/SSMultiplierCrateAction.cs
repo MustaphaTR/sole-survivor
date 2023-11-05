@@ -40,10 +40,10 @@ namespace OpenRA.Mods.SS.Traits
 
 	public class SSMultiplierCrateAction : CrateAction
 	{
-		SSMultiplierCrateActionInfo info;
-		SSMultiplierOptions options;
+		readonly SSMultiplierCrateActionInfo info;
+		readonly SSMultiplierOptions options;
 
-		int max, min, standard;
+		readonly int max, min, standard;
 
 		public SSMultiplierCrateAction(Actor self, SSMultiplierCrateActionInfo info)
 			: base(self, info)
@@ -106,7 +106,7 @@ namespace OpenRA.Mods.SS.Traits
 
 			if (info.TeamBonus > 0)
 			{
-				if (info.TeamBonusPrerequisites.Any())
+				if (info.TeamBonusPrerequisites.Length > 0)
 				{
 					var techtree = collector.Owner.PlayerActor.TraitOrDefault<TechTree>();
 					if (!techtree.HasPrerequisites(info.TeamBonusPrerequisites))

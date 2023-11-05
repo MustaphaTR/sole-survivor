@@ -20,7 +20,7 @@ namespace OpenRA.Mods.SS.Traits
 	class ArmageddonCrateActionInfo : CrateActionInfo
 	{
 		[Desc("The deathtypes used to kill the units.")]
-		public readonly BitSet<DamageType> DeathTypes = default(BitSet<DamageType>);
+		public readonly BitSet<DamageType> DeathTypes = default;
 
 		public override object Create(ActorInitializer init) { return new ArmageddonCrateAction(init.Self, this); }
 	}

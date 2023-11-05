@@ -29,9 +29,9 @@ namespace OpenRA.Mods.SS.Traits
 
 	public class TeamLeaderColorModifier : IRenderModifier, IRadarColorModifier
 	{
-		TeamLeaderColorModifierInfo info;
-		SpawnSSUnit spawner;
-		Player leader;
+		readonly TeamLeaderColorModifierInfo info;
+		readonly SpawnSSUnit spawner;
+		readonly Player leader;
 
 		public TeamLeaderColorModifier(Actor self, TeamLeaderColorModifierInfo info)
 		{

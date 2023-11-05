@@ -947,8 +947,8 @@ Container@PLAYER_WIDGETS:
 			X: WINDOW_RIGHT - 203
 			Y: WINDOW_BOTTOM - 50
 			TooltipContainer: TOOLTIP_CONTAINER
-			ReadyText: Ready
-			HoldText: On Hold
+			ReadyText: productionpalette-player-widgets-production-palette.ready
+			HoldText: productionpalette-player-widgets-production-palette.hold
 			HotkeyPrefix: Production
 			HotkeyCount: 24
 		ProductionTabs@PRODUCTION_TABS:

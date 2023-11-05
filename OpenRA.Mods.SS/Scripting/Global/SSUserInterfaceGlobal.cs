@@ -9,7 +9,6 @@
  */
 #endregion
 
-using OpenRA.Graphics;
 using OpenRA.Mods.Common.Widgets;
 using OpenRA.Primitives;
 using OpenRA.Scripting;
@@ -29,7 +28,7 @@ namespace OpenRA.Mods.Common.Scripting.Global
 			var luaLabel = Ui.Root.Get("INGAME_ROOT").Get<LabelWidget>("MISSION_CENTER_TEXT");
 			luaLabel.GetText = () => text;
 
-			var c = color.HasValue ? color.Value : Color.White;
+			var c = color ?? Color.White;
 			luaLabel.GetColor = () => c;
 		}
 	}

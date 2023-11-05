@@ -550,18 +550,18 @@ World:
 		DisplayOrder: 12
 	ScriptLobbyDropdown@time-limit:
 		ID: time-limit
-		Label: dropdown-time-limit.label
-		Description: dropdown-time-limit.description
+		Label: dropdown-time-limit-ss.label
+		Description: dropdown-time-limit-ss.description
 		Values:
-			disabled: options-time-limit.disabled
-			two: options-time-limit.two
-			five: options-time-limit.five
-			ten: options-time-limit.ten
-			fifteen: options-time-limit.fifteen
-			twenty: options-time-limit.twenty
-			thirty: options-time-limit.thirty
-			fortyfive: options-time-limit.fortyfive
-			sixty: options-time-limit.sixty
+			disabled: options-time-limit-ss.disabled
+			two: options-time-limit-ss.two
+			five: options-time-limit-ss.five
+			ten: options-time-limit-ss.ten
+			fifteen: options-time-limit-ss.fifteen
+			twenty: options-time-limit-ss.twenty
+			thirty: options-time-limit-ss.thirty
+			fortyfive: options-time-limit-ss.fortyfive
+			sixty: options-time-limit-ss.sixty
 		Default: fifteen
 		DisplayOrder: 13
 	ScriptLobbyDropdown@ctf-mode:

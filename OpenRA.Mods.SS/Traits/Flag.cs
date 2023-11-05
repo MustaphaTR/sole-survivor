@@ -24,7 +24,7 @@ namespace OpenRA.Mods.SS.Traits
 	public class FlagInfo : TraitInfo, IPositionableInfo, Requires<RenderSpritesInfo>
 	{
 		[Desc("Allowed to land on.")]
-		public readonly HashSet<string> TerrainTypes = new HashSet<string>();
+		public readonly HashSet<string> TerrainTypes = new();
 
 		[Desc("Define actors that can collect flag by setting this into the Crushes field from the Mobile trait.")]
 		public readonly string CrushClass = "flag";
@@ -195,8 +195,7 @@ namespace OpenRA.Mods.SS.Traits
 			self.World.AddToMaps(self, this);
 
 			var cs = self.World.WorldActor.TraitOrDefault<CrateSpawner>();
-			if (cs != null)
-				cs.IncrementCrates();
+			cs?.IncrementCrates();
 		}
 
 		void INotifyRemovedFromWorld.RemovedFromWorld(Actor self)
@@ -204,8 +203,7 @@ namespace OpenRA.Mods.SS.Traits
 			self.World.RemoveFromMaps(self, this);
 
 			var cs = self.World.WorldActor.TraitOrDefault<CrateSpawner>();
-			if (cs != null)
-				cs.DecrementCrates();
+			cs?.DecrementCrates();
 		}
 
 		static Session.Client FindPlayersClient(World w, Player p)

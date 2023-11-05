@@ -31,7 +31,7 @@ namespace OpenRA.Mods.SS.Traits
 		public readonly bool SetCameraPosition = false;
 
 		[Desc("The range to search for extra collectors in.", "Extra collectors will also be granted the crate action.")]
-		public readonly WDist Range = new WDist(1);
+		public readonly WDist Range = new(1);
 
 		[Desc("The maximum number of extra collectors to grant the crate action to.")]
 		public readonly int MaxExtraCollectors = 4;
@@ -54,7 +54,7 @@ namespace OpenRA.Mods.SS.Traits
 
 		public IEnumerable<IRenderable> Render(Actor self, WorldRenderer wr)
 		{
-			return new IRenderable[] { };
+			return System.Array.Empty<IRenderable>();
 		}
 
 		IEnumerable<Rectangle> IRender.ScreenBounds(Actor self, WorldRenderer wr)

@@ -9,11 +9,7 @@
  */
 #endregion
 
-using System.Collections.Generic;
-using System.Linq;
-using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits;
-using OpenRA.Primitives;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.SS.Traits
@@ -26,7 +22,7 @@ namespace OpenRA.Mods.SS.Traits
 
 	public class AutoSell : ConditionalTrait<AutoSellInfo>
 	{
-		Sellable sellable;
+		readonly Sellable sellable;
 
 		public AutoSell(Actor self, AutoSellInfo info)
 			: base(info)

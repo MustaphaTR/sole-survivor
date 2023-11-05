@@ -9,7 +9,6 @@
  */
 #endregion
 
-using System.Linq;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Traits;
 
@@ -26,10 +25,10 @@ namespace OpenRA.Mods.SS.Traits
 
 	public class WackyCrateAction : CrateAction
 	{
-		WackyCrateActionInfo info;
-		SSMultiplierOptions options;
+		readonly WackyCrateActionInfo info;
+		readonly SSMultiplierOptions options;
 
-		int max, min;
+		readonly int max, min;
 
 		public WackyCrateAction(Actor self, WackyCrateActionInfo info)
 			: base(self, info)
@@ -49,8 +48,7 @@ namespace OpenRA.Mods.SS.Traits
 		public override void Activate(Actor collector)
 		{
 			var health = collector.TraitOrDefault<Health>();
-			if (health != null)
-				health.InflictDamage(collector, collector, new Damage(-(health.MaxHP - health.HP)), true);
+			health?.InflictDamage(collector, collector, new Damage(-(health.MaxHP - health.HP)), true);
 
 			var manager = collector.TraitOrDefault<SSMultiplierManager>();
 			if (manager != null)

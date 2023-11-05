@@ -35,6 +35,7 @@ namespace OpenRA.Mods.SS.Traits
 		[Desc("Notification to play when the condition is revoked.")]
 		public readonly string RevokeNotification = null;
 
+		[TranslationReference]
 		[Desc("Text notification to display when the condition is revoked.")]
 		public readonly string RevokeTextNotification = null;
 
