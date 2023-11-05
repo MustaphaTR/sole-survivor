@@ -825,7 +825,7 @@ Container@PLAYER_WIDGETS:
 									Bar: progressbar-thumb-green
 						Label@STAT_SPEED:
 							Y: 125
-							Text: label-actor-statsspeed
+							Text: label-actor-stats-speed
 							Children:
 								ProgressBar@STAT_SPEED_BAR:
 									X: 1
@@ -872,21 +872,21 @@ Container@PLAYER_WIDGETS:
 									Y: 1
 									Width: 90
 									Height: 25
-									Text: Player
+									Text: label-stats-name
 									Font: Bold
 								Label@FACTION:
 									X: 91
 									Y: 1
 									Width: 32
 									Height: 25
-									Text: Class
+									Text: label-stats-faction
 									Font: Bold
 								Label@SCORE:
 									X: PARENT_RIGHT - 27
 									Y: 1
 									Width: 25
 									Height: 25
-									Text: Score
+									Text: label-stats-score
 									Font: Bold
 									Align: Right
 						ScrollPanel@PLAYER_LIST:
@@ -896,6 +896,7 @@ Container@PLAYER_WIDGETS:
 							ItemSpacing: 5
 							Children:
 								ScrollItem@TEAM_TEMPLATE:
+									Background: scrollheader
 									Width: PARENT_RIGHT - 27
 									Height: 20
 									X: 2

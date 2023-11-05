@@ -10,6 +10,11 @@
 	QuantizeFacingsFromSequence:
 	RenderSprites:
 
+^ClassicFacingSpriteActor:
+	ClassicFacingBodyOrientation:
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+
 ^1x1Shape:
 	HitShape:
 		UseTargetableCellsOffsets: true
@@ -47,7 +52,7 @@
 ^GainsExperience:
 	GainsExperience:
 		LevelUpNotification: LevelUp
-		LevelUpTextNotification: Unit promoted.
+		LevelUpTextNotification: notification-unit-promoted
 		Conditions:
 			250: rank-veteran
 			500: rank-veteran
@@ -294,7 +299,7 @@
 			red: pip-red
 
 ^StoresResources:
-	StoresResources:
+	StoresPlayerResources:
 	WithResourceStoragePipsDecoration:
 		Position: BottomLeft
 		Margin: 4, 3
@@ -326,7 +331,7 @@
 	Passenger:
 		CargoType: Vehicle
 	ActorLostNotification:
-		TextNotification: Unit lost.
+		TextNotification: notification-unit-lost
 	HiddenUnderFog:
 	AttackMove:
 	DrawLineToTarget:
@@ -363,7 +368,7 @@
 
 ^Helicopter:
 	Inherits@1: ^ExistsInWorld
-	Inherits@3: ^SpriteActor
+	Inherits@3: ^ClassicFacingSpriteActor
 	Inherits@4: ^AcceptsCratePowerups
 	Inherits@5: ^AcceptsCloakCrate
 	Inherits@6: ^GivesExperience
@@ -399,7 +404,7 @@
 	HiddenUnderFog:
 		Type: GroundPosition
 	ActorLostNotification:
-		TextNotification: Unit lost.
+		TextNotification: notification-unit-lost
 	Explodes:
 		Weapon: HeliExplode
 		EmptyWeapon: HeliExplode
@@ -492,7 +497,7 @@
 		Margin: 5, 6
 		RequiresCondition: hazmatsuits
 	ActorLostNotification:
-		TextNotification: Unit lost.
+		TextNotification: notification-unit-lost
 	SpawnActorOnDeath:
 		Probability: 5
 		Actor: vice
@@ -588,6 +593,7 @@
 	Passenger:
 		CustomPipType: gray
 	ScaredyCat:
+		AvoidTerrainTypes: Tiberium, BlueTiberium
 	Crushable:
 		CrushSound: squish2.aud
 	Voiced:
@@ -595,6 +601,7 @@
 	Wanders:
 		MinMoveDelay: 150
 		MaxMoveDelay: 750
+		AvoidTerrainTypes: Tiberium, BlueTiberium
 	MapEditorData:
 		Categories: Civilian infantry
 
@@ -762,7 +769,7 @@
 		Type: GroundPosition
 		AlwaysVisibleRelationships: None
 	ActorLostNotification:
-		TextNotification: Unit lost.
+		TextNotification: notification-unit-lost
 	AttackMove:
 	WithShadow:
 		Offset: 43, 128, 0
@@ -788,7 +795,7 @@
 		TargetTypes: Ground, Water
 	HiddenUnderFog:
 	ActorLostNotification:
-		TextNotification: Unit lost.
+		TextNotification: notification-unit-lost
 	AttackMove:
 	DrawLineToTarget:
 	WithDamageOverlay:
@@ -828,8 +835,8 @@
 	ActorPreviewPlaceBuildingPreview:
 		PreviewAlpha: 0.65
 	SoundOnDamageTransition:
-		DamagedSounds: xplos.aud
-		DestroyedSounds: crumble.aud
+		DamagedSounds: xplobig4.aud
+		DestroyedSounds: crumble.aud, xplobig4.aud
 	WithSpriteBody:
 	Explodes:
 		Type: Footprint
@@ -837,11 +844,11 @@
 		EmptyWeapon: BuildingExplode
 	CaptureNotification:
 		Notification: BuildingCaptured
-		TextNotification: Building captured.
+		TextNotification: notification-building-captured.
 		NewOwnerVoice: false
 	ActorLostNotification:
 		Notification: BuildingLost
-		TextNotification: Structure lost.
+		TextNotification: notification-structure-lost
 	ShakeOnDeath:
 	Guardable:
 		Range: 3c0
@@ -883,8 +890,10 @@
 	Sellable:
 		RequiresCondition: !build-incomplete && !being-demolished
 		SellSounds: cashturn.aud
+	CaptureManager:
 	Capturable:
-		Types: building
+		RequiresCondition: !build-incomplete
+		Types: building-sabotage
 	WithMakeAnimation:
 		Condition: build-incomplete
 	WithBuildingRepairDecoration:
@@ -893,7 +902,6 @@
 		Position: Center
 		Palette: player
 		IsPlayerPalette: True
-	CaptureManager:
 
 ^CivBuilding:
 	Inherits: ^Building
@@ -931,7 +939,7 @@
 		Types: building
 	CaptureNotification:
 		Notification: CivilianBuildingCaptured
-		TextNotification: Civilian building captured.
+		TextNotification: notification-civilian-building-captured
 	RepairableBuilding:
 		RepairPercent: 40
 		RepairStep: 1400
@@ -965,6 +973,25 @@
 	RenderSprites:
 		Palette: terrain
 
+^CivHaystackOrIgloo:
+	Inherits: ^CivField
+	MapEditorData:
+		ExcludeTilesets: DESERT
+	-Tooltip:
+	GrantConditionOnTileSet@WINTER:
+		Condition: winter
+		TileSets: SNOW, WINTER
+	Tooltip@WINTER:
+		Name: Igloo
+		RequiresCondition: winter
+		GenericVisibility: None
+		ShowOwnerRow: false
+	Tooltip@SUMMER:
+		Name: Haystacks
+		RequiresCondition: !winter
+		GenericVisibility: None
+		ShowOwnerRow: false
+
 ^CivFieldHusk:
 	Inherits@1: ^SpriteActor
 	Interactable:
@@ -983,6 +1010,25 @@
 	ScriptTriggers:
 	MapEditorData:
 		Categories: Husk
+
+^CivHaystackOrIglooHusk:
+	Inherits: ^CivField
+	MapEditorData:
+		ExcludeTilesets: DESERT
+	-Tooltip:
+	GrantConditionOnTileSet@WINTER:
+		Condition: winter
+		TileSets: SNOW, WINTER
+	Tooltip@WINTER:
+		Name: Igloo (Destroyed)
+		RequiresCondition: winter
+		GenericVisibility: None
+		ShowOwnerRow: false
+	Tooltip@SUMMER:
+		Name: Haystacks (Destroyed)
+		RequiresCondition: !winter
+		GenericVisibility: None
+		ShowOwnerRow: false
 
 ^Wall:
 	Inherits@1: ^SpriteActor
@@ -1023,6 +1069,10 @@
 	ScriptTriggers:
 	Health:
 		HP: 10000
+	AppearsOnMapPreview:
+		Terrain: Wall
+	RadarColorFromTerrain:
+		Terrain: Wall
 	MapEditorData:
 		Categories: Wall
 
@@ -1040,6 +1090,8 @@
 		Dimensions: 2,2
 	AppearsOnRadar:
 	RadarColorFromTerrain:
+		Terrain: Tree
+	AppearsOnMapPreview:
 		Terrain: Tree
 	Health:
 		HP: 50000
@@ -1067,12 +1119,16 @@
 	HitShape:
 	MapEditorData:
 		Categories: Tree
+	RequiresSpecificOwners:
+		ValidOwnerNames: Neutral
 
 ^TreeHusk:
 	Inherits@1: ^SpriteActor
 	Interactable:
 	AppearsOnRadar:
 	RadarColorFromTerrain:
+		Terrain: Tree
+	AppearsOnMapPreview:
 		Terrain: Tree
 	Building:
 		Footprint: __ x_
@@ -1081,10 +1137,12 @@
 	Tooltip:
 		Name: Tree (Burnt)
 		ShowOwnerRow: false
-	FrozenUnderFog:
+	HiddenUnderShroud:
 	ScriptTriggers:
 	MapEditorData:
 		Categories: Tree
+	RequiresSpecificOwners:
+		ValidOwnerNames: Neutral
 
 ^TibTree:
 	Inherits@1: ^SpriteActor
@@ -1101,10 +1159,14 @@
 	AppearsOnRadar:
 	RadarColorFromTerrain:
 		Terrain: Tiberium
+	AppearsOnMapPreview:
+		Terrain: Tiberium
 	HiddenUnderShroud:
 	WithMakeAnimation:
 	MapEditorData:
 		Categories: Resource spawn
+	RequiresSpecificOwners:
+		ValidOwnerNames: Neutral
 
 ^Rock:
 	Inherits@1: ^SpriteActor
@@ -1121,6 +1183,8 @@
 	AppearsOnRadar:
 	RadarColorFromTerrain:
 		Terrain: Tree
+	AppearsOnMapPreview:
+		Terrain: Tree
 	HiddenUnderShroud:
 	ScriptTriggers:
 	MapEditorData:
@@ -1128,31 +1192,34 @@
 		Categories: Decoration
 
 ^CommonHuskDefaults:
-	Inherits@1: ^SpriteActor
+	Inherits@1: ^ClassicFacingSpriteActor
 	Interactable:
 	Health:
-		HP: 14000
+		HP: 28000
 	Armor:
-		Type: Light
+		Type: Heavy
 	HiddenUnderFog:
 		Type: CenterPosition
+		AlwaysVisibleRelationships: None
 	TeamLeaderColorModifier:
 	WithFacingSpriteBody:
 	HitShape:
 	MapEditorData:
 		Categories: Husk
+	RequiresSpecificOwners:
+		ValidOwnerNames: Neutral
 
 ^Husk:
 	Inherits: ^CommonHuskDefaults
 	Husk:
 		AllowedTerrain: Clear, Rough, Road, Tiberium, BlueTiberium, Beach
+		Locomotor: tracked
 	Targetable:
 		RequiresForceFire: true
 		TargetTypes: Ground, Husk
 	CaptureManager:
 	Capturable:
 		Types: husk
-		ValidRelationships: Enemy, Neutral, Ally
 	TransformOnCapture:
 		ForceHealthPercentage: 25
 	Tooltip:
@@ -1168,14 +1235,16 @@
 		Sequence: 1
 		IsDecoration: True
 	ChangesHealth:
-		Step: -100
+		Step: -200
 		StartIfBelow: 101
 		Delay: 6
 
 ^LightHusk:
 	Inherits: ^Husk
+	Husk:
+		Locomotor: wheeled
 	Health:
-		HP: 2000
+		HP: 4000
 
 ^HelicopterHusk:
 	Inherits: ^CommonHuskDefaults
@@ -1185,6 +1254,7 @@
 	Aircraft:
 		CanHover: True
 		VTOL: true
+		CanSlide: True
 	FallsToEarth:
 		Moves: False
 		Explosion: HeliCrash
@@ -1214,6 +1284,8 @@
 	ShakeOnDeath:
 		Duration: 15
 		Intensity: 6
+	RequiresSpecificOwners:
+		ValidOwnerNames: Neutral
 
 ^Crate:
 	Inherits@1: ^SpriteActor

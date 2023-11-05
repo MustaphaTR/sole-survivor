@@ -74,6 +74,12 @@ UnitExplodeSmall:
 		Explosions: big_frag
 		ImpactSounds: xplobig4.aud
 
+UnitExplodeBig:
+	Inherits: ^DamagingExplosionHE
+	Warhead@2Eff: CreateEffect
+		Explosions: big_frag
+		ImpactSounds: xplobig6.aud
+
 GrenadierExplode:
 	Inherits: ^DamagingExplosionHE
 	Warhead@1Dam: SpreadDamage

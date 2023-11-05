@@ -27,7 +27,10 @@ E1:
 		Condition: antiair
 		Prerequisites: global-moreaa
 	AttackFrontal:
+		Voice: Attack
 		FacingTolerance: 0
+	AttackMove:
+		Voice: Attack
 	WithInfantryBody:
 		IdleSequences: idle1,idle2,idle3,idle4
 		DefaultAttackSequence: shoot
@@ -58,10 +61,13 @@ E2:
 		Weapon: Grenade
 		LocalOffset: 0,0,427
 		FireDelay: 15
+	AttackFrontal:
+		Voice: Attack
+		FacingTolerance: 0
+	AttackMove:
+		Voice: Attack
 	TakeCover:
 		ProneOffset: 300,0,-227
-	AttackFrontal:
-		FacingTolerance: 0
 	WithInfantryBody:
 		DefaultAttackSequence: throw
 	Explodes:
@@ -95,10 +101,13 @@ E3:
 		Weapon: Rockets
 		LocalOffset: 256,43,341
 		FireDelay: 5
+	AttackFrontal:
+		Voice: Attack
+		FacingTolerance: 0
+	AttackMove:
+		Voice: Attack
 	TakeCover:
 		ProneOffset: 180,0,-200
-	AttackFrontal:
-		FacingTolerance: 0
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
 	UnitStatValues:
@@ -129,10 +138,13 @@ E4:
 		LocalOffset: 341,0,256
 		FireDelay: 3
 		MuzzleSequence: muzzle
+	AttackFrontal:
+		Voice: Attack
+		FacingTolerance: 0
+	AttackMove:
+		Voice: Attack
 	TakeCover:
 		ProneOffset: 190,0,-198
-	AttackFrontal:
-		FacingTolerance: 0
 	WithMuzzleOverlay:
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
@@ -165,10 +177,13 @@ E5:
 		LocalOffset: 341,0,256
 		FireDelay: 3
 		MuzzleSequence: muzzle
+	AttackFrontal:
+		Voice: Attack
+		FacingTolerance: 0
+	AttackMove:
+		Voice: Attack
 	TakeCover:
 		ProneOffset: 190,0,-190
-	AttackFrontal:
-		FacingTolerance: 0
 	WithMuzzleOverlay:
 	-DamagedByTerrain:
 	WithInfantryBody:
@@ -262,7 +277,7 @@ PVICE:
 		Description: Mutated abomination that spits liquid Tiberium.\n  Strong vs Infantry, Buildings\n  Weak vs Aircraft
 	Tooltip:
 	ActorLostNotification:
-		TextNotification: Unit lost.
+		TextNotification: notification-unit-lost
 	UnitStatValues:
 		Damage: 8000
 

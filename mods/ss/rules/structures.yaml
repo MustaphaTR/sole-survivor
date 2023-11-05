@@ -4,7 +4,7 @@ FACT:
 	Selectable:
 		Bounds: 3072, 2048
 	Valued:
-		Cost: 3500
+		Cost: 3000
 	Tooltip:
 		Name: Construction Yard
 	Building:
@@ -17,22 +17,35 @@ FACT:
 		Type: Wood
 	RevealsShroud:
 		Range: 10c0
-	WithBuildingBib:
 	Production:
 		Produces: Building
 	Transforms:
+		PauseOnCondition: being-demolished || build-incomplete
 		IntoActor: mcv
 		Offset: 1,1
 		Facing: 432
+	TransformsIntoMobile:
+		Locomotor: heavywheeled
+		RequiresForceMove: true
+	TransformsIntoPassenger:
+		CargoType: Vehicle
+		RequiresForceMove: true
+	TransformsIntoRepairable:
+		RepairActors: fix
+		RequiresForceMove: true
+	TransformsIntoTransforms:
+		RequiresCondition: build-incomplete
 	ProductionQueue@Building:
 		Type: Building
+		DisplayOrder: 0
 		Group: Building
+		LowPowerModifier: 150
 		ReadyAudio: ConstructionComplete
-		ReadyTextNotification: Construction complete.
+		ReadyTextNotification: notification-construction-complete
 		BlockedAudio: NoBuild
-		BlockedTextNotification: Unable to build more.
+		BlockedTextNotification: notification-unable-to-build-more
 		LimitedAudio: BuildingInProgress
-		LimitedTextNotification: Unable to comply. Building in progress.
+		LimitedTextNotification: notification-unable-to-comply-building-in-progress
 		QueuedAudio: Building
 		OnHoldAudio: OnHold
 		CancelledAudio: Cancelled
@@ -40,9 +53,10 @@ FACT:
 	ProductionBar@Building:
 		ProductionType: Building
 	BaseProvider:
-		Cooldown: 75
 		Range: 14c0
+	WithBuildingBib:
 	WithBuildingPlacedAnimation:
+		RequiresCondition: !build-incomplete
 	ProvidesPrerequisite@buildingname:
 	MustBeDestroyed:
 
@@ -62,7 +76,6 @@ NUKE:
 	Buildable:
 		BuildPaletteOrder: 10
 		Queue: Building.GDI, Building.Nod
-		BuildDuration: 330
 		Prerequisites: fact
 		Description: Generates power
 	Building:
@@ -124,22 +137,23 @@ PROC:
 		Queue: Building.GDI, Building.Nod
 		Description: Processes raw Tiberium\ninto useable resources
 	Building:
-		Footprint: _x_ xxx === ===
+		Footprint: _x_ xxx +++ ===
 		Dimensions: 3,4
 		LocalCenterOffset: 0,-512,0
 	Health:
 		HP: 100000
 	RevealsShroud:
 		Range: 6c0
-	WithBuildingBib:
 	Refinery:
+		TickRate: 15
+	DockHost:
+		Type: Unload
 		DockAngle: 448
-		DockOffset: 0,2
+		DockOffset: -1c0, 1c0, 0
 		IsDragRequired: True
 		DragOffset: -554,512,0
 		DragLength: 12
-		TickRate: 15
-	StoresResources:
+	StoresPlayerResources:
 		Capacity: 1000
 	Selectable:
 		Bounds: 3072, 2389
@@ -150,16 +164,17 @@ PROC:
 		Actor: HARV
 		SpawnOffset: 1,2
 		Facing: 256
+	WithBuildingBib:
 	WithResourceLevelOverlay:
+		RequiresCondition: !build-incomplete
 	ProvidesPrerequisite@buildingname:
-	SelectionDecorations:
 
 SILO:
 	Inherits: ^BaseBuilding
 	Inherits@shape: ^2x1Shape
 	Inherits@RESOURCES: ^StoresResources
 	Valued:
-		Cost: 300
+		Cost: 100
 	Tooltip:
 		Name: Tiberium Silo
 	Buildable:
@@ -180,14 +195,13 @@ SILO:
 	-WithSpriteBody:
 	WithResourceLevelSpriteBody:
 		Sequence: stages
-	StoresResources:
+	StoresPlayerResources:
 		Capacity: 3000
 	-SpawnActorsOnSell:
 	Power:
 		Amount: -10
 	MustBeDestroyed:
 		RequiredForShortGame: false
-	SelectionDecorations:
 	-AcceptsDeliveredCash:
 	Selectable:
 		Bounds: 2048, 1024
@@ -234,14 +248,15 @@ PYLE:
 		Produces: Infantry.GDI
 	ProductionQueue:
 		Type: Infantry.GDI
+		DisplayOrder: 2
 		Group: Infantry
-		LowPowerModifier: 300
+		LowPowerModifier: 150
 		ReadyAudio: UnitReady
-		ReadyTextNotification: Unit ready.
+		ReadyTextNotification: notification-unit-ready
 		BlockedAudio: NoBuild
-		BlockedTextNotification: Unable to build more.
+		BlockedTextNotification: notification-unable-to-build-more
 		LimitedAudio: BuildingInProgress
-		LimitedTextNotification: Unable to comply. Building in progress.
+		LimitedTextNotification: notification-unable-to-comply-building-in-progress
 		QueuedAudio: Training
 		OnHoldAudio: OnHold
 		CancelledAudio: Cancelled
@@ -281,20 +296,25 @@ HAND:
 	CommandBarBlacklist:
 		DisableStop: false
 	Exit@1:
+		Priority: 2
 		SpawnOffset: 512,1024,0
 		ExitCell: 1,2
+	Exit@fallback1:
+		SpawnOffset: -1024,256,0
+		ExitCell: -1,1
 	Production:
 		Produces: Infantry.Nod
 	ProductionQueue:
 		Type: Infantry.Nod
+		DisplayOrder: 2
 		Group: Infantry
-		LowPowerModifier: 300
+		LowPowerModifier: 150
 		ReadyAudio: UnitReady
-		ReadyTextNotification: Unit ready.
+		ReadyTextNotification: notification-unit-ready
 		BlockedAudio: NoBuild
-		BlockedTextNotification: Unable to build more.
+		BlockedTextNotification: notification-unable-to-build-more
 		LimitedAudio: BuildingInProgress
-		LimitedTextNotification: Unable to comply. Building in progress.
+		LimitedTextNotification: notification-unable-to-comply-building-in-progress
 		QueuedAudio: Training
 		OnHoldAudio: OnHold
 		CancelledAudio: Cancelled
@@ -304,7 +324,6 @@ HAND:
 	Selectable:
 		Bounds: 2048, 2048
 		DecorationBounds: 2048, 2901, 0, -426
-	SelectionDecorations:
 
 AFLD:
 	Inherits: ^BaseBuilding
@@ -334,9 +353,6 @@ AFLD:
 		HP: 110000
 	RevealsShroud:
 		Range: 7c0
-	WithBuildingBib:
-	WithIdleOverlay@DISH:
-		Sequence: idle-dish
 	RallyPoint:
 	CommandBarBlacklist:
 		DisableStop: false
@@ -344,18 +360,25 @@ AFLD:
 		SpawnOffset: -1024,0,0
 		ExitCell: 3,1
 	ProductionAirdrop:
-		ActorType: c17
 		Produces: Vehicle.Nod
-		ReadyTextNotification: Reinforcements have arrived.
+		ActorType: c17
+		LandOffset: -1024,0,0
+		ReadyTextNotification: notification-reinforcements-have-arrived
+	WithBuildingBib:
+	WithIdleOverlay@DISH:
+		RequiresCondition: !build-incomplete
+		Sequence: idle-dish
 	WithDeliveryAnimation:
+		RequiresCondition: !build-incomplete
 	ProductionQueue:
 		Type: Vehicle.Nod
+		DisplayOrder: 3
 		Group: Vehicle
-		LowPowerModifier: 300
+		LowPowerModifier: 150
 		BlockedAudio: NoBuild
-		BlockedTextNotification: Unable to build more.
+		BlockedTextNotification: notification-unable-to-build-more
 		LimitedAudio: BuildingInProgress
-		LimitedTextNotification: Unable to comply. Building in progress.
+		LimitedTextNotification: notification-unable-to-comply-building-in-progress
 		QueuedAudio: Training
 		OnHoldAudio: OnHold
 		CancelledAudio: Cancelled
@@ -383,19 +406,19 @@ WEAP:
 		Queue: Building.GDI
 		Description: Produces vehicles
 	Building:
-		Footprint: xxx === ===
+		Footprint: xxx +++ ===
 		Dimensions: 3,3
 		LocalCenterOffset: 0,-512,0
 	Selectable:
 		Bounds: 3072, 2048
 		DecorationBounds: 3072, 2730, 0, -682
-	SelectionDecorations:
 	Health:
 		HP: 110000
 	RevealsShroud:
 		Range: 4c0
 	WithBuildingBib:
 	WithProductionDoorOverlay:
+		RequiresCondition: !build-incomplete
 		Sequence: build-top
 	RallyPoint:
 	CommandBarBlacklist:
@@ -408,14 +431,15 @@ WEAP:
 		Produces: Vehicle.GDI
 	ProductionQueue:
 		Type: Vehicle.GDI
+		DisplayOrder: 3
 		Group: Vehicle
-		LowPowerModifier: 300
+		LowPowerModifier: 150
 		ReadyAudio: UnitReady
-		ReadyTextNotification: Unit ready.
+		ReadyTextNotification: notification-unit-ready
 		BlockedAudio: NoBuild
-		BlockedTextNotification: Unable to build more.
+		BlockedTextNotification: notification-unable-to-build-more
 		LimitedAudio: BuildingInProgress
-		LimitedTextNotification: Unable to comply. Building in progress.
+		LimitedTextNotification: notification-unable-to-comply-building-in-progress
 		QueuedAudio: Training
 		OnHoldAudio: OnHold
 		CancelledAudio: Cancelled
@@ -443,7 +467,7 @@ HPAD:
 		BuildPaletteOrder: 50
 		Prerequisites: proc
 		Queue: Building.GDI, Building.Nod
-		Description: Produces, rearms and\nrepairs helicopters
+		Description: Produces and repairs helicopters
 	Building:
 		Footprint: xx xx
 		Dimensions: 2,2
@@ -460,36 +484,39 @@ HPAD:
 		HpPerStep: 1000
 		PlayerExperience: 5
 		StartRepairingNotification: Repairing
-		StartRepairingTextNotification: Repairing.
+		StartRepairingTextNotification: notification-repairing
 	WithResupplyAnimation:
+		RequiresCondition: !build-incomplete
 	RallyPoint:
 	CommandBarBlacklist:
 		DisableStop: false
 	ProductionQueue@GDI:
 		Type: Aircraft.GDI
+		DisplayOrder: 4
 		Factions: gdi
 		Group: Aircraft
-		LowPowerModifier: 300
+		LowPowerModifier: 150
 		ReadyAudio: UnitReady
-		ReadyTextNotification: Unit ready.
+		ReadyTextNotification: notification-unit-ready
 		BlockedAudio: NoBuild
-		BlockedTextNotification: Unable to build more.
+		BlockedTextNotification: notification-unable-to-build-more
 		LimitedAudio: BuildingInProgress
-		LimitedTextNotification: Unable to comply. Building in progress.
+		LimitedTextNotification: notification-unable-to-comply-building-in-progress
 		QueuedAudio: Training
 		OnHoldAudio: OnHold
 		CancelledAudio: Cancelled
 	ProductionQueue@Nod:
 		Type: Aircraft.Nod
+		DisplayOrder: 4
 		Factions: nod
 		Group: Aircraft
-		LowPowerModifier: 300
+		LowPowerModifier: 150
 		ReadyAudio: UnitReady
-		ReadyTextNotification: Unit ready.
+		ReadyTextNotification: notification-unit-ready
 		BlockedAudio: NoBuild
-		BlockedTextNotification: Unable to build more.
+		BlockedTextNotification: notification-unable-to-build-more
 		LimitedAudio: BuildingInProgress
-		LimitedTextNotification: Unable to comply. Building in progress.
+		LimitedTextNotification: notification-unable-to-comply-building-in-progress
 		QueuedAudio: Training
 		OnHoldAudio: OnHold
 		CancelledAudio: Cancelled
@@ -524,7 +551,6 @@ HQ:
 	Selectable:
 		Bounds: 2048, 1706, 0, 384
 		DecorationBounds: 2048, 2261, 0, -170
-	SelectionDecorations:
 	WithSpriteBody:
 	Health:
 		HP: 80000
@@ -537,7 +563,7 @@ HQ:
 		Range: 5c0
 	AirstrikePower:
 		Icon: airstrike
-		ChargeInterval: 6000
+		ChargeInterval: 7500
 		SquadSize: 3
 		QuantizedFacings: 8
 		Name: Air Strike
@@ -546,10 +572,10 @@ HQ:
 		SelectTargetSpeechNotification: SelectTarget
 		InsufficientPowerSpeechNotification: InsufficientPower
 		IncomingSpeechNotification: EnemyPlanesApproaching
-		EndChargeTextNotification: Airstrike ready.
-		SelectTargetTextNotification: Select target.
-		InsufficientPowerTextNotification: Insufficient power.
-		IncomingTextNotification: Enemy planes approaching.
+		EndChargeTextNotification: notification-airstrike-ready
+		SelectTargetTextNotification: notification-select-target
+		InsufficientPowerTextNotification: notification-insufficient-power
+		IncomingTextNotification: notification-enemy-planes-approaching
 		UnitType: a10
 		DisplayBeacon: True
 		BeaconPoster: airstrike
@@ -559,6 +585,9 @@ HQ:
 		ArrowSequence: arrow
 		ClockSequence: clock
 		CircleSequence: circles
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: airstrikedirection
+		SupportPowerPaletteOrder: 10
 	SupportPowerChargeBar:
 
 FIX:
@@ -577,29 +606,29 @@ FIX:
 		Queue: Building.GDI, Building.Nod
 		Description: Repairs vehicles
 	Building:
-		Footprint: _X_ xxx _X_
+		Footprint: _+_ +++ _+_
 		Dimensions: 3,3
 	Selectable:
 		Bounds: 2730, 1450, 0, 128
 		DecorationBounds: 3072, 2048
-	SelectionDecorations:
 	Health:
 		HP: 80000
 	RevealsShroud:
 		Range: 5c0
 	WithBuildingBib:
 		HasMinibib: true
+	WithResupplyAnimation:
+		RequiresCondition: !build-incomplete
 	Reservable:
 	RepairsUnits:
 		HpPerStep: 1000
 		Interval: 15
 		PlayerExperience: 5
 		StartRepairingNotification: Repairing
-		StartRepairingTextNotification: Repairing.
+		StartRepairingTextNotification: notification-repairing
 	RallyPoint:
 	CommandBarBlacklist:
 		DisableStop: false
-	WithResupplyAnimation:
 	ProvidesPrerequisite@buildingname:
 
 EYE:
@@ -627,7 +656,6 @@ EYE:
 	Selectable:
 		Bounds: 2048, 1706, 0, 384
 		DecorationBounds: 2048, 2261, 0, -170
-	SelectionDecorations:
 	WithSpriteBody:
 	Health:
 		HP: 130000
@@ -641,16 +669,21 @@ EYE:
 	IonCannonPower:
 		Icon: ioncannon
 		Cursor: ioncannon
-		ChargeInterval: 6750
+		ChargeInterval: 9000
 		Name: Ion Cannon
 		Description: Initiate an Ion Cannon strike.\nApplies instant damage to a small area.
 		BeginChargeSpeechNotification: IonCannonCharging
 		EndChargeSpeechNotification: IonCannonReady
 		SelectTargetSpeechNotification: SelectTarget
 		InsufficientPowerSpeechNotification: InsufficientPower
+		BeginChargeTextNotification: notification-ion-cannon-charging
+		EndChargeTextNotification: notification-ion-cannon-ready
+		SelectTargetTextNotification: notification-select-target
+		InsufficientPowerTextNotification: notification-insufficient-power
 		OnFireSound: ion1.aud
 		DisplayRadarPing: True
 		CameraActor: camera.small
+		SupportPowerPaletteOrder: 20
 	SupportPowerChargeBar:
 	ProvidesPrerequisite@buildingname:
 
@@ -678,19 +711,17 @@ TMPL:
 	Selectable:
 		Bounds: 3072, 2048
 		DecorationBounds: 3072, 2901, 0, -512
-	SelectionDecorations:
 	Health:
 		HP: 210000
 	RevealsShroud:
 		Range: 6c0
-	WithBuildingBib:
 	RenderDetectionCircle:
 	DetectCloaked:
 		Range: 5c0
 	NukePower:
 		Icon: abomb
 		Cursor: nuke
-		ChargeInterval: 9000
+		ChargeInterval: 11250
 		Name: Nuclear Strike
 		Description: Launch a tactical nuclear warhead.\nApplies heavy damage over a large area.
 		EndChargeSpeechNotification: NuclearWeaponAvailable
@@ -698,11 +729,11 @@ TMPL:
 		InsufficientPowerSpeechNotification: InsufficientPower
 		LaunchSpeechNotification: NuclearWeaponLaunched
 		IncomingSpeechNotification: NuclearWarheadApproaching
-		SelectTargetTextNotification: Select target.
-		EndChargeTextNotification: Nuclear weapon available.
-		InsufficientPowerTextNotification: Insufficient power.
-		LaunchTextNotification: Nuclear weapon launched.
-		IncomingTextNotification: Nuclear warhead approaching.
+		SelectTargetTextNotification: notification-select-target
+		EndChargeTextNotification: notification-nuclear-weapon-available
+		InsufficientPowerTextNotification: notification-insufficient-power
+		LaunchTextNotification: notification-nuclear-weapon-launched
+		IncomingTextNotification: notification-nuclear-warhead-approaching
 		MissileWeapon: atomic
 		MissileImage: atomic
 		MissileDelay: 11
@@ -715,8 +746,11 @@ TMPL:
 		ArrowSequence: arrow
 		ClockSequence: clock
 		CircleSequence: circles
+	WithBuildingBib:
 	WithSupportPowerActivationAnimation:
+		RequiresCondition: !build-incomplete
 	WithSupportPowerActivationOverlay:
+		RequiresCondition: !build-incomplete
 		Sequence: smoke
 	SupportPowerChargeBar:
 	ProvidesPrerequisite@buildingname:
@@ -766,6 +800,8 @@ GUN:
 		RequiresCondition: !deployed
 	WithMuzzleOverlay:
 	-WithDeathAnimation:
+	-BodyOrientation:
+	ClassicFacingBodyOrientation:
 	-SpawnActorsOnSell:
 	SpawnActorOnDeath@HUSK:
 		Actor: GUN.husk
@@ -823,8 +859,7 @@ SAM:
 		BuildPaletteOrder: 50
 		Prerequisites: hand
 		Queue: Defence.Nod
-		BuildDuration: 1700
-		BuildDurationModifier: 40
+		BuildDuration: 1130
 		Description: Anti-Aircraft base defense.\n  Strong vs Aircraft\n  Cannot target Ground units.
 	Building:
 		Footprint: xx
@@ -834,19 +869,22 @@ SAM:
 	Armor:
 		Type: Heavy
 	RevealsShroud:
-		Range: 6c0
+		Range: 8c0
 	Turreted:
 		TurnSpeed: 40
 		InitialFacing: 0
 		RealignDelay: -1
 	-WithSpriteBody:
 	WithEmbeddedTurretSpriteBody:
+		QuantizedFacings: 32
 	Armament:
 		Weapon: Dragon
 		MuzzleSequence: muzzle
 	AttackPopupTurreted:
 		PauseOnCondition: build-incomplete
 	WithMuzzleOverlay:
+	-BodyOrientation:
+	ClassicFacingBodyOrientation:
 	-ActorPreviewPlaceBuildingPreview:
 	SequencePlaceBuildingPreview:
 		Sequence: place
@@ -864,8 +902,7 @@ OBLI:
 		BuildPaletteOrder: 60
 		Prerequisites: tmpl
 		Queue: Defence.Nod
-		BuildDuration: 3120
-		BuildDurationModifier: 40
+		BuildDuration: 2080
 		Description: Advanced base defense.\nRequires power to operate.\n  Strong vs all Ground units\n  Cannot target Aircraft
 	Selectable:
 		Bounds: 1024, 1024
@@ -989,13 +1026,11 @@ ATWR:
 		BuildPaletteOrder: 60
 		Prerequisites: anyhq
 		Queue: Defence.GDI
-		BuildDuration: 2880
-		BuildDurationModifier: 40
+		BuildDuration: 1920
 		Description: All-purpose defensive structure.\n  Strong vs Aircraft, Tanks\n  Weak vs Infantry
 	Selectable:
 		Bounds: 1024, 1024
 		DecorationBounds: 938, 2048, 0, -512
-	SelectionDecorations:
 	Health:
 		HP: 55000
 	Armor:
@@ -1076,11 +1111,10 @@ BRIK:
 		BuildPaletteOrder: 30
 		Prerequisites: vehicleproduction
 		Queue: Defence.GDI, Defence.Nod
-		BuildDuration: 500
-		BuildDurationModifier: 40
+		BuildDuration: 230
 		Description: Stops infantry and most tanks.\nBlocks some projectiles.
 	Health:
-		HP: 25000
+		HP: 20000
 	Armor:
 		Type: Heavy
 	BlocksProjectiles:
