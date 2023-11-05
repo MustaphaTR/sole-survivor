@@ -30,8 +30,8 @@ namespace OpenRA.Mods.SS.Scripting
 		[Desc("Returns the player's spawn position in CPos.")]
 		public CPos SpawnCellPosition
 		{
-			get { return spawnSSUnit.PlayerSpawnPoints[player]; }
-			set { spawnSSUnit.PlayerSpawnPoints[player] = value; }
+			get => spawnSSUnit.PlayerSpawnPoints[player];
+			set => spawnSSUnit.PlayerSpawnPoints[player] = value;
 		}
 
 		[Desc("Returns the player's spawn position in WPos.")]
@@ -61,29 +61,29 @@ namespace OpenRA.Mods.SS.Scripting
 		[Desc("Returns to or sets the player's class.")]
 		public string Class
 		{
-			get { return spawnSSUnit.Classes[player]; }
-			set { spawnSSUnit.Classes[player] = value; }
+			get => spawnSSUnit.Classes[player];
+			set => spawnSSUnit.Classes[player] = value;
 		}
 
 		[Desc("Returns to or sets the player's unit.")]
 		public Actor Unit
 		{
-			get { return spawnSSUnit.Units[player]; }
-			set { spawnSSUnit.Units[player] = value; }
+			get => spawnSSUnit.Units[player];
+			set => spawnSSUnit.Units[player] = value;
 		}
 
 		[Desc("Returns to or sets if player is allowed to change its class at all.")]
 		public bool ClassChanging
 		{
-			get { return spawnSSUnit.ClassChanging; }
-			set { spawnSSUnit.ClassChanging = value; }
+			get => spawnSSUnit.ClassChanging;
+			set => spawnSSUnit.ClassChanging = value;
 		}
 
 		[Desc("Returns to or sets if player is currently allowed to change its class.")]
 		public bool ClassChangingPaused
 		{
-			get { return spawnSSUnit.ClassChangingPaused; }
-			set { spawnSSUnit.ClassChangingPaused = value; }
+			get => spawnSSUnit.ClassChangingPaused;
+			set => spawnSSUnit.ClassChangingPaused = value;
 		}
 	}
 }

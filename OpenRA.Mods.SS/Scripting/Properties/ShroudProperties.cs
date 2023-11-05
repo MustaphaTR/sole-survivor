@@ -18,12 +18,10 @@ namespace OpenRA.Mods.SS.Scripting
 	public class ShroudProperties : ScriptPlayerProperties
 	{
 		readonly Shroud shroud;
-		readonly Player player;
 
 		public ShroudProperties(ScriptContext context, Player player)
 			: base(context, player)
 		{
-			this.player = player;
 			shroud = player.PlayerActor.TraitOrDefault<Shroud>();
 		}
 
