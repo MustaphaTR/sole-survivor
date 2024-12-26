@@ -12,9 +12,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using OpenRA.Graphics;
 using OpenRA.Mods.SS.Traits;
-using OpenRA.Network;
 using OpenRA.Traits;
 using OpenRA.Widgets;
 
@@ -22,14 +20,14 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 {
 	class IngameClassSelectorLogic : ChromeLogic
 	{
-		public (string First, string Second) SplitOnFirstToken(string input, string token = "\\n")
+		public static (string First, string Second) SplitOnFirstToken(string input, string token = "\\n")
 		{
 			if (string.IsNullOrEmpty(input))
 				return (null, null);
 
 			var split = input.IndexOf(token, StringComparison.Ordinal);
-			var first = split > 0 ? input.Substring(0, split) : input;
-			var second = split > 0 ? input.Substring(split + token.Length) : null;
+			var first = split > 0 ? input[..split] : input;
+			var second = split > 0 ? input[(split + token.Length)..] : null;
 			return (first, second);
 		}
 
@@ -37,7 +35,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		{
 			var player = world.LocalPlayer;
 
-			Func<string, ScrollItemWidget, ScrollItemWidget> setupItem = (factionId, itemTemplate) =>
+			ScrollItemWidget SetupItem(string factionId, ScrollItemWidget itemTemplate)
 			{
 				var item = ScrollItemWidget.Setup(itemTemplate,
 					() => spawner.Classes[player] == factionId,
@@ -66,16 +64,16 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				item.GetTooltipDesc = () => tooltip.Second;
 
 				return item;
-			};
+			}
 
 			var options = factions.Where(f => f.Value.Selectable && f.Value.Side != "Random").GroupBy(f => f.Value.Side)
 				.ToDictionary(g => g.Key ?? "", g => g.Select(f => f.Key));
 
-			dropdown.ShowDropDown("FACTION_DROPDOWN_TEMPLATE", 154, options, setupItem);
+			dropdown.ShowDropDown("FACTION_DROPDOWN_TEMPLATE", 154, options, SetupItem);
 		}
 
 		[ObjectCreator.UseCtor]
-		public IngameClassSelectorLogic(Widget widget, World world, OrderManager orderManager, WorldRenderer worldRenderer)
+		public IngameClassSelectorLogic(Widget widget, World world)
 		{
 			var player = world.LocalPlayer;
 			var spawner = world.WorldActor.Trait<SpawnSSUnit>();

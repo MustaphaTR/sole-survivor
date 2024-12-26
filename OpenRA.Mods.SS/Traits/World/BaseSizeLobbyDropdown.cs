@@ -22,11 +22,11 @@ namespace OpenRA.Mods.SS.Traits
 		[Desc("Internal id for this option.")]
 		public readonly string ID = "base-size";
 
-		[TranslationReference]
+		[FluentReference]
 		[Desc("Descriptive label for this option.")]
 		public readonly string Label = "dropdown-base-size.label";
 
-		[TranslationReference]
+		[FluentReference]
 		[Desc("Tooltip description for this option.")]
 		public readonly string Description = "dropdown-base-size.description";
 

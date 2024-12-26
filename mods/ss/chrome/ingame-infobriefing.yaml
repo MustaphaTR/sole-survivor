@@ -1,10 +1,10 @@
 Container@MAP_PANEL:
-	Height: PARENT_BOTTOM
-	Width: PARENT_RIGHT
+	Height: PARENT_HEIGHT
+	Width: PARENT_WIDTH
 	Logic: GameInfoBriefingLogic
 	Children:
 		Background@PREVIEW_BG:
-			X: (PARENT_RIGHT - WIDTH) / 2
+			X: (PARENT_WIDTH - WIDTH) / 2
 			Y: 15
 			Width: 562
 			Height: 202
@@ -27,4 +27,4 @@ Container@MAP_PANEL:
 				Label@MAP_DESCRIPTION:
 					X: 4
 					Y: 2
-					Width: PARENT_RIGHT - 32
+					Width: PARENT_WIDTH - 32

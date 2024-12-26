@@ -25,7 +25,7 @@ namespace OpenRA.Mods.Common.Traits
 		[Desc("Notification to play when the crate is collected and weapon fires.")]
 		public readonly string WeaponNotification = null;
 
-		[TranslationReference]
+		[FluentReference]
 		[Desc("Text notification to display when the crate is collected and weapon fires.")]
 		public readonly string WeaponTextNotification = null;
 

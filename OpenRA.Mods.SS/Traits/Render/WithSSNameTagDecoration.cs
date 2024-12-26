@@ -58,13 +58,13 @@ namespace OpenRA.Mods.SS.Traits.Render
 			color = info.UsePlayerColor ? self.Owner.Color : info.Color;
 
 			spawner = self.World.WorldActor.Trait<SpawnSSUnit>();
-			leader = spawner.TeamLeaders.ContainsKey(self.Owner) ? spawner.TeamLeaders[self.Owner] : null;
+			spawner.TeamLeaders.TryGetValue(self.Owner, out leader);
 			if (leader != null)
 				color = leader.Color;
 
-			name = self.Owner.PlayerName;
+			name = self.Owner.ResolvedPlayerName;
 			if (name.Length > info.MaxLength)
-				name = name.Substring(0, info.MaxLength);
+				name = name[..info.MaxLength];
 		}
 
 		protected override IEnumerable<IRenderable> RenderDecoration(Actor self, WorldRenderer wr, int2 screenPos)
@@ -84,9 +84,9 @@ namespace OpenRA.Mods.SS.Traits.Render
 			if (Info.UsePlayerColor)
 				color = newOwner.Color;
 
-			name = self.Owner.PlayerName;
+			name = self.Owner.ResolvedPlayerName;
 			if (name.Length > Info.MaxLength)
-				name = name.Substring(0, Info.MaxLength);
+				name = name[..Info.MaxLength];
 		}
 	}
 }

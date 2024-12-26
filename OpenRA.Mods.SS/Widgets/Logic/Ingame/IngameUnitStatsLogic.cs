@@ -20,7 +20,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 {
 	public class IngameUnitStatsLogic : ChromeLogic
 	{
-		[TranslationReference]
+		[FluentReference]
 		const string Infinite = "label-actor-stats-infinite";
 
 		[ObjectCreator.UseCtor]
@@ -46,13 +46,13 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			var rofBar = widget.Get<ProgressBarWidget>("STAT_ROF_BAR");
 			var speedBar = widget.Get<ProgressBarWidget>("STAT_SPEED_BAR");
 
-			var healthText = TranslationProvider.GetString(health.Text);
-			var sightText = TranslationProvider.GetString(sight.Text);
-			var damageText = TranslationProvider.GetString(damage.Text);
-			var rangeText = TranslationProvider.GetString(range.Text);
-			var rofText = TranslationProvider.GetString(rof.Text);
-			var speedText = TranslationProvider.GetString(speed.Text);
-			var infiniteText = TranslationProvider.GetString(Infinite);
+			var healthText = FluentProvider.GetMessage(health.Text);
+			var sightText = FluentProvider.GetMessage(sight.Text);
+			var damageText = FluentProvider.GetMessage(damage.Text);
+			var rangeText = FluentProvider.GetMessage(range.Text);
+			var rofText = FluentProvider.GetMessage(rof.Text);
+			var speedText = FluentProvider.GetMessage(speed.Text);
+			var infiniteText = FluentProvider.GetMessage(Infinite);
 
 			health.GetText = () =>
 			{

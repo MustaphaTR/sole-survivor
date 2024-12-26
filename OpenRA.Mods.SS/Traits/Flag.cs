@@ -68,12 +68,14 @@ namespace OpenRA.Mods.SS.Traits
 		}
 	}
 
-	public class Flag : IPositionable, ICrushable, ISync, INotifyAddedToWorld, INotifyRemovedFromWorld, INotifyCrushed
+	public class Flag : IPositionable, ICrushable, ISync, INotifyCreated,
+		INotifyAddedToWorld, INotifyRemovedFromWorld, INotifyCrushed
 	{
 		readonly Actor self;
 		readonly FlagInfo info;
 		readonly SpawnSSUnit spawner;
 		public bool Collected;
+		INotifyCenterPositionChanged[] notifyCenterPositionChanged;
 
 		[Sync]
 		public CPos Location;
@@ -86,7 +88,13 @@ namespace OpenRA.Mods.SS.Traits
 			spawner = self.World.WorldActor.Trait<SpawnSSUnit>();
 			var locationInit = init.GetOrDefault<LocationInit>(info);
 			if (locationInit != null)
-				SetPosition(self, locationInit.Value);
+				Location = locationInit.Value;
+		}
+
+		void INotifyCreated.Created(Actor self)
+		{
+			SetPosition(self, Location);
+			notifyCenterPositionChanged = self.TraitsImplementing<INotifyCenterPositionChanged>().ToArray();
 		}
 
 		void INotifyCrushed.WarnCrush(Actor self, Actor crusher, BitSet<CrushClass> crushClasses) { }
@@ -122,9 +130,9 @@ namespace OpenRA.Mods.SS.Traits
 			if (carriesFlag != null)
 			{
 				if (self.Owner == crusher.Owner || (flagTeam != 0 && flagTeam == crusherTeam))
-					TextNotificationsManager.AddSystemLine("Battlefield Control", crusher.Owner.PlayerName + " has taken their flag.");
+					TextNotificationsManager.AddSystemLine("Battlefield Control", crusher.Owner.ResolvedPlayerName + " has taken their flag.");
 				else
-					TextNotificationsManager.AddSystemLine("Battlefield Control", crusher.Owner.PlayerName + " has taken flag of " + (flagTeam == 0 || !spawner.TeamSpawns ? self.Owner.PlayerName : "Team " + flagTeam) + ".");
+					TextNotificationsManager.AddSystemLine("Battlefield Control", crusher.Owner.ResolvedPlayerName + " has taken flag of " + (flagTeam == 0 || !spawner.TeamSpawns ? self.Owner.ResolvedPlayerName : "Team " + flagTeam) + ".");
 
 				carriesFlag.GrantCondition(crusher);
 				carriesFlag.TakeFlag(crusher, self);
@@ -147,7 +155,7 @@ namespace OpenRA.Mods.SS.Traits
 		// Sets the location (Location) and visual position (CenterPosition)
 		public void SetPosition(Actor self, CPos cell, SubCell subCell = SubCell.Any)
 		{
-			SetLocation(self, cell, subCell);
+			SetLocation(self, cell);
 			SetCenterPosition(self, self.World.Map.CenterOfCell(cell));
 		}
 
@@ -156,10 +164,15 @@ namespace OpenRA.Mods.SS.Traits
 		{
 			CenterPosition = pos;
 			self.World.UpdateMaps(self, this);
+
+			// This can be called from the constructor before notifyCenterPositionChanged is assigned.
+			if (notifyCenterPositionChanged != null)
+				foreach (var n in notifyCenterPositionChanged)
+					n.CenterPositionChanged(self, 0, 0);
 		}
 
 		// Sets only the location (Location)
-		void SetLocation(Actor self, CPos cell, SubCell subCell = SubCell.Any)
+		void SetLocation(Actor self, CPos cell)
 		{
 			self.World.ActorMap.RemoveInfluence(self, this);
 			Location = cell;

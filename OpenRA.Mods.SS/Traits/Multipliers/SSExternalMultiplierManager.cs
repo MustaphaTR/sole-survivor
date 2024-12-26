@@ -23,7 +23,8 @@ namespace OpenRA.Mods.SS.Traits
 
 	public class SSExternalMultiplierManager : ConditionalTrait<SSExternalMultiplierManagerInfo>, IDamageModifier, IFirepowerModifier, IRevealsShroudModifier, IRangeModifier, IDetectCloakedModifier, IReloadModifier, IReloadAmmoModifier, ISpeedModifier
 	{
-		Actor self;
+		readonly Actor self;
+
 		Actor main;
 		SSMultiplierManager mainManager;
 

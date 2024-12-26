@@ -37,7 +37,7 @@ namespace OpenRA.Mods.SS.Traits
 		{
 			this.info = info;
 			spawner = self.World.WorldActor.Trait<SpawnSSUnit>();
-			leader = spawner.TeamLeaders.ContainsKey(self.Owner) ? spawner.TeamLeaders[self.Owner] : null;
+			spawner.TeamLeaders.TryGetValue(self.Owner, out leader);
 		}
 
 		IEnumerable<IRenderable> IRenderModifier.ModifyRender(Actor self, WorldRenderer wr, IEnumerable<IRenderable> r)
@@ -46,7 +46,7 @@ namespace OpenRA.Mods.SS.Traits
 				return r;
 
 			var palette = wr.Palette(info.Palette + leader.InternalName);
-			return r.Select(a => !a.IsDecoration && a is IPalettedRenderable ? ((IPalettedRenderable)a).WithPalette(palette) : a);
+			return r.Select(a => !a.IsDecoration && a is IPalettedRenderable renderable ? renderable.WithPalette(palette) : a);
 		}
 
 		IEnumerable<Rectangle> IRenderModifier.ModifyScreenBounds(Actor self, WorldRenderer wr, IEnumerable<Rectangle> bounds)

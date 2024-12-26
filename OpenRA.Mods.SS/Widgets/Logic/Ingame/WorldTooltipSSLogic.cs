@@ -20,6 +20,9 @@ namespace OpenRA.Mods.SS.Widgets.Logic
 {
 	public class WorldTooltipSSLogic : ChromeLogic
 	{
+		[FluentReference]
+		const string UnrevealedTerrain = "label-unrevealed-terrain";
+
 		[ObjectCreator.UseCtor]
 		public WorldTooltipSSLogic(Widget widget, World world, TooltipContainerWidget tooltipContainer, ViewportControllerWidget viewport)
 		{
@@ -43,6 +46,8 @@ namespace OpenRA.Mods.SS.Widgets.Logic
 			var extraHeightOnDouble = extras.Bounds.Y;
 			var extraHeightOnSingle = extraHeightOnDouble - (doubleHeight - singleHeight);
 
+			var unrevealedTerrain = FluentProvider.GetMessage(UnrevealedTerrain);
+
 			var spawner = world.WorldActor.Trait<SpawnSSUnit>();
 
 			tooltipContainer.BeforeRender = () =>
@@ -58,7 +63,7 @@ namespace OpenRA.Mods.SS.Widgets.Logic
 				switch (viewport.TooltipType)
 				{
 					case WorldTooltipType.Unexplored:
-						labelText = "Unrevealed Terrain";
+						labelText = unrevealedTerrain;
 						break;
 					case WorldTooltipType.Resource:
 						labelText = viewport.ResourceTooltip;
@@ -105,7 +110,7 @@ namespace OpenRA.Mods.SS.Widgets.Logic
 				if (showOwner)
 				{
 					flagFaction = spawner.Classes[o] ?? o.Faction.InternalName;
-					ownerName = o.PlayerName;
+					ownerName = o.ResolvedPlayerName;
 					ownerColor = spawner.TeamLeaders[o].Color;
 					widget.Bounds.Height = doubleHeight;
 					widget.Bounds.Width = Math.Max(widget.Bounds.Width,

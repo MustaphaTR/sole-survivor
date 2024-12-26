@@ -23,13 +23,13 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 {
 	sealed class IngameScoreScreenLogic : ChromeLogic
 	{
-		[TranslationReference("team")]
+		[FluentReference("team")]
 		const string TeamNumber = "label-team-name";
 
-		[TranslationReference]
+		[FluentReference]
 		const string NoTeam = "label-no-team";
 
-		[TranslationReference]
+		[FluentReference]
 		const string Spectators = "label-spectators";
 
 		[ObjectCreator.UseCtor]
@@ -81,8 +81,8 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				{
 					var teamHeader = ScrollItemWidget.Setup(teamTemplate, () => false, () => { });
 					var team = t.Key > 0
-						? TranslationProvider.GetString(TeamNumber, Translation.Arguments("team", t.Key))
-						: TranslationProvider.GetString(NoTeam);
+						? FluentProvider.GetMessage(TeamNumber, "team", t.Key)
+						: FluentProvider.GetMessage(NoTeam);
 					teamHeader.Get<LabelWidget>("TEAM").GetText = () => team;
 					var teamRating = teamHeader.Get<LabelWidget>("TEAM_SCORE");
 					var scoreCache = new CachedTransform<int, string>(s => s.ToString(NumberFormatInfo.CurrentInfo));
@@ -119,7 +119,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					nameLabel.GetText = () =>
 					{
 						var clientState = client != null ? client.State : Session.ClientState.Ready;
-						return name.Update((pp.PlayerName, pp.WinState, clientState));
+						return name.Update((pp.ResolvedPlayerName, pp.WinState, clientState));
 					};
 
 					// nameLabel.GetColor = () => pp.Color;
@@ -147,7 +147,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			if (spectators.Count > 0)
 			{
 				var spectatorHeader = ScrollItemWidget.Setup(teamTemplate, () => false, () => { });
-				var spectatorTeam = TranslationProvider.GetString(Spectators);
+				var spectatorTeam = FluentProvider.GetMessage(Spectators);
 				spectatorHeader.Get<LabelWidget>("TEAM").GetText = () => spectatorTeam;
 
 				playerPanel.AddChild(spectatorHeader);
