@@ -126,216 +126,216 @@
 			BlueTiberium: 70
 			Beach: 80
 	Faction@Random:
-		Name: Random
+		Name: faction-random.name
 		Side: Random
 		InternalName: Random
 		RandomFactionMembers: e1, e2, e3, e4, e5, e6, rmbo, harv, jeep, bggy, apc, bike, ltnk, mtnk, ftnk, mhq, arty, msam, mlrs, htnk, stnk, tran, orca, heli, steg, trex, tric, rapt, pvice
-		Description: Random Class\nA random unit will be chosen when the game starts.
+		Description: faction-random.description
 	Faction@RandomInfantry:
-		Name: Infantry
+		Name: faction-random-infantry.name
 		Side: Random
 		InternalName: Infantry
 		RandomFactionMembers: e1, e2, e3, e4, e5, e6, rmbo
-		Description: Random Infantry\nA random infantry will be chosen when the game starts.\nThis includes following:\n - Minigunner\n - Grenadier\n - Rocket Soldier\n - Flamethrower\n - Chemical Warrior\n - Engineer\n - Commando
+		Description: faction-random-infantry.description
 	Faction@RandomVehicle:
-		Name: Vehicle
+		Name: meta-vehicle-generic-name
 		Side: Random
 		InternalName: Vehicle
 		RandomFactionMembers: harv, jeep, bggy, apc, bike, ltnk, mtnk, ftnk, mhq, arty, msam, mlrs, htnk, stnk
-		Description: Random Vehicle\nA random vehicle will be chosen when the game starts.\nThis includes following:\n - Harvester\n - Hum-vee\n - Nod Buggy\n - APC\n - Recon Bike\n - Light Tank\n - Medium Tank\n - Flame Tank\n - Mobile HQ\n - Artillery\n - Rocket Launcher\n - Mobile SSM\n - Mammoth Tank\n - Stealth Tank
+		Description: faction-random-vehicle.description
 	Faction@RandomAircraft:
-		Name: Aircraft
+		Name: faction-random-aircraft.name
 		Side: Random
 		InternalName: Aircraft
 		RandomFactionMembers: tran, orca, heli
-		Description: Random Aircraft\nA random aircraft will be chosen when the game starts.\nThis includes following:\n - Chinook\n - Orca\n - Apache
+		Description: faction-random-aircraft.description
 	Faction@RandomDino:
-		Name: Dinosour
+		Name: faction-random-dinosour.name
 		Side: Random
 		InternalName: Dinosour
 		RandomFactionMembers: steg, trex, tric, rapt
-		Description: Random Dinosour\nA random dinosour will be chosen when the game starts.\nThis includes following:\n - Stegosaurus\n - Tyrannosaurus Rex\n - Triceratops\n - Velociraptor
+		Description: faction-random-dinosour.description
 	Faction@RandomOriginal:
-		Name: Original
+		Name: faction-random-original.name
 		Side: Random
 		InternalName: Original
 		RandomFactionMembers: e1, e2, e3, e4, e5, rmbo, jeep, bggy, apc, bike, ltnk, mtnk, ftnk, arty, msam, mlrs, htnk, stnk, steg, trex, tric, rapt, pvice
-		Description: Random Original Unit\nA random unit that existed in the original game will be chosen when the game starts.\nThis includes following:\n - Minigunner\n - Grenadier\n - Rocket Soldier\n - Flamethrower\n - Chemical Warrior\n - Commando\n - Hum-vee\n - Nod Buggy\n - APC\n - Recon Bike\n - Light Tank\n - Medium Tank\n - Flame Tank\n - Artillery\n - Rocket Launcher\n - Mobile SSM\n - Mammoth Tank\n - Stealth Tank\n - Stegosaurus\n - Tyrannosaurus Rex\n - Triceratops\n - Velociraptor\n - Viceroid
+		Description: faction-random-original.description
 	Faction@RandomNew:
-		Name: New
+		Name: faction-random-new.name
 		Side: Random
 		InternalName: New
 		RandomFactionMembers: e6, harv, mhq, tran, orca, heli
-		Description: Random New Unit\nA random unit that didn't exist in the original game will be chosen when the game starts.\nThis includes following:\n - Engineer\n - Harvester\n - Mobile HQ\n - Chinook\n - Orca\n - Apache
+		Description: faction-random-new.description
 	Faction@RandomAI:
-		Name: AI
+		Name: faction-random-ai.name
 		Side: Random
 		InternalName: AI
 		RandomFactionMembers: e1, e2, e3, e4, e5, rmbo, harv, jeep, bggy, apc, bike, ltnk, mtnk, ftnk, arty, msam, mlrs, htnk, stnk, orca, heli, steg, trex, tric, rapt, pvice
-		Description: Random AI Unit\nA random unit that AI is capable of using properly will be chosen when the game starts.\nThis includes following:\n - Minigunner\n - Grenadier\n - Rocket Soldier\n - Flamethrower\n - Chemical Warrior\n - Commando\n - Harvester\n - Hum-vee\n - Nod Buggy\n - APC\n - Recon Bike\n - Light Tank\n - Medium Tank\n - Flame Tank\n - Artillery\n - Rocket Launcher\n - Mobile SSM\n - Mammoth Tank\n - Stealth Tank\n - Orca\n - Apache\n - Stegosaurus\n - Tyrannosaurus Rex\n - Triceratops\n - Velociraptor\n - Viceroid
+		Description: faction-random-ai.description
 	Faction@RandomGDI:
-		Name: GDI
+		Name: faction-gdi.name
 		Side: Random
 		InternalName: GDI
 		RandomFactionMembers: e1, e2, e3, e6, rmbo, harv, jeep, apc, mtnk, mhq, msam, htnk, tran, orca
-		Description: Random GDI Unit\nA random unit that is available in the GDI arsenal will be chosen when the game starts.\nThis includes following:\n - Minigunner\n - Grenadier\n - Rocket Soldier\n - Engineer\n - Commando\n - Harvester\n - Hum-vee\n - APC\n - Medium Tank\n - Mobile HQ\n - Rocket Launcher\n - Mammoth Tank\n - Chinook\n - Orca
+		Description: faction-random-gdi.description
 	Faction@RandomNod:
-		Name: Nod
+		Name: faction-nod.name
 		Side: Random
 		InternalName: Nod
 		RandomFactionMembers: e1, e3, e4, e5, e6, harv, bggy, bike, ltnk, ftnk, mhq, arty, mlrs, stnk, tran, heli
-		Description: Random Nod Unit\nA random unit that is available in the Nod arsenal will be chosen when the game starts.\nThis includes following:\n - Minigunner\n - Rocket Soldier\n - Flamethrower\n - Chemical Warrior\n - Engineer\n - Harvester\n - Nod Buggy\n - Recon Bike\n - Light Tank\n - Flame Tank\n - Mobile HQ\n - Artillery\n - Mobile SSM\n - Stealth Tank\n - Chinook\n - Apache
+		Description: faction-random-nod.description
 	Faction@e1:
-		Name: Minigunner
+		Name: actor-e1.name
 		Side: Infantry
 		InternalName: e1
-		Description: Minigunner\nInfantry unit armed with a machine gun.
+		Description: faction-e1.description
 	Faction@e2:
-		Name: Grenadier
+		Name: actor-e2.name
 		Side: Infantry
 		InternalName: e2
-		Description: Grenadier\nInfantry unit armed with grenades.
+		Description: faction-e2.description
 	Faction@e3:
-		Name: Rocket Soldier
+		Name: actor-e3.name
 		Side: Infantry
 		InternalName: e3
-		Description: Rocket Soldier\nInfantry unit armed with a rocket launcher.
+		Description: faction-e3.description
 	Faction@e4:
-		Name: Flamethrower
+		Name: actor-e4.name
 		Side: Infantry
 		InternalName: e4
-		Description: Flamethrower\nInfantry unit armed with a flamehrower.
+		Description: faction-e4.description
 	Faction@e5:
-		Name: Chemical Warrior
+		Name: actor-e5.name
 		Side: Infantry
 		InternalName: e5
-		Description: Chemical Warrior\nInfantry unit armed with a chemical thrower.
+		Description: faction-e5.description
 	Faction@e6:
-		Name: Engineer
+		Name: actor-e6.name
 		Side: Infantry
 		InternalName: e6
-		Description: Engineer\nInfantry unit capable of placing guard towers or turrets nearby.
+		Description: faction-e6.description
 	Faction@rmbo:
-		Name: Commando
+		Name: actor-rmbo.name
 		Side: Infantry
 		InternalName: rmbo
-		Description: Commando\nInfantry unit armed with a sniper rifle and C4 charges.
+		Description: faction-rmbo.description
 	Faction@harv:
-		Name: Harvester
+		Name: actor-harv.name
 		Side: Vehicle
 		InternalName: harv
-		Description: Harvester\nVehicle normally designed to harvest Tiberum. But it can use its blades to damage the enemies.\n\nStarts with Automatic Repair enabled.
+		Description: faction-harv.description
 	Faction@jeep:
-		Name: Hum-Vee
+		Name: actor-jeep.name
 		Side: Vehicle
 		InternalName: jeep
-		Description: Hum-Vee\nFast vehicle armed with a machine gun.
+		Description: faction-jeep.description
 	Faction@bggy:
-		Name: Nod Buggy
+		Name: actor-bggy.name
 		Side: Vehicle
 		InternalName: bggy
-		Description: Nod Buggy\nFast vehicle armed with a machine gun.
+		Description: faction-bggy.description
 	Faction@apc:
-		Name: APC
+		Name: actor-apc.name
 		Side: Vehicle
 		InternalName: apc
-		Description: Armored Personnel Carrier\nArmored vehicle armed with small cannon.\n\nCan carry ally infantry.
+		Description: faction-apc.description
 	Faction@bike:
-		Name: Recon Bike
+		Name: actor-bike.name
 		Side: Vehicle
 		InternalName: bike
-		Description: Recon Bike\nFast vehicle armed rocket launchers.
+		Description: faction-bike.description
 	Faction@ltnk:
-		Name: Light Tank
+		Name: actor-ltnk.name
 		Side: Vehicle
 		InternalName: ltnk
-		Description: Light Tank\nLight main battle tank.
+		Description: faction-ltnk.description
 	Faction@mtnk:
-		Name: Medium Tank
+		Name: actor-mtnk.name
 		Side: Vehicle
 		InternalName: mtnk
-		Description: Medium Tank\nMedium main battle tank.
+		Description: faction-mtnk.description
 	Faction@ftnk:
-		Name: Flame Tank
+		Name: actor-ftnk.name
 		Side: Vehicle
 		InternalName: ftnk
-		Description: Flame Tank\nArmored vehicle with flamehrowers.
+		Description: faction-ftnk.description
 	Faction@mcv:
-		Name: MCV
+		Name: actor-mcv.name
 		Side: Vehicle
 		Selectable: false
 		InternalName: mcv
-		Description: Mobile Contruction Vehicle\nCan deploy into a Construction Yard that can be further specialised.
+		Description: faction-mcv.description
 	Faction@mhq:
-		Name: Mobile HQ
+		Name: actor-mhq.name
 		Side: Vehicle
 		InternalName: mhq
-		Description: Mobile Headquarters\nCan call for Spy Planes or Air Strikes.\n\nStarts with radar enabled.
+		Description: faction-mhq.description
 	Faction@arty:
-		Name: Artillery
+		Name: actor-arty.name
 		Side: Vehicle
 		InternalName: arty
-		Description: Artillery\nArtillery unit armed with a cannon.
+		Description: faction-arty.description
 	Faction@msam:
-		Name: Rocket Launcher
+		Name: actor-msam.name
 		Side: Vehicle
 		InternalName: msam
-		Description: Rocket Launcher\nArtillery unit armed with multiple missiles.
+		Description: faction-msam.description
 	Faction@mlrs:
-		Name: Mobile SSM
+		Name: actor-mlrs.name
 		Side: Vehicle
 		InternalName: mlrs
-		Description: Mobile SSM\nArtillery unit armed with two Surface-to-Surface missiles.
+		Description: faction-mlrs.description
 	Faction@htnk:
-		Name: Mammoth Tank
+		Name: actor-htnk.name
 		Side: Vehicle
 		InternalName: htnk
-		Description: Mammoth Tank\nHeavy tank armed with rocket launchers in addition to cannon.\n\nStarts with Automatic Repair enabled.
+		Description: faction-htnk.description
 	Faction@stnk:
-		Name: Stealth Tank
+		Name: actor-stnk.name
 		Side: Vehicle
 		InternalName: stnk
-		Description: Stealth Tank\nLight vehicle armed with rocket launchers.\n\nInvisible while not attacking.
+		Description: faction-stnk.description
 	Faction@tran:
-		Name: Chinook
+		Name: actor-tran.name
 		Side: Aircraft
 		InternalName: tran
-		Description: Chinook\nLight transport helicopter which infantry can fire outside.\n\nArmed with a light machine gun.
+		Description: faction-tran.description
 	Faction@orca:
-		Name: Orca
+		Name: actor-orca.name
 		Side: Aircraft
 		InternalName: orca
-		Description: Orca\nFast aircraft armed with rocket launchers.
+		Description: faction-orca.description
 	Faction@heli:
-		Name: Apache
+		Name: actor-heli.name
 		Side: Aircraft
 		InternalName: heli
-		Description: Apache\nHeavy helicopter armed with a chaingun.
+		Description: faction-heli.description
 	Faction@steg:
-		Name: Stegosaurus
+		Name: actor-steg.name
 		Side: Dinosour
 		InternalName: steg
 		Description: Stegosaurus
 	Faction@trex:
-		Name: Tyrannosaurus Rex
+		Name: actor-trex.name
 		Side: Dinosour
 		InternalName: trex
-		Description: Tyrannosaurus Rex
+		Description: faction-trex.description
 	Faction@tric:
-		Name: Triceratops
+		Name: actor-tric.name
 		Side: Dinosour
 		InternalName: tric
-		Description: Triceratops
+		Description: faction-tric.description
 	Faction@rapt:
-		Name: Velociraptor
+		Name: actor-rapt.name
 		Side: Dinosour
 		InternalName: rapt
-		Description: Velociraptor
+		Description: faction-rapt.description
 	Faction@pvice:
-		Name: Viceroid
+		Name: meta-viceroid-name
 		Side: Viceroid
 		InternalName: pvice
-		Description: Viceroid\nMutated abomination that spits liquid Tiberium.\n\nHeals on tiberium.
+		Description: faction-pvice.description
 	ResourceRenderer:
 		ResourceTypes:
 			Tiberium:
@@ -693,8 +693,8 @@ EditorWorld:
 				TerrainType: BlueTiberium
 				AllowedTerrainTypes: Clear, Road
 				MaxDensity: 12
-	EditorSelectionLayer:
 	LoadWidgetAtGameStart:
 	EditorActionManager:
 	BuildableTerrainOverlay:
 		AllowedTerrainTypes: Clear, Road
+	MarkerLayerOverlay:

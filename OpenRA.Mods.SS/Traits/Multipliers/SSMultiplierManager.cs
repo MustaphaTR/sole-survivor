@@ -9,7 +9,6 @@
  */
 #endregion
 
-using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
 using OpenRA.Traits;
@@ -23,13 +22,11 @@ namespace OpenRA.Mods.SS.Traits
 	{
 		public readonly Color WackyColor = Color.Orange;
 
-		public override object Create(ActorInitializer init) { return new SSMultiplierManager(init.Self, this); }
+		public override object Create(ActorInitializer init) { return new SSMultiplierManager(this); }
 	}
 
 	public class SSMultiplierManager : ConditionalTrait<SSMultiplierManagerInfo>, ITick, IDamageModifier, IFirepowerModifier, IRevealsShroudModifier, IRangeModifier, IDetectCloakedModifier, IReloadModifier, IReloadAmmoModifier, ISpeedModifier, ISelectionBar
 	{
-		Actor self;
-
 		public int ArmorModifier = 100;
 		public int DamageModifier = 100;
 		public int SightModifier = 100;
@@ -41,11 +38,8 @@ namespace OpenRA.Mods.SS.Traits
 		public int WackyDuration;
 		public bool WackyEnabled;
 
-		public SSMultiplierManager(Actor self, SSMultiplierManagerInfo info)
-			: base(info)
-		{
-			this.self = self;
-		}
+		public SSMultiplierManager(SSMultiplierManagerInfo info)
+			: base(info) { }
 
 		void ITick.Tick(Actor self)
 		{

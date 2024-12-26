@@ -39,7 +39,7 @@ namespace OpenRA.Mods.SS.Traits
 
 		public override void Activate(Actor collector)
 		{
-			TextNotificationsManager.AddSystemLine("Battlefield Control", collector.Owner.PlayerName + " has taken the armageddon crate!");
+			TextNotificationsManager.AddSystemLine("Battlefield Control", collector.Owner.ResolvedPlayerName + " has taken the armageddon crate!");
 
 			if (!string.IsNullOrEmpty(Info.Notification))
 				foreach (var player in self.World.Players)

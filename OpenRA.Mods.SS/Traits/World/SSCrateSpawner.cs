@@ -24,11 +24,11 @@ namespace OpenRA.Mods.SS.Traits
 		[Desc("Internal id for this option.")]
 		public readonly string DropdownID = "crateamount";
 
-		[TranslationReference]
+		[FluentReference]
 		[Desc("Descriptive label for the crates checkbox in the lobby.")]
 		public readonly string DropdownLabel = "dropdown-crate-amount.label";
 
-		[TranslationReference]
+		[FluentReference]
 		[Desc("Tooltip description for the crates checkbox in the lobby.")]
 		public readonly string DropdownDescription = "dropdown-crate-amount.description";
 

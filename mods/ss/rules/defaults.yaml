@@ -204,6 +204,8 @@
 		CloakDelay: 90
 		CloakSound: trans1.aud
 		UncloakSound: trans1.aud
+		CloakStyle: Palette
+		CloakedPalette: cloak
 		RequiresCondition: cloak-crate-collected && !cloak-global-disable && !cloak-force-disabled && !carrying-flag
 	SwitchCondition@CLOAK:
 		Condition: cloak-crate-collected
@@ -256,6 +258,8 @@
 		CloakDelay: 90
 		CloakSound: trans1.aud
 		UncloakSound: trans1.aud
+		CloakStyle: Palette
+		CloakedPalette: cloak
 		RequiresCondition: !cloak-global-disable && !carrying-flag && starting-cloak
 	TimedConditionBar@STARTING-CLOAK:
 		Color: 888888
@@ -337,7 +341,7 @@
 	DrawLineToTarget:
 	WithDamageOverlay:
 	WithFacingSpriteBody:
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: UnitExplodeSmall
 		EmptyWeapon: UnitExplodeSmall
 	Guard:
@@ -405,7 +409,7 @@
 		Type: GroundPosition
 	ActorLostNotification:
 		TextNotification: notification-unit-lost
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: HeliExplode
 		EmptyWeapon: HeliExplode
 	AttackMove:
@@ -799,7 +803,7 @@
 	AttackMove:
 	DrawLineToTarget:
 	WithDamageOverlay:
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: UnitExplodeShip
 		EmptyWeapon: UnitExplodeShip
 	Guard:
@@ -838,7 +842,7 @@
 		DamagedSounds: xplobig4.aud
 		DestroyedSounds: crumble.aud, xplobig4.aud
 	WithSpriteBody:
-	Explodes:
+	FireWarheadsOnDeath:
 		Type: Footprint
 		Weapon: BuildingExplode
 		EmptyWeapon: BuildingExplode
@@ -966,7 +970,7 @@
 	Interactable:
 	Tooltip:
 		GenericName: Field
-	-Explodes:
+	-FireWarheadsOnDeath:
 	-ShakeOnDeath:
 	-SoundOnDamageTransition:
 	-Demolishable:
@@ -1227,7 +1231,7 @@
 	WithColoredOverlay@IDISABLE:
 		Color: 000000B4
 	ScriptTriggers:
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: UnitExplodeSmall
 		EmptyWeapon: UnitExplodeSmall
 	WithIdleOverlay@Burns:

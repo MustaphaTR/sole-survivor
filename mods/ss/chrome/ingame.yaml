@@ -24,7 +24,7 @@ Container@INGAME_ROOT:
 				LogicTicker@DISCONNECT_WATCHER:
 					Logic: DisconnectWatcherLogic
 				Label@MISSION_TEXT:
-					X: WINDOW_RIGHT / 2 - 256
+					X: WINDOW_WIDTH / 2 - 256
 					Y: 22
 					Width: 512
 					Height: 25
@@ -32,22 +32,22 @@ Container@INGAME_ROOT:
 					Align: Center
 					Contrast: true
 				Label@MISSION_CENTER_TEXT:
-					X: WINDOW_RIGHT / 2 - 256
-					Y: WINDOW_BOTTOM / 2
+					X: WINDOW_WIDTH / 2 - 256
+					Y: WINDOW_HEIGHT / 2
 					Width: 512
 					Height: 25
 					Font: BigBold
 					Align: Center
 					Contrast: true
 				StrategicProgress@STRATEGIC_PROGRESS:
-					X: WINDOW_RIGHT / 2
+					X: WINDOW_WIDTH / 2
 					Y: 40
 				WorldInteractionController@INTERACTION_CONTROLLER:
-					Width: WINDOW_RIGHT
-					Height: WINDOW_BOTTOM
+					Width: WINDOW_WIDTH
+					Height: WINDOW_HEIGHT
 				ViewportController:
-					Width: WINDOW_RIGHT
-					Height: WINDOW_BOTTOM
+					Width: WINDOW_WIDTH
+					Height: WINDOW_HEIGHT
 					TooltipContainer: TOOLTIP_CONTAINER
 					ScrollUpKey: MapScrollUp
 					ScrollDownKey: MapScrollDown
@@ -66,7 +66,7 @@ Container@INGAME_ROOT:
 					Height: 55
 					Children:
 						LabelWithTooltip@GAME_TIMER:
-							Width: PARENT_RIGHT
+							Width: PARENT_WIDTH
 							Height: 30
 							Align: Center
 							Font: Title
@@ -75,7 +75,7 @@ Container@INGAME_ROOT:
 							TooltipTemplate: SIMPLE_TOOLTIP
 						Label@GAME_TIMER_STATUS:
 							Y: 35
-							Width: PARENT_RIGHT
+							Width: PARENT_WIDTH
 							Height: 15
 							Align: Center
 							Font: Bold
@@ -90,15 +90,15 @@ Container@PERF_WIDGETS:
 	Logic: PerfDebugLogic
 	Children:
 		Label@PERF_TEXT:
-			X: WINDOW_RIGHT - 400
-			Y: WINDOW_BOTTOM - 100
+			X: WINDOW_WIDTH - 400
+			Y: WINDOW_HEIGHT - 100
 			Width: 170
 			Height: 40
 			Contrast: true
 			VAlign: Top
 		Background@GRAPH_BG:
 			X: 5
-			Y: WINDOW_BOTTOM - HEIGHT - 156
+			Y: WINDOW_HEIGHT - HEIGHT - 156
 			Width: 220
 			Height: 220
 			Background: panel-black
@@ -121,25 +121,25 @@ Container@OBSERVER_WIDGETS:
 		Container@PERF_ROOT:
 		Container@HPF_ROOT:
 			Logic: LoadIngameHierarchicalPathFinderOverlayLogic
-			X: WINDOW_RIGHT - WIDTH - 270
+			X: WINDOW_WIDTH - WIDTH - 270
 			Y: 40
 			Width: 175
 		Container@MUTE_INDICATOR:
 			Logic: MuteIndicatorLogic
-			X: WINDOW_RIGHT - WIDTH - 295
+			X: WINDOW_WIDTH - WIDTH - 295
 			Y: 5
 			Width: 200
 			Height: 25
 			Children:
 				Image@ICON:
-					X: PARENT_RIGHT - WIDTH
+					X: PARENT_WIDTH - WIDTH
 					Y: 1
 					Width: 24
 					Height: 24
 					ImageCollection: sidebar-bits
 					ImageName: indicator-muted
 				Label@LABEL:
-					Width: PARENT_RIGHT - 30
+					Width: PARENT_WIDTH - 30
 					Height: 25
 					Align: Right
 					Text: label-mute-indicator
@@ -147,7 +147,7 @@ Container@OBSERVER_WIDGETS:
 		LogicKeyListener@OBSERVER_KEY_LISTENER:
 		MenuButton@OPTIONS_BUTTON:
 			Key: escape
-			X: WINDOW_RIGHT - 260 - WIDTH
+			X: WINDOW_WIDTH - 260 - WIDTH
 			Y: 5
 			Width: 30
 			Height: 25
@@ -161,7 +161,7 @@ Container@OBSERVER_WIDGETS:
 					ImageCollection: order-icons
 					ImageName: options
 		Background@RADAR:
-			X: WINDOW_RIGHT - WIDTH - 5
+			X: WINDOW_WIDTH - WIDTH - 5
 			Y: 5
 			Width: 256
 			Height: 256
@@ -170,17 +170,17 @@ Container@OBSERVER_WIDGETS:
 				Radar:
 					X: 1
 					Y: 1
-					Width: PARENT_RIGHT - 2
-					Height: PARENT_BOTTOM - 2
+					Width: PARENT_WIDTH - 2
+					Height: PARENT_HEIGHT - 2
 				VideoPlayer@PLAYER:
 					X: 1
 					Y: 1
-					Width: PARENT_RIGHT - 2
-					Height: PARENT_BOTTOM - 2
+					Width: PARENT_WIDTH - 2
+					Height: PARENT_HEIGHT - 2
 					Skippable: false
 		Background@REPLAY_PLAYER:
 			Logic: ReplayControlBarLogic
-			X: WINDOW_RIGHT - WIDTH - 5
+			X: WINDOW_WIDTH - WIDTH - 5
 			Y: 283
 			Width: 256
 			Height: 46
@@ -269,7 +269,7 @@ Container@OBSERVER_WIDGETS:
 			Logic: ObserverShroudSelectorLogic
 				CombinedViewKey: ObserverCombinedView
 				WorldViewKey: ObserverWorldView
-			X: WINDOW_RIGHT - WIDTH - 5
+			X: WINDOW_WIDTH - WIDTH - 5
 			Y: 260
 			Width: 256
 			Height: 25
@@ -283,18 +283,18 @@ Container@OBSERVER_WIDGETS:
 					Height: 16
 				Label@LABEL:
 					X: 40
-					Width: PARENT_RIGHT
+					Width: PARENT_WIDTH
 					Height: 25
 					Shadow: True
 				Label@NOFLAG_LABEL:
 					X: 5
-					Width: PARENT_RIGHT
+					Width: PARENT_WIDTH
 					Height: 25
 					Shadow: True
 		Background@SIDEBAR_BACKGROUND:
 			Logic: MenuButtonsChromeLogic
-			X: WINDOW_RIGHT - 204
-			Y: WINDOW_BOTTOM - 186
+			X: WINDOW_WIDTH - 204
+			Y: WINDOW_HEIGHT - 186
 			Width: 194
 			Height: 176
 			Background: panel-black
@@ -373,7 +373,7 @@ Container@PLAYER_WIDGETS:
 		Container@PERF_ROOT:
 		Container@HPF_ROOT:
 			Logic: LoadIngameHierarchicalPathFinderOverlayLogic
-			X: WINDOW_RIGHT - WIDTH - 240
+			X: WINDOW_WIDTH - WIDTH - 240
 			Y: 40
 			Width: 175
 		LogicKeyListener@PLAYER_KEYHANDLER:
@@ -409,7 +409,7 @@ Container@PLAYER_WIDGETS:
 		Background@COMMAND_BAR:
 			Logic: CommandBarLogic
 			X: 5
-			Y: WINDOW_BOTTOM - HEIGHT - 5
+			Y: WINDOW_HEIGHT - HEIGHT - 5
 			Background: panel-black
 			Width: 276
 			Height: 36
@@ -558,7 +558,7 @@ Container@PLAYER_WIDGETS:
 		Background@STANCE_BAR:
 			Logic: StanceSelectorLogic
 			X: 280
-			Y: WINDOW_BOTTOM - HEIGHT - 5
+			Y: WINDOW_HEIGHT - HEIGHT - 5
 			Background: panel-black
 			Width: 138
 			Height: 28
@@ -637,27 +637,27 @@ Container@PLAYER_WIDGETS:
 							ImageName: hold-fire
 		Container@MUTE_INDICATOR:
 			Logic: MuteIndicatorLogic
-			X: WINDOW_RIGHT - WIDTH - 228
+			X: WINDOW_WIDTH - WIDTH - 228
 			Y: 2
 			Width: 200
 			Height: 25
 			Children:
 				Image@ICON:
-					X: PARENT_RIGHT - WIDTH
+					X: PARENT_WIDTH - WIDTH
 					Y: 1
 					Width: 24
 					Height: 24
 					ImageCollection: sidebar-bits
 					ImageName: indicator-muted
 				Label@LABEL:
-					Width: PARENT_RIGHT - 30
+					Width: PARENT_WIDTH - 30
 					Height: 25
 					Align: Right
 					Text: label-mute-indicator
 					Contrast: true
 		Background@SIDEBAR_BACKGROUND:
 			Logic: MenuButtonsChromeLogic
-			X: WINDOW_RIGHT - 204
+			X: WINDOW_WIDTH - 204
 			Y: 30
 			Width: 194
 			Height: 344
@@ -705,8 +705,8 @@ Container@PLAYER_WIDGETS:
 							Logic: IngameRadarDisplayLogic
 							X: 1
 							Y: 1
-							Width: PARENT_RIGHT - 2
-							Height: PARENT_BOTTOM - 2
+							Width: PARENT_WIDTH - 2
+							Height: PARENT_HEIGHT - 2
 							WorldInteractionController: INTERACTION_CONTROLLER
 							SoundUp: RadarUp
 							SoundDown: RadarDown
@@ -715,8 +715,8 @@ Container@PLAYER_WIDGETS:
 						VideoPlayer@PLAYER:
 							X: 1
 							Y: 1
-							Width: PARENT_RIGHT - 2
-							Height: PARENT_BOTTOM - 2
+							Width: PARENT_WIDTH - 2
+							Height: PARENT_HEIGHT - 2
 							Skippable: false
 				Container@PRODUCTION_TYPES:
 				Container@CLASS_SELECTOR:
@@ -738,7 +738,7 @@ Container@PLAYER_WIDGETS:
 									ImageCollection: scrollpanel-decorations
 									ImageName: right
 						Button@OPEN_CLASS:
-							X: PARENT_RIGHT - 16
+							X: PARENT_WIDTH - 16
 							Height: 25
 							Width: 16
 							Children:
@@ -836,7 +836,7 @@ Container@PLAYER_WIDGETS:
 				Container@SKIRMISH_STATS:
 					Logic: IngameScoreScreenLogic
 					Y: 260
-					Height: WINDOW_BOTTOM - 438
+					Height: WINDOW_HEIGHT - 438
 					Width: 194
 					Children:
 						Button@CLOSE_STATS:
@@ -852,7 +852,7 @@ Container@PLAYER_WIDGETS:
 									ImageCollection: scrollpanel-decorations
 									ImageName: right
 						Button@OPEN_STATS:
-							X: PARENT_RIGHT - 6
+							X: PARENT_WIDTH - 6
 							Y: 105
 							Height: 25
 							Width: 16
@@ -872,7 +872,7 @@ Container@PLAYER_WIDGETS:
 									Y: 1
 									Width: 90
 									Height: 25
-									Text: label-stats-name
+									Text: label-stats-player
 									Font: Bold
 								Label@FACTION:
 									X: 91
@@ -882,7 +882,7 @@ Container@PLAYER_WIDGETS:
 									Text: label-stats-faction
 									Font: Bold
 								Label@SCORE:
-									X: PARENT_RIGHT - 27
+									X: PARENT_WIDTH - 27
 									Y: 1
 									Width: 25
 									Height: 25
@@ -892,12 +892,12 @@ Container@PLAYER_WIDGETS:
 						ScrollPanel@PLAYER_LIST:
 							Y: 105
 							Width: 194
-							Height: WINDOW_BOTTOM - 463
+							Height: WINDOW_HEIGHT - 463
 							ItemSpacing: 5
 							Children:
 								ScrollItem@TEAM_TEMPLATE:
 									Background: scrollheader
-									Width: PARENT_RIGHT - 27
+									Width: PARENT_WIDTH - 27
 									Height: 20
 									X: 2
 									Visible: false
@@ -909,14 +909,14 @@ Container@PLAYER_WIDGETS:
 											Height: 20
 											Font: Bold
 										Label@TEAM_SCORE:
-											X: PARENT_RIGHT - 27
+											X: PARENT_WIDTH - 27
 											Y: 0
 											Width: 25
 											Height: 20
 											Font: Bold
 											Align: Right
 								Container@PLAYER_TEMPLATE:
-									Width: PARENT_RIGHT - 27
+									Width: PARENT_WIDTH - 27
 									Height: 25
 									X: 2
 									Children:
@@ -930,22 +930,22 @@ Container@PLAYER_WIDGETS:
 											Width: 32
 											Height: 16
 										Label@SCORE:
-											X: PARENT_RIGHT - 27
+											X: PARENT_WIDTH - 27
 											Width: 25
 											Height: 25
 											Align: Right
 											Shadow: True
 		Container@PRODUCTION_BACKGROUND:
-			X: WINDOW_RIGHT - 204
-			Y: WINDOW_BOTTOM - 51
+			X: WINDOW_WIDTH - 204
+			Y: WINDOW_HEIGHT - 51
 			Children:
 				Background@ICON_TEMPLATE:
 					Width: 66
 					Height: 50
 					Background: panel-black
 		ProductionPalette@PRODUCTION_PALETTE:
-			X: WINDOW_RIGHT - 203
-			Y: WINDOW_BOTTOM - 50
+			X: WINDOW_WIDTH - 203
+			Y: WINDOW_HEIGHT - 50
 			TooltipContainer: TOOLTIP_CONTAINER
 			ReadyText: productionpalette-player-widgets-production-palette.ready
 			HoldText: productionpalette-player-widgets-production-palette.hold
@@ -956,16 +956,16 @@ Container@PLAYER_WIDGETS:
 			PaletteWidget: PRODUCTION_PALETTE
 			TypesContainer: PRODUCTION_TYPES
 			BackgroundContainer: PRODUCTION_BACKGROUND
-			X: WINDOW_RIGHT + 5
-			Y: WINDOW_BOTTOM + 5
+			X: WINDOW_WIDTH + 5
+			Y: WINDOW_HEIGHT + 5
 
 Background@FMVPLAYER:
-	Width: WINDOW_RIGHT
-	Height: WINDOW_BOTTOM
+	Width: WINDOW_WIDTH
+	Height: WINDOW_HEIGHT
 	Background: panel-allblack
 	Children:
 		VideoPlayer@PLAYER:
 			X: 0
 			Y: 0
-			Width: WINDOW_RIGHT
-			Height: WINDOW_BOTTOM
+			Width: WINDOW_WIDTH
+			Height: WINDOW_HEIGHT

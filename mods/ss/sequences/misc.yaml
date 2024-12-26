@@ -574,12 +574,11 @@ overlay:
 		Start: 2
 
 editor-overlay:
+	Defaults:
+		Filename: trans.icn
 	copy:
-		Filename: overlay.shp
-		Start: 0
 	paste:
-		Filename: overlay.shp
-		Start: 1
+		Start: 2
 
 poweroff:
 	offline:

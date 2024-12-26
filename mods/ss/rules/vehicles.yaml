@@ -78,7 +78,7 @@ HARV:
 		Type: Heavy
 	RevealsShroud:
 		Range: 4c0
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: TiberiumExplosion
 	SelectionDecorations:
 	UnitStatValues:
@@ -152,7 +152,7 @@ APC:
 		MaxWeight: 5
 		UnloadVoice: Unload
 		LoadingCondition: notmobile
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: UnitExplodeBig
 		EmptyWeapon: UnitExplodeBig
 	UnitStatValues:
@@ -196,7 +196,7 @@ ARTY:
 	WithMuzzleOverlay:
 	AutoTarget:
 		InitialStanceAI: Defend
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: ArtilleryShell
 		EmptyWeapon: ArtilleryShell
 	UnitStatValues:
@@ -238,7 +238,7 @@ FTNK:
 		Voice: Attack
 		FacingTolerance: 0
 	WithMuzzleOverlay:
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: FlametankExplode
 		EmptyWeapon: FlametankExplode
 	UnitStatValues:

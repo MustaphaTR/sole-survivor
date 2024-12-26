@@ -1,7 +1,10 @@
 ^Chrome:
-	Image: chrome.png
-	# Image2x: chrome-2x.png
-	# Image3x: chrome-3x.png
+	Image: ssui|chrome.png
+
+^ChromeCnC:
+	Image: cncui|chrome.png
+	Image2x: cncui|chrome-2x.png
+	Image3x: cncui|chrome-3x.png
 
 logos:
 	Inherits: ^Chrome
@@ -246,6 +249,7 @@ lobby-bits:
 		admin-anonymous: 464, 112, 16, 16
 		player-registered: 480, 112, 16, 16
 		player-anonymous: 496, 112, 16, 16
+		bot: 461, 239, 16, 16
 
 reload-icon:
 	Inherits: ^Chrome
@@ -564,3 +568,14 @@ stance-button-highlighted-disabled:
 	Inherits: ^Chrome
 	PanelRegion: 289, 161, 0, 0, 30, 30, 0, 0
 	PanelSides: Center
+
+editor:
+	Inherits: ^ChromeCnC
+	Regions:
+		select: 802, 170, 16, 16
+		tiles: 768, 170, 16, 16
+		overlays: 785, 170, 16, 16
+		actors: 802, 68, 16, 16
+		tools: 904, 68, 16, 16
+		history: 904, 51, 16, 16
+		erase: 818, 170, 16, 16

@@ -70,13 +70,14 @@ namespace OpenRA.Mods.SS.Traits
 		}
 	}
 
-	public class SSCrate : ITick, IPositionable, ICrushable, ISync,
+	public class SSCrate : ITick, IPositionable, ICrushable, ISync, INotifyCreated,
 		INotifyParachute, INotifyAddedToWorld, INotifyRemovedFromWorld, INotifyCrushed
 	{
 		readonly Actor self;
 		readonly SSCrateInfo info;
 		readonly SSCrateSpawner spawner;
 		bool collected;
+		INotifyCenterPositionChanged[] notifyCenterPositionChanged;
 
 		[Sync]
 		int ticks;
@@ -92,9 +93,15 @@ namespace OpenRA.Mods.SS.Traits
 			if (spawnerInit != null)
 				spawner = spawnerInit.Value;
 
-			var locationInit = init.GetOrDefault<LocationInit>(info);
+			var locationInit = init.GetOrDefault<LocationInit>();
 			if (locationInit != null)
-				SetPosition(self, locationInit.Value);
+				Location = locationInit.Value;
+		}
+
+		void INotifyCreated.Created(Actor self)
+		{
+			SetPosition(self, Location);
+			notifyCenterPositionChanged = self.TraitsImplementing<INotifyCenterPositionChanged>().ToArray();
 		}
 
 		void INotifyCrushed.WarnCrush(Actor self, Actor crusher, BitSet<CrushClass> crushClasses) { }
@@ -147,22 +154,23 @@ namespace OpenRA.Mods.SS.Traits
 			self.Dispose();
 			collected = true;
 
-			if (crateActions.Any())
+			var shares = crateActions
+				.Select(a => (Action: a, Shares: a.GetSelectionSharesOuter(crusher)))
+				.ToList();
+			if (shares.Count != 0)
 			{
-				var shares = crateActions.Select(a => (Action: a, Shares: a.GetSelectionSharesOuter(crusher)));
-
 				var totalShares = shares.Sum(a => a.Shares);
 				var n = self.World.SharedRandom.Next(totalShares);
 
-				foreach (var s in shares)
+				foreach (var (action, share) in shares)
 				{
-					if (n < s.Shares)
+					if (n < share)
 					{
-						s.Action.Activate(crusher);
+						action.Activate(crusher);
 						return;
 					}
 
-					n -= s.Shares;
+					n -= share;
 				}
 			}
 		}
@@ -189,7 +197,7 @@ namespace OpenRA.Mods.SS.Traits
 		// Sets the location (Location) and visual position (CenterPosition)
 		public void SetPosition(Actor self, CPos cell, SubCell subCell = SubCell.Any)
 		{
-			SetLocation(self, cell, subCell);
+			SetLocation(self, cell);
 			SetCenterPosition(self, self.World.Map.CenterOfCell(cell));
 		}
 
@@ -198,10 +206,15 @@ namespace OpenRA.Mods.SS.Traits
 		{
 			CenterPosition = pos;
 			self.World.UpdateMaps(self, this);
+
+			// This can be called from the constructor before notifyCenterPositionChanged is assigned.
+			if (notifyCenterPositionChanged != null)
+				foreach (var n in notifyCenterPositionChanged)
+					n.CenterPositionChanged(self, 0, 0);
 		}
 
 		// Sets only the location (Location)
-		void SetLocation(Actor self, CPos cell, SubCell subCell = SubCell.Any)
+		void SetLocation(Actor self, CPos cell)
 		{
 			self.World.ActorMap.RemoveInfluence(self, this);
 			Location = cell;

@@ -91,11 +91,13 @@ namespace OpenRA.Mods.SS.Traits
 		}
 	}
 
-	public class Teleporter : IPositionable, ICrushable, ISync, IRender, INotifyAddedToWorld, INotifyRemovedFromWorld, INotifyCrushed
+	public class Teleporter : IPositionable, ICrushable, ISync, INotifyCreated,
+		IRender, INotifyAddedToWorld, INotifyRemovedFromWorld, INotifyCrushed
 	{
 		readonly Actor self;
 		readonly TeleporterInfo info;
 		WorldRenderer wr;
+		INotifyCenterPositionChanged[] notifyCenterPositionChanged;
 
 		[Sync]
 		public CPos Location;
@@ -107,7 +109,13 @@ namespace OpenRA.Mods.SS.Traits
 
 			var locationInit = init.GetOrDefault<LocationInit>(info);
 			if (locationInit != null)
-				SetPosition(self, locationInit.Value);
+				Location = locationInit.Value;
+		}
+
+		void INotifyCreated.Created(Actor self)
+		{
+			SetPosition(self, Location);
+			notifyCenterPositionChanged = self.TraitsImplementing<INotifyCenterPositionChanged>().ToArray();
 		}
 
 		void INotifyCrushed.WarnCrush(Actor self, Actor crusher, BitSet<CrushClass> crushClasses) { }
@@ -172,7 +180,7 @@ namespace OpenRA.Mods.SS.Traits
 		// Sets the location (Location) and visual position (CenterPosition)
 		public void SetPosition(Actor self, CPos cell, SubCell subCell = SubCell.Any)
 		{
-			SetLocation(self, cell, subCell);
+			SetLocation(self, cell);
 			SetCenterPosition(self, self.World.Map.CenterOfCell(cell));
 		}
 
@@ -181,10 +189,15 @@ namespace OpenRA.Mods.SS.Traits
 		{
 			CenterPosition = pos;
 			self.World.UpdateMaps(self, this);
+
+			// This can be called from the constructor before notifyCenterPositionChanged is assigned.
+			if (notifyCenterPositionChanged != null)
+				foreach (var n in notifyCenterPositionChanged)
+					n.CenterPositionChanged(self, 0, 0);
 		}
 
 		// Sets only the location (Location)
-		void SetLocation(Actor self, CPos cell, SubCell subCell = SubCell.Any)
+		void SetLocation(Actor self, CPos cell)
 		{
 			self.World.ActorMap.RemoveInfluence(self, this);
 			Location = cell;

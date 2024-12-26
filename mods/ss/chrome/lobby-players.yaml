@@ -1,57 +1,57 @@
 Container@LOBBY_PLAYER_BIN:
-	Width: PARENT_RIGHT
-	Height: PARENT_BOTTOM
+	Width: PARENT_WIDTH
+	Height: PARENT_HEIGHT
 	Children:
 		Container@LABEL_CONTAINER:
 			X: 5
 			Y: 0 - 24
-			Width: PARENT_RIGHT
-			Height: PARENT_BOTTOM
+			Width: PARENT_WIDTH
+			Height: PARENT_HEIGHT
 			Children:
 				Label@LABEL_LOBBY_NAME:
 					Width: 200
 					Height: 25
-					Text: label-container-lobby-name
+					Text: label-lobby-players-player
 					Align: Center
 					Font: Bold
 				Label@LABEL_LOBBY_COLOR:
 					X: 210
 					Width: 94
 					Height: 25
-					Text: label-container-lobby-color
+					Text: label-lobby-players-color
 					Align: Center
 					Font: Bold
 				Label@LABEL_LOBBY_FACTION:
 					X: 309
 					Width: 202
 					Height: 25
-					Text: label-container-lobby-faction
+					Text: label-lobby-players-faction
 					Align: Center
 					Font: Bold
 				Label@LABEL_LOBBY_TEAM:
 					X: 516
 					Width: 50
 					Height: 25
-					Text: label-container-lobby-team
+					Text: label-lobby-players-team
 					Align: Center
 					Font: Bold
 				Label@LABEL_LOBBY_SPAWN:
 					X: 571
 					Width: 50
 					Height: 25
-					Text: label-container-lobby-spawn
+					Text: label-lobby-players-spawn
 					Align: Left
 					Font: Bold
 				Label@LABEL_LOBBY_STATUS:
 					X: 627
 					Width: 20
 					Height: 25
-					Text: label-container-lobby-status
+					Text: label-lobby-players-ready
 					Align: Left
 					Font: Bold
 		ScrollPanel@LOBBY_PLAYERS:
-			Width: PARENT_RIGHT
-			Height: PARENT_BOTTOM
+			Width: PARENT_WIDTH
+			Height: PARENT_HEIGHT
 			TopBottomSpacing: 5
 			ItemSpacing: 5
 			Children:
@@ -71,8 +71,8 @@ Container@LOBBY_PLAYER_BIN:
 								ColorBlock@LATENCY_COLOR:
 									X: 2
 									Y: 2
-									Width: PARENT_RIGHT - 4
-									Height: PARENT_BOTTOM - 4
+									Width: PARENT_WIDTH - 4
+									Height: PARENT_HEIGHT - 4
 						ClientTooltipRegion@LATENCY_REGION:
 							Width: 11
 							Height: 25
@@ -103,7 +103,7 @@ Container@LOBBY_PLAYER_BIN:
 							X: 15
 							Width: 190
 							Height: 25
-							Text: dropdownbutton-template-editable-player-slot-options
+							Text: label-lobby-players-name
 							Font: Regular
 							Visible: false
 						DropDownButton@COLOR:
@@ -116,8 +116,8 @@ Container@LOBBY_PLAYER_BIN:
 								ColorBlock@COLORBLOCK:
 									X: 5
 									Y: 6
-									Width: PARENT_RIGHT - 35
-									Height: PARENT_BOTTOM - 12
+									Width: PARENT_WIDTH - 35
+									Height: PARENT_HEIGHT - 12
 						DropDownButton@FACTION:
 							X: 309
 							Width: 202
@@ -136,14 +136,14 @@ Container@LOBBY_PLAYER_BIN:
 									X: 40
 									Width: 137
 									Height: 25
-									Text: label-template-editable-player-factionname
+									Text: label-lobby-players-faction
 						DropDownButton@TEAM_DROPDOWN:
 							X: 516
 							Width: 50
 							Height: 25
 							Font: Regular
 						DropDownButton@HANDICAP_DROPDOWN:
-							X: WINDOW_RIGHT - 5
+							X: WINDOW_WIDTH - 5
 							Width: 1
 							Height: 1
 							Font: Regular
@@ -183,8 +183,8 @@ Container@LOBBY_PLAYER_BIN:
 								ColorBlock@LATENCY_COLOR:
 									X: 2
 									Y: 2
-									Width: PARENT_RIGHT - 4
-									Height: PARENT_BOTTOM - 4
+									Width: PARENT_WIDTH - 4
+									Height: PARENT_HEIGHT - 4
 						ClientTooltipRegion@LATENCY_REGION:
 							Width: 11
 							Height: 25
@@ -246,7 +246,7 @@ Container@LOBBY_PLAYER_BIN:
 									X: 40
 									Width: 137
 									Height: 25
-									Text: label-faction-factionname
+									Text: label-lobby-players-faction
 						Label@TEAM:
 							X: 516
 							Width: 25
@@ -259,12 +259,12 @@ Container@LOBBY_PLAYER_BIN:
 							Font: Regular
 							Visible: false
 						Label@HANDICAP:
-							X: WINDOW_RIGHT - 5
+							X: WINDOW_WIDTH - 5
 							Width: 1
 							Height: 1
 							Align: Center
 						DropDownButton@HANDICAP_DROPDOWN:
-							X: WINDOW_RIGHT - 5
+							X: WINDOW_WIDTH - 5
 							Width: 1
 							Height: 1
 							Font: Regular
@@ -298,7 +298,7 @@ Container@LOBBY_PLAYER_BIN:
 							X: 15
 							Width: 190
 							Height: 25
-							Text: dropdownbutton-template-empty-slot-options
+							Text: label-lobby-players-name
 							Font: Regular
 							Visible: false
 						Label@NAME:
@@ -310,7 +310,7 @@ Container@LOBBY_PLAYER_BIN:
 							X: 210
 							Width: 438
 							Height: 25
-							Text: button-template-empty-join
+							Text: button-lobby-players-join
 							Font: Regular
 				Container@TEMPLATE_EDITABLE_SPECTATOR:
 					X: 5
@@ -328,8 +328,8 @@ Container@LOBBY_PLAYER_BIN:
 								ColorBlock@LATENCY_COLOR:
 									X: 2
 									Y: 2
-									Width: PARENT_RIGHT - 4
-									Height: PARENT_BOTTOM - 4
+									Width: PARENT_WIDTH - 4
+									Height: PARENT_HEIGHT - 4
 						ClientTooltipRegion@LATENCY_REGION:
 							Width: 11
 							Height: 25
@@ -359,7 +359,7 @@ Container@LOBBY_PLAYER_BIN:
 							X: 210
 							Width: 441
 							Height: 25
-							Text: label-template-editable-spectator
+							Text: label-lobby-players-spectator
 							Align: Center
 							Font: Bold
 						Image@STATUS_IMAGE:
@@ -392,8 +392,8 @@ Container@LOBBY_PLAYER_BIN:
 								ColorBlock@LATENCY_COLOR:
 									X: 2
 									Y: 2
-									Width: PARENT_RIGHT - 4
-									Height: PARENT_BOTTOM - 4
+									Width: PARENT_WIDTH - 4
+									Height: PARENT_HEIGHT - 4
 						ClientTooltipRegion@LATENCY_REGION:
 							Width: 11
 							Height: 25
@@ -440,7 +440,7 @@ Container@LOBBY_PLAYER_BIN:
 							X: 210
 							Width: 441
 							Height: 25
-							Text: label-template-noneditable-spectator
+							Text: label-lobby-players-spectator
 							Align: Center
 							Font: Bold
 						Image@STATUS_IMAGE:
@@ -462,10 +462,10 @@ Container@LOBBY_PLAYER_BIN:
 							Width: 190
 							Height: 20
 							Font: Regular
-							Text: checkbox-template-new-spectator-toggle-spectators
+							Text: checkbox-lobby-players-new-spectator-toggle
 						Button@SPECTATE:
 							X: 210
 							Width: 438
 							Height: 25
-							Text: button-template-new-spectator-spectate
+							Text: button-lobby-players-spectate
 							Font: Regular
