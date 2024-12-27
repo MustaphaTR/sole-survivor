@@ -208,7 +208,7 @@ faction-random-vehicle =
       - Mobile HQ
       - Artillery
       - Rocket Launcher
-      - Mobile SSM
+      - SSM Launcher
       - Mammoth Tank
       - Stealth Tank
 
@@ -217,9 +217,9 @@ faction-random-aircraft =
     .description = Random Aircraft
      A random aircraft is chosen at the start of the game.
      This includes following:
-      - Chinook
+      - Chinook Transport
       - Orca
-      - Apache
+      - Apache Longbow
 
 faction-random-dinosaur =
     .description = Random Dinosaur
@@ -250,7 +250,7 @@ faction-random-original =
       - Flame Tank
       - Artillery
       - Rocket Launcher
-      - Mobile SSM
+      - SSM Launcher
       - Mammoth Tank
       - Stealth Tank
       - Stegosaurus
@@ -267,9 +267,9 @@ faction-random-new =
       - Engineer
       - Harvester
       - Mobile HQ
-      - Chinook
+      - Chinook Transport
       - Orca
-      - Apache
+      - Apache Longbow
 
 faction-random-ai =
     .name = AI
@@ -292,11 +292,11 @@ faction-random-ai =
       - Flame Tank
       - Artillery
       - Rocket Launcher
-      - Mobile SSM
+      - SSM Launcher
       - Mammoth Tank
       - Stealth Tank
       - Orca
-      - Apache
+      - Apache Longbow
       - Stegosaurus
       - Tyrannosaurus Rex
       - Triceratops
@@ -319,7 +319,7 @@ faction-random-gdi =
       - Mobile HQ
       - Rocket Launcher
       - Mammoth Tank
-      - Chinook
+      - Chinook Transport
       - Orca
 
 faction-random-nod =
@@ -339,10 +339,10 @@ faction-random-nod =
       - Flame Tank
       - Mobile HQ
       - Artillery
-      - Mobile SSM
+      - SSM Launcher
       - Stealth Tank
-      - Chinook
-      - Apache
+      - Chinook Transport
+      - Apache Longbow
 
 faction-e1 =
     .description = Minigunner
