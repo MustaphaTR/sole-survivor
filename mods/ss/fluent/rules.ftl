@@ -429,7 +429,7 @@ faction-msam =
      Artillery unit armed with multiple missiles.
 
 faction-mlrs =
-    .description = Mobile SSM
+    .description = SSM Launcher
      Artillery unit armed with two Surface-to-Surface missiles.
 
 faction-htnk =
@@ -518,7 +518,7 @@ actor-u2-name = Spy Plane
 meta-dino-name = Dinosaur
 
 ## husks.yaml
-actor-mlrs-husk-name = Mobile SSM (Destroyed)
+actor-mlrs-husk-name = SSM Launcher (Destroyed)
 actor-mhq-husk-name = Mobile HQ (Destroyed)
 
 ## infantry.yaml
@@ -543,7 +543,7 @@ actor-gtwr-husk-name = Guard Tower (Destroyed)
 
 ## vehicles.yaml
 actor-mlrs =
-   .name = Mobile SSM
+   .name = SSM Launcher
    .description =
     Long range rocket artillery.
 
