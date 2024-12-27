@@ -5,14 +5,14 @@ MCV:
 	Valued:
 		Cost: 3000
 	Tooltip:
-		Name: Mobile Construction Vehicle
+		Name: actor-mcv.name
 	Buildable:
 		BuildPaletteOrder: 100
 		Prerequisites: anyhq, fix
 		Queue: Vehicle.GDI, Vehicle.Nod
 		BuildDuration: 3750
 		BuildDurationModifier: 40
-		Description: Deploys into another Construction Yard.\n  Unarmed
+		Description: actor-mcv.description
 	Selectable:
 		Priority: 4
 		DecorationBounds: 1536, 1536
@@ -49,13 +49,13 @@ HARV:
 	Valued:
 		Cost: 1000
 	Tooltip:
-		Name: Harvester
-		GenericName: Harvester
+		Name: actor-harv.name
+		GenericName: actor-harv.generic-name
 	Buildable:
 		BuildPaletteOrder: 10
 		Prerequisites: proc
 		Queue: Vehicle.GDI, Vehicle.Nod
-		Description: Collects Tiberium for processing.\n  Unarmed
+		Description: actor-harv.description
 	Selectable:
 		Priority: 7
 		DecorationBounds: 1536, 1536
@@ -94,12 +94,12 @@ APC:
 	Valued:
 		Cost: 600
 	Tooltip:
-		Name: APC
+		Name: actor-apc.name
 	Buildable:
 		BuildPaletteOrder: 30
 		Prerequisites: pyle
 		Queue: Vehicle.GDI
-		Description: Armed infantry transport.\nCan attack Aircraft.\n  Strong vs Vehicles\n  Weak vs Infantry
+		Description: actor-apc.description
 	Mobile:
 		TurnSpeed: 40
 		Speed: 91
@@ -167,12 +167,12 @@ ARTY:
 	Valued:
 		Cost: 600
 	Tooltip:
-		Name: Artillery
+		Name: actor-arty.name
 	Buildable:
 		BuildPaletteOrder: 60
 		Prerequisites: anyhq
 		Queue: Vehicle.Nod
-		Description: Long-range artillery.\n  Strong vs Infantry, Vehicles and Buildings
+		Description: actor-arty.description
 	Mobile:
 		TurnSpeed: 12
 		Speed: 117
@@ -211,12 +211,12 @@ FTNK:
 	Valued:
 		Cost: 600
 	Tooltip:
-		Name: Flame Tank
+		Name: actor-ftnk.name
 	Buildable:
 		BuildPaletteOrder: 50
 		Prerequisites: anyhq
 		Queue: Vehicle.Nod
-		Description: Heavily armored flame-throwing vehicle.\n  Strong vs Infantry, Buildings and Vehicles\n  Weak vs Tanks
+		Description: actor-ftnk.description
 	Mobile:
 		TurnSpeed: 20
 		Speed: 91
@@ -253,12 +253,12 @@ BGGY:
 	Valued:
 		Cost: 300
 	Tooltip:
-		Name: Nod Buggy
+		Name: actor-bggy.name
 	Buildable:
 		BuildPaletteOrder: 20
 		Prerequisites: afld
 		Queue: Vehicle.Nod
-		Description: Fast scout and anti-infantry vehicle.\n  Strong vs Infantry\n  Weak vs Tanks
+		Description: actor-bggy.description
 	Mobile:
 		TurnSpeed: 40
 		Speed: 156
@@ -303,12 +303,12 @@ BIKE:
 	Valued:
 		Cost: 500
 	Tooltip:
-		Name: Recon Bike
+		Name: actor-bike.name
 	Buildable:
 		BuildPaletteOrder: 30
 		Prerequisites: afld
 		Queue: Vehicle.Nod
-		Description: Fast scout vehicle, armed with\nrockets.\nCan attack Aircraft.\n  Strong vs Vehicles, Tanks\n  Weak vs Infantry
+		Description: actor-bike.description
 	Mobile:
 		TurnSpeed: 40
 		Speed: 178
@@ -342,12 +342,12 @@ JEEP:
 	Valued:
 		Cost: 400
 	Tooltip:
-		Name: Hum-Vee
+		Name: actor-jeep.name
 	Buildable:
 		BuildPaletteOrder: 20
 		Prerequisites: weap
 		Queue: Vehicle.GDI
-		Description: Fast scout and anti-infantry vehicle.\n  Strong vs Infantry\n  Weak vs Tanks
+		Description: actor-jeep.description
 	Mobile:
 		TurnSpeed: 40
 		Speed: 130
@@ -392,14 +392,14 @@ LTNK:
 	Valued:
 		Cost: 650
 	Tooltip:
-		Name: Light Tank
+		Name: actor-ltnk.name
 	Buildable:
 		BuildPaletteOrder: 40
 		Prerequisites: anyhq
 		Queue: Vehicle.Nod
 		BuildDuration: 1020
 		BuildDurationModifier: 40
-		Description: Fast, light tank.\n  Strong vs Vehicles, Tanks\n  Weak vs Infantry
+		Description: actor-ltnk.description
 	Mobile:
 		TurnSpeed: 20
 		Speed: 117
@@ -447,12 +447,12 @@ MTNK:
 	Valued:
 		Cost: 800
 	Tooltip:
-		Name: Medium Tank
+		Name: actor-mtnk.name
 	Buildable:
 		BuildPaletteOrder: 40
 		Prerequisites: anyhq
 		Queue: Vehicle.GDI
-		Description: General-Purpose GDI Tank.\n  Strong vs Tanks, Vehicles\n  Weak vs Infantry
+		Description: actor-mtnk.description
 	Mobile:
 		Speed: 91
 	Health:
@@ -502,12 +502,12 @@ HTNK:
 	Valued:
 		Cost: 1500
 	Tooltip:
-		Name: Mammoth Tank
+		Name: actor-htnk.name
 	Buildable:
 		BuildPaletteOrder: 60
 		Prerequisites: eye
 		Queue: Vehicle.GDI
-		Description: Heavily armored GDI Tank.\nCan attack Aircraft.\n  Strong vs Everything
+		Description: actor-htnk.description
 	Mobile:
 		Locomotor: heavytracked
 		Speed: 65
@@ -556,12 +556,12 @@ MSAM:
 	Valued:
 		Cost: 900
 	Tooltip:
-		Name: Rocket Launcher
+		Name: actor-msam.name
 	Buildable:
 		BuildPaletteOrder: 50
 		Prerequisites: anyhq
 		Queue: Vehicle.GDI
-		Description: Long range rocket artillery.\n  Strong vs all Ground units.
+		Description: actor-msam.description
 	Mobile:
 		Speed: 91
 		TurnSpeed: 20
@@ -603,12 +603,12 @@ MLRS:
 	Valued:
 		Cost: 600
 	Tooltip:
-		Name: Mobile SSM
+		Name: actor-mlrs.name
 	Buildable:
 		BuildPaletteOrder: 70
 		Prerequisites: tmpl
 		Queue: Vehicle.Nod
-		Description: Long range rocket artillery.
+		Description: actor-mlrs.description
 	Mobile:
 		Speed: 65
 		TurnSpeed: 20
@@ -669,12 +669,12 @@ STNK:
 	Valued:
 		Cost: 900
 	Tooltip:
-		Name: Stealth Tank
+		Name: actor-stnk.name
 	Buildable:
 		BuildPaletteOrder: 90
 		Prerequisites: tmpl
 		Queue: Vehicle.Nod
-		Description: Long-range missile tank that can cloak.\nCan attack Aircraft.\nHas weak armor. Can be spotted by infantry and defense structures.\n  Strong vs Vehicles, Tanks\n  Weak vs Infantry.
+		Description: actor-stnk.description
 	Mobile:
 		Locomotor: heavywheeled
 		TurnSpeed: 20
@@ -708,7 +708,7 @@ MHQ:
 	Valued:
 		Cost: 1000
 	Tooltip:
-		Name: Mobile HQ
+		Name: actor-mhq.name
 	Health:
 		HP: 25000
 	Armor:
@@ -724,8 +724,8 @@ MHQ:
 		OrderName: SpyPlane
 		Icon: spyplane
 		ChargeInterval: 500
-		Name: Spy Plane
-		Description: Reveals an area of the map\nand cloaked enemy units.
+		Name: actor-mhq.airstrikepower-spyplane-name
+		Description: actor-mhq.airstrikepower-spyplane-description
 		SelectTargetSpeechNotification: SelectTarget
 		EndChargeSpeechNotification: AirstrikeReady
 		SelectTargetTextNotification: notification-select-target
@@ -746,8 +746,8 @@ MHQ:
 		Icon: airstrike
 		ChargeInterval: 500
 		QuantizedFacings: 8
-		Name: Air Strike
-		Description: Deploy an aerial napalm strike.
+		Name: actor-hq.airstrikepower-name
+		Description: actor-hq.airstrikepower-description
 		EndChargeSpeechNotification: AirstrikeReady
 		SelectTargetSpeechNotification: SelectTarget
 		EndChargeTextNotification: notification-airstrike-ready
@@ -784,11 +784,11 @@ TRUCK:
 		Queue: Vehicle.GDI, Vehicle.Nod
 		BuildPaletteOrder: 35
 		Prerequisites: vehicleproduction
-		Description: Transports cash to other players.\n  Unarmed
+		Description: actor-truck.description
 	Valued:
 		Cost: 500
 	Tooltip:
-		Name: Supply Truck
+		Name: actor-truck.name
 	Selectable:
 		Priority: 6
 	Health:

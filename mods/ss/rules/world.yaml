@@ -315,7 +315,7 @@
 		Name: actor-steg.name
 		Side: Dinosour
 		InternalName: steg
-		Description: Stegosaurus
+		Description: faction-steg.description
 	Faction@trex:
 		Name: actor-trex.name
 		Side: Dinosour
