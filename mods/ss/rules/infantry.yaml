@@ -6,12 +6,12 @@ E1:
 	Valued:
 		Cost: 100
 	Tooltip:
-		Name: Minigunner
+		Name: actor-e1.name
 	Buildable:
 		BuildPaletteOrder: 10
 		Prerequisites: barracks
 		Queue: Infantry.GDI, Infantry.Nod
-		Description: General-purpose infantry.\n  Strong vs Infantry\n  Weak vs Vehicles
+		Description: actor-e1.description
 	Mobile:
 		Speed: 48
 	Health:
@@ -45,12 +45,12 @@ E2:
 	Valued:
 		Cost: 160
 	Tooltip:
-		Name: Grenadier
+		Name: actor-e2.name
 	Buildable:
 		BuildPaletteOrder: 40
 		Prerequisites: anyhq
 		Queue: Infantry.GDI
-		Description: Fast infantry armed with grenades. \n  Strong vs Buildings, slow-moving targets
+		Description: actor-e2.description
 	Mobile:
 		Speed: 91
 	Health:
@@ -85,12 +85,12 @@ E3:
 	Valued:
 		Cost: 300
 	Tooltip:
-		Name: Rocket Soldier
+		Name: actor-e3.name
 	Buildable:
 		BuildPaletteOrder: 20
 		Prerequisites: barracks
 		Queue: Infantry.GDI, Infantry.Nod
-		Description: Anti-tank/Anti-aircraft infantry. \n  Strong vs Tanks, Aircraft\n  Weak vs Infantry
+		Description: actor-e3.description
 	Mobile:
 		Speed: 39
 	Health:
@@ -121,12 +121,12 @@ E4:
 	Valued:
 		Cost: 200
 	Tooltip:
-		Name: Flamethrower
+		Name: actor-e4.name
 	Buildable:
 		BuildPaletteOrder: 40
 		Prerequisites: anyhq
 		Queue: Infantry.Nod
-		Description: Advanced Anti-infantry unit.\n  Strong vs Infantry, Buildings\n  Weak vs Tanks
+		Description: actor-e4.description
 	Mobile:
 		Speed: 65
 	Health:
@@ -159,12 +159,12 @@ E5:
 	Valued:
 		Cost: 300
 	Tooltip:
-		Name: Chemical Warrior
+		Name: actor-e5.name
 	Buildable:
 		BuildPaletteOrder: 50
 		Prerequisites: tmpl
 		Queue: Infantry.Nod
-		Description: Advanced general-purpose infantry.\n  Strong vs all Ground units
+		Description: actor-e5.description
 	Mobile:
 		Speed: 117
 		Locomotor: chem
@@ -196,12 +196,12 @@ E6:
 	Valued:
 		Cost: 500
 	Tooltip:
-		Name: Engineer
+		Name: actor-e6.name
 	Buildable:
 		BuildPaletteOrder: 30
 		Prerequisites: barracks
 		Queue: Infantry.GDI, Infantry.Nod
-		Description: Damages and captures enemy structures.\n  Repairs destroyed vehicles\n  Unarmed
+		Description: actor-e6.description
 	Mobile:
 		Speed: 48
 	Health:
@@ -234,14 +234,14 @@ RMBO:
 	Valued:
 		Cost: 1500
 	Tooltip:
-		Name: Commando
+		Name: actor-rmbo.name
 	Buildable:
 		BuildPaletteOrder: 50
 		Prerequisites: eye
 		Queue: Infantry.GDI
 		BuildDuration: 2000
 		BuildDurationModifier: 40
-		Description: Elite sniper infantry unit.\n  Strong vs Infantry, Buildings\n  Weak vs Vehicles
+		Description: actor-rmbo.description
 	Mobile:
 		Speed: 56
 	Health:
@@ -274,7 +274,7 @@ PVICE:
 	Buildable:
 		Queue: Biolab
 		BuildPaletteOrder: 40
-		Description: Mutated abomination that spits liquid Tiberium.\n  Strong vs Infantry, Buildings\n  Weak vs Aircraft
+		Description: actor-pvice-description
 	Tooltip:
 	ActorLostNotification:
 		TextNotification: notification-unit-lost
@@ -284,7 +284,7 @@ PVICE:
 STEG:
 	Inherits: ^DINO
 	Tooltip:
-		Name: Stegosaurus
+		Name: actor-steg.name
 	Health:
 		HP: 80000
 	Mobile:
@@ -295,14 +295,14 @@ STEG:
 		DeathSequencePalette: terrain
 		DeathPaletteIsPlayerPalette: false
 	Buildable:
-		Description: A large, heavily built, herbivorous quadruped
+		Description: actor-steg.description
 	UnitStatValues:
 		Damage: 18000
 
 TREX:
 	Inherits: ^DINO
 	Tooltip:
-		Name: Tyrannosaurus rex
+		Name: actor-trex.name
 	Health:
 		HP: 60000
 	Mobile:
@@ -314,21 +314,21 @@ TREX:
 		DecorationBounds: 2218, 1621
 	SelectionDecorations:
 	Buildable:
-		Description: Bipedal carnivore with a massive skull
+		Description: actor-trex.description
 	UnitStatValues:
 		Damage: 18000
 
 TRIC:
 	Inherits: ^DINO
 	Tooltip:
-		Name: Triceratops
+		Name: actor-tric.name
 	Health:
 		HP: 50000
 	Armament:
 		Weapon: horn
 	SelectionDecorations:
 	Buildable:
-		Description: Quadruped with large bony frill and three horns
+		Description: actor-tric.description
 	Selectable:
 		DecorationBounds: 1450, 1024, 0, 85
 	UnitStatValues:
@@ -337,7 +337,7 @@ TRIC:
 RAPT:
 	Inherits: ^DINO
 	Tooltip:
-		Name: Velociraptor
+		Name: actor-rapt.name
 	Health:
 		HP: 30000
 	Mobile:
@@ -345,6 +345,6 @@ RAPT:
 	Armament:
 		Weapon: claw
 	Buildable:
-		Description: Bipedal with enlarged sickle-shaped claw on each hindfoot
+		Description: actor-rapt.description
 	UnitStatValues:
 		Damage: 6000

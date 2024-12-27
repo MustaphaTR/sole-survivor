@@ -23,7 +23,7 @@ SPLITBLUE:
 		Interval: 110
 	WithIdleAnimation:
 	Tooltip:
-		Name: Blossom Tree (blue)
+		Name: actor-splitblue-name
 	RadarColorFromTerrain:
 		Terrain: BlueTiberium
 
@@ -109,7 +109,7 @@ T03.Transformable:
 		IntoActor: split2
 		Offset: 0,1
 	EditorOnlyTooltip:
-		Name: (Tree that can transform into a Blossom Tree)
+		Name: actor-t03-transformable-name
 
 T03.Husk:
 	Inherits: ^TreeHusk
@@ -261,7 +261,7 @@ T13.Transformable:
 		IntoActor: split3
 		Offset: 0,1
 	EditorOnlyTooltip:
-		Name: (Tree that can transform into a Blossom Tree)
+		Name: actor-t13-transformable-name
 
 T13.Husk:
 	Inherits: ^TreeHusk

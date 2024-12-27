@@ -5,7 +5,7 @@ CRATE:
 	SSCrate:
 		Duration: 6000
 	Tooltip:
-		Name: Wooden Crate
+		Name: actor-crate-name
 	RevealMapCrateAction:
 		SelectionShares: 2
 		Sequence: reveal-map
@@ -168,7 +168,7 @@ UPGRADECRATE:
 	SSCrate:
 		Duration: 6000
 	Tooltip:
-		Name: Silver Crate
+		Name: actor-upgradecrate-name
 	SSMultiplierCrateAction@armor:
 		SelectionShares: 50
 		Sequence: armorup
@@ -229,7 +229,7 @@ HEALCRATE:
 	SSCrate:
 		Duration: 6000
 	Tooltip:
-		Name: Health Crate
+		Name: actor-healcrate-name
 	SSHealCrateAction:
 		Weapon: Atomic
 		Sequence: heal
@@ -249,7 +249,7 @@ EXPERIENCECRATE:
 	SSCrate:
 		Duration: 6000
 	Tooltip:
-		Name: Score Crate
+		Name: actor-experiencecrate-name
 	LevelUpCrateAction:
 		Levels: 1
 		SelectionShares: 1
@@ -268,7 +268,7 @@ WACKYCRATE:
 	SSCrate:
 		Duration: 6000
 	Tooltip:
-		Name: Wacky Crate
+		Name: actor-wackycrate-name
 	WackyCrateAction@WACKY:
 		SelectionShares: 1
 		Sequence: wacky
@@ -281,7 +281,7 @@ ARMAGEDDONCRATE:
 	WithCrateBody:
 		XmasImages: xcrater
 	Tooltip:
-		Name: Armageddon Crate
+		Name: actor-armageddoncrate-name
 	ArmageddonCrateAction@ARMAGEDDON:
 		SelectionShares: 1
 		Sequence: redskull
@@ -299,7 +299,7 @@ TELEPORTER:
 	-HiddenUnderFog:
 	HiddenUnderShroud:
 	Tooltip:
-		Name: Teleportation Crate
+		Name: actor-teleporter-name
 	Teleporter:
 		MinDistance: 5
 		SetCameraPosition: true
@@ -313,7 +313,7 @@ TELEPORTER:
 mpspawn:
 	Interactable:
 	EditorOnlyTooltip:
-		Name: (multiplayer player starting point)
+		Name: actor-mpspawn-name
 	AlwaysVisible:
 	Immobile:
 		OccupiesSpace: false
@@ -327,7 +327,7 @@ mpspawn:
 waypoint:
 	Interactable:
 	EditorOnlyTooltip:
-		Name: (waypoint for scripted behavior)
+		Name: actor-waypoint-name
 	AlwaysVisible:
 	Immobile:
 		OccupiesSpace: false
@@ -561,7 +561,7 @@ proxy.cloak-remover:
 CAMERA:
 	Interactable:
 	EditorOnlyTooltip:
-		Name: (reveals area to owner)
+		Name: actor-camera-name
 	AlwaysVisible:
 	WithSpriteBody:
 	RenderSpritesEditorOnly:
@@ -578,7 +578,7 @@ CAMERA:
 CAMERA.small:
 	Interactable:
 	EditorOnlyTooltip:
-		Name: (reveals small area to owner)
+		Name: actor-camera-small-name
 	AlwaysVisible:
 	WithSpriteBody:
 	RenderSpritesEditorOnly:
@@ -619,7 +619,7 @@ FLARE:
 	HiddenUnderFog:
 		Type: CenterPosition
 	Tooltip:
-		Name: Flare
+		Name: actor-flare-name
 		ShowOwnerRow: false
 	BodyOrientation:
 		QuantizedFacings: 1

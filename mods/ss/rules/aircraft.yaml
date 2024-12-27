@@ -6,12 +6,12 @@ TRAN:
 	Valued:
 		Cost: 750
 	Tooltip:
-		Name: Chinook Transport
+		Name: actor-tran.name
 	Buildable:
 		BuildPaletteOrder: 10
 		Prerequisites: hpad
 		Queue: Aircraft.GDI, Aircraft.Nod
-		Description: Fast Infantry Transport Helicopter.
+		Description: actor-tran.description
 	Aircraft:
 		TurnSpeed: 20
 		Speed: 150
@@ -87,12 +87,12 @@ HELI:
 	Valued:
 		Cost: 1200
 	Tooltip:
-		Name: Apache Longbow
+		Name: actor-heli.name
 	Buildable:
 		BuildPaletteOrder: 20
 		Prerequisites: hpad, anyhq
 		Queue: Aircraft.Nod
-		Description: Helicopter Gunship with Chainguns.\n  Strong vs Infantry, Light Vehicles and\n  Aircraft\n  Weak vs Tanks
+		Description: actor-heli.description
 	Aircraft:
 		TurnSpeed: 28
 		Speed: 180
@@ -158,12 +158,12 @@ ORCA:
 	Valued:
 		Cost: 1200
 	Tooltip:
-		Name: Orca
+		Name: actor-orca.name
 	Buildable:
 		BuildPaletteOrder: 20
 		Prerequisites: hpad, anyhq
 		Queue: Aircraft.GDI
-		Description: Helicopter Gunship with AG Missiles.\n  Strong vs Buildings, Tanks\n  Weak vs Infantry
+		Description: actor-orca.description
 	Aircraft:
 		TurnSpeed: 28
 		Speed: 186
@@ -215,7 +215,7 @@ C17:
 	Inherits: ^Plane
 	Interactable:
 	Tooltip:
-		Name: Supply Aircraft
+		Name: actor-c17.name
 	Valued:
 		Cost: 2000
 	Aircraft:
@@ -247,7 +247,7 @@ C17:
 		TrailLength: 15
 		StartColorAlpha: 128
 	Buildable:
-		Description: Drops vehicle reinforcements on Airstrips
+		Description: actor-c17.description
 
 A10:
 	Inherits: ^Plane
@@ -256,7 +256,7 @@ A10:
 	TeamLeaderColorModifier:
 	Interactable:
 	Tooltip:
-		Name: A10 Bomber
+		Name: actor-a10.name
 	Valued:
 		Cost: 2000
 	Aircraft:
@@ -284,7 +284,7 @@ A10:
 		TrailLength: 15
 		StartColorAlpha: 128
 	Buildable:
-		Description: Used to deliver air strikes.
+		Description: actor-a10.description
 
 U2:
 	Inherits: ^Plane
@@ -292,7 +292,7 @@ U2:
 	SSExternalMultiplierManager:
 	TeamLeaderColorModifier:
 	Tooltip:
-		Name: Spy Plane
+		Name: actor-u2-name
 	Aircraft:
 		CruiseAltitude: 2560
 		TurnSpeed: 28
@@ -313,7 +313,7 @@ U2:
 TRAN.Husk:
 	Inherits: ^HelicopterHusk
 	Tooltip:
-		Name: Chinook Transport
+		Name: actor-tran-husk-name
 	Aircraft:
 		TurnSpeed: 20
 		Speed: 140
@@ -332,7 +332,7 @@ TRAN.Husk:
 HELI.Husk:
 	Inherits: ^HelicopterHusk
 	Tooltip:
-		Name: Apache Longbow
+		Name: actor-heli-husk-name
 	Aircraft:
 		TurnSpeed: 16
 		Speed: 186
@@ -348,7 +348,7 @@ HELI.Husk:
 ORCA.Husk:
 	Inherits: ^HelicopterHusk
 	Tooltip:
-		Name: Orca
+		Name: actor-orca-husk-name
 	Aircraft:
 		TurnSpeed: 16
 		Speed: 186

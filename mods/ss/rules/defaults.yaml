@@ -347,7 +347,7 @@
 	Guard:
 	Guardable:
 	Tooltip:
-		GenericName: Vehicle
+		GenericName: meta-vehicle-generic-name
 	TeamLeaderColorModifier:
 	WithSSNameTagDecoration:
 		Margin: 0, -12
@@ -368,7 +368,7 @@
 		Locomotor: tracked
 		TurnSpeed: 20
 	Tooltip:
-		GenericName: Tank
+		GenericName: meta-tank-generic-name
 
 ^Helicopter:
 	Inherits@1: ^ExistsInWorld
@@ -417,7 +417,7 @@
 	Guard:
 	Guardable:
 	Tooltip:
-		GenericName: Helicopter
+		GenericName: meta-helicopter-generic-name
 	TeamLeaderColorModifier:
 	WithSSNameTagDecoration:
 		Margin: 0, -12
@@ -561,7 +561,7 @@
 	Inherits@7: ^AcceptsAutoRepairCrate
 	MustBeDestroyed:
 	Tooltip:
-		GenericName: Soldier
+		GenericName: meta-soldier-generic-name
 	TeamLeaderColorModifier:
 	WithSSNameTagDecoration:
 		Margin: 0, -12
@@ -586,7 +586,7 @@
 	Valued:
 		Cost: 10
 	Tooltip:
-		Name: Civilian
+		Name: meta-civinfantry-name
 		GenericVisibility: None
 	Mobile:
 		Speed: 56
@@ -642,7 +642,7 @@
 	Valued:
 		Cost: 1000
 	Tooltip:
-		Name: Dinosaur
+		Name: meta-dino-name
 	WithSSNameTagDecoration:
 		Margin: 0, -12
 		Position: Top
@@ -725,7 +725,7 @@
 	Valued:
 		Cost: 1000
 	Tooltip:
-		Name: Visceroid
+		Name: meta-viceroid-name
 	TeamLeaderColorModifier:
 	WithSSNameTagDecoration:
 		Margin: 0, -12
@@ -809,7 +809,7 @@
 	Guard:
 	Guardable:
 	Tooltip:
-		GenericName: Ship
+		GenericName: meta-ship-generic-name
 	Voiced:
 		VoiceSet: VehicleVoice
 	HitShape:
@@ -857,7 +857,7 @@
 	Guardable:
 		Range: 3c0
 	Tooltip:
-		GenericName: Structure
+		GenericName: meta-building-generic-name
 	FrozenUnderFog:
 	Demolishable:
 	MapEditorData:
@@ -910,7 +910,7 @@
 ^CivBuilding:
 	Inherits: ^Building
 	Tooltip:
-		GenericName: Civilian Building
+		GenericName: meta-civbuilding-generic-name
 		GenericStancePrefix: false
 		ShowOwnerRow: false
 	FrozenUnderFog:
@@ -926,7 +926,7 @@
 		Footprint: x
 	WithSpriteBody:
 	Tooltip:
-		GenericName: Civilian Building (Destroyed)
+		GenericName: meta-civbuildinghusk-generic-name
 		GenericStancePrefix: false
 		ShowOwnerRow: false
 	FrozenUnderFog:
@@ -969,7 +969,7 @@
 	-SelectionDecorations:
 	Interactable:
 	Tooltip:
-		GenericName: Field
+		GenericName: meta-civfield-generic-name
 	-FireWarheadsOnDeath:
 	-ShakeOnDeath:
 	-SoundOnDamageTransition:
@@ -986,12 +986,12 @@
 		Condition: winter
 		TileSets: SNOW, WINTER
 	Tooltip@WINTER:
-		Name: Igloo
+		Name: meta-civhaystackorigloo.winter--name
 		RequiresCondition: winter
 		GenericVisibility: None
 		ShowOwnerRow: false
 	Tooltip@SUMMER:
-		Name: Haystacks
+		Name: meta-civhaystackorigloo.summer--name
 		RequiresCondition: !winter
 		GenericVisibility: None
 		ShowOwnerRow: false
@@ -1004,7 +1004,6 @@
 		Dimensions: 1,1
 		Footprint: =
 	Tooltip:
-		Name: Field (Destroyed)
 		GenericVisibility: None
 		ShowOwnerRow: false
 	RenderSprites:
@@ -1024,12 +1023,12 @@
 		Condition: winter
 		TileSets: SNOW, WINTER
 	Tooltip@WINTER:
-		Name: Igloo (Destroyed)
+		Name: meta-civhaystackorigloohusk.winter--name
 		RequiresCondition: winter
 		GenericVisibility: None
 		ShowOwnerRow: false
 	Tooltip@SUMMER:
-		Name: Haystacks (Destroyed)
+		Name: meta-civhaystackorigloohusk.summer--name
 		RequiresCondition: !winter
 		GenericVisibility: None
 		ShowOwnerRow: false
@@ -1084,7 +1083,7 @@
 	Inherits@1: ^SpriteActor
 	Interactable:
 	Tooltip:
-		Name: Tree
+		Name: meta-tree-name
 		ShowOwnerRow: false
 	RenderSprites:
 		Palette: staticterrain
@@ -1139,7 +1138,7 @@
 		Dimensions: 2,2
 	WithSpriteBody:
 	Tooltip:
-		Name: Tree (Burnt)
+		Name: meta-treehusk-name
 		ShowOwnerRow: false
 	HiddenUnderShroud:
 	ScriptTriggers:
@@ -1152,7 +1151,7 @@
 	Inherits@1: ^SpriteActor
 	Interactable:
 	Tooltip:
-		Name: Blossom Tree
+		Name: meta-tibtree-name
 		ShowOwnerRow: false
 	RenderSprites:
 		Palette: staticterrain
@@ -1176,7 +1175,7 @@
 	Inherits@1: ^SpriteActor
 	Interactable:
 	Tooltip:
-		Name: Rock
+		Name: meta-rock-name
 		ShowOwnerRow: false
 	RenderSprites:
 		Palette: staticterrain
@@ -1227,7 +1226,7 @@
 	TransformOnCapture:
 		ForceHealthPercentage: 25
 	Tooltip:
-		GenericName: Destroyed Vehicle
+		GenericName: meta-husk-generic-name
 	WithColoredOverlay@IDISABLE:
 		Color: 000000B4
 	ScriptTriggers:
@@ -1263,14 +1262,14 @@
 		Moves: False
 		Explosion: HeliCrash
 	Tooltip:
-		GenericName: Destroyed Helicopter
+		GenericName: meta-helicopterhusk-generic-name
 	-MapEditorData:
 
 ^Bridge:
 	Inherits@shape: ^1x1Shape
 	AlwaysVisible:
 	Tooltip:
-		Name: Bridge
+		Name: meta-bridge-name
 		ShowOwnerRow: false
 	Targetable:
 		RequiresForceFire: true
@@ -1296,8 +1295,8 @@
 	Interactable:
 	HiddenUnderFog:
 	Tooltip:
-		Name: Crate
-		GenericName: Crate
+		Name: meta-crate.name
+		GenericName: meta-crate.generic-name
 		ShowOwnerRow: false
 	SSCrate:
 		TerrainTypes: Clear, Rough, Road, Tiberium, BlueTiberium, Beach

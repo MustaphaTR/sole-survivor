@@ -480,7 +480,7 @@ faction-pvice =
      
      Heals on tiberium.
 
-## Misc
+## misc.yaml
 notification-map-revealed = Map revealed.
 notification-global-darkness = Global darkness.
 notification-health-upgraded = Health upgraded.
@@ -507,6 +507,20 @@ notification-mega-sight = Mega sight.
 notification-nuclear-bomb = Nuclear bomb.
 notification-armageddon = Armageddon.
 
+## ai.yaml
+bot-hunter =
+   .name = Hunter
+
+## aircraft.yaml
+actor-u2-name = Spy Plane
+
+## defaults.yaml
+meta-dino-name = Dinosaur
+
+## husks.yaml
+actor-mlrs-husk-name = Mobile SSM (Destroyed)
+actor-mhq-husk-name = Mobile HQ (Destroyed)
+
 ## infantry.yaml
 actor-trex =
    .name = Tyrannosaurus Rex
@@ -514,8 +528,28 @@ actor-trex =
     Bipedal carnivore with
     a massive skull.
 
+## misc.yaml
+actor-crate-name = Wooden Crate
+actor-upgradecrate-name = Silver Crate
+actor-healcrate-name = Health Crate
+actor-experiencecrate-name = Score Crate
+actor-wackycrate-name = Wacky Crate
+actor-armageddoncrate-name = Armageddon Crate
+actor-teleporter-name = Teleportation Crate
+
+## structures.yaml
+actor-gun-husk-name = Turret (Destroyed)
+actor-gtwr-husk-name = Guard Tower (Destroyed)
+
 ## vehicles.yaml
 actor-mlrs =
    .name = Mobile SSM
    .description =
     Long range rocket artillery.
+
+actor-mhq =
+   .name = Mobile HQ
+   .airstrikepower-spyplane-name = Spy Plane
+   .airstrikepower-spyplane-description = 
+    Reveals an area of the map
+    and cloaked enemy units.
