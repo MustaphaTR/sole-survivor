@@ -118,7 +118,7 @@ Grenade:
 	Range: 4c0
 	Report: toss1.aud
 	Projectile: Bullet
-		Speed: 140
+		Speed: 204
 		Blockable: false
 		LaunchAngle: 62
 		Inaccuracy: 813
