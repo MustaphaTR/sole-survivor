@@ -89,8 +89,8 @@ GetNearbyCrates = function(actor, distance)
 	return Utils.Where(Map.ActorsInCircle(actor.CenterPosition, WDist.FromCells(distance)), function(a) return a.Type == "crate" or a.Type == "upgradecrate" or a.Type == "experiencecrate" or a.Type == "wackycrate" end)
 end
 
-GetNearbyEnemies = function(actor, distance)
-	return Utils.Where(Map.ActorsInCircle(actor.CenterPosition, WDist.FromCells(distance)), function(a) return a.Type ~= "e1" and a.Type ~= "e2" and a.Type ~= "e3" and a.Type ~= "e4" and a.Type ~= "e5" and a.Type ~= "e6" and a.Type ~= "rmbo" and a.Type ~= "tran" and a.Type ~= "heli" and a.Type ~= "orca" and a.Type ~= "a10" and a.Type ~= "u2" and not a.Owner.IsNonCombatant and (a.Owner.Team ~= actor.Owner.Team or a.Owner.Team == 0) end)
+GetNearbyEnemies = function(actor, distance, ignored_actors)
+	return Utils.Where(Map.ActorsInCircle(actor.CenterPosition, WDist.FromCells(distance)), function(a) return not Utils.Any(ignored_actors, function(type) return a.Type == type end) and (a.Owner.Team ~= actor.Owner.Team or a.Owner.Team == 0) end)
 end
 
 GetNearbyHealCrate = function(actor, distance)
@@ -142,7 +142,7 @@ TickAI = function(bots, i)
 						end
 					end)
 				elseif unit.Type == "tran" then -- IdleHunt crashes with Chinook, use direct attack.
-					local enemies = GetNearbyEnemies(unit, 8)
+					local enemies = GetNearbyEnemies(unit, 8, { })
 
 					if #enemies > 0 then
 						unit.Stop()
@@ -168,7 +168,7 @@ TickAI = function(bots, i)
 					end
 				end
 			elseif unit.Type == "rmbo" and CheckTimers["Demolish"][i] <= 0 then
-				local enemies = GetNearbyEnemies(unit, 2)
+				local enemies = GetNearbyEnemies(unit, 2, { "e1", "e2", "e3", "e4", "e5", "e6", "rmbo", "tran", "heli", "orca", "u2" })
 
 				if #enemies > 0 then
 					unit.Stop()
