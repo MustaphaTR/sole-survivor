@@ -274,7 +274,7 @@ PVICE:
 	Buildable:
 		Queue: Biolab
 		BuildPaletteOrder: 40
-		Description: actor-pvice-description
+		Description: actor-pvice.description
 	Tooltip:
 	ActorLostNotification:
 		TextNotification: notification-unit-lost

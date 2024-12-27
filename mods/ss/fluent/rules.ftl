@@ -221,10 +221,9 @@ faction-random-aircraft =
       - Orca
       - Apache
 
-faction-random-dinosour =
-    .name = Dinosour
-    .description = Random Dinosour
-     A random dinosour is chosen at the start of the game.
+faction-random-dinosaur =
+    .description = Random Dinosaur
+     A random dinosaur is chosen at the start of the game.
      This includes following:
       - Stegosaurus
       - Tyrannosaurus Rex
@@ -460,19 +459,19 @@ faction-heli =
 
 faction-steg =
     .description = Stegosaurus
-     A large, heavily built, herbivorous quadruped dinosour.
+     A large, heavily built, herbivorous quadruped dinosaur.
 
 faction-trex =
     .description = Tyrannosaurus Rex
-     Bipedal carnivore dinosour with a massive skull.
+     Bipedal carnivore dinosaur with a massive skull.
 
 faction-tric =
     .description = Triceratops
-     Quadruped dinosour with large bony frill and three horns.
+     Quadruped dinosaur with large bony frill and three horns.
 
 faction-rapt =
     .description = Velociraptor
-     Bipedal dinosour with enlarged sickle-shaped claw on each hindfoot.
+     Bipedal dinosaur with enlarged sickle-shaped claw on each hindfoot.
 
 faction-pvice =
     .description = Viceroid
@@ -515,7 +514,7 @@ bot-hunter =
 actor-u2-name = Spy Plane
 
 ## defaults.yaml
-meta-dino-name = Dinosaur
+meta-dino-generic-name = Dinosaur
 
 ## husks.yaml
 actor-mlrs-husk-name = SSM Launcher (Destroyed)

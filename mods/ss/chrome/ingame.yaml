@@ -151,7 +151,7 @@ Container@OBSERVER_WIDGETS:
 			Y: 5
 			Width: 30
 			Height: 25
-			TooltipText: button-observer-widgets-options-tooltip
+			TooltipText: button-observer-widget-options-tooltip
 			TooltipContainer: TOOLTIP_CONTAINER
 			DisableWorldSounds: true
 			Children:
@@ -766,7 +766,7 @@ Container@PLAYER_WIDGETS:
 									X: 40
 									Width: 60
 									Height: 25
-									Text: label-faction-factionname
+									Text: label-lobby-players-faction
 				Background@STATS:
 					Logic: IngameUnitStatsLogic
 					X: 13

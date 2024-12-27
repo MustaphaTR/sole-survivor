@@ -642,7 +642,7 @@
 	Valued:
 		Cost: 1000
 	Tooltip:
-		Name: meta-dino-name
+		GenericName: meta-dino-generic-name
 	WithSSNameTagDecoration:
 		Margin: 0, -12
 		Position: Top
@@ -943,7 +943,7 @@
 		Types: building
 	CaptureNotification:
 		Notification: CivilianBuildingCaptured
-		TextNotification: notification-civilian-building-captured
+		TextNotification: notification-civ-building-captured
 	RepairableBuilding:
 		RepairPercent: 40
 		RepairStep: 1400
@@ -986,12 +986,12 @@
 		Condition: winter
 		TileSets: SNOW, WINTER
 	Tooltip@WINTER:
-		Name: meta-civhaystackorigloo.winter--name
+		Name: meta-civhaystackorigloo.winter-name
 		RequiresCondition: winter
 		GenericVisibility: None
 		ShowOwnerRow: false
 	Tooltip@SUMMER:
-		Name: meta-civhaystackorigloo.summer--name
+		Name: meta-civhaystackorigloo.summer-name
 		RequiresCondition: !winter
 		GenericVisibility: None
 		ShowOwnerRow: false
@@ -1023,12 +1023,12 @@
 		Condition: winter
 		TileSets: SNOW, WINTER
 	Tooltip@WINTER:
-		Name: meta-civhaystackorigloohusk.winter--name
+		Name: meta-civhaystackorigloohusk.winter-name
 		RequiresCondition: winter
 		GenericVisibility: None
 		ShowOwnerRow: false
 	Tooltip@SUMMER:
-		Name: meta-civhaystackorigloohusk.summer--name
+		Name: meta-civhaystackorigloohusk.summer-name
 		RequiresCondition: !winter
 		GenericVisibility: None
 		ShowOwnerRow: false

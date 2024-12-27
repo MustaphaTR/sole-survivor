@@ -215,7 +215,7 @@ C17:
 	Inherits: ^Plane
 	Interactable:
 	Tooltip:
-		Name: actor-c17.name
+		Name: actor-c17-name
 	Valued:
 		Cost: 2000
 	Aircraft:
@@ -246,8 +246,6 @@ C17:
 		Offset: -261,650,0
 		TrailLength: 15
 		StartColorAlpha: 128
-	Buildable:
-		Description: actor-c17.description
 
 A10:
 	Inherits: ^Plane
@@ -256,7 +254,7 @@ A10:
 	TeamLeaderColorModifier:
 	Interactable:
 	Tooltip:
-		Name: actor-a10.name
+		Name: actor-a10-name
 	Valued:
 		Cost: 2000
 	Aircraft:
@@ -283,8 +281,6 @@ A10:
 		Offset: -640,-171,0
 		TrailLength: 15
 		StartColorAlpha: 128
-	Buildable:
-		Description: actor-a10.description
 
 U2:
 	Inherits: ^Plane
