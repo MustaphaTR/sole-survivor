@@ -331,7 +331,7 @@ mlrs:
 		Facings: 32
 		UseClassicFacings: True
 	icon:
-		Filename: mlrsicnh.tem
+		Filename: tempicnh|mlrsicnh.tem
 
 mlrs.destroyed:
 	idle:

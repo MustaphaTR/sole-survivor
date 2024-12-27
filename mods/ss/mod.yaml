@@ -22,7 +22,7 @@ FileSystem: ContentInstallerFileSystem
 		content|speech.mix
 		content|conquer.mix
 		content|sounds.mix
-		content|tempicnh.mix
+		content|tempicnh.mix: tempicnh
 		content|temperat.mix
 		content|winter.mix
 		content|desert.mix
