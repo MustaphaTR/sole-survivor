@@ -16,7 +16,7 @@ using OpenRA.Mods.Common.Traits;
 namespace OpenRA.Mods.SS.Traits
 {
 	[Desc("Grants a condition on the collector if it is not, revokes it if it is.")]
-	class SwitchConditionCrateActionInfo : CrateActionInfo
+	sealed class SwitchConditionCrateActionInfo : CrateActionInfo
 	{
 		[FieldLoader.Require]
 		[Desc("The condition to grant or revoke. Must be included in the target actor's ExternalConditions list.")]
@@ -42,7 +42,7 @@ namespace OpenRA.Mods.SS.Traits
 		public override object Create(ActorInitializer init) { return new SwitchConditionCrateAction(init.Self, this); }
 	}
 
-	class SwitchConditionCrateAction : CrateAction
+	sealed class SwitchConditionCrateAction : CrateAction
 	{
 		readonly Actor self;
 		readonly SwitchConditionCrateActionInfo info;

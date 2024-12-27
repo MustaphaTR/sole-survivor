@@ -17,7 +17,7 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.SS.Traits
 {
 	[Desc("Kills all player owned units on the map.")]
-	class ArmageddonCrateActionInfo : CrateActionInfo
+	sealed class ArmageddonCrateActionInfo : CrateActionInfo
 	{
 		[Desc("The deathtypes used to kill the units.")]
 		public readonly BitSet<DamageType> DeathTypes = default;
@@ -25,7 +25,7 @@ namespace OpenRA.Mods.SS.Traits
 		public override object Create(ActorInitializer init) { return new ArmageddonCrateAction(init.Self, this); }
 	}
 
-	class ArmageddonCrateAction : CrateAction
+	sealed class ArmageddonCrateAction : CrateAction
 	{
 		readonly Actor self;
 		readonly ArmageddonCrateActionInfo info;

@@ -14,12 +14,12 @@ using System.Linq;
 namespace OpenRA.Mods.Common.Traits
 {
 	[Desc("Hides the entire map in shroud for all players.")]
-	class HideMapToAllCrateActionInfo : CrateActionInfo
+	sealed class HideMapToAllCrateActionInfo : CrateActionInfo
 	{
 		public override object Create(ActorInitializer init) { return new HideMapToAllCrateAction(init.Self, this); }
 	}
 
-	class HideMapToAllCrateAction : CrateAction
+	sealed class HideMapToAllCrateAction : CrateAction
 	{
 		public HideMapToAllCrateAction(Actor self, HideMapToAllCrateActionInfo info)
 			: base(self, info) { }

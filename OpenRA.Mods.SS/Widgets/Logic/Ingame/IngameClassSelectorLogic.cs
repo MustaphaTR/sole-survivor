@@ -9,7 +9,6 @@
  */
 #endregion
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using OpenRA.Mods.SS.Traits;
@@ -18,19 +17,8 @@ using OpenRA.Widgets;
 
 namespace OpenRA.Mods.Common.Widgets.Logic
 {
-	class IngameClassSelectorLogic : ChromeLogic
+	sealed class IngameClassSelectorLogic : ChromeLogic
 	{
-		public static (string First, string Second) SplitOnFirstToken(string input, string token = "\\n")
-		{
-			if (string.IsNullOrEmpty(input))
-				return (null, null);
-
-			var split = input.IndexOf(token, StringComparison.Ordinal);
-			var first = split > 0 ? input[..split] : input;
-			var second = split > 0 ? input[(split + token.Length)..] : null;
-			return (first, second);
-		}
-
 		public void ShowFactionDropDown(World world, SpawnSSUnit spawner, DropDownButtonWidget dropdown, Dictionary<string, LobbyFaction> factions)
 		{
 			var player = world.LocalPlayer;
@@ -54,14 +42,15 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						}
 					});
 				var faction = factions[factionId];
-				item.Get<LabelWidget>("LABEL").GetText = () => faction.Name;
+				item.Get<LabelWidget>("LABEL").GetText = () => FluentProvider.GetMessage(faction.Name);
 				var flag = item.Get<ImageWidget>("FLAG");
 				flag.GetImageCollection = () => "flags";
 				flag.GetImageName = () => factionId;
 
-				var tooltip = SplitOnFirstToken(faction.Description);
-				item.GetTooltipText = () => tooltip.First;
-				item.GetTooltipDesc = () => tooltip.Second;
+				var description = faction.Description != null ? FluentProvider.GetMessage(faction.Description) : null;
+				var (text, desc) = LobbyUtils.SplitOnFirstToken(description);
+				item.GetTooltipText = () => text;
+				item.GetTooltipDesc = () => desc;
 
 				return item;
 			}
@@ -103,11 +92,11 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			classDropdown.IsDisabled = () => !spawner.ClassChanging || spawner.ClassChangingPaused;
 			classDropdown.OnMouseDown = _ => ShowFactionDropDown(world, spawner, classDropdown, factions);
 
-			classDropdown.GetTooltipText = () => SplitOnFirstToken(factions[spawner.Classes[player]].Description).First;
-			classDropdown.GetTooltipDesc = () => SplitOnFirstToken(factions[spawner.Classes[player]].Description).Second;
+			classDropdown.GetTooltipText = () => LobbyUtils.SplitOnFirstToken(FluentProvider.GetMessage(factions[spawner.Classes[player]].Description)).First;
+			classDropdown.GetTooltipDesc = () => LobbyUtils.SplitOnFirstToken(FluentProvider.GetMessage(factions[spawner.Classes[player]].Description)).Second;
 
 			var factionName = classDropdown.Get<LabelWidget>("FACTIONNAME");
-			factionName.GetText = () => factions[spawner.Classes[player]].Name;
+			factionName.GetText = () => FluentProvider.GetMessage(factions[spawner.Classes[player]].Name);
 			var factionFlag = classDropdown.Get<ImageWidget>("FACTIONFLAG");
 			factionFlag.GetImageName = () => spawner.Classes[player];
 			factionFlag.GetImageCollection = () => "flags";

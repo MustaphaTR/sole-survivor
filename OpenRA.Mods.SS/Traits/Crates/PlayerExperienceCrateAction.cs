@@ -12,7 +12,7 @@
 namespace OpenRA.Mods.Common.Traits
 {
 	[Desc("Gives collector's owner experience.")]
-	class PlayerExperienceCrateActionInfo : CrateActionInfo
+	sealed class PlayerExperienceCrateActionInfo : CrateActionInfo
 	{
 		[Desc("How much player experience this crate action gives.")]
 		public int Experience = 0;
@@ -20,7 +20,7 @@ namespace OpenRA.Mods.Common.Traits
 		public override object Create(ActorInitializer init) { return new PlayerExperienceCrateAction(init.Self, this); }
 	}
 
-	class PlayerExperienceCrateAction : CrateAction
+	sealed class PlayerExperienceCrateAction : CrateAction
 	{
 		readonly PlayerExperienceCrateActionInfo info;
 

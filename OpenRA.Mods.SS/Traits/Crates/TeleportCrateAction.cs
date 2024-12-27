@@ -19,7 +19,7 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.SS.Traits
 {
 	[Desc("Teleports the unit to a random location.")]
-	class TeleportCrateActionInfo : CrateActionInfo
+	sealed class TeleportCrateActionInfo : CrateActionInfo
 	{
 		[Desc("The maxiumum distance unit can be teleported to.")]
 		public readonly int MaxDistance = 50;
@@ -39,7 +39,7 @@ namespace OpenRA.Mods.SS.Traits
 		public override object Create(ActorInitializer init) { return new TeleportCrateAction(init.Self, this); }
 	}
 
-	class TeleportCrateAction : CrateAction, IRender
+	sealed class TeleportCrateAction : CrateAction, IRender
 	{
 		readonly Actor self;
 		readonly TeleportCrateActionInfo info;

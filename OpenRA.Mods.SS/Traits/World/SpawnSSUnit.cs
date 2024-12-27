@@ -242,17 +242,17 @@ namespace OpenRA.Mods.SS.Traits
 
 		void SpawnBuildingsForPlayer(World w, Player p, CPos sp)
 		{
-			foreach (var b in bases)
+			foreach (var (actors, amount, inner, outer) in bases)
 			{
-				var buildings = b.Actors;
-				var buildingSpawnCells = w.Map.FindTilesInAnnulus(sp, b.Inner + 1, b.Outer).ToArray();
-				for (var i = 0; i < b.Amount - (b.Amount % buildings.Length); i++)
+				var buildings = actors;
+				var buildingSpawnCells = w.Map.FindTilesInAnnulus(sp, inner + 1, outer).ToArray();
+				for (var i = 0; i < amount - amount % buildings.Length; i++)
 				{
 					var actor = buildings[i % buildings.Length];
 					SpawnBuildingForPlayer(w, p, buildingSpawnCells, actor);
 				}
 
-				for (var i = 0; i < b.Amount % buildings.Length; i++)
+				for (var i = 0; i < amount % buildings.Length; i++)
 				{
 					var actor = buildings.Random(w.SharedRandom);
 					SpawnBuildingForPlayer(w, p, buildingSpawnCells, actor);

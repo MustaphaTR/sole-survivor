@@ -69,10 +69,10 @@ namespace OpenRA.Mods.Common.Traits
 
 		float ISelectionBar.GetValue()
 		{
-			if (IsTraitDisabled || !Info.ShowSelectionBar || ((1f - (float)Ticks / Info.Delay) > 1f && !info.ShowFullBarAfterGranted))
+			if (IsTraitDisabled || !Info.ShowSelectionBar || (1f - (float)Ticks / Info.Delay > 1f && !info.ShowFullBarAfterGranted))
 				return 0f;
 
-			if ((1f - (float)Ticks / Info.Delay) > 1f && info.ShowFullBarAfterGranted)
+			if (1f - (float)Ticks / Info.Delay > 1f && info.ShowFullBarAfterGranted)
 				return 1f;
 
 			return 1f - (float)Ticks / Info.Delay;

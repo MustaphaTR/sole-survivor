@@ -14,7 +14,7 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.Common.Traits
 {
 	[Desc("Heals the collector if it is damaged, fires a weapon otherwise.")]
-	class SSHealCrateActionInfo : CrateActionInfo
+	sealed class SSHealCrateActionInfo : CrateActionInfo
 	{
 		[WeaponReference]
 		[FieldLoader.Require]
@@ -32,7 +32,7 @@ namespace OpenRA.Mods.Common.Traits
 		public override object Create(ActorInitializer init) { return new SSHealCrateAction(init.Self, this); }
 	}
 
-	class SSHealCrateAction : CrateAction
+	sealed class SSHealCrateAction : CrateAction
 	{
 		readonly Actor self;
 		readonly SSHealCrateActionInfo info;

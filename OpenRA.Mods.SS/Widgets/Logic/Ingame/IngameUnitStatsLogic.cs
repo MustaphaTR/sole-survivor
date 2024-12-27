@@ -105,7 +105,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 							foreach (var dm in unit.TraitsImplementing<IDamageModifier>().Select(dm => dm.GetDamageModifier(unit, new Damage(usv.Health))).Where(d => d != 0))
 								healthValue = healthValue / dm * 100;
 
-							return (int)(((float)(healthValue - usv.Health) / (float)usv.Health) * 100 * max);
+							return (int)((float)(healthValue - usv.Health) / usv.Health * 100 * max);
 						}
 						else if (usv.Health < 0)
 						{
@@ -120,7 +120,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						foreach (var dm in unit.TraitsImplementing<IDamageModifier>().Select(dm => dm.GetDamageModifier(unit, new Damage(healthTrait.MaxHP))).Where(d => d != 0))
 							healthValue = healthValue / dm * 100;
 
-						return (int)(((float)(healthValue - healthTrait.MaxHP) / (float)healthTrait.MaxHP) * 100 * max);
+						return (int)((float)(healthValue - healthTrait.MaxHP) / healthTrait.MaxHP * 100 * max);
 					}
 				}
 
@@ -178,7 +178,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 							foreach (var rsm in unit.TraitsImplementing<IRevealsShroudModifier>().Select(rsm => rsm.GetRevealsShroudModifier()))
 								revealsShroudValue = revealsShroudValue * rsm / 100;
 
-							return (int)(((float)(revealsShroudValue.Length - usv.Sight.Length) / (float)usv.Sight.Length) * 100 * max);
+							return (int)((float)(revealsShroudValue.Length - usv.Sight.Length) / usv.Sight.Length * 100 * max);
 						}
 						else if (usv.Sight < WDist.Zero)
 						{
@@ -193,7 +193,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						foreach (var rsm in unit.TraitsImplementing<IRevealsShroudModifier>().Select(rsm => rsm.GetRevealsShroudModifier()))
 							revealsShroudValue = revealsShroudValue * rsm / 100;
 
-						return (int)(((float)(revealsShroudValue.Length - revealsShroudTrait.Info.Range.Length) / (float)revealsShroudTrait.Info.Range.Length) * 100 * max);
+						return (int)((float)(revealsShroudValue.Length - revealsShroudTrait.Info.Range.Length) / revealsShroudTrait.Info.Range.Length * 100 * max);
 					}
 				}
 
@@ -238,7 +238,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						foreach (var dm in unit.TraitsImplementing<IFirepowerModifier>().Select(fm => fm.GetFirepowerModifier()))
 							damageValue = damageValue * dm / 100;
 
-						return (int)(((float)(damageValue - usv.Damage) / (float)usv.Damage) * 100 * max);
+						return (int)((float)(damageValue - usv.Damage) / usv.Damage * 100 * max);
 					}
 				}
 
@@ -296,7 +296,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 							foreach (var rm in unit.TraitsImplementing<IReloadModifier>().Select(sm => sm.GetReloadModifier()))
 								rofValue = rofValue * rm / 100;
 
-							return (int)(((float)(usv.ReloadDelay - rofValue) / (float)usv.ReloadDelay) * 100 * (max + 1));
+							return (int)((float)(usv.ReloadDelay - rofValue) / usv.ReloadDelay * 100 * (max + 1));
 						}
 						else if (usv.ReloadDelay < 0)
 						{
@@ -311,7 +311,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						foreach (var rm in unit.TraitsImplementing<IReloadModifier>().Select(sm => sm.GetReloadModifier()))
 							rofValue = rofValue * rm / 100;
 
-						return (int)(((float)(armamanets.Max(ar => ar.Weapon.ReloadDelay - rofValue)) / (float)armamanets.Max(ar => ar.Weapon.ReloadDelay)) * 100 * (max + 1));
+						return (int)((float)armamanets.Max(ar => ar.Weapon.ReloadDelay - rofValue) / armamanets.Max(ar => ar.Weapon.ReloadDelay) * 100 * (max + 1));
 					}
 				}
 
@@ -366,7 +366,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 							foreach (var rm in unit.TraitsImplementing<IRangeModifier>().Select(rm => rm.GetRangeModifier()))
 								rangeValue = rangeValue * rm / 100;
 
-							return (int)(((float)(rangeValue.Length - usv.Range.Length) / (float)usv.Range.Length) * 100 * max);
+							return (int)((float)(rangeValue.Length - usv.Range.Length) / usv.Range.Length * 100 * max);
 						}
 						else if (usv.Range < WDist.Zero)
 						{
@@ -381,7 +381,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						foreach (var rm in unit.TraitsImplementing<IRangeModifier>().Select(rm => rm.GetRangeModifier()))
 							rangeValue = rangeValue * rm / 100;
 
-						return (int)(((float)(rangeValue.Length - armamanets.Max(ar => ar.Weapon.Range.Length)) / (float)armamanets.Max(ar => ar.Weapon.Range.Length)) * 100 * max);
+						return (int)((float)(rangeValue.Length - armamanets.Max(ar => ar.Weapon.Range.Length)) / armamanets.Max(ar => ar.Weapon.Range.Length) * 100 * max);
 					}
 				}
 
@@ -449,7 +449,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 							foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
 								speedValue = speedValue * sm / 100;
 
-							return (int)(((float)(speedValue - usv.Speed) / (float)usv.Speed) * 100 * max);
+							return (int)((float)(speedValue - usv.Speed) / usv.Speed * 100 * max);
 						}
 						else if (usv.Speed < 0)
 						{
@@ -464,7 +464,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
 							speedValue = speedValue * sm / 100;
 
-						return (int)(((float)(speedValue - mobile.Speed) / (float)mobile.Speed) * 100 * max);
+						return (int)((float)(speedValue - mobile.Speed) / mobile.Speed * 100 * max);
 					}
 
 					var aircraft = unit.Info.TraitInfoOrDefault<AircraftInfo>();
@@ -474,7 +474,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						foreach (var sm in unit.TraitsImplementing<ISpeedModifier>().Select(sm => sm.GetSpeedModifier()))
 							speedValue = speedValue * sm / 100;
 
-						return (int)(((float)(speedValue - aircraft.Speed) / (float)aircraft.Speed) * 100 * max);
+						return (int)((float)(speedValue - aircraft.Speed) / aircraft.Speed * 100 * max);
 					}
 				}
 
