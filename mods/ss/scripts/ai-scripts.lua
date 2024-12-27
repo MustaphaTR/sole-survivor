@@ -60,8 +60,6 @@ BuildEngiStuff = function(engi)
 end
 
 MHQSpyPlane = function(mhq)
-	MHQActor[mhq.Owner.InternalName] = mhq
-
 	Trigger.AfterDelay(550, function()
 		if mhq.IsDead then
 			return
@@ -71,6 +69,19 @@ MHQSpyPlane = function(mhq)
 		mhq.TargetAirstrike(WPos.New(cell.X * 1024, cell.Y * 1024, 0))
 
 		MHQSpyPlane(mhq)
+	end)
+end
+
+MHQAirstrike = function(mhq)
+	Trigger.AfterDelay(550, function()
+		if mhq.IsDead then
+			return
+		end
+
+		local cell = Map.RandomCell()
+		mhq.TargetAirstrikeByOrderName("AirstrikePowerInfoOrder", WPos.New(cell.X * 1024, cell.Y * 1024, 0))
+
+		MHQAirstrike(mhq)
 	end)
 end
 
@@ -99,14 +110,22 @@ TickAI = function(bots, i)
 	for _,bot in pairs(bots) do
 		local unit = bot.Unit
 		if unit ~= nil and not unit.IsDead then
-			if unit.Type == "mhq" then
-				if (not Lobby.ExploredMap() or Lobby.FogOfWar()) and MHQActor[bot.InternalName] ~= unit then
-					MHQSpyPlane(unit)
-				end
-			end
+			-- if unit.Type == "mhq" then
+			--	if MHQActor[bot.InternalName] ~= unit then
+			--		MHQActor[bot.InternalName] = unit
+			--		if not Lobby.ExploredMap() or Lobby.FogOfWar() then
+			--			MHQSpyPlane(unit)
+			--		end
+			--		MHQAirstrike(unit)
+			--	end
+			-- end
 
 			if unit.IsIdle or unit.IsIdleAircraft then
-				local crates = GetNearbyCrates(unit, 8)
+				local range = 8
+				if unit.Type == "mhq" then
+					range = 24
+				end
+				local crates = GetNearbyCrates(unit, range)
 				for _,crate in pairs(crates) do
 					unit.Move(crate.Location)
 					if unit.HasProperty("Land") then

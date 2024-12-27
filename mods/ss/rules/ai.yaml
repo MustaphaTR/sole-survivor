@@ -2,3 +2,45 @@ Player:
 	ModularBot@Hunter:
 		Name: bot-hunter.name
 		Type: hunter
+	GrantConditionOnBotOwner@Hunter:
+		Condition: enable-hunter-ai
+		Bots: hunter
+	SupportPowerBotModule:
+		RequiresCondition: enable-hunter-ai
+		Decisions:
+			SpyPlane:
+				OrderName: SpyPlane
+				MinimumAttractiveness: 25
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Enemy
+					Types: Vehicle, Infantry
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			Airstrike:
+				OrderName: AirstrikePowerInfoOrder
+				MinimumAttractiveness: 2000
+				Consideration@1:
+					Against: Enemy
+					Types: Vehicle, Infantry
+					Attractiveness: 3
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@2:
+					Against: Ally
+					Types: Ground, Water
+					Attractiveness: -20
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@3:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 2c0
