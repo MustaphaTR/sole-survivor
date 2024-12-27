@@ -152,9 +152,9 @@
 	Faction@RandomDino:
 		Name: meta-dino-generic-name
 		Side: Random
-		InternalName: Dinosour
+		InternalName: Dinosaur
 		RandomFactionMembers: steg, trex, tric, rapt
-		Description: faction-random-dinosour.description
+		Description: faction-random-dinosaur.description
 	Faction@RandomOriginal:
 		Name: faction-random-original.name
 		Side: Random
@@ -313,22 +313,22 @@
 		Description: faction-heli.description
 	Faction@steg:
 		Name: actor-steg.name
-		Side: Dinosour
+		Side: Dinosaur
 		InternalName: steg
 		Description: faction-steg.description
 	Faction@trex:
 		Name: actor-trex.name
-		Side: Dinosour
+		Side: Dinosaur
 		InternalName: trex
 		Description: faction-trex.description
 	Faction@tric:
 		Name: actor-tric.name
-		Side: Dinosour
+		Side: Dinosaur
 		InternalName: tric
 		Description: faction-tric.description
 	Faction@rapt:
 		Name: actor-rapt.name
-		Side: Dinosour
+		Side: Dinosaur
 		InternalName: rapt
 		Description: faction-rapt.description
 	Faction@pvice:
