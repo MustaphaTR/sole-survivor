@@ -14,6 +14,7 @@ using System.Linq;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Mods.Common.Widgets.Logic;
 using OpenRA.Network;
 using OpenRA.Primitives;
 using OpenRA.Traits;
@@ -105,6 +106,7 @@ namespace OpenRA.Mods.SS.Traits
 
 		WorldRenderer wr;
 		readonly HashSet<(string[] Actors, int Amount, int Inner, int Outer)> bases = new();
+		readonly Dictionary<int, Session.Client> occupiedSpawnPoints = new();
 
 		public bool TeamSpawns;
 		public bool QuickClassChange;
@@ -115,7 +117,9 @@ namespace OpenRA.Mods.SS.Traits
 		public Dictionary<Player, int> Teams = new();
 		public Dictionary<Player, string> Classes = new();
 		public Dictionary<Player, Actor> Units = new();
-		Dictionary<CPos, bool> spawnPointOccupation = new();
+
+		CPos[] spawnLocations;
+		List<int> availableSpawnPoints;
 
 		public SpawnSSUnit(SpawnSSUnitInfo info)
 		{
@@ -140,9 +144,24 @@ namespace OpenRA.Mods.SS.Traits
 				bases.Add((dropdown.BaseBuildings, value, dropdown.InnerBaseRadius, dropdown.OuterBaseRadius));
 			}
 
-			spawnPointOccupation = world.Actors.Where(a => a.Info.Name == "mpspawn")
-				.Select(a => a.Location)
-				.ToDictionary(s => s, s => false);
+			var spawns = new List<CPos>();
+			foreach (var n in world.Map.ActorDefinitions)
+				if (n.Value.Value == "mpspawn")
+					spawns.Add(new ActorReference(n.Key, n.Value.ToDictionary()).GetValue<LocationInit, CPos>());
+
+			spawnLocations = spawns.ToArray();
+
+			// Initialize the list of unoccupied spawn points for AssignSpawnLocations to pick from
+			availableSpawnPoints = LobbyUtils.AvailableSpawnPoints(spawnLocations.Length, world.LobbyInfo);
+			foreach (var kv in world.LobbyInfo.Slots)
+			{
+				var client = world.LobbyInfo.ClientInSlot(kv.Key);
+				if (client == null || client.SpawnPoint == 0)
+					continue;
+
+				availableSpawnPoints.Remove(client.SpawnPoint);
+				occupiedSpawnPoints.Add(client.SpawnPoint, client);
+			}
 
 			var players = world.LobbyInfo.Clients.Where(c => !c.IsObserver);
 			if (TeamSpawns)
@@ -206,14 +225,20 @@ namespace OpenRA.Mods.SS.Traits
 
 		CPos GetSpawnPointForPlayer(World w, Session.Client p)
 		{
-			var availableSpawns = spawnPointOccupation.Where(s => !s.Value);
-			if (availableSpawns.Any())
+			if (p.SpawnPoint > 0 && p.SpawnPoint <= spawnLocations.Length)
+				return spawnLocations[p.SpawnPoint - 1];
+
+			if (availableSpawnPoints.Count > 0)
 			{
-				return availableSpawns.Random(w.SharedRandom).Key;
+				var spawnPoint = availableSpawnPoints.Random(w.SharedRandom);
+				availableSpawnPoints.Remove(spawnPoint);
+				occupiedSpawnPoints.Add(spawnPoint, p);
+
+				return spawnLocations[spawnPoint - 1];
 			}
 			else
 			{
-				var circle = w.Map.FindTilesInAnnulus(spawnPointOccupation.Random(w.SharedRandom).Key, 25, 50);
+				var circle = w.Map.FindTilesInAnnulus(spawnLocations.Random(w.SharedRandom), 25, 50);
 				var player = FindPlayerInSlot(w, p.Slot);
 				var actorRules = w.Map.Rules.Actors[player.Faction.InternalName.ToLowerInvariant()];
 				var ip = actorRules.TraitInfo<IPositionableInfo>();
@@ -233,7 +258,6 @@ namespace OpenRA.Mods.SS.Traits
 				new FacingInit(facing),
 			});
 
-			spawnPointOccupation[sp] = true;
 			PlayerSpawnPoints[p] = sp;
 
 			if (w.LocalPlayer == p)
