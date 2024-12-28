@@ -16,6 +16,19 @@
 		FogVariants: typea, typeb, typec, typed
 		OverrideFullShroud: full
 		OverrideFullFog: full
+	Locomotor@DUMMY:
+		Name: dummy
+		SharesCell: true
+		TerrainSpeeds:
+			Clear: 100
+			Rough: 100
+			Road: 100
+			Bridge: 100
+			Tiberium: 100
+			BlueTiberium: 100
+			Beach: 100
+			Water: 100
+			Cliff: 100
 	Locomotor@FOOT:
 		Name: foot
 		Crushes: crate, teleporter, flag

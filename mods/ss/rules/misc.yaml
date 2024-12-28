@@ -532,7 +532,7 @@ proxy.cloak-detector:
 	-Immobile:
 	-RevealsShroud:
 	Mobile:
-		Locomotor: foot
+		Locomotor: dummy
 	RejectsOrders:
 	DetectCloaked:
 		Range: 1024c0
@@ -547,7 +547,7 @@ proxy.cloak-remover:
 	-Immobile:
 	-RevealsShroud:
 	Mobile:
-		Locomotor: foot
+		Locomotor: dummy
 	RejectsOrders:
 	ProximityExternalCondition:
 		Condition: cloak-global-disable
