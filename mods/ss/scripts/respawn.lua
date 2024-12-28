@@ -106,7 +106,7 @@ Respawn = function(player)
 					end
 					local checkCount = 0
 					local validatedLocation = location
-					while not Positionable.CanEnterCell(unitType, validatedLocation) or checkCount > 25 do
+					while not Positionable.CanEnterCell(unitType, validatedLocation) and checkCount <= 25 do
 						local expandedLocations = ExpandCells(validatedLocation)
 						local enterableLocations = Utils.Where(expandedLocations, function(l) Positionable.CanEnterCell(unitType, l) end)
 						if #enterableLocations > 0 then
@@ -116,7 +116,7 @@ Respawn = function(player)
 						end
 
 						checkCount = checkCount + 1
-						if checkCount == 25 then
+						if checkCount > 25 then
 							validatedLocation = location -- Fuck off back to the original spawn point, even if it is occupied.
 						end
 					end
