@@ -104,6 +104,22 @@ Respawn = function(player)
 					if RandomRespawn then
 						location = Utils.Random(SpawnPoints)
 					end
+					local checkCount = 0
+					local validatedLocation = location
+					while not Positionable.CanEnterCell(unitType, validatedLocation) or checkCount > 25 do
+						local expandedLocations = ExpandCells(validatedLocation)
+						local enterableLocations = Utils.Where(expandedLocations, function(l) Positionable.CanEnterCell(unitType, l) end)
+						if #enterableLocations > 0 then
+							validatedLocation = Utils.Random(enterableLocations)
+						else
+							validatedLocation = Utils.Random(expandedLocations)
+						end
+
+						checkCount = checkCount + 1
+						if checkCount == 25 then
+							validatedLocation = location -- Fuck off back to the original spawn point, even if it is occupied.
+						end
+					end
 
 					if player.Unit.Type ~= unitType then
 						player.ClassChangingPaused = true
@@ -111,7 +127,7 @@ Respawn = function(player)
 						TickClassChangingTimer(player, ClassChangingInterval[ClassChangingOption])
 					end
 
-					player.Unit = Actor.Create(unitType, true, { Owner = player, Location = location })
+					player.Unit = Actor.Create(unitType, true, { Owner = player, Location = validatedLocation })
 					if RespawnCloakOption ~= "disabled" then
 						player.Unit.GrantCondition("starting-cloak", CloakDuration[RespawnCloakOption])
 					end
@@ -119,7 +135,7 @@ Respawn = function(player)
 						player.Unit.GrantCondition("invulnerability", InvulnDuration[RespawnInvulnOption])
 					end
 					if player.IsLocalPlayer then
-						Camera.Position = Map.CenterOfCell(location)
+						Camera.Position = Map.CenterOfCell(validatedLocation)
 					end
 					Respawn(player)
 				end

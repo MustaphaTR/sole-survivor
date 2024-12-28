@@ -21,25 +21,26 @@ IdleHunt = function(actor)
 	end
 end
 
+ExpandCells = function(cell)
+	return {
+		cell + CVec.New(-1,-1),
+		cell + CVec.New(-1, 0),
+		cell + CVec.New(-1, 1),
+		cell + CVec.New( 0,-1),
+		-- cell + CVec.New( 0, 0),
+		cell + CVec.New( 0, 1),
+		cell + CVec.New( 1,-1),
+		cell + CVec.New( 1, 0),
+		cell + CVec.New( 1, 1)
+	}
+end
+
 BuildEngiStuff = function(engi)
 	if engi.IsDead then
 		return
 	end
 
-	local engiLoc = engi.Location
-	local locations =
-	{
-		engiLoc + CVec.New(-1,-1),
-		engiLoc + CVec.New(-1, 0),
-		engiLoc + CVec.New(-1, 1),
-		engiLoc + CVec.New( 0,-1),
-		engiLoc + CVec.New( 0, 0),
-		engiLoc + CVec.New( 0, 1),
-		engiLoc + CVec.New( 1,-1),
-		engiLoc + CVec.New( 1, 0),
-		engiLoc + CVec.New( 1, 1)
-	}
-
+	local locations = ExpandCells(engi.Location)
 	local buildableLocations = Utils.Where(locations, function(l) return GetCells.TileIsInMap(l) and (Map.TerrainType(l) == "Clear" or Map.TerrainType(l) == "Road") and #Map.ActorsInBox(Map.CenterOfCell(l) + WVec.New(-512, -512, 0), Map.CenterOfCell(l) + WVec.New(512, 512, 0)) == 0 end)
 
 	if #buildableLocations > 0 then
@@ -168,7 +169,7 @@ TickAI = function(bots, i)
 					end
 				end
 			elseif unit.Type == "rmbo" and CheckTimers["Demolish"][i] <= 0 then
-				local enemies = GetNearbyEnemies(unit, 2, { "e1", "e2", "e3", "e4", "e5", "e6", "rmbo", "tran", "heli", "orca", "u2" })
+				local enemies = GetNearbyEnemies(unit, 2, { "e1", "e2", "e3", "e4", "e5", "e6", "rmbo", "tran", "heli", "orca", "u2", "a10" })
 
 				if #enemies > 0 then
 					unit.Stop()
