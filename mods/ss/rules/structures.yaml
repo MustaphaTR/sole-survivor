@@ -836,7 +836,12 @@ GUN.husk:
 	GrantConditionOnBotOwner@bot:
 		Condition: bot
 		Bots: hunter
-	GrantConditionAfterDelay:
+	GrantConditionAfterDelay@quick:
+		Delay: 25
+		Condition: deployed
+		ShowSelectionBar: false
+		RequiresCondition: bot && removeable
+	GrantConditionAfterDelay@slow:
 		Delay: 1500
 		Condition: deployed
 		ShowSelectionBar: false
@@ -1009,7 +1014,12 @@ GTWR.husk:
 	GrantConditionOnBotOwner@bot:
 		Condition: bot
 		Bots: hunter
-	GrantConditionAfterDelay:
+	GrantConditionAfterDelay@quick:
+		Delay: 25
+		Condition: deployed
+		ShowSelectionBar: false
+		RequiresCondition: bot && removeable
+	GrantConditionAfterDelay@slow:
 		Delay: 1500
 		Condition: deployed
 		ShowSelectionBar: false
