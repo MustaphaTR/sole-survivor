@@ -1,7 +1,7 @@
 Container@SKIRMISH_STATS:
 	Height: PARENT_HEIGHT
 	Width: PARENT_WIDTH
-	Logic: GameInfoStatsLogic
+	Logic: GameInfoStatsSSLogic
 	Children:
 		Container@OBJECTIVE:
 			Height: 75

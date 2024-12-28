@@ -35,8 +35,6 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		[ObjectCreator.UseCtor]
 		public IngameScoreScreenLogic(Widget widget, World world, OrderManager orderManager, WorldRenderer worldRenderer)
 		{
-			var spawner = world.WorldActor.Trait<SpawnSSUnit>();
-
 			var closeButton = widget.Get<ButtonWidget>("CLOSE_STATS");
 			var openButton = widget.Get<ButtonWidget>("OPEN_STATS");
 			var stats = widget.Get<ContainerWidget>("STATS_HEADERS");
@@ -75,6 +73,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				.OrderByDescending(g => g.Sum(gg => gg.PlayerStatistics?.Experience ?? 0))
 				.ToList();
 
+			var spawner = world.WorldActor.Trait<SpawnSSUnit>();
 			foreach (var t in teams)
 			{
 				if (teams.Count > 1)
@@ -122,8 +121,11 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						return name.Update((pp.ResolvedPlayerName, pp.WinState, clientState));
 					};
 
-					// nameLabel.GetColor = () => pp.Color;
-					nameLabel.GetColor = () => Color.White;
+					nameLabel.GetColor = () =>
+					{
+						spawner.TeamLeaders.TryGetValue(pp, out var leader);
+						return leader == null ? pp.Color : leader.Color;
+					};
 
 					var flag = item.Get<ImageWidget>("FACTIONFLAG");
 					flag.GetImageCollection = () => "flags";
