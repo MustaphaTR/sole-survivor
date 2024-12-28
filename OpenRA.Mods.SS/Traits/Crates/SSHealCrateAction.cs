@@ -60,7 +60,7 @@ namespace OpenRA.Mods.Common.Traits
 			}
 			else
 			{
-				health.InflictDamage(collector, collector, new Damage(-(health.MaxHP - health.HP)), true);
+				health?.InflictDamage(collector, collector, new Damage(-(health.MaxHP - health.HP)), true);
 
 				base.Activate(collector);
 			}
