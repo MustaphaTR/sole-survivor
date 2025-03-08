@@ -1,6 +1,6 @@
 Metadata:
 	Title: mod-title
-	Version: {DEV_VERSION}
+	Version: release-20250308
 	Website: https://www.openra.net
 	WebIcon32: https://raw.githubusercontent.com/MustaphaTR/sole-survivor/master/mods/ss/icon.png
 	WindowTitle: mod-windowtitle
@@ -45,7 +45,7 @@ FileSystem: ContentInstallerFileSystem
 
 MapFolders:
 	ss|maps: System
-	~^SupportDir|maps/cnc/{DEV_VERSION}: User
+	~^SupportDir|maps/cnc/release-20250308: User
 
 Rules:
 	ss|rules/misc.yaml
