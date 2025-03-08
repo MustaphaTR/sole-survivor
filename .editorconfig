@@ -91,7 +91,7 @@ dotnet_diagnostic.IDE0018.severity = warning
 
 # IDE0028 Use collection initializers
 #dotnet_style_collection_initializer = true
-dotnet_diagnostic.IDE0028.severity = warning
+dotnet_diagnostic.IDE0028.severity = suggestion # TODO: Consider enabling
 
 # IDE0032 Use auto-implemented property
 #dotnet_style_prefer_auto_properties = true

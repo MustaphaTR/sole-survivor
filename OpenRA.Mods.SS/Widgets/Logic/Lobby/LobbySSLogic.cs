@@ -188,8 +188,8 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					"onMouseDown", (Action<MapPreviewWidget, MapPreview, MouseInput>)((preview, mapPreview, mi) =>
 						LobbyUtils.SelectSpawnPoint(orderManager, preview, mapPreview, mi))
 				},
-				{ "getSpawnOccupants", (Func<Dictionary<int, SpawnOccupant>>)(() => spawnOccupants) },
-				{ "getDisabledSpawnPoints", (Func<HashSet<int>>)(() => orderManager.LobbyInfo.DisabledSpawnPoints) },
+				{ "getSpawnOccupants", () => spawnOccupants },
+				{ "getDisabledSpawnPoints", () => orderManager.LobbyInfo.DisabledSpawnPoints },
 				{ "showUnoccupiedSpawnpoints", true },
 				{ "mapUpdatesEnabled", true },
 				{
@@ -369,7 +369,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			var optionsBin = Ui.LoadWidget("LOBBY_OPTIONS_BIN", lobby.Get("TOP_PANELS_ROOT"), new WidgetArgs()
 			{
 				{ "orderManager", orderManager },
-				{ "getMap", (Func<MapPreview>)(() => map) },
+				{ "getMap", () => map },
 				{ "configurationDisabled", configurationDisabled }
 			});
 
