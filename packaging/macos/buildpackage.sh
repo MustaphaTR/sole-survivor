@@ -147,7 +147,7 @@ install_mod_assemblies "${TEMPLATE_ROOT}" "${LAUNCHER_ASSEMBLY_DIR}/x86_64" "osx
 install_mod_assemblies "${TEMPLATE_ROOT}" "${LAUNCHER_ASSEMBLY_DIR}/arm64" "osx-arm64" "${TEMPLATE_ROOT}/${ENGINE_DIRECTORY}"
 
 cp -LR "${TEMPLATE_ROOT}mods/"* "${LAUNCHER_RESOURCES_DIR}/mods"
-netz
+
 set_engine_version "${ENGINE_VERSION}" "${LAUNCHER_RESOURCES_DIR}"
 if [ "${PACKAGING_OVERWRITE_MOD_VERSION}" == "True" ]; then
 	set_mod_version "${TAG}" "${LAUNCHER_RESOURCES_DIR}/mods/${MOD_ID}/mod.yaml"
