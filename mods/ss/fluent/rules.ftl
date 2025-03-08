@@ -37,27 +37,27 @@ checkbox-quick-class-change =
     .description = When enabled changing class kills you, otherwise you have to wait till you are killed to actually change
 
 #dropdown-crate-amount =
-#   .label = Crate Amount
+#    .label = Crate Amount
 #    .description = Amount of crates to spawn
 
 dropdown-wooden-crate-amount =
-   .label = Wooden Crate Amount
+    .label = Wooden Crate Amount
     .description = Amount of wooden crates to spawn
 
 dropdown-steel-crate-amount =
-   .label = Steel Crate Amount
+    .label = Steel Crate Amount
     .description = Amount of steel crates to spawn
 
 dropdown-health-crate-amount =
-   .label = Health Crate Amount
+    .label = Health Crate Amount
     .description = Amount of health crates to spawn
 
 dropdown-score-crate-amount =
-   .label = Score Crate Amount
+    .label = Score Crate Amount
     .description = Amount of score crates to spawn
 
 dropdown-wacky-crate-amount =
-   .label = Wacky Crate Amount
+    .label = Wacky Crate Amount
     .description = Amount of wacky crates to spawn
 
 dropdown-armageddon-crate-amount =
@@ -508,7 +508,7 @@ notification-armageddon = Armageddon.
 
 ## ai.yaml
 bot-hunter =
-   .name = Hunter
+    .name = Hunter
 
 ## aircraft.yaml
 actor-u2-name = Spy Plane
@@ -522,8 +522,8 @@ actor-mhq-husk-name = Mobile HQ (Destroyed)
 
 ## infantry.yaml
 actor-trex =
-   .name = Tyrannosaurus Rex
-   .description =
+    .name = Tyrannosaurus Rex
+    .description =
     Bipedal carnivore with
     a massive skull.
 
@@ -542,13 +542,13 @@ actor-gtwr-husk-name = Guard Tower (Destroyed)
 
 ## vehicles.yaml
 actor-mlrs =
-   .name = SSM Launcher
-   .description =
+    .name = SSM Launcher
+    .description =
     Long range rocket artillery.
 
 actor-mhq =
-   .name = Mobile HQ
-   .airstrikepower-spyplane-name = Spy Plane
-   .airstrikepower-spyplane-description = 
+    .name = Mobile HQ
+    .airstrikepower-spyplane-name = Spy Plane
+    .airstrikepower-spyplane-description = 
     Reveals an area of the map
     and cloaked enemy units.

@@ -27,6 +27,37 @@ ScrollPanel@LABEL_DROPDOWN_TEMPLATE:
 					Width: PARENT_WIDTH - 20
 					Height: 25
 
+ScrollPanel@LABEL_DROPDOWN_WITH_TOOLTIP_TEMPLATE:
+	Width: DROPDOWN_WIDTH
+	Background: panel-black
+	Children:
+		ScrollItem@HEADER:
+			Background: scrollheader
+			Width: PARENT_WIDTH - 27
+			Height: 13
+			X: 2
+			Y: 0
+			Visible: false
+			Children:
+				Label@LABEL:
+					Font: TinyBold
+					Width: PARENT_WIDTH
+					Height: 13
+					Align: Center
+		ScrollItem@TEMPLATE:
+			Width: PARENT_WIDTH - 27
+			Height: 25
+			X: 2
+			Y: 0
+			TooltipContainer: TOOLTIP_CONTAINER
+			TooltipTemplate: BUTTON_TOOLTIP
+			Visible: false
+			Children:
+				Label@LABEL:
+					X: 10
+					Width: PARENT_WIDTH - 20
+					Height: 25
+
 ScrollPanel@PLAYERACTION_DROPDOWN_TEMPLATE:
 	Width: DROPDOWN_WIDTH
 	Background: panel-black
@@ -76,7 +107,7 @@ ScrollPanel@FACTION_DROPDOWN_TEMPLATE:
 					Height: 16
 				Label@LABEL:
 					X: 40
-					Width: 137
+					Width: 50
 					Height: 25
 
 ScrollPanel@TEAM_DROPDOWN_TEMPLATE:
@@ -162,7 +193,8 @@ Background@THREEBUTTON_PROMPT:
 	Children:
 		Label@PROMPT_TITLE:
 			Width: PARENT_WIDTH
-			Y: 0 - 22
+			Height: 25
+			Y: 0 - 34
 			Font: BigBold
 			Contrast: true
 			Align: Center
@@ -205,7 +237,8 @@ Background@TWOBUTTON_PROMPT:
 	Children:
 		Label@PROMPT_TITLE:
 			Width: PARENT_WIDTH
-			Y: 0 - 22
+			Height: 25
+			Y: 0 - 34
 			Font: BigBold
 			Contrast: true
 			Align: Center
@@ -239,7 +272,8 @@ Container@TEXT_INPUT_PROMPT:
 	Children:
 		Label@PROMPT_TITLE:
 			Width: PARENT_WIDTH
-			Y: 0 - 22
+			Height: 25
+			Y: 0 - 34
 			Font: BigBold
 			Contrast: true
 			Align: Center
@@ -281,29 +315,27 @@ ScrollPanel@NEWS_PANEL:
 	Width: 400
 	Height: 265
 	Background: panel-black
-	TopBottomSpacing: 5
+	TopBottomSpacing: 10
 	ItemSpacing: 5
 	Children:
 		Container@NEWS_ITEM_TEMPLATE:
 			X: 10
-			Y: 5
 			Width: PARENT_WIDTH - 40
-			Height: 45
+			Height: 40
 			Children:
 				Label@TITLE:
-					Y: 1
 					Width: PARENT_WIDTH
-					Height: 25
+					Height: 20
 					Align: Center
 					Font: Bold
 				Label@AUTHOR_DATETIME:
-					Y: 26
+					Y: 21
 					Width: PARENT_WIDTH
 					Height: 15
 					Align: Center
 					Font: TinyBold
 				Label@CONTENT:
-					Y: 46
+					Y: 40
 					Width: PARENT_WIDTH
 		Label@NEWS_STATUS:
 			X: 80

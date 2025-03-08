@@ -64,6 +64,7 @@ Rules:
 	ss|rules/ships.yaml
 	ss|rules/aircraft.yaml
 	ss|rules/husks.yaml
+ 	cnc|rules/map-generators.yaml
 
 Sequences:
 	ss|sequences/structures.yaml
@@ -137,6 +138,7 @@ ChromeLayout:
 	cnc|chrome/music.yaml
 	cnc|chrome/settings.yaml
 	cnc|chrome/settings-display.yaml
+ 	cnc|chrome/settings-gameplay.yaml
 	cnc|chrome/settings-audio.yaml
 	cnc|chrome/settings-input.yaml
 	cnc|chrome/settings-hotkeys.yaml

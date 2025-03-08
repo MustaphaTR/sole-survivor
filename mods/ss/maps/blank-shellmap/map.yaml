@@ -37,6 +37,7 @@ Rules:
 		-SSCrateSpawner@wacky:
 		-SSCrateSpawner@armageddon:
 		-LuaScript:
+		-AutoSave:
 		MusicPlaylist:
 			BackgroundMusic: map1
 			DisableWorldSounds: true

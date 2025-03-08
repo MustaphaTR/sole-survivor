@@ -583,6 +583,8 @@
 
 ^CivInfantry:
 	Inherits: ^Infantry
+	Selectable:
+		Class: CivInfantry
 	Valued:
 		Cost: 10
 	Tooltip:
@@ -606,15 +608,21 @@
 		MinMoveDelay: 150
 		MaxMoveDelay: 750
 		AvoidTerrainTypes: Tiberium, BlueTiberium
+	WithInfantryBody:
+		IdleSequences: idle1
+		MinIdleDelay: 60
+		MaxIdleDelay: 220
 	MapEditorData:
 		Categories: Civilian infantry
 
 ^ArmedCivilian:
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Armament:
 		Weapon: Pistol
 	AttackFrontal:
 		FacingTolerance: 0
 	WithInfantryBody:
+		IdleSequences: idle1,idle2
 		DefaultAttackSequence: shoot
 
 ^DINO:

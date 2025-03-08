@@ -347,6 +347,8 @@ TC01:
 
 TC01.Husk:
 	Inherits: ^TreeHusk
+	Interactable:
+		Bounds: 72,48
 	Building:
 		Footprint: ___ xx_
 		Dimensions: 3,2
@@ -365,6 +367,8 @@ TC02:
 
 TC02.Husk:
 	Inherits: ^TreeHusk
+	Interactable:
+		Bounds: 72,48
 	Building:
 		Footprint: _x_ xx_
 		Dimensions: 3,2
@@ -383,6 +387,8 @@ TC03:
 
 TC03.Husk:
 	Inherits: ^TreeHusk
+	Interactable:
+		Bounds: 72,48
 	Building:
 		Footprint: _x_ xx_
 		Dimensions: 3,2
@@ -401,6 +407,8 @@ TC04:
 
 TC04.Husk:
 	Inherits: ^TreeHusk
+	Interactable:
+		Bounds: 96,72
 	Building:
 		Footprint: ____ xxx_ x___
 		Dimensions: 4,3
@@ -419,6 +427,8 @@ TC05:
 
 TC05.Husk:
 	Inherits: ^TreeHusk
+	Interactable:
+		Bounds: 96,72
 	Building:
 		Footprint: __x_ xxx_ _xx_
 		Dimensions: 4,3

@@ -365,6 +365,7 @@ World:
 	ChatCommands:
 	DevCommands:
 	DebugVisualizationCommands:
+	AutoSave:
 	PathFinderOverlay:
 	HierarchicalPathFinderOverlay:
 	PlayerCommands:
@@ -691,6 +692,7 @@ World:
 
 EditorWorld:
 	Inherits: ^BaseWorld
+	Inherits@MapGenerators: ^MapGenerators
 	EditorActorLayer:
 	EditorCursorLayer:
 	EditorResourceLayer:
