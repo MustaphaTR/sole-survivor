@@ -10,7 +10,7 @@
 Bots = { { }, { }, { }, { }, { } }
 CheckTimers = {
 	Health = { 25, 25, 25, 25, 25 },
-	Demolish = { 25, 25, 25, 25, 25 }
+	Demolish = { 50, 50, 50, 50, 50 }
 }
 
 MHQActor = { }
@@ -91,7 +91,7 @@ GetNearbyCrates = function(actor, distance)
 end
 
 GetNearbyEnemies = function(actor, distance, ignored_actors)
-	return Utils.Where(Map.ActorsInCircle(actor.CenterPosition, WDist.FromCells(distance)), function(a) return not Utils.Any(ignored_actors, function(type) return a.Type == type end) and (a.Owner.Team ~= actor.Owner.Team or a.Owner.Team == 0) end)
+	return Utils.Where(Map.ActorsInCircle(actor.CenterPosition, WDist.FromCells(distance)), function(a) return not Utils.Any(ignored_actors, function(type) return a.Type == type end) and not a.Owner.IsNonCombatant and (a.Owner.Team ~= actor.Owner.Team or a.Owner.Team == 0) end)
 end
 
 GetNearbyHealCrate = function(actor, distance)
@@ -186,7 +186,7 @@ TickAI = function(bots, i)
 	end
 
 	if CheckTimers["Demolish"][i] <= 0 then
-		CheckTimers["Demolish"][i] = 25
+		CheckTimers["Demolish"][i] = 50
 	end
 
 	Trigger.AfterDelay(5, function()
