@@ -85,54 +85,6 @@ resources:
 			SNOW: ti12.sno
 			TEMPERAT: ti12.tem
 			JUNGLE: ti12.jun
-	bti1:
-		Filename: rtib1.tem
-		TilesetFilenames:
-			DESERT: rtib1.des
-	bti2:
-		Filename: rtib2.tem
-		TilesetFilenames:
-			DESERT: rtib2.des
-	bti3:
-		Filename: rtib3.tem
-		TilesetFilenames:
-			DESERT: rtib3.des
-	bti4:
-		Filename: rtib4.tem
-		TilesetFilenames:
-			DESERT: rtib4.des
-	bti5:
-		Filename: rtib5.tem
-		TilesetFilenames:
-			DESERT: rtib5.des
-	bti6:
-		Filename: rtib6.tem
-		TilesetFilenames:
-			DESERT: rtib6.des
-	bti7:
-		Filename: rtib7.tem
-		TilesetFilenames:
-			DESERT: rtib7.des
-	bti8:
-		Filename: rtib8.tem
-		TilesetFilenames:
-			DESERT: rtib8.des
-	bti9:
-		Filename: rtib9.tem
-		TilesetFilenames:
-			DESERT: rtib9.des
-	bti10:
-		Filename: rtib10.tem
-		TilesetFilenames:
-			DESERT: rtib10.des
-	bti11:
-		Filename: rtib11.tem
-		TilesetFilenames:
-			DESERT: rtib11.des
-	bti12:
-		Filename: rtib12.tem
-		TilesetFilenames:
-			DESERT: rtib12.des
 
 fb4:
 	idle:

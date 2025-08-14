@@ -5,7 +5,9 @@
 #  Read the file to see which settings you can override
 
 set -e
-command -v dotnet >/dev/null 2>&1 || { echo >&2 "The OpenRA mod SDK requires dotnet."; exit 1; }
+if ! command -v dotnet >/dev/null 2>&1 then
+	{ echo >&2 "The OpenRA mod SDK requires dotnet."; exit 1; }
+fi
 
 if command -v python3 >/dev/null 2>&1; then
 	PYTHON="python3"
@@ -45,6 +47,7 @@ LAUNCH_MOD="${Mod:-"${MOD_ID}"}"
 MAP="${Map:-""}"
 LISTEN_PORT="${ListenPort:-"1234"}"
 ADVERTISE_ONLINE="${AdvertiseOnline:-"True"}"
+ADVERTISE_ON_LOCAL_NETWORK="${AdvertiseOnLocalNetwork:-"True"}"
 PASSWORD="${Password:-""}"
 RECORD_REPLAYS="${RecordReplays:-"False"}"
 
@@ -78,6 +81,7 @@ while true; do
 	Server.Map="${MAP}" \
 	Server.ListenPort="${LISTEN_PORT}" \
 	Server.AdvertiseOnline="${ADVERTISE_ONLINE}" \
+	Server.AdvertiseOnLocalNetwork="${ADVERTISE_ON_LOCAL_NETWORK}" \
 	Server.Password="${PASSWORD}" \
 	Server.RecordReplays="${RECORD_REPLAYS}" \
 	Server.RequireAuthentication="${REQUIRE_AUTHENTICATION}" \

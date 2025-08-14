@@ -2,7 +2,11 @@ name: Continuous Integration
 
 on:
   push:
+    paths-ignore:
+      - '*.md'
   pull_request:
+    paths-ignore:
+      - '*.md'
 
 permissions:
   contents: read  #  to fetch code (actions/checkout)
@@ -17,7 +21,7 @@ jobs:
         run: sudo apt-get remove -y dotnet*
 
       - name: Clone Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install .NET 8.0
         uses: actions/setup-dotnet@v4
@@ -42,11 +46,11 @@ jobs:
 
   windows:
     name: Windows (.NET 8.0)
-    runs-on: windows-2019
+    runs-on: windows-2022
 
     steps:
       - name: Clone Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install .NET 8.0
         uses: actions/setup-dotnet@v4

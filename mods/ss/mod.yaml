@@ -36,10 +36,10 @@ FileSystem: ContentInstallerFileSystem
 		# Below are mod-provided (system) packages that need to be loaded after the content packages so they can override content assets.
 		cnc|bits/snow.mix
 		cnc|bits
-		cnc|bits/jungle
 		cnc|bits/desert
 		ss|bits
 		ss|bits/eva
+		ss|bits/jungle
 		ss|bits/ra
 	ContentInstallerMod: ss-content
 
@@ -78,10 +78,10 @@ Sequences:
 	ss|sequences/campaign.yaml
 
 TileSets:
-	ss|tilesets/desert.yaml
-	ss|tilesets/winter.yaml
-	ss|tilesets/snow.yaml
-	ss|tilesets/temperat.yaml
+	cnc|tilesets/desert.yaml
+	cnc|tilesets/winter.yaml
+	cnc|tilesets/snow.yaml
+	cnc|tilesets/temperat.yaml
 	ss|tilesets/jungle.yaml
 
 Weapons:

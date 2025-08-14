@@ -1,5 +1,4 @@
 ^BasePlayer:
-	AlwaysVisible:
 	Shroud:
 	PlayerResources:
 		ResourceValues:
@@ -31,7 +30,9 @@ Player:
 		CashTickDownNotification: CashTickDown
 	DeveloperMode:
 		CheckboxDisplayOrder: 2
-	BaseAttackNotifier:
+	DamageNotifier:
+		ValidTargets: Structure
+		Notification: BaseAttack
 		TextNotification: notification-base-under-attack
 		AllyTextNotification: notification-ally-under-attack
 	Shroud:
