@@ -33,6 +33,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		[FluentReference]
 		const string ConfigureBots = "options-slot-admin.configure-bots";
 
+		[FluentReference]
+		const string BotsDisabled = "notification-map-bots-disabled";
+
 		[FluentReference("count")]
 		const string NumberTeams = "options-slot-admin.teams-count";
 
@@ -59,6 +62,12 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 		[FluentReference]
 		const string ChatDisabled = "label-chat-disabled";
+
+		[FluentReference("name", "value")]
+		const string OptionValue = "notification-lobby-option";
+
+		[FluentReference("name", "value")]
+		const string OptionChanged = "notification-lobby-option-changed";
 
 		static readonly Action DoNothing = () => { };
 
@@ -99,6 +108,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		MapPreview map;
 		Session.MapStatus mapStatus;
 		MapGenerationArgs lastGeneratedMap;
+		bool gameStarting;
 
 		bool chatEnabled;
 		bool disableTeamChat;
@@ -107,6 +117,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		bool resetOptionsButtonEnabled;
 		bool mapAvailable;
 		Dictionary<int, SpawnOccupant> spawnOccupants = [];
+		Dictionary<string, Session.LobbyOptionState> lobbyOptions = [];
 
 		readonly string chatLineSound;
 		readonly string playerJoinedSound;
@@ -164,7 +175,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			// TODO: This needs to be reworked to support per-map tech levels, bots, etc.
 			modRules = modData.DefaultRules;
 
-			services = modData.Manifest.Get<WebServices>();
+			services = modData.GetOrCreate<WebServices>();
 
 			Game.LobbyInfoChanged += UpdateCurrentMap;
 			Game.LobbyInfoChanged += UpdatePlayerList;
@@ -224,7 +235,6 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			foreach (var f in modRules.Actors[SystemActors.World].TraitInfos<FactionInfo>())
 				factions.Add(f.InternalName, new LobbyFaction { Selectable = f.Selectable, Name = f.Name, Side = f.Side, Description = f.Description });
 
-			var gameStarting = false;
 			Func<bool> configurationDisabled = () => !Game.IsHost || gameStarting ||
 				panel == PanelType.Kick || panel == PanelType.ForceStart || !MapIsPlayable ||
 				orderManager.LocalClient == null || orderManager.LocalClient.IsReady;
@@ -255,7 +265,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 							return;
 
 						lastGeneratedMap = args;
-						orderManager.IssueOrder(Order.FromTargetString("GenerateMap", args.Serialize(), true));
+						orderManager.IssueOrder(Order.FromTargetString("GenerateMap", args.Serialize().WriteToString(), true));
 						orderManager.IssueOrder(Order.Command("map " + args.Uid));
 						Game.Settings.Server.Map = args.Uid;
 						Game.Settings.Save();
@@ -264,6 +274,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					// Check for updated maps, if the user has edited a map we'll preselect it for them
 					modData.MapCache.UpdateMaps();
 
+					var enableMapGenerator = Game.IsHost && orderManager.LobbyInfo.GlobalSettings.EnableMapGeneration;
 					Ui.OpenWindow("MAPCHOOSER_PANEL", new WidgetArgs()
 					{
 						{ "initialMap", modData.MapCache.PickLastModifiedMap(MapVisibility.Lobby) ?? map.Uid },
@@ -272,7 +283,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						{ "initialTab", MapClassification.System },
 						{ "onExit", modData.MapCache.UpdateMaps },
 						{ "onSelect", Game.IsHost ? onSelect : null },
-						{ "onSelectGenerated", Game.IsHost ? onSelectGenerated : null },
+						{ "onSelectGenerated", enableMapGenerator ? onSelectGenerated : null },
 						{ "filter", MapVisibility.Lobby },
 					});
 				};
@@ -578,6 +589,8 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				playerLeftSound = yaml.Value;
 			if (logicArgs.TryGetValue("LobbyOptionChangedSound", out yaml))
 				lobbyOptionChangedSound = yaml.Value;
+
+			Game.Sound.PlayNotification(modRules, null, "Sounds", playerJoinedSound, null);
 		}
 
 		bool disposed;
@@ -599,7 +612,8 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 		bool OptionsTabDisabled()
 		{
-			return !MapIsPlayable || panel == PanelType.Kick || panel == PanelType.ForceStart;
+			return map.Status == MapStatus.Unavailable || map.Status == MapStatus.Searching ||
+				!MapIsPlayable || panel == PanelType.Kick || panel == PanelType.ForceStart;
 		}
 
 		public override void Tick()
@@ -608,7 +622,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			if (!mapAvailable && map.Status == MapStatus.Available)
 			{
 				mapAvailable = true;
-				orderManager.IssueOrder(Order.Command($"state {Session.ClientState.NotReady}"));
+				CurrentMapBecameAvailable();
 			}
 
 			if (panel == PanelType.Options && OptionsTabDisabled())
@@ -648,8 +662,24 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			switch (notification.Pool)
 			{
 				case TextNotificationPool.Chat:
+				{
+					var profileTooltip = chatLine.GetOrNull<ClientTooltipRegionWidget>("PROFILE_TOOLTIP");
+					var prefix = chatLine.GetOrNull("PREFIX");
+					var c = orderManager.LobbyInfo.ClientWithIndex(notification.ClientId);
+					if (profileTooltip != null && prefix != null && c != null)
+					{
+						profileTooltip.Bounds = prefix.Bounds;
+						if (c.Fingerprint != null)
+							profileTooltip.Template = "REGISTERED_PLAYER_TOOLTIP";
+
+						profileTooltip.IsVisible = () => true;
+						profileTooltip.Bind(orderManager, worldRenderer, c);
+					}
+
 					Game.Sound.PlayNotification(modRules, null, "Sounds", chatLineSound, null);
 					break;
+				}
+
 				case TextNotificationPool.System:
 					Game.Sound.PlayNotification(modRules, null, "Sounds", lobbyOptionChangedSound, null);
 					break;
@@ -662,6 +692,32 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			}
 		}
 
+		void CurrentMapBecameAvailable()
+		{
+			orderManager.IssueOrder(Order.Command($"state {Session.ClientState.NotReady}"));
+
+			var missionData = map.WorldActorInfo.TraitInfoOrDefault<MissionDataInfo>();
+			if (missionData != null && !string.IsNullOrEmpty(missionData.Briefing))
+			{
+				var briefing = map.TryGetMessage(missionData.Briefing, out var translation) ? translation : missionData.Briefing;
+				TextNotificationsManager.AddSystemLine(briefing);
+			}
+
+			var allOptions = map.PlayerActorInfo.TraitInfos<ILobbyOptions>()
+				.Concat(map.WorldActorInfo.TraitInfos<ILobbyOptions>())
+				.SelectMany(t => t.LobbyOptions(map));
+
+			var newLobbyOptions = orderManager.LobbyInfo.GlobalSettings.LobbyOptions;
+			foreach (var o in allOptions)
+				if (newLobbyOptions.TryGetValue(o.Id, out var s) && (lobbyOptions.TryGetValue(o.Id, out var old) ? s.Value != old.Value : s.Value != o.DefaultValue))
+					TextNotificationsManager.AddSystemLine(OptionValue, "name", o.Name, "value", o.Label(s.Value));
+
+			if (map.Players.Players.Where(p => p.Value.Playable).All(p => !p.Value.AllowBots))
+				TextNotificationsManager.AddSystemLine(BotsDisabled);
+
+			lobbyOptions = newLobbyOptions;
+		}
+
 		void UpdateCurrentMap()
 		{
 			mapStatus = orderManager.LobbyInfo.GlobalSettings.MapStatus;
@@ -670,11 +726,13 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				return;
 
 			map = modData.MapCache[uid];
+			if (map.GenerationArgs != null)
+				lastGeneratedMap = map.GenerationArgs;
 
 			// Tell the server that we have the map
 			mapAvailable = map.Status == MapStatus.Available;
 			if (mapAvailable)
-				orderManager.IssueOrder(Order.Command($"state {Session.ClientState.NotReady}"));
+				CurrentMapBecameAvailable();
 
 			// We don't have the map
 			else if (map.Status != MapStatus.DownloadAvailable && Game.Settings.Game.AllowDownloading)
@@ -934,6 +992,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 		void UpdateOptions()
 		{
+			gameStarting = false;
 			if (map == null || map.WorldActorInfo == null)
 				return;
 
@@ -945,6 +1004,22 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				.OrderBy(o => o.DisplayOrder)
 				.ToArray();
 
+			var updated = orderManager.LobbyInfo.GlobalSettings.LobbyOptions;
+			foreach (var o in mapOptions)
+			{
+				var value = o.DefaultValue;
+				if (lobbyOptions.TryGetValue(o.Id, out var oo))
+					value = oo.Value;
+
+				var updatedValue = o.DefaultValue;
+				if (updated.TryGetValue(o.Id, out var uo))
+					updatedValue = uo.Value;
+
+				if (updatedValue != value)
+					TextNotificationsManager.AddSystemLine(OptionChanged, "name", o.Name, "value", o.Label(updatedValue));
+			}
+
+			lobbyOptions = updated;
 			resetOptionsButtonEnabled = mapOptions.Any(o => o.DefaultValue != serverOptions[o.Id].Value);
 		}
 

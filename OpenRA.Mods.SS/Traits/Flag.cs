@@ -77,7 +77,7 @@ namespace OpenRA.Mods.SS.Traits
 		public bool Collected;
 		INotifyCenterPositionChanged[] notifyCenterPositionChanged;
 
-		[Sync]
+		[VerifySync]
 		public CPos Location;
 
 		public Flag(ActorInitializer init, FlagInfo info)

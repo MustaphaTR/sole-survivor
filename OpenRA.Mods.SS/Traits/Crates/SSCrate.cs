@@ -79,9 +79,9 @@ namespace OpenRA.Mods.SS.Traits
 		bool collected;
 		INotifyCenterPositionChanged[] notifyCenterPositionChanged;
 
-		[Sync]
+		[VerifySync]
 		int ticks;
-		[Sync]
+		[VerifySync]
 		public CPos Location;
 
 		public SSCrate(ActorInitializer init, SSCrateInfo info)

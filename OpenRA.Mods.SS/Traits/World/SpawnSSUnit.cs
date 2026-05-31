@@ -147,7 +147,7 @@ namespace OpenRA.Mods.SS.Traits
 			var spawns = new List<CPos>();
 			foreach (var n in world.Map.ActorDefinitions)
 				if (n.Value.Value == "mpspawn")
-					spawns.Add(new ActorReference(n.Key, n.Value.ToDictionary()).GetValue<LocationInit, CPos>());
+					spawns.Add(new ActorReference(n.Key, n.Value).GetValue<LocationInit, CPos>());
 
 			spawnLocations = spawns.ToArray();
 

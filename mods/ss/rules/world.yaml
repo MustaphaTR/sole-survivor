@@ -1,5 +1,4 @@
 ^BaseWorld:
-	AlwaysVisible:
 	Inherits: ^Palettes
 	ScreenMap:
 	ActorMap:
@@ -368,6 +367,7 @@ World:
 	AutoSave:
 	PathFinderOverlay:
 	HierarchicalPathFinderOverlay:
+	ActorMapOverlay:
 	PlayerCommands:
 	HelpCommand:
 	ScreenShaker:
@@ -643,6 +643,11 @@ World:
 	ObjectivesPanel:
 		PanelName: SKIRMISH_STATS
 	RadarPings:
+	StartGameNotification:
+		Notification:
+		LoadedNotification:
+		SavedNotification:
+		SavedTextNotification: notification-game-saved
 	LoadWidgetAtGameStart:
 		ShellmapRoot: MENU_BACKGROUND
 	ScriptTriggers:

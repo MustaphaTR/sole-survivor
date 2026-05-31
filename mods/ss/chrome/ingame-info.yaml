@@ -9,7 +9,7 @@ Container@GAME_INFO_PANEL:
 		Label@TITLE:
 			Width: PARENT_WIDTH
 			Height: 25
-			Y: 0 - 17
+			Y: 0 - 20
 			Text: label-game-info-panel-title
 			Align: Center
 			Font: BigBold

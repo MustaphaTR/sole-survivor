@@ -49,9 +49,6 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		const string Spectators = "label-spectators";
 
 		[FluentReference]
-		const string Gone = "label-client-state-disconnected";
-
-		[FluentReference]
 		const string KickTooltip = "button-kick-player";
 
 		[FluentReference("player")]
@@ -161,8 +158,8 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						ConfirmationDialogs.ButtonPrompt(modData,
 							title: VoteKickTitle,
 							text: botsCount > 0 ? VoteKickPromptBreakBots : VoteKickPrompt,
-							titleArguments: new object[] { "player", client.Name },
-							textArguments: new object[] { "bots", botsCount },
+							titleArguments: ["player", client.Name],
+							textArguments: ["bots", botsCount],
 							onConfirm: () =>
 							{
 								orderManager.IssueOrder(Order.Command($"vote_kick {client.Index} {true}"));
@@ -177,8 +174,8 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					ConfirmationDialogs.ButtonPrompt(modData,
 						title: VoteKickTitle,
 						text: botsCount > 0 ? VoteKickPromptBreakBots : VoteKickPrompt,
-						titleArguments: new object[] { "player", client.Name },
-						textArguments: new object[] { "bots", botsCount },
+						titleArguments: ["player", client.Name],
+						textArguments: ["bots", botsCount],
 						onConfirm: () =>
 						{
 							orderManager.IssueOrder(Order.Command($"vote_kick {client.Index} {true}"));
@@ -202,7 +199,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					ConfirmationDialogs.ButtonPrompt(modData,
 						title: KickTitle,
 						text: KickPrompt,
-						titleArguments: new object[] { "player", client.Name },
+						titleArguments: ["player", client.Name],
 						onConfirm: () =>
 						{
 							orderManager.IssueOrder(Order.Command($"kick {client.Index} {false}"));
@@ -247,7 +244,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					var item = playerTemplate.Clone();
 					LobbyUtils.SetupProfileWidget(item, client, orderManager, worldRenderer);
 
-					var nameLabel = item.Get<LabelWidget>("NAME");
+					var nameLabel = item.Get<LabelWithTooltipWidget>("NAME");
 					WidgetUtils.BindPlayerNameAndStatus(nameLabel, pp);
 
 					nameLabel.GetColor = () =>
@@ -308,18 +305,22 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					var item = spectatorTemplate.Clone();
 					LobbyUtils.SetupProfileWidget(item, client, orderManager, worldRenderer);
 
-					var nameLabel = item.Get<LabelWidget>("NAME");
+					var nameLabel = item.Get<LabelWithTooltipWidget>("NAME");
 					var nameFont = Game.Renderer.Fonts[nameLabel.Font];
 
-					var suffixLength = new CachedTransform<string, int>(s => nameFont.Measure(s).X);
-					var name = new CachedTransform<(string Name, string Suffix), string>(c =>
-						WidgetUtils.TruncateText(c.Name, nameLabel.Bounds.Width - suffixLength.Update(c.Suffix), nameFont) + c.Suffix);
-
-					nameLabel.GetText = () =>
+					var name = new CachedTransform<Session.ClientState, string>(c =>
 					{
-						var suffix = client.State == Session.ClientState.Disconnected ? $" ({FluentProvider.GetMessage(Gone)})" : "";
-						return name.Update((client.Name, suffix));
-					};
+						var name = WidgetUtils.WithSuffix(client.Name, WinState.Undefined, c);
+						var truncated = WidgetUtils.TruncateText(name, nameLabel.Bounds.Width, nameFont);
+						if (name != truncated)
+							nameLabel.GetTooltipText = () => name;
+						else
+							nameLabel.GetTooltipText = null;
+
+						return truncated;
+					});
+
+					nameLabel.GetText = () => name.Update(client.State);
 
 					var kickButton = item.Get<ButtonWidget>("KICK");
 					bool IsVoteKick() => !Game.IsHost;

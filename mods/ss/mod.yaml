@@ -153,6 +153,7 @@ ChromeLayout:
 
 FluentMessages:
 	common|fluent/common.ftl
+	common|fluent/ingame-debug.ftl
 	common|fluent/hotkeys.ftl
 	common|fluent/rules.ftl
 	cnc|fluent/chrome.ftl
@@ -189,9 +190,9 @@ LoadScreen: CncLoadScreen
 
 ServerTraits:
 	LobbyCommandsSS
+	SkirmishLogic
 	PlayerPinger
 	MasterServerPinger
-	LobbySettingsNotification
 
 ChromeMetrics:
 	common|metrics.yaml

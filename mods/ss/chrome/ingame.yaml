@@ -2,13 +2,15 @@ Container@INGAME_ROOT:
 	Logic: LoadIngamePlayerOrObserverUILogic
 	Children:
 		LogicKeyListener@GLOBAL_KEYHANDLER:
-			Logic: MusicHotkeyLogic, ScreenshotHotkeyLogic, MuteHotkeyLogic
+			Logic: MusicHotkeyLogic, ScreenshotHotkeyLogic, MuteHotkeyLogic, DisableUIKeyLogic, DisableAllUIKeyLogic
 				StopMusicKey: StopMusic
 				PauseMusicKey: PauseMusic
 				PrevMusicKey: PrevMusic
 				NextMusicKey: NextMusic
 				TakeScreenshotKey: TakeScreenshot
 				MuteAudioKey: ToggleMute
+				DisableUIKey: DisableUserInterface
+				DisableAllUIKey: DisableAllUserInterface
 		LogicKeyListener@WORLD_KEYHANDLER:
 			Logic: JumpToLastEventHotkeyLogic, JumpToSelectedActorsHotkeyLogic, ResetZoomHotkeyLogic, TogglePlayerStanceColorHotkeyLogic, CycleStatusBarsHotkeyLogic, PauseHotkeyLogic, SelectUnitsByTypeHotkeyLogic, SelectAllUnitsHotkeyLogic
 				JumpToLastEventKey: ToLastEvent
@@ -281,11 +283,13 @@ Container@OBSERVER_WIDGETS:
 					Y: 4
 					Width: 32
 					Height: 16
-				Label@LABEL:
+				LabelWithTooltip@LABEL:
 					X: 40
-					Width: PARENT_WIDTH
+					Width: PARENT_WIDTH - 42 - 16
 					Height: 25
 					Shadow: True
+					TooltipContainer: TOOLTIP_CONTAINER
+					TooltipTemplate: SIMPLE_TOOLTIP
 				Label@NOFLAG_LABEL:
 					X: 5
 					Width: PARENT_WIDTH

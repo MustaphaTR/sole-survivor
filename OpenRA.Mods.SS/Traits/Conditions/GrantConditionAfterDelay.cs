@@ -36,7 +36,7 @@ namespace OpenRA.Mods.Common.Traits
 		readonly GrantConditionAfterDelayInfo info;
 		int token = Actor.InvalidConditionToken;
 
-		[Sync]
+		[VerifySync]
 		public int Ticks { get; private set; }
 
 		public GrantConditionAfterDelay(GrantConditionAfterDelayInfo info)

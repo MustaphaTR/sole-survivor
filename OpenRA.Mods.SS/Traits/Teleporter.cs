@@ -99,7 +99,7 @@ namespace OpenRA.Mods.SS.Traits
 		WorldRenderer wr;
 		INotifyCenterPositionChanged[] notifyCenterPositionChanged;
 
-		[Sync]
+		[VerifySync]
 		public CPos Location;
 
 		public Teleporter(ActorInitializer init, TeleporterInfo info)

@@ -314,7 +314,6 @@ mpspawn:
 	Interactable:
 	EditorOnlyTooltip:
 		Name: actor-mpspawn-name
-	AlwaysVisible:
 	Immobile:
 		OccupiesSpace: false
 	WithSpriteBody:
@@ -328,7 +327,6 @@ waypoint:
 	Interactable:
 	EditorOnlyTooltip:
 		Name: actor-waypoint-name
-	AlwaysVisible:
 	Immobile:
 		OccupiesSpace: false
 	WithSpriteBody:
@@ -562,7 +560,6 @@ CAMERA:
 	Interactable:
 	EditorOnlyTooltip:
 		Name: actor-camera-name
-	AlwaysVisible:
 	WithSpriteBody:
 	RenderSpritesEditorOnly:
 	BodyOrientation:
@@ -579,7 +576,6 @@ CAMERA.small:
 	Interactable:
 	EditorOnlyTooltip:
 		Name: actor-camera-small-name
-	AlwaysVisible:
 	WithSpriteBody:
 	RenderSpritesEditorOnly:
 		Image: camera

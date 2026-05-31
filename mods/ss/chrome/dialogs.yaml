@@ -173,11 +173,13 @@ ScrollPanel@SPECTATOR_DROPDOWN_TEMPLATE:
 					Y: 4
 					Width: 32
 					Height: 16
-				Label@LABEL:
+				LabelWithTooltip@LABEL:
 					X: 40
 					Width: PARENT_WIDTH
 					Height: 25
 					Shadow: True
+					TooltipContainer: TOOLTIP_CONTAINER
+					TooltipTemplate: SIMPLE_TOOLTIP
 				Label@NOFLAG_LABEL:
 					X: 5
 					Width: PARENT_WIDTH
